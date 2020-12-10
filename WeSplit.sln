@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeSplit", "WeSplit\WeSplit.csproj", "{79D96A00-93A5-44AC-8AB0-5E37FDE1B58A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79D96A00-93A5-44AC-8AB0-5E37FDE1B58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D96A00-93A5-44AC-8AB0-5E37FDE1B58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D96A00-93A5-44AC-8AB0-5E37FDE1B58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D96A00-93A5-44AC-8AB0-5E37FDE1B58A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29389D23-D036-45F8-B8F3-4C3C7795B750}
+	EndGlobalSection
+EndGlobal
