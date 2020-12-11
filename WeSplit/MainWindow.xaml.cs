@@ -17,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using Microsoft.Maps.MapControl.WPF;
+using WeSplit.Utilities;
 
 namespace WeSplit
 {
@@ -25,47 +27,54 @@ namespace WeSplit
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+        private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+        private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void GO_Click(object sender, RoutedEventArgs e)
+        private async Task Test()
         {
-            string DistanceApiUrl = ConfigurationManager.AppSettings["DistanceApi"];
-            string API_KEY = ConfigurationManager.AppSettings["ApiKey"];
+            List<Location> locations = new List<Location> {
+                new Location(10.883652174875964, 106.78150760740475),
+                new Location(11.582181420032388, 108.07610286906946),
+                new Location(11.93656053169823, 108.43766225557796),
+                new Location(11.978014277359497, 107.67314865742867),
+                new Location(12.282307089798318, 109.19050152674374),
+                new Location(13.98055712175929, 108.00346968442308),
+                new Location(10.403649799067841, 107.12466206906554)
+            };
 
-            string srcText = Src.Text;
-            string desText = Des.Text;
+            var routeLine = await _bingMapUtilities.CreateDirectionInMap(locations);
+            map.Children.Add(routeLine);
 
-            string url = DistanceApiUrl + "&origins=" + srcText + "&destinations=" + desText + "&mode=driving&sensor=false&language=vi-VI&units=imperial&key=" + API_KEY;
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-            WebResponse response = request.GetResponse();
-
-            Stream dataStream = response.GetResponseStream();
-            StreamReader sreader = new StreamReader(dataStream);
-            string responsereader = sreader.ReadToEnd();
-            response.Close();
-            DataSet ds = new DataSet();
-            ds.ReadXml(new XmlTextReader(new StringReader(responsereader)));
-            if (ds.Tables.Count > 0)
+            for (int i = 1; i < locations.Count - 1; ++i)
             {
-                var duration = "";
-                var distance = "";
-
-                if (ds.Tables["element"].Rows[0]["status"].ToString() == "OK")
-                {
-                    duration = Convert.ToString(ds.Tables["duration"].Rows[0]["text"].ToString().Trim());
-                    distance = Convert.ToString(ds.Tables["distance"].Rows[0]["text"].ToString());
-                }
-
-                Duration.Text = duration;
-                Distance.Text = Convert.ToString(distance);
-
-                map.Navigate("https://www.google.co.in/maps/dir/" + srcText + "/" + desText);
+                var pin = _bingMapUtilities.CreateMarker(locations[i]);
+                map.Children.Add(pin);
             }
+
+            MapLayer mapLayerStart = _bingMapUtilities.CreateMarkerWithImage( "../../Assets/Images/start.jpg", locations[0]);
+            map.Children.Add(mapLayerStart);
+
+
+            MapLayer mapLayerEnd = _bingMapUtilities.CreateMarkerWithImage("../../Assets/Images/end.jpg", locations[locations.Count - 1]);
+            map.Children.Add(mapLayerEnd); 
+        }
+
+        private void map_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            _ = Test();
+
+            //var pin = _bingMapUtilities.CreateMarker(_googleMapUtilities.GetLocationByKeyName("KTX Khu B"));
+            //map.Children.Add(pin);
         }
     }
 }

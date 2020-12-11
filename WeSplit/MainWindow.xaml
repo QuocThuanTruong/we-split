@@ -3,21 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:WeSplit"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
     <Canvas>
-        <TextBlock Canvas.Left="58" Canvas.Top="32" Height="30" Width="53" FontSize="24">Src</TextBlock>
-        <TextBox Name="Src" Width="150" Height="30" Canvas.Left="116" Canvas.Top="32"></TextBox>
-        <TextBlock Canvas.Left="460" Canvas.Top="32" Height="30" Width="53" FontSize="24"><Run Text="Des"/></TextBlock>
-        <TextBox Name="Des" Width="150" Height="30" Canvas.Left="518" Canvas.Top="32"/>
-        <TextBlock Canvas.Left="22" Canvas.Top="92" Height="30" Width="94" FontSize="24"><Run Text="Distance"/></TextBlock>
-        <TextBox x:Name="Distance" Width="150" Height="30" Canvas.Left="116" Canvas.Top="92"/>
-        <TextBlock Canvas.Left="414" Canvas.Top="92" Height="30" Width="99" FontSize="24"><Run Text="Duration"/></TextBlock>
-        <TextBox x:Name="Duration" Width="150" Height="30" Canvas.Left="518" Canvas.Top="92"/>
-        <Button Name="GO" Width="50" Height="30" Canvas.Left="732" Canvas.Top="38" FontSize="20" Click="GO_Click">GO</Button>
+        <m:Map Name="map" CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
+               Mode="AerialWithLabels" 
+               Center="10.840919302156086, 106.73613666721643" 
+               ZoomLevel="16" 
+               Height="759" Width="1182"
+               MouseDoubleClick="map_MouseDown">
+        </m:Map>
 
-        <WebBrowser Name="map" Canvas.Bottom="0" Height="600" Width="1200"/>
+        <Button x:Name="TestButton" Width="30" Height="30" Click="Test_Click"></Button>
     </Canvas>
 </Window>
 
