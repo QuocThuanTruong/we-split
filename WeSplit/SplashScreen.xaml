@@ -7,29 +7,41 @@
         xmlns:loc="clr-namespace:WeSplit.Properties"
         xmlns:local="clr-namespace:WeSplit"
         mc:Ignorable="d"
-        Title="SplashScreen" Loaded="Window_Loaded" Height="520" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    
-    <Grid Name="mainContainer">
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="SplashScreen" Loaded="Window_Loaded" Height="536" Width="916" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="380*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="380*"/>
-            <ColumnDefinition Width="40*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="8" Background="{DynamicResource MyLightGray2}">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="10" 
+                              Direction="-90"
+                              Color="#bcbcbc"
+                              RenderingBias="Quality" 
+                              ShadowDepth="2"/>
+        </Grid.Effect>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="90*"/>
-            <RowDefinition Height="160*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="110*"/>
-        </Grid.RowDefinitions>
 
-        <Image Name="splashBg"
+        <Grid Name="mainContainer">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="380*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="380*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="160*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="110*"/>
+            </Grid.RowDefinitions>
+
+            <Image Name="splashBg"
                Grid.ColumnSpan="5"
                Grid.RowSpan="7"
                Width="900"
@@ -38,7 +50,7 @@
                RenderOptions.BitmapScalingMode="HighQuality"
                Source="{DynamicResource SplashBackground}"/>
 
-        <Image Name="splashFooter"
+            <Image Name="splashFooter"
                Grid.ColumnSpan="5"
                Grid.RowSpan="7"
                Width="900"
@@ -48,7 +60,7 @@
                RenderOptions.BitmapScalingMode="HighQuality"
                Source="{DynamicResource SplashFooter}"/>
 
-        <Image Name="appLogo"
+            <Image Name="appLogo"
                Grid.Column="1"
                Grid.Row="0"
                Grid.RowSpan="2"
@@ -59,56 +71,91 @@
                Width="127"
                Height="35"/>
 
-        <StackPanel Name="siteInfoContainer"
+            <Border Width="180"
+                Height="2"
+                Margin="0, 6, 0, 0"
+                Background="{DynamicResource MyDarkGreen}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Grid.Column="1"
+                Grid.Row="2"/>
+
+            <StackPanel Name="siteInfoContainer"
                     HorizontalAlignment="Center"
                     Grid.Column="1"
                     Grid.Row="3"
                     Grid.RowSpan="2">
 
-            <!--Binding-->
-            <TextBlock Name="siteNameTextBlock"
+                <!--Binding-->
+                <TextBlock Name="siteNameTextBlock"
                    Text="khu di tích cố đô hoa lưu"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    Style="{StaticResource LargeHeaderText}"/>
 
-            <Grid  Grid.Column="1"
+                <Grid  Grid.Column="1"
                    Grid.Row="4"
                    Height="168">
 
-                <!--Binding-->
-                <ScrollViewer Margin="0, 16, 0, 0">
-                    <TextBlock Name="siteDescriptionTextBlock"          
+                    <!--Binding-->
+                    <ScrollViewer Margin="0, 16, 0, 0">
+                        <TextBlock Name="siteDescriptionTextBlock"          
                                Text="L Lpiscing elitcing elit, sed diam nonummy nib, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui"
                                Style="{StaticResource RegularText}"
                                Margin="0, 0, 12, 0"
                                ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </ScrollViewer>
-            </Grid>
+                    </ScrollViewer>
+                </Grid>
 
-        </StackPanel>
-        
-        
-        
+            </StackPanel>
 
-        <Grid Name="checkboxContainer"
+            <materialDesign:Card Name="siteAvatarContainer"
+                             Grid.Column="3"
+                             Grid.Row="1"
+                             Grid.RowSpan="5"
+                             Width="370"
+                             Height="370"
+                             UniformCornerRadius="185">
+
+                <Image Name="siteAvatarImage"
+                   Stretch="UniformToFill"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="{DynamicResource TEST_1}"/>
+
+            </materialDesign:Card>
+
+            <Grid Name="checkboxContainer"
                   VerticalAlignment="Center"
                   Grid.Column="1"
                   Grid.Row="5"
                   Grid.ColumnSpan="3">
 
-            <CheckBox Name="turnOffSplashCheckBox"
+                <CheckBox Name="turnOffSplashCheckBox"
                           IsChecked="False"
                           Unchecked="turnOffSplashCheckBox_Unchecked"
                           Checked="turnOffSplashCheckBox_Checked"
                           materialDesign:CheckBoxAssist.CheckBoxSize="18">
 
-                <TextBlock Name="contentSplashCheckBox"
+                    <TextBlock Name="contentSplashCheckBox"
                            Margin="0, 0, 0, 2"
                            Style="{StaticResource SmallText}"
                            Text="{x:Static loc:Resources.message_not_show_splash}"/>
-            </CheckBox>
+                </CheckBox>
+            </Grid>
+
+
+            <ProgressBar Name="loadingSimulator"
+                         Background="{StaticResource MyDarkGreen}"
+                         VerticalAlignment="Bottom"
+                         IsIndeterminate="True"
+                         Margin="0, 0, 0, -1"
+                         Foreground="#00472c"
+                         Height="6"
+                         Grid.Row="6"
+                         Grid.ColumnSpan="7"/>
+
         </Grid>
 
     </Grid>
+
 </Window>

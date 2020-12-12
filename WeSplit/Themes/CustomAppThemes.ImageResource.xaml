@@ -50,5 +50,7 @@
     <ImageSource x:Key="MainBackground">pack://application:,,,/Assets/Images/main-bg.png</ImageSource>
     <ImageSource x:Key="SplashBackground">pack://application:,,,/Assets/Images/splash-bg.png</ImageSource>
     <ImageSource x:Key="SplashFooter">pack://application:,,,/Assets/Images/splash-footer.png</ImageSource>
+    
+    <ImageSource x:Key="TEST_1">pack://application:,,,/Assets/test_1.jpg</ImageSource>
 
 </ResourceDictionary>

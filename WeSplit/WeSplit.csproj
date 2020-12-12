@@ -276,6 +276,7 @@
     <Content Include="Assets\Images\splash-footer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\test_1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\main-bg.png">

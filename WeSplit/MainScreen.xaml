@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeSplit"
         mc:Ignorable="d"
-        Title="MainScreen" Height="450" Width="800">
+        Title="MainScreen" Height="768" Width="1366" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        
+        <Image Name="mainBg"
+               Stretch="UniformToFill"
+               Source="{DynamicResource MainBackground}"/>
     </Grid>
 </Window>
