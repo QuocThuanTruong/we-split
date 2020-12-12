@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WeSplit.Themes">
+
+
+    <ImageSource x:Key="AppLogo">pack://application:,,,/Assets/Images/app-logo.png</ImageSource>
+    <ImageSource x:Key="IconAddImg">pack://application:,,,/Assets/Images/ic-add-img.png</ImageSource>
+    <ImageSource x:Key="IconAll">pack://application:,,,/Assets/Images/ic-all.png</ImageSource>
+    <ImageSource x:Key="IconAsc">pack://application:,,,/Assets/Images/ic-asc.png</ImageSource>
+    <ImageSource x:Key="IconDesc">pack://application:,,,/Assets/Images/ic-desc.png</ImageSource>
+    <ImageSource x:Key="IconDgreenEnd">pack://application:,,,/Assets/Images/ic-dgreen-end.png</ImageSource>
+    <ImageSource x:Key="IconDgreenStart">pack://application:,,,/Assets/Images/ic-dgreen-start.png</ImageSource>
+    <ImageSource x:Key="IconFillRoute">pack://application:,,,/Assets/Images/ic-fill-route.png</ImageSource>
+    <ImageSource x:Key="IconFilter">pack://application:,,,/Assets/Images/ic-filter.png</ImageSource>
+    <ImageSource x:Key="IconGrayCalendar">pack://application:,,,/Assets/Images/ic-gray-calendar.png</ImageSource>
+    <ImageSource x:Key="IconGrayTeam">pack://application:,,,/Assets/Images/ic-gray-team.png</ImageSource>
+    <ImageSource x:Key="IconGreenAbout">pack://application:,,,/Assets/Images/ic-green-about.png</ImageSource>
+    <ImageSource x:Key="IconGreenCalendar">pack://application:,,,/Assets/Images/ic-green-calendar.png</ImageSource>
+    <ImageSource x:Key="IconGreenCur">pack://application:,,,/Assets/Images/ic-green-cur.png</ImageSource>
+    <ImageSource x:Key="IconGreenDone">pack://application:,,,/Assets/Images/ic-green-done.png</ImageSource>
+    <ImageSource x:Key="IconGreenEnd">pack://application:,,,/Assets/Images/ic-green-end.png</ImageSource>
+    <ImageSource x:Key="IconGreenHelp">pack://application:,,,/Assets/Images/ic-green-help.png</ImageSource>
+    <ImageSource x:Key="IconGreenHome">pack://application:,,,/Assets/Images/ic-green-home.png</ImageSource>
+    <ImageSource x:Key="IconGreenLuggage">pack://application:,,,/Assets/Images/ic-green-luggage.png</ImageSource>
+    <ImageSource x:Key="IconGreenMarker">pack://application:,,,/Assets/Images/ic-green-marker.png</ImageSource>
+    <ImageSource x:Key="IconGreenPlan">pack://application:,,,/Assets/Images/ic-green-plan.png</ImageSource>
+    <ImageSource x:Key="IconGreenStart">pack://application:,,,/Assets/Images/ic-green-start.png</ImageSource>
+    <ImageSource x:Key="IconGridOff">pack://application:,,,/Assets/Images/ic-grid-off.png</ImageSource>
+    <ImageSource x:Key="IconGridOn">pack://application:,,,/Assets/Images/ic-grid-on.png</ImageSource>
+    <ImageSource x:Key="IconInterval">pack://application:,,,/Assets/Images/ic-interval.png</ImageSource>
+    <ImageSource x:Key="IconLeader">pack://application:,,,/Assets/Images/ic-leader.png</ImageSource>
+    <ImageSource x:Key="IconListOff">pack://application:,,,/Assets/Images/ic-list-off.png</ImageSource>
+    <ImageSource x:Key="IconListOn">pack://application:,,,/Assets/Images/ic-list-on.png</ImageSource>
+    <ImageSource x:Key="IconOutlineRoute">pack://application:,,,/Assets/Images/ic-outline-route.png</ImageSource>
+    <ImageSource x:Key="IconProgress">pack://application:,,,/Assets/Images/ic-progress.png</ImageSource>
+    <ImageSource x:Key="IconSearch">pack://application:,,,/Assets/Images/ic-search.png</ImageSource>
+    <ImageSource x:Key="IconSemiRoute">pack://application:,,,/Assets/Images/ic-semi-route.png</ImageSource>
+    <ImageSource x:Key="IconWhiteAbout">pack://application:,,,/Assets/Images/ic-white-about.png</ImageSource>
+    <ImageSource x:Key="IconWhiteAdd">pack://application:,,,/Assets/Images/ic-white-add.png</ImageSource>
+    <ImageSource x:Key="IconWhiteCur">pack://application:,,,/Assets/Images/ic-white-cur.png</ImageSource>
+    <ImageSource x:Key="IconWhiteDone">pack://application:,,,/Assets/Images/ic-white-done.png</ImageSource>
+    <ImageSource x:Key="IconWhiteEdit">pack://application:,,,/Assets/Images/ic-white-edit.png</ImageSource>
+    <ImageSource x:Key="IconWhiteHelp">pack://application:,,,/Assets/Images/ic-white-help.png</ImageSource>
+    <ImageSource x:Key="IconWhiteHome">pack://application:,,,/Assets/Images/ic-white-home.png</ImageSource>
+    <ImageSource x:Key="IconWhiteLuggage">pack://application:,,,/Assets/Images/ic-white-luggage.png</ImageSource>
+    <ImageSource x:Key="IconWhiteMarker">pack://application:,,,/Assets/Images/ic-white-marker.png</ImageSource>
+    <ImageSource x:Key="IconWhitePlan">pack://application:,,,/Assets/Images/ic-white-plan.png</ImageSource>
+    <ImageSource x:Key="IconWhiteTrash">pack://application:,,,/Assets/Images/ic-white-trash.png</ImageSource>
+    <ImageSource x:Key="IconWhiteUpdate">pack://application:,,,/Assets/Images/ic-white-update.png</ImageSource>
+    <ImageSource x:Key="MainBackground">pack://application:,,,/Assets/Images/main-bg.png</ImageSource>
+    <ImageSource x:Key="SplashBackground">pack://application:,,,/Assets/Images/splash-bg.png</ImageSource>
+    <ImageSource x:Key="SplashFooter">pack://application:,,,/Assets/Images/splash-footer.png</ImageSource>
+
+</ResourceDictionary>

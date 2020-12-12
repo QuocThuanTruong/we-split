@@ -1,0 +1,114 @@
+﻿<Window x:Class="WeSplit.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:loc="clr-namespace:WeSplit.Properties"
+        xmlns:local="clr-namespace:WeSplit"
+        mc:Ignorable="d"
+        Title="SplashScreen" Loaded="Window_Loaded" Height="520" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    
+    <Grid Name="mainContainer">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="380*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="380*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="160*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="110*"/>
+        </Grid.RowDefinitions>
+
+        <Image Name="splashBg"
+               Grid.ColumnSpan="5"
+               Grid.RowSpan="7"
+               Width="900"
+               Height="520"
+               Stretch="UniformToFill"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               Source="{DynamicResource SplashBackground}"/>
+
+        <Image Name="splashFooter"
+               Grid.ColumnSpan="5"
+               Grid.RowSpan="7"
+               Width="900"
+               Height="94"
+               Margin="0, 0, 0, -2"
+               VerticalAlignment="Bottom"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               Source="{DynamicResource SplashFooter}"/>
+
+        <Image Name="appLogo"
+               Grid.Column="1"
+               Grid.Row="0"
+               Grid.RowSpan="2"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Source="{DynamicResource AppLogo}"
+               Width="127"
+               Height="35"/>
+
+        <StackPanel Name="siteInfoContainer"
+                    HorizontalAlignment="Center"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Grid.RowSpan="2">
+
+            <!--Binding-->
+            <TextBlock Name="siteNameTextBlock"
+                   Text="khu di tích cố đô hoa lưu"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Style="{StaticResource LargeHeaderText}"/>
+
+            <Grid  Grid.Column="1"
+                   Grid.Row="4"
+                   Height="168">
+
+                <!--Binding-->
+                <ScrollViewer Margin="0, 16, 0, 0">
+                    <TextBlock Name="siteDescriptionTextBlock"          
+                               Text="L Lpiscing elitcing elit, sed diam nonummy nib, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui"
+                               Style="{StaticResource RegularText}"
+                               Margin="0, 0, 12, 0"
+                               ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </ScrollViewer>
+            </Grid>
+
+        </StackPanel>
+        
+        
+        
+
+        <Grid Name="checkboxContainer"
+                  VerticalAlignment="Center"
+                  Grid.Column="1"
+                  Grid.Row="5"
+                  Grid.ColumnSpan="3">
+
+            <CheckBox Name="turnOffSplashCheckBox"
+                          IsChecked="False"
+                          Unchecked="turnOffSplashCheckBox_Unchecked"
+                          Checked="turnOffSplashCheckBox_Checked"
+                          materialDesign:CheckBoxAssist.CheckBoxSize="18">
+
+                <TextBlock Name="contentSplashCheckBox"
+                           Margin="0, 0, 0, 2"
+                           Style="{StaticResource SmallText}"
+                           Text="{x:Static loc:Resources.message_not_show_splash}"/>
+            </CheckBox>
+        </Grid>
+
+    </Grid>
+</Window>

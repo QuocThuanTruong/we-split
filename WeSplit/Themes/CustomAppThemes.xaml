@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local_converter="clr-namespace:WeSplit.Converter"
+                    xmlns:local="clr-namespace:WeSplit.Themes">
+
+    <!-- Absolute path converter -->
+    <local_converter:AbsolutePathConverter x:Key="PathConverter"/>
+
+    <!-- Define Color -->
+    <SolidColorBrush x:Key="MyDarkGreen" Color="#002a1b"/>
+    <SolidColorBrush x:Key="MyNeueGreen" Color="#157d74"/>
+    <SolidColorBrush x:Key="MyLightGreen" Color="#1aaf75"/>
+    <SolidColorBrush x:Key="MyLightGreen2" Color="#9ff4d0"/>
+    <SolidColorBrush x:Key="MyOrange" Color="#e65925"/>
+    <SolidColorBrush x:Key="MyLightOrange" Color="#ffa129"/>
+    <SolidColorBrush x:Key="MyBlack" Color="#303030"/>
+    
+    <SolidColorBrush x:Key="MyLightGray" Color="#efefef"/>
+    <SolidColorBrush x:Key="MyLightGray2" Color="#e6e6e6"/>
+    <SolidColorBrush x:Key="MyLightGray3" Color="#d6d6d6"/>
+    <SolidColorBrush x:Key="MyLightGray4" Color="#808080"/>
+
+    <SolidColorBrush x:Key="RippleGreen" Color="#8de256"/>
+    <Color x:Key="YellowShadow">#fcdd00</Color>
+
+
+    <!-- Text appearance -->
+    <Style TargetType="TextBlock"
+               x:Key="LargeHeaderText">
+        <Setter Property="FontSize" Value="33"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="RegularText">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyRegular}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="SmallText">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyRegular}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+</ResourceDictionary>
