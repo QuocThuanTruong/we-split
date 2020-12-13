@@ -88,6 +88,15 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search your journey by name and member....
+        /// </summary>
+        public static string hint_text_search {
+            get {
+                return ResourceManager.GetString("hint_text_search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string home_page_name {
@@ -111,6 +120,60 @@ namespace WeSplit.Properties {
         public static string message_not_show_splash {
             get {
                 return ResourceManager.GetString("message_not_show_splash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string text_all {
+            get {
+                return ResourceManager.GetString("text_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chuyến đi hiện tại.
+        /// </summary>
+        public static string text_cur_journey {
+            get {
+                return ResourceManager.GetString("text_cur_journey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chuyến đi đã thực hiện.
+        /// </summary>
+        public static string text_done_journey {
+            get {
+                return ResourceManager.GetString("text_done_journey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chuyến đi sắp tới.
+        /// </summary>
+        public static string text_planed_journey {
+            get {
+                return ResourceManager.GetString("text_planed_journey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all journeys.
+        /// </summary>
+        public static string text_view_all_journey {
+            get {
+                return ResourceManager.GetString("text_view_all_journey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIEW DETAIL.
+        /// </summary>
+        public static string text_view_detail {
+            get {
+                return ResourceManager.GetString("text_view_detail", resourceCulture);
             }
         }
         

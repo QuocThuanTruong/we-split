@@ -19,8 +19,21 @@
     <SolidColorBrush x:Key="MyLightGray2" Color="#e6e6e6"/>
     <SolidColorBrush x:Key="MyLightGray3" Color="#d6d6d6"/>
     <SolidColorBrush x:Key="MyLightGray4" Color="#808080"/>
+    <SolidColorBrush x:Key="MyLightGray5" Color="#666666"/>
 
-    <SolidColorBrush x:Key="RippleGreen" Color="#8de256"/>
+    <SolidColorBrush x:Key="RippleGreen" Color="#61e2ae"/>
+    <Color x:Key="ShadowOrange">#ffd400</Color>
+
+    <LinearGradientBrush x:Key="MyOrangeGradient">
+        <GradientStop Color="#e65925" Offset="0"/>
+        <GradientStop Color="#ffa129" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MyOrangeGradientScale">
+        <GradientStop Color="#e65925" Offset="-0.5"/>
+        <GradientStop Color="#ffa129" Offset="1.5"/>
+    </LinearGradientBrush>
+
     <Color x:Key="StartGradientColor">#157d74</Color>
     <Color x:Key="EndGradientColor">#1aaf75</Color>
 
@@ -29,6 +42,15 @@
     <Style TargetType="TextBlock"
                x:Key="LargeHeaderText">
         <Setter Property="FontSize" Value="33"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+               x:Key="MediumHeaderText">
+        <Setter Property="FontSize" Value="28"/>
         <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
@@ -45,6 +67,33 @@
     </Style>
 
     <Style TargetType="TextBlock"
+                   x:Key="SemiBoldMediumText">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroySemiBold}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="BoldMediumText">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyBold}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyNeueGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="ButtonMediumText">
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyMedium}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
                    x:Key="SmallText">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="{DynamicResource GilroyRegular}"/>
@@ -52,6 +101,8 @@
         <Setter Property="TextAlignment" Value="Justify"/>
         <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
     </Style>
+    
+    
 
     <Style TargetType="TextBlock"
                    x:Key="DrawerMediumText">
@@ -59,6 +110,15 @@
         <Setter Property="FontFamily" Value="{DynamicResource GilroyMedium}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="MediumText">
+        <Setter Property="FontSize" Value="13.5"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyRegular}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
         <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
     </Style>
 

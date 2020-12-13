@@ -4,16 +4,1053 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WeSplit.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:loc="clr-namespace:WeSplit.Properties"
       mc:Ignorable="d" 
-      Background="White"
+      Background="Transparent"
       d:DesignHeight="728" d:DesignWidth="1116"
       Title="HomePage">
 
     <Grid Name="mainContainer">
 
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="670*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="316*"/>
+            <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="418*"/>
+            <RowDefinition Height="190*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Name="searchContainer"
+              Grid.Column="1"
+              Grid.ColumnSpan="3"
+              Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="670*"/>
+                <ColumnDefinition Width="366*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search box-->
+            <materialDesign:ColorZone Mode="Custom"
+                                      Height="{Binding ActualHeight, ElementName=searchContainer}">
+
+                <materialDesign:ColorZone.Effect>
+                    <DropShadowEffect BlurRadius="10" 
+                                      ShadowDepth="1" 
+                                      Color="LightGray" 
+                                      Opacity="0.5" 
+                                      RenderingBias="Performance" />
+                </materialDesign:ColorZone.Effect>
+
+                <materialDesign:Card Name="searchBoxContainer"
+                                
+                                 Margin="8, 0, 8, 0"
+                                 Height="45"
+                                 Style="{StaticResource CardScaleHover}"
+                                 UniformCornerRadius="6"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                 Grid.Column="0">
+
+                    <Grid Name="searchContentCard">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="670*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Name="searchButton"
+                                materialDesign:ButtonAssist.CornerRadius="20"
+                                Background="Transparent"
+                                Padding="0"
+                                BorderThickness="0"
+                                materialDesign:RippleAssist.Feedback="{DynamicResource RippleGreen}"
+                                Width="40"
+                                Height="40">
+
+                            <Image Name="iconSearch"
+                                   HorizontalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                               Width="23"
+                               Height="22"
+                               Source="{StaticResource IconSearch}"/>
+
+                        </Button>
+
+
+                        <!-- Search text box -->
+                        <TextBox Name="searchTextBox"
+                                 Margin="0, 8, 10, 0"
+                                 Style="{StaticResource SearchTextBox}"
+                                 materialDesign:HintAssist.Hint="{x:Static loc:Resources.hint_text_search}"
+                                 Grid.Column="1" TextChanged="searchTextBox_TextChanged"/>
+                    </Grid>
+                </materialDesign:Card>
+            </materialDesign:ColorZone>
+
+           
+           <!-- View all -->
+            <materialDesign:ColorZone Mode="Custom"
+                                      Margin="0, 0, 4, 0"
+                                      Height="{Binding ActualHeight, ElementName=searchContainer}"
+                                      Grid.Column="1">
+
+                <materialDesign:ColorZone.Effect>
+                    <DropShadowEffect BlurRadius="10" 
+                                      ShadowDepth="1" 
+                                      Color="LightGray" 
+                                      Opacity="0.5" 
+                                      RenderingBias="Performance" />
+                </materialDesign:ColorZone.Effect>
+
+                <Button Name="sortBoxContainer"
+                        Style="{StaticResource DrawerButton}"
+                        Click="sortBoxContainer_Click"
+                        Width="164"
+                        HorizontalAlignment="Left"
+                        Margin="16, 0, 0, 0"
+                        Height="45"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Background="White"
+                        Padding="0"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Grid.Column="0">
+
+                    <StackPanel Name="sortContentCard"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <Image Name="iconAll"
+                               Source="{DynamicResource IconAll}"
+                               Margin="0, 0, 12, 0"
+                               Width="20"
+                               Height="20"/>
+
+                        <TextBlock Name="titleSortTextBlock"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource MediumText}"
+                                   FontFamily="{DynamicResource GilroyMedium}"
+                                   Foreground="{DynamicResource MyBlack}"
+                                   Text="{x:Static loc:Resources.text_view_all_journey}"/>
+
+                    </StackPanel>
+                </Button>
+            </materialDesign:ColorZone>
+
+        </Grid>
+
+        <StackPanel Name="planedJourneyContainer"
+                    Margin="8, 0, 0, 0"
+                    Grid.Column="1"
+                    Grid.Row="2">
+
+            <TextBlock Name="planedJourneyTextBlock"
+                       Style="{StaticResource MediumHeaderText}"
+                       Text="{x:Static loc:Resources.text_planed_journey}"/>
+
+            <Grid Name="bo3PlanedJourneyContainer"
+                  Margin="0, 12, 0, 0"
+                Height="364">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="217*"/>
+                    <ColumnDefinition Width="434*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="162*"/>
+                    <RowDefinition Height="162*"/>
+                </Grid.RowDefinitions>
+
+
+                <!-- First planed-->
+                <Grid Width="210"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Height="360"
+                      Grid.RowSpan="2">
+
+                    <materialDesign:Card Name="firstPlanedJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="210"
+                        Height="360"
+                        Grid.RowSpan="2">
+
+                        <!-- Binding -->
+                        <Image Name="firstPlanedJourneyAvtImage"
+                               Width="210"
+                               Height="360"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="firstPlanedJourneyButton"
+                            MouseEnter="firstPlanedJourneyButton_MouseEnter"
+                            MouseLeave="firstPlanedJourneyButton_MouseLeave"
+                            Width="210"
+                            Height="360"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=firstPlanedJourneyButton}"/>
+                        </Button.Effect>
+                        
+                        <!-- Binding -->
+                        <Image Name="firstPlanedJourneyAvtHoverImage"
+                               Width="206"
+                               Height="356"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+  
+                    </Button>
+
+                    <Button Name="firstPlanedJourneyViewDetailButton"
+                            Click="firstPlanedJourneyViewDetailButton_Click"
+                            MouseEnter="firstPlanedJourneyButton_MouseEnter"
+                            Opacity="{Binding ElementName=firstPlanedJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="16"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+                                        
+
+                    <!-- Binding -->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top">
+                        <TextBlock Name="firstPlanedJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="firstPlanedJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+
+                <!-- Second planed-->
+                <Grid Width="434"
+                      VerticalAlignment="Top"
+                      Height="174"
+                      Grid.Column="1">
+
+                    <materialDesign:Card Name="secondPlanedJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="434"
+                        Height="174"
+                        Grid.RowSpan="2">
+
+                        <!-- Binding -->
+                        <Image Name="secondPlanedJourneyAvtImage"
+                               Width="434"
+                               Height="174"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="secondPlanedJourneyButton"
+                            MouseEnter="secondPlanedJourneyButton_MouseEnter"
+                            MouseLeave="secondPlanedJourneyButton_MouseLeave"
+                            Width="434"
+                            Height="174"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=secondPlanedJourneyButton}"/>
+                        </Button.Effect>
+
+                        <!-- Binding -->
+                        <Image Name="secondPlanedJourneyAvtHoverImage"
+                               Width="430"
+                               Height="170"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="secondPlanedJourneyViewDetailButton"
+                            Click="secondPlanedJourneyViewDetailButton_Click"
+                            MouseEnter="secondPlanedJourneyButton_MouseEnter"
+                            Opacity="{Binding ElementName=secondPlanedJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="16"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                    <!-- Binding -->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="secondPlanedJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="secondPlanedJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- Third planed-->
+                <Grid Width="434"
+                      VerticalAlignment="Bottom"
+                      Margin="0, 0, 0, 5"
+                      Height="172"
+                      Grid.Column="1"
+                      Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="355*"/>
+                        <ColumnDefinition Width="79*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card Name="thirdPlanedJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="355"
+                        Height="172"
+                        Grid.RowSpan="2">
+
+                        <!-- Binding -->
+                        <Image Name="thirdPlanedJourneyAvtImage"
+                               Width="355"
+                               Height="172"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="thirdPlanedJourneyButton"
+                            MouseEnter="thirdPlanedJourneyButton_MouseEnter"
+                            MouseLeave="thirdPlanedJourneyButton_MouseLeave"
+                            Width="355"
+                            Height="172"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=thirdPlanedJourneyButton}"/>
+                        </Button.Effect>
+
+                        <!-- Binding -->
+                        <Image Name="thirdPlanedJourneyAvtHoverImage"
+                               Width="351"
+                               Height="168"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="thirdPlanedJourneyViewDetailButton"
+                            Click="thirdPlanedJourneyViewDetailButton_Click"
+                            MouseEnter="thirdPlanedJourneyButton_MouseEnter"
+                            Opacity="{Binding ElementName=thirdPlanedJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="16"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                    <!-- Binding -->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="thirdPlanedJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="thirdPlanedJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <materialDesign:ColorZone Grid.Column="1"
+                                          Grid.RowSpan="2"
+                                          VerticalAlignment="Bottom"
+                                          HorizontalAlignment="Right"
+                                              Width="68"
+                                              Height="180"
+                                              Mode="Custom">
+
+                    <materialDesign:ColorZone.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="1" 
+                                          Color="{DynamicResource ShadowOrange}" 
+                                          Opacity="0.5" 
+                                          RenderingBias="Performance" />
+                    </materialDesign:ColorZone.Effect>
+
+                    <Button Name="viewAllPlanedButton"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource ViewAllButton}"
+                            Width="58"
+                            Height="172">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_all}"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                        
+                    </Button>
+
+                </materialDesign:ColorZone>
+
+            </Grid>
+        </StackPanel>
+
+
+        <StackPanel Name="doneJourneyContainer"
+                    Margin="8, 0, 0, 0"
+                    Grid.Column="1"
+                    Grid.Row="3">
+
+            <TextBlock Name="doneJourneyTextBlock"
+                       Style="{StaticResource MediumHeaderText}"
+                       Text="{x:Static loc:Resources.text_done_journey}"/>
+
+            <Grid Name="bo4PlanedJourneyContainer"
+                  Margin="0, 12, 0, 0"
+                Height="140">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="144*"/>
+                    <ColumnDefinition Width="144*"/>
+                    <ColumnDefinition Width="144*"/>
+                    <ColumnDefinition Width="144*"/>
+                    <ColumnDefinition Width="80*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+
+                 <!--First done-->
+                <Grid Width="138"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Height="133">
+
+                    <materialDesign:Card Name="firstDoneJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="138"
+                        Height="133">
+
+                         <!--Binding--> 
+                        <Image Name="firstDoneJourneyAvtImage"
+                               Width="138"
+                               Height="133"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="firstDoneJourneyButton"
+                            MouseEnter="firstDoneJourneyButton_MouseEnter"
+                            MouseLeave="firstDoneJourneyButton_MouseLeave"
+                            Width="138"
+                            Height="133"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=firstDoneJourneyButton}"/>
+                        </Button.Effect>
+
+                         <!--Binding--> 
+                        <Image Name="firstDoneJourneyAvtHoverImage"
+                               Width="134"
+                               Height="129"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="firstDoneJourneyViewDetailButton"
+                            Click="firstDoneJourneyViewDetailButton_Click"
+                            MouseEnter="firstDoneJourneyButton_MouseEnter"
+                            Width="90"
+                            Height="34"
+                            Margin="0, 0, 0, 32"
+                            Opacity="{Binding ElementName=firstDoneJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="10"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                     <!--Binding--> 
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="firstDoneJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="firstDoneJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--second done-->
+                <Grid Width="138"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="1">
+
+                    <materialDesign:Card Name="secondDoneJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="138"
+                        Height="133">
+
+                        <!--Binding-->
+                        <Image Name="secondDoneJourneyAvtImage"
+                               Width="138"
+                               Height="133"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="secondDoneJourneyButton"
+                            MouseEnter="secondDoneJourneyButton_MouseEnter"
+                            MouseLeave="secondDoneJourneyButton_MouseLeave"
+                            Width="138"
+                            Height="133"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=secondDoneJourneyButton}"/>
+                        </Button.Effect>
+
+                        <!--Binding-->
+                        <Image Name="secondDoneJourneyAvtHoverImage"
+                               Width="134"
+                               Height="129"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="secondDoneJourneyViewDetailButton"
+                            Click="secondDoneJourneyViewDetailButton_Click"
+                            MouseEnter="secondDoneJourneyButton_MouseEnter"
+                            Width="90"
+                            Height="34"
+                            Margin="0, 0, 0, 32"
+                            Opacity="{Binding ElementName=secondDoneJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="10"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                    <!--Binding-->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="secondDoneJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="secondDoneJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--third done-->
+                <Grid Width="138"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="2">
+
+                    <materialDesign:Card Name="thirdDoneJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="138"
+                        Height="133">
+
+                        <!--Binding-->
+                        <Image Name="thirdDoneJourneyAvtImage"
+                               Width="138"
+                               Height="133"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="thirdDoneJourneyButton"
+                            MouseEnter="thirdDoneJourneyButton_MouseEnter"
+                            MouseLeave="thirdDoneJourneyButton_MouseLeave"
+                            Width="138"
+                            Height="133"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=thirdDoneJourneyButton}"/>
+                        </Button.Effect>
+
+                        <!--Binding-->
+                        <Image Name="thirdDoneJourneyAvtHoverImage"
+                               Width="134"
+                               Height="129"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="thirdDoneJourneyViewDetailButton"
+                            Click="thirdDoneJourneyViewDetailButton_Click"
+                            MouseEnter="thirdDoneJourneyButton_MouseEnter"
+                            Width="90"
+                            Height="34"
+                            Margin="0, 0, 0, 32"
+                            Opacity="{Binding ElementName=thirdDoneJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="10"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                    <!--Binding-->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="thirdDoneJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="thirdDoneJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+
+                <!--fourth done-->
+                <Grid Width="138"
+                      HorizontalAlignment="Right"
+                      Margin="0, 0, -4, 0"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="3">
+
+                    <materialDesign:Card Name="fourthDoneJourneyBg"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        UniformCornerRadius="10"
+                        Width="138"
+                        Height="133">
+
+                        <!--Binding-->
+                        <Image Name="fourthDoneJourneyAvtImage"
+                               Width="138"
+                               Height="133"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}"/>
+                    </materialDesign:Card>
+
+                    <Button Name="fourthDoneJourneyButton"
+                            MouseEnter="fourthDoneJourneyButton_MouseEnter"
+                            MouseLeave="fourthDoneJourneyButton_MouseLeave"
+                            Width="138"
+                            Height="133"
+                            Grid.RowSpan="2"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            FontSize="0.1"
+                            Opacity="0"
+                            Style="{StaticResource HomePreviewHoverButton}">
+
+                        <Button.Effect>
+                            <BlurEffect Radius="{Binding Path=FontSize, ElementName=fourthDoneJourneyButton}"/>
+                        </Button.Effect>
+
+                        <!--Binding-->
+                        <Image Name="fourthDoneJourneyAvtHoverImage"
+                               Width="134"
+                               Height="129"
+                               Stretch="UniformToFill"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{StaticResource TEST_1}">
+                        </Image>
+
+                    </Button>
+
+                    <Button Name="fourthDoneJourneyViewDetailButton"
+                            Click="fourthDoneJourneyViewDetailButton_Click"
+                            MouseEnter="fourthDoneJourneyButton_MouseEnter"
+                            Width="90"
+                            Height="34"
+                            Margin="0, 0, 0, 32"
+                            Opacity="{Binding ElementName=fourthDoneJourneyButton, Path=Opacity}"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="1">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_view_detail}"
+                                   FontSize="10"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+
+                    <!--Binding-->
+                    <StackPanel Margin="10"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Name="fourthDoneJourneyTile"
+                                   Style="{StaticResource SemiBoldMediumText}"
+                                   Foreground="white"
+                                   Text="Phố cổ hội an"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="13"
+                                   Height="13"
+                                   Margin="0, 0, 8, 0"
+                                   Source="{StaticResource IconFillRoute}"/>
+
+                            <TextBlock Name="fourthDoneJourneyRoute"
+                                       Style="{StaticResource RegularText}"
+                                       Foreground="{DynamicResource MyLightGray}"
+                                       Text="17 km lộ trình"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <materialDesign:ColorZone Grid.Column="4"
+                                          Grid.RowSpan="2"
+                                          VerticalAlignment="Top"
+                                          HorizontalAlignment="Right"
+                                              Width="68"
+                                              Height="138"
+                                              Mode="Custom">
+
+                    <materialDesign:ColorZone.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="1" 
+                                          Color="{DynamicResource ShadowOrange}" 
+                                          Opacity="0.5" 
+                                          RenderingBias="Performance" />
+                    </materialDesign:ColorZone.Effect>
+
+                    <Button Name="viewAllDoneButton"
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource ViewAllButton}"
+                            Width="58"
+                            Height="133">
+
+                        <TextBlock Text="{x:Static loc:Resources.text_all}"
+                                   Style="{StaticResource ButtonMediumText}"/>
+
+                    </Button>
+
+                </materialDesign:ColorZone>
+
+            </Grid>
+        </StackPanel>
+
+
+        <StackPanel Name="curJourneyContainer"
+                    Margin="0, 0, 0, 0"
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Grid.RowSpan="2">
+
+            <TextBlock Name="curJourneyTextBlock"
+                       Style="{StaticResource MediumHeaderText}"
+                       Text="{x:Static loc:Resources.text_cur_journey}"/>
+
+            <materialDesign:Card Name="curJourneyCard"
+                                 Width="316"
+                                 Height="558"
+                                 UniformCornerRadius="10"
+                                 Padding="14"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                 Margin="0, 12, 0, 0">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="188*"/>
+                        <RowDefinition Height="48*"/>
+                        <RowDefinition Height="260*"/>
+                        <RowDefinition Height="62*"/>
+                    </Grid.RowDefinitions>
+
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                         UniformCornerRadius="10">
+                        
+                        <Image Name="curJourneyAvt"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Stretch="UniformToFill"
+                               Source="{StaticResource TEST_1}"/>
+                        
+                    </materialDesign:Card>
+
+                    <StackPanel Grid.Row="1"
+                                VerticalAlignment="Bottom">
+
+                        <!-- BInding -->
+                        <TextBlock Name="curJourneyName"
+                                   Style="{StaticResource BoldMediumText}"
+                                   Text="Động Phong Nha Kẻ Bàng"/>
+
+                        <Border Width="87"
+                                Margin="0, 8, 0, 0"
+                                HorizontalAlignment="Left"
+                                Height="2"
+                                Background="{DynamicResource MyNeueGreen}"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="14"
+                                   Height="14"
+                                   Source="{StaticResource IconOutlineRoute}"/>
+
+                            <TextBlock Text="Lộ trình"
+                                       Margin="8, 0, 0, 0"
+                                       Style="{StaticResource SmallText}"
+                                       Foreground="{StaticResource MyLightGray5}"/>
+                        </StackPanel>
+
+                        <!-- Binding -->
+                        <TextBlock Text="17 km"
+                                   Margin="22, 0, 0, 0"
+                                   Style="{StaticResource RegularText}"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0, 12, 0, 0">
+                            <Image Width="14"
+                                   Height="14"
+                                   Source="{StaticResource IconGrayCalendar}"/>
+
+                            <TextBlock Text="Ngày bắt đầu"
+                                       Margin="8, 0, 0, 0"
+                                       Style="{StaticResource SmallText}"
+                                       Foreground="{StaticResource MyLightGray5}"/>
+
+                            <Image Width="14"
+                                   Height="14"
+                                   Margin="40, 0, 0, 0"
+                                   Source="{StaticResource IconGrayCalendar}"/>
+
+                            <TextBlock Text="Ngày kết thúc"
+                                       Margin="8, 0, 0, 0"
+                                       Style="{StaticResource SmallText}"
+                                       Foreground="{StaticResource MyLightGray5}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Binding -->
+                            <TextBlock Name="startDateTextBlock"
+                                Text="17/07/2020"
+                                   Margin="22, 0, 0, 0"
+                                   Style="{StaticResource RegularText}"/>
+
+                            <!-- Binding -->
+                            <TextBlock  Name="endDateTextBlock"
+                                Text="17/07/2020"
+                                   Margin="64, 0, 0, 0"
+                                   Style="{StaticResource RegularText}"/>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal"
+                                Margin="0, 12, 0, 0">
+                            <Image Width="14"
+                                   Height="14"
+                                   Source="{StaticResource IconGrayTeam}"/>
+
+                            <TextBlock Text="Thành viên"
+                                       Margin="8, 0, 0, 0"
+                                       Style="{StaticResource SmallText}"
+                                       Foreground="{StaticResource MyLightGray5}"/>
+                        </StackPanel>
+
+                        <!-- Binding -->
+                        <TextBlock Text="list"
+                                   Margin="22, 0, 0, 0"
+                                   Style="{StaticResource RegularText}"/>
+
+                        <StackPanel Orientation="Horizontal"
+                                Margin="0, 12, 0, 0">
+                            <Image Width="14"
+                                   Height="14"
+                                   Source="{StaticResource IconProgress}"/>
+
+                            <TextBlock Text="Tiến độ"
+                                       Margin="8, 0, 0, 0"
+                                       Style="{StaticResource SmallText}"
+                                       Foreground="{StaticResource MyLightGray5}"/>
+                        </StackPanel>
+
+                        <!-- Binding -->
+                        <TextBlock Text="40%"
+                                   Margin="22, 0, 0, 0"
+                                   Style="{StaticResource RegularText}"/>
+
+                        <Slider Name="curJourneyProgess"
+                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                Width="258"/>
+
+                    </StackPanel>
+
+                    <Button Name="exploreCurJourneyButton"
+                            Height="36"
+                            Style="{StaticResource ViewDetailButton}"
+                            Grid.Row="4">
+
+                        <TextBlock Text="EXPLORE"
+                                   FontSize="15"
+                                   Style="{StaticResource ButtonMediumText}"/>
+                    </Button>
+
+                </Grid>
+
+            </materialDesign:Card>
+        </StackPanel>
     </Grid>
 </Page>

@@ -317,6 +317,7 @@
         <Frame Name="pageNavigation" 
                NavigationUIVisibility="Hidden"
                Grid.Column="1"
+               Grid.RowSpan="2"
                Grid.Row="1">
 
         </Frame>

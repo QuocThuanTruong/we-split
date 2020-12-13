@@ -126,6 +126,9 @@
   <data name="help_page_name" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="hint_text_search" xml:space="preserve">
+    <value>Search your journey by name and member...</value>
+  </data>
   <data name="home_page_name" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -134,6 +137,24 @@
   </data>
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>
+  </data>
+  <data name="text_all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="text_cur_journey" xml:space="preserve">
+    <value>chuyến đi hiện tại</value>
+  </data>
+  <data name="text_done_journey" xml:space="preserve">
+    <value>chuyến đi đã thực hiện</value>
+  </data>
+  <data name="text_planed_journey" xml:space="preserve">
+    <value>chuyến đi sắp tới</value>
+  </data>
+  <data name="text_view_all_journey" xml:space="preserve">
+    <value>View all journeys</value>
+  </data>
+  <data name="text_view_detail" xml:space="preserve">
+    <value>VIEW DETAIL</value>
   </data>
   <data name="tip_close_window_button" xml:space="preserve">
     <value>Close</value>
