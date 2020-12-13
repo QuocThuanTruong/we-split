@@ -7,6 +7,7 @@
     <ImageSource x:Key="IconAddImg">pack://application:,,,/Assets/Images/ic-add-img.png</ImageSource>
     <ImageSource x:Key="IconAll">pack://application:,,,/Assets/Images/ic-all.png</ImageSource>
     <ImageSource x:Key="IconAsc">pack://application:,,,/Assets/Images/ic-asc.png</ImageSource>
+    <ImageSource x:Key="IconGreenClose">pack://application:,,,/Assets/Images/ic-close.png</ImageSource>
     <ImageSource x:Key="IconDesc">pack://application:,,,/Assets/Images/ic-desc.png</ImageSource>
     <ImageSource x:Key="IconDgreenEnd">pack://application:,,,/Assets/Images/ic-dgreen-end.png</ImageSource>
     <ImageSource x:Key="IconDgreenStart">pack://application:,,,/Assets/Images/ic-dgreen-start.png</ImageSource>
@@ -31,8 +32,11 @@
     <ImageSource x:Key="IconLeader">pack://application:,,,/Assets/Images/ic-leader.png</ImageSource>
     <ImageSource x:Key="IconListOff">pack://application:,,,/Assets/Images/ic-list-off.png</ImageSource>
     <ImageSource x:Key="IconListOn">pack://application:,,,/Assets/Images/ic-list-on.png</ImageSource>
+    <ImageSource x:Key="IconMaximize">pack://application:,,,/Assets/Images/ic-maximize.png</ImageSource>
+    <ImageSource x:Key="IconMinimize">pack://application:,,,/Assets/Images/ic-minize.png</ImageSource>
     <ImageSource x:Key="IconOutlineRoute">pack://application:,,,/Assets/Images/ic-outline-route.png</ImageSource>
     <ImageSource x:Key="IconProgress">pack://application:,,,/Assets/Images/ic-progress.png</ImageSource>
+    <ImageSource x:Key="IconRestore">pack://application:,,,/Assets/Images/ic-restore.png</ImageSource>
     <ImageSource x:Key="IconSearch">pack://application:,,,/Assets/Images/ic-search.png</ImageSource>
     <ImageSource x:Key="IconSemiRoute">pack://application:,,,/Assets/Images/ic-semi-route.png</ImageSource>
     <ImageSource x:Key="IconWhiteAbout">pack://application:,,,/Assets/Images/ic-white-about.png</ImageSource>

@@ -61,11 +61,110 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About us.
+        /// </summary>
+        public static string about_us_page_name {
+            get {
+                return ResourceManager.GetString("about_us_page_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Site.
+        /// </summary>
+        public static string add_site_page {
+            get {
+                return ResourceManager.GetString("add_site_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string help_page_name {
+            get {
+                return ResourceManager.GetString("help_page_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string home_page_name {
+            get {
+                return ResourceManager.GetString("home_page_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage journeys.
+        /// </summary>
+        public static string manage_journey_page {
+            get {
+                return ResourceManager.GetString("manage_journey_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới..
         /// </summary>
         public static string message_not_show_splash {
             get {
                 return ResourceManager.GetString("message_not_show_splash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string tip_close_window_button {
+            get {
+                return ResourceManager.GetString("tip_close_window_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximize.
+        /// </summary>
+        public static string tip_maximize_window_button {
+            get {
+                return ResourceManager.GetString("tip_maximize_window_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize.
+        /// </summary>
+        public static string tip_minimize_window_button {
+            get {
+                return ResourceManager.GetString("tip_minimize_window_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next page.
+        /// </summary>
+        public static string tip_next_page {
+            get {
+                return ResourceManager.GetString("tip_next_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous page.
+        /// </summary>
+        public static string tip_previous_page {
+            get {
+                return ResourceManager.GetString("tip_previous_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore down.
+        /// </summary>
+        public static string tip_restore_window_button {
+            get {
+                return ResourceManager.GetString("tip_restore_window_button", resourceCulture);
             }
         }
     }

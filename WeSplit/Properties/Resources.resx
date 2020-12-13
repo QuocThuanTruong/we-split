@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_us_page_name" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="add_site_page" xml:space="preserve">
+    <value>Add Site</value>
+  </data>
+  <data name="help_page_name" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="home_page_name" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="manage_journey_page" xml:space="preserve">
+    <value>Manage journeys</value>
+  </data>
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>
+  </data>
+  <data name="tip_close_window_button" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="tip_maximize_window_button" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="tip_minimize_window_button" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="tip_next_page" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="tip_previous_page" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="tip_restore_window_button" xml:space="preserve">
+    <value>Restore down</value>
   </data>
 </root>

@@ -21,7 +21,8 @@
     <SolidColorBrush x:Key="MyLightGray4" Color="#808080"/>
 
     <SolidColorBrush x:Key="RippleGreen" Color="#8de256"/>
-    <Color x:Key="YellowShadow">#fcdd00</Color>
+    <Color x:Key="StartGradientColor">#157d74</Color>
+    <Color x:Key="EndGradientColor">#1aaf75</Color>
 
 
     <!-- Text appearance -->
@@ -50,6 +51,15 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Justify"/>
         <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="DrawerMediumText">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyMedium}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
     </Style>
 
 </ResourceDictionary>

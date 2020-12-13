@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\App.xaml
-6-643833230
-471008904281
-9-251008997
+13-2079091152
+51-297392626
+16-1720930327
 16-1901433363
-MainScreen.xaml;SplashScreen.xaml;Themes\CustomAppThemes.Fonts.xaml;Themes\CustomAppThemes.ImageResource.xaml;Themes\CustomAppThemes.xaml;Themes\MaterialDesignThemes.Overrides.xaml;
+MainScreen.xaml;Pages\AboutPage.xaml;Pages\AddSitePage.xaml;Pages\HelpPage.xaml;Pages\HomePage.xaml;Pages\JourneyDetailPage.xaml;Pages\JourneyListPage.xaml;Pages\ManageJourneysPage.xaml;SplashScreen.xaml;Themes\CustomAppThemes.Fonts.xaml;Themes\CustomAppThemes.ImageResource.xaml;Themes\CustomAppThemes.xaml;Themes\MaterialDesignThemes.Overrides.xaml;
 
 True
 

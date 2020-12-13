@@ -3,12 +3,324 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:loc="clr-namespace:WeSplit.Properties"
         xmlns:local="clr-namespace:WeSplit"
         mc:Ignorable="d"
-        Title="MainScreen" Height="768" Width="1366" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+        Title="MainScreen" Loaded="Window_Loaded" Height="768" Width="1366" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+   
+    <Grid Name="mainContainer">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="1116*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="658*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Background -->
         <Image Name="mainBg"
+               Grid.ColumnSpan="2"
+               Grid.RowSpan="3"
                Stretch="UniformToFill"
                Source="{DynamicResource MainBackground}"/>
+
+        <StackPanel Name="appLogoContainer"
+                    Margin="0, 32, 0, 0"
+                    Width="178"
+                    VerticalAlignment="Center"
+                    Grid.RowSpan="2">
+            
+            <Image Name="appLogoImage"
+               Width="178"
+               Height="48"
+               Source="{DynamicResource AppLogo}"/>
+
+            <Border Width="178"
+                    HorizontalAlignment="Center"
+                    Opacity="0.8"
+                    Margin="0, 26, 0, 0"
+                    Height="2"
+                    Background="{DynamicResource MyDarkGreen}"/>
+
+        </StackPanel>
+        
+
+        <!-- Drawer buttons -->
+        <Grid Name="contentDrawerContainer"
+              Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="460*"/>
+                <RowDefinition Height="140*"/>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="68*"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Name="pageButtonContainer"
+                         ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            Margin="18, 0, 0, 0"
+                            Grid.Column="0"
+                            Grid.Row="1">
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <!-- Home page button-->
+                <Grid Name="homePageBtnContainer">
+                    <!-- Click -->
+                    <!-- Active Background="White"
+                                BorderThickness="0" -->
+                    <Button Name="homePageButton"
+                                Click="DrawerButton_Click"
+                                Style="{StaticResource DrawerButton}">
+
+                        <Grid Name="homePageContent" 
+                              Width="{Binding ActualWidth, ElementName=homePageButton}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.2*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Name="iconHomePage"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Source="{DynamicResource IconGreenHome}"
+                                   Width="19"
+                                   Height="19"/>
+
+                            <TextBlock Name="homePageName"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="60, 0, 0, 0"
+                                       HorizontalAlignment="Left"
+                                       Style="{DynamicResource DrawerMediumText}"
+                                       Text="{x:Static loc:Resources.home_page_name}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <!-- Manage journeys button-->
+                <Grid Name="mngJourneyPageBtnContainer">
+                    <!-- Click -->
+                    <Button Name="mngJourneyPageButton"
+                                Click="DrawerButton_Click"
+                                Style="{StaticResource DrawerButton}">
+
+                        <Grid Name="favPageContent" 
+                              Width="{Binding ActualWidth, ElementName=homePageButton}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.2*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Name="iconMngJourneyPage"
+                                   Grid.Column="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Source="{DynamicResource IconGreenLuggage}"
+                                   Width="19"
+                                   Height="19"/>
+
+                            <TextBlock Name="mngJourneyPageName"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="60, 0, 0, 0"
+                                       HorizontalAlignment="Left"
+                                       Style="{DynamicResource DrawerMediumText}"
+                                       Text="{x:Static loc:Resources.manage_journey_page}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <!--Add site button-->
+                <Grid Name="addSitePageBtnContainer">
+                    
+                    <!-- Click -->
+                    <Button Name="addSitePageButton"
+                                Click="DrawerButton_Click"
+                                Style="{StaticResource DrawerButton}">
+
+                        <Grid Name="addRecipePageContent" 
+                              Width="{Binding ActualWidth, ElementName=homePageButton}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.2*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Name="iconAddSitePage"
+                                   Grid.Column="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Source="{DynamicResource IconGreenMarker}"
+                                   Width="15"
+                                   Height="21"/>
+
+                            <TextBlock Name="addSitePageName"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="60, 0, 0, 0"
+                                       HorizontalAlignment="Left"
+                                       Style="{DynamicResource DrawerMediumText}"
+                                       Text="{x:Static loc:Resources.add_site_page}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <!-- Help button-->
+                <Grid Name="helpPageBtnContainer">
+                    <!-- Click -->
+                    <Button Name="helpPageButton"
+                                Click="DrawerButton_Click"
+                                Style="{StaticResource DrawerButton}">
+
+                        <Grid Name="helpPageContent" 
+                              Width="{Binding ActualWidth, ElementName=homePageButton}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.2*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Name="iconHelpPage"
+                                   Grid.Column="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Source="{DynamicResource IconGreenHelp}"
+                                   Width="19"
+                                   Height="19"/>
+
+                            <TextBlock Name="helpPageName"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="60, 0, 0, 0"
+                                       HorizontalAlignment="Left"
+                                       Style="{DynamicResource DrawerMediumText}"
+                                       Text="{x:Static loc:Resources.help_page_name}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <!-- About button-->
+                <Grid Name="aboutPageBtnContainer">
+                    <!-- Click -->
+                    <Button Name="aboutPageButton"
+                                Click="DrawerButton_Click"
+                                Style="{StaticResource DrawerButton}">
+
+                        <Grid Name="aboutPageContent" 
+                              Width="{Binding ActualWidth, ElementName=homePageButton}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.2*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Name="iconAboutPage"
+                                   Grid.Column="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Source="{DynamicResource IconGreenAbout}"
+                                   Width="19"
+                                   Height="19"/>
+
+                            <TextBlock Name="aboutPageName"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Margin="60, 0, 0, 0"
+                                       HorizontalAlignment="Left"
+                                       Style="{DynamicResource DrawerMediumText}"
+                                       Text="{x:Static loc:Resources.about_us_page_name}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+            </ListBox>
+        </Grid>
+
+       
+
+        <!-- Tool bar -->
+        <Rectangle Grid.Column="1"
+                   Fill="Transparent"
+                   MouseDown="Rectangle_MouseDown"
+                   Height="{Binding ActualHeight, ElementName=windowOptionsContainer}"
+                   Grid.Row="0"/>
+
+        <StackPanel Name="windowOptionsContainer"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    FlowDirection="RightToLeft"
+                    Width="120"
+                    Grid.Column="1"
+                    Grid.Row="0">
+
+            <Button Name="closeWindowButton"
+                    Click="closeWindowButton_Click"
+                    Margin="5, 5, 0, 0"
+                    Padding="5, 0, 5, 0"
+                    Style="{StaticResource WindowOptionsButton}"
+                    Foreground="Red"
+                    ToolTip="{x:Static loc:Resources.tip_close_window_button}">
+
+                <Image Name="iconCloseImage"
+                       Width="14"
+                       Height="14"
+                       Source="{DynamicResource IconGreenClose}"/>
+            </Button>
+
+            <Button Name="maximizeWindowButton"
+                    Click="maximizeWindowButton_Click"
+                    Margin="0, 5, 0, 0"
+                    Padding="5, 0, 5, 0"
+                    Style="{StaticResource WindowOptionsButton}"
+                    ToolTip="{x:Static loc:Resources.tip_maximize_window_button}">
+
+            <Image Name="iconMaximizeImage"
+                       Width="14"
+                       Height="14"
+                       Source="{DynamicResource IconMaximize}"/>
+            </Button>
+
+            <Button Name="minimizeWindowButton"
+                    Click="minimizeWindowButton_Click"
+                    Margin="0, 5, 0, 0"
+                    Padding="5, 0, 5, 0"
+                    Style="{StaticResource WindowOptionsButton}"
+                    ToolTip="{x:Static loc:Resources.tip_minimize_window_button}">
+
+                <Image Name="iconMinimizeImage"
+                       Width="14"
+                       Height="2"
+                       Source="{DynamicResource IconMinimize}"/>
+            </Button>
+        </StackPanel>
+
+        <!-- Page Navigation -->
+        <Frame Name="pageNavigation" 
+               NavigationUIVisibility="Hidden"
+               Grid.Column="1"
+               Grid.Row="1">
+
+        </Frame>
+        
     </Grid>
+    
 </Window>
