@@ -54,6 +54,14 @@
     <ImageSource x:Key="MainBackground">pack://application:,,,/Assets/Images/main-bg.png</ImageSource>
     <ImageSource x:Key="SplashBackground">pack://application:,,,/Assets/Images/splash-bg.png</ImageSource>
     <ImageSource x:Key="SplashFooter">pack://application:,,,/Assets/Images/splash-footer.png</ImageSource>
+    <ImageSource x:Key="ListItemFooter">pack://application:,,,/Assets/Images/list-item-footer.png</ImageSource>
+    <ImageSource x:Key="BadgeCur">pack://application:,,,/Assets/Images/badge-cur.png</ImageSource>
+    <ImageSource x:Key="BadgeDone">pack://application:,,,/Assets/Images/badge-done.png</ImageSource>
+    <ImageSource x:Key="BadgePlan">pack://application:,,,/Assets/Images/badge-plan.png</ImageSource>
+    <ImageSource x:Key="IconGreenFirst">pack://application:,,,/Assets/Images/ic-green-first.png</ImageSource>
+    <ImageSource x:Key="IconGreenLast">pack://application:,,,/Assets/Images/ic-green-last.png</ImageSource>
+    <ImageSource x:Key="IconGreenNext">pack://application:,,,/Assets/Images/ic-green-next.png</ImageSource>
+    <ImageSource x:Key="IconGreenPrev">pack://application:,,,/Assets/Images/ic-green-prev.png</ImageSource>
     
     <ImageSource x:Key="TEST_1">pack://application:,,,/Assets/test_1.jpg</ImageSource>
 

@@ -151,6 +151,69 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string text_filter {
+            get {
+                return ResourceManager.GetString("text_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A-Z.
+        /// </summary>
+        public static string text_item_sort_az {
+            get {
+                return ResourceManager.GetString("text_item_sort_az", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        public static string text_item_sort_end_date {
+            get {
+                return ResourceManager.GetString("text_item_sort_end_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route.
+        /// </summary>
+        public static string text_item_sort_route {
+            get {
+                return ResourceManager.GetString("text_item_sort_route", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string text_item_sort_start_date {
+            get {
+                return ResourceManager.GetString("text_item_sort_start_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string text_item_sort_status {
+            get {
+                return ResourceManager.GetString("text_item_sort_status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Z-A.
+        /// </summary>
+        public static string text_item_sort_za {
+            get {
+                return ResourceManager.GetString("text_item_sort_za", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to chuyến đi sắp tới.
         /// </summary>
         public static string text_planed_journey {
@@ -228,6 +291,15 @@ namespace WeSplit.Properties {
         public static string tip_restore_window_button {
             get {
                 return ResourceManager.GetString("tip_restore_window_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by:.
+        /// </summary>
+        public static string title_sort_box {
+            get {
+                return ResourceManager.GetString("title_sort_box", resourceCulture);
             }
         }
     }

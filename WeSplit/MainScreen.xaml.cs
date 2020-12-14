@@ -99,7 +99,7 @@ namespace WeSplit
 				iconHomePage.Source = (ImageSource)FindResource(_mainScreenButtons[0].Item4);
 				homePageName.Foreground = Brushes.White;
 				result = new HomePage();
-				//((HomePage)result).ShowRecipeDetailPage += MainScreen_ShowRecipeDetailPage;
+				((HomePage)result).ViewAllJourney += MainScreen_ViewAllJourney;
 			}
 			else if (selectedButton.Name == mngJourneyPageButton.Name)
 			{
@@ -130,6 +130,11 @@ namespace WeSplit
 			}
 
 			return result;
+		}
+
+		private void MainScreen_ViewAllJourney()
+		{
+			pageNavigation.NavigationService.Navigate(new JourneyListPage());
 		}
 
 		private void maximizeWindowButton_Click(object sender, RoutedEventArgs e)

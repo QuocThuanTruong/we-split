@@ -147,6 +147,27 @@
   <data name="text_done_journey" xml:space="preserve">
     <value>chuyến đi đã thực hiện</value>
   </data>
+  <data name="text_filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="text_item_sort_az" xml:space="preserve">
+    <value>A-Z</value>
+  </data>
+  <data name="text_item_sort_end_date" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="text_item_sort_route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="text_item_sort_start_date" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="text_item_sort_status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="text_item_sort_za" xml:space="preserve">
+    <value>Z-A</value>
+  </data>
   <data name="text_planed_journey" xml:space="preserve">
     <value>chuyến đi sắp tới</value>
   </data>
@@ -173,5 +194,8 @@
   </data>
   <data name="tip_restore_window_button" xml:space="preserve">
     <value>Restore down</value>
+  </data>
+  <data name="title_sort_box" xml:space="preserve">
+    <value>Sort by:</value>
   </data>
 </root>

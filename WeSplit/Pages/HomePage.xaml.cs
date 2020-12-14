@@ -23,11 +23,18 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class HomePage : Page
 	{
-		private Duration blurRadius;
+		public delegate void ViewAllJourneyHandler();
+		public event ViewAllJourneyHandler ViewAllJourney;
 
 		public HomePage()
 		{
 			InitializeComponent();
+		}
+
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+			curJourneyProgess.Value = 4;
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -35,9 +42,9 @@ namespace WeSplit.Pages
 
 		}
 
-		private void sortBoxContainer_Click(object sender, RoutedEventArgs e)
+		private void viewAllJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			ViewAllJourney?.Invoke();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -176,5 +183,6 @@ namespace WeSplit.Pages
 		{
 
 		}
+
 	}
 }

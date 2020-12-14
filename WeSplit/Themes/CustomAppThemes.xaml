@@ -10,6 +10,7 @@
     <SolidColorBrush x:Key="MyDarkGreen" Color="#002a1b"/>
     <SolidColorBrush x:Key="MyNeueGreen" Color="#157d74"/>
     <SolidColorBrush x:Key="MyLightGreen" Color="#1aaf75"/>
+    <SolidColorBrush x:Key="MyLightGreenOpacity" Color="#409ff4d0"/>
     <SolidColorBrush x:Key="MyLightGreen2" Color="#9ff4d0"/>
     <SolidColorBrush x:Key="MyOrange" Color="#e65925"/>
     <SolidColorBrush x:Key="MyLightOrange" Color="#ffa129"/>
@@ -22,6 +23,7 @@
     <SolidColorBrush x:Key="MyLightGray5" Color="#666666"/>
 
     <SolidColorBrush x:Key="RippleGreen" Color="#61e2ae"/>
+    <SolidColorBrush x:Key="MyLIghtGreenOpacity" Color="#75caeadb"/>
     <Color x:Key="ShadowOrange">#ffd400</Color>
 
     <LinearGradientBrush x:Key="MyOrangeGradient">
@@ -32,6 +34,11 @@
     <LinearGradientBrush x:Key="MyOrangeGradientScale">
         <GradientStop Color="#e65925" Offset="-0.5"/>
         <GradientStop Color="#ffa129" Offset="1.5"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MyGreenGradient">
+        <GradientStop Color="#157d74" Offset="0"/>
+        <GradientStop Color="#1aaf75" Offset="1.0"/>
     </LinearGradientBrush>
 
     <Color x:Key="StartGradientColor">#157d74</Color>
@@ -51,6 +58,15 @@
     <Style TargetType="TextBlock"
                x:Key="MediumHeaderText">
         <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+               x:Key="RegularHeaderText">
+        <Setter Property="FontSize" Value="21"/>
         <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>

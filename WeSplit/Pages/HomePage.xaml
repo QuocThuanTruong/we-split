@@ -9,7 +9,7 @@
       mc:Ignorable="d" 
       Background="Transparent"
       d:DesignHeight="728" d:DesignWidth="1116"
-      Title="HomePage">
+      Title="HomePage" Loaded="Page_Loaded">
 
     <Grid Name="mainContainer">
 
@@ -111,9 +111,9 @@
                                       RenderingBias="Performance" />
                 </materialDesign:ColorZone.Effect>
 
-                <Button Name="sortBoxContainer"
+                <Button Name="viewAllJourneyButton"
                         Style="{StaticResource DrawerButton}"
-                        Click="sortBoxContainer_Click"
+                        Click="viewAllJourneyButton_Click"
                         Width="164"
                         HorizontalAlignment="Left"
                         Margin="16, 0, 0, 0"
@@ -139,7 +139,7 @@
                                    VerticalAlignment="Center"
                                    Style="{StaticResource MediumText}"
                                    FontFamily="{DynamicResource GilroyMedium}"
-                                   Foreground="{DynamicResource MyBlack}"
+                                   Foreground="{DynamicResource MyDarkGreen}"
                                    Text="{x:Static loc:Resources.text_view_all_journey}"/>
 
                     </StackPanel>
@@ -944,15 +944,17 @@
 
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2">
+                    <StackPanel Grid.Row="2"
+                                Margin="0, 18, 0, 0">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="14"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
                                    Height="14"
                                    Source="{StaticResource IconOutlineRoute}"/>
 
                             <TextBlock Text="Lộ trình"
                                        Margin="8, 0, 0, 0"
-                                       Style="{StaticResource SmallText}"
+                                       Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
                         </StackPanel>
 
@@ -965,21 +967,23 @@
                                     Margin="0, 12, 0, 0">
                             <Image Width="14"
                                    Height="14"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconGrayCalendar}"/>
 
                             <TextBlock Text="Ngày bắt đầu"
                                        Margin="8, 0, 0, 0"
-                                       Style="{StaticResource SmallText}"
+                                       Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
 
                             <Image Width="14"
                                    Height="14"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
                                    Margin="40, 0, 0, 0"
                                    Source="{StaticResource IconGrayCalendar}"/>
 
                             <TextBlock Text="Ngày kết thúc"
                                        Margin="8, 0, 0, 0"
-                                       Style="{StaticResource SmallText}"
+                                       Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
                         </StackPanel>
 
@@ -1000,18 +1004,19 @@
 
                         <StackPanel Orientation="Horizontal"
                                 Margin="0, 12, 0, 0">
-                            <Image Width="14"
-                                   Height="14"
+                            <Image Width="16"
+                                   Height="16"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconGrayTeam}"/>
 
                             <TextBlock Text="Thành viên"
                                        Margin="8, 0, 0, 0"
-                                       Style="{StaticResource SmallText}"
+                                       Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
                         </StackPanel>
 
                         <!-- Binding -->
-                        <TextBlock Text="list"
+                        <TextBlock Text="5 người tham gia"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
 
@@ -1019,26 +1024,28 @@
                                 Margin="0, 12, 0, 0">
                             <Image Width="14"
                                    Height="14"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconProgress}"/>
 
-                            <TextBlock Text="Tiến độ"
+                            <TextBlock Text="Tiến độ (%)"
                                        Margin="8, 0, 0, 0"
-                                       Style="{StaticResource SmallText}"
+                                       Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
                         </StackPanel>
 
                         <!-- Binding -->
-                        <TextBlock Text="40%"
-                                   Margin="22, 0, 0, 0"
-                                   Style="{StaticResource RegularText}"/>
-
                         <Slider Name="curJourneyProgess"
-                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                Margin="0, 8, 0, 0"
+                                Minimum="0"
+                                Maximum="100"
+                                Foreground="{DynamicResource MyNeueGreen}"
+                                Style="{StaticResource MyMaterialDesignDiscreteSlider}"                            
                                 Width="258"/>
 
                     </StackPanel>
 
                     <Button Name="exploreCurJourneyButton"
+                            Margin="0, 8, 0, 0"
                             Height="36"
                             Style="{StaticResource ViewDetailButton}"
                             Grid.Row="4">
@@ -1047,6 +1054,8 @@
                                    FontSize="15"
                                    Style="{StaticResource ButtonMediumText}"/>
                     </Button>
+
+                   
 
                 </Grid>
 

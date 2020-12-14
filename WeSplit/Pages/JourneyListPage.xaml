@@ -3,12 +3,979 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:loc="clr-namespace:WeSplit.Properties"
       xmlns:local="clr-namespace:WeSplit.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Background="Transparent"
+       d:DesignHeight="728" d:DesignWidth="1116"
+      Loaded="Page_Loaded"
       Title="JourneyListPage">
 
-    <Grid>
+    <Grid Name="mainContainer">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="670*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="366*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="588*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Name="searchContainer"
+              Grid.Column="1"
+              Grid.ColumnSpan="3"
+              Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="670*"/>
+                <ColumnDefinition Width="366*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search box-->
+            <materialDesign:ColorZone Mode="Custom"
+                                      Height="{Binding ActualHeight, ElementName=searchContainer}">
+
+                <materialDesign:ColorZone.Effect>
+                    <DropShadowEffect BlurRadius="10" 
+                                      ShadowDepth="1" 
+                                      Color="LightGray" 
+                                      Opacity="0.5" 
+                                      RenderingBias="Performance" />
+                </materialDesign:ColorZone.Effect>
+
+                <materialDesign:Card Name="searchBoxContainer"
+                                 Margin="8, 0, 8, 0"
+                                 Height="45"
+                                 Style="{StaticResource CardScaleHover}"
+                                 UniformCornerRadius="6"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                 Grid.Column="0">
+
+                    <Grid Name="searchContentCard">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="624*"/>
+                            <ColumnDefinition Width="46*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Name="searchButton"
+                                materialDesign:ButtonAssist.CornerRadius="20"
+                                Background="Transparent"
+                                Padding="0"
+                                BorderThickness="0"
+                                materialDesign:RippleAssist.Feedback="{DynamicResource RippleGreen}"
+                                Width="40"
+                                Height="40">
+
+                            <Image Name="iconSearch"
+                                   HorizontalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                               Width="23"
+                               Height="22"
+                               Source="{StaticResource IconSearch}"/>
+
+                        </Button>
+
+
+                        <!-- Search text box -->
+                        <TextBox Name="searchTextBox"
+                                 Margin="0, 8, 10, 0"
+                                 Style="{StaticResource SearchTextBox}"
+                                 materialDesign:HintAssist.Hint="{x:Static loc:Resources.hint_text_search}"
+                                 Grid.Column="1" TextChanged="searchTextBox_TextChanged"/>
+
+                        <Button Name="filterButton"
+                               
+                                    Grid.Column="2"
+                                    Click="filterButton_Click"
+                                    materialDesign:ButtonAssist.CornerRadius="6"
+                                    Background="{DynamicResource MyLightGreen2}"
+                                    Padding="0"
+                                    BorderThickness="0"
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    materialDesign:RippleAssist.Feedback="{DynamicResource RippleGreen}"
+                                    Width="40"
+                                    Height="40">
+
+                            <Image 
+                                   HorizontalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Width="20"
+                                   Height="20"
+                                   Source="{StaticResource IconFilter}"/>
+                        </Button>
+
+                    </Grid>
+                </materialDesign:Card>
+            </materialDesign:ColorZone>
+
+
+           
+
+        </Grid>
+
+        <!-- Sort combo box-->
+        <materialDesign:ColorZone Mode="Custom"
+                                      Margin="0, 0, 4, 0"
+                                      Height="{Binding ActualHeight, ElementName=searchContainer}"
+                                      Grid.Column="3">
+
+            <materialDesign:ColorZone.Effect>
+                <DropShadowEffect BlurRadius="10" 
+                                      ShadowDepth="1" 
+                                      Color="LightGray" 
+                                      Opacity="0.5" 
+                                      RenderingBias="Performance" />
+            </materialDesign:ColorZone.Effect>
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="4, 0, 0, 0">
+                <!-- sort -->
+                <materialDesign:Card Name="sortBoxContainer"
+                                      Style="{StaticResource CardScaleHover}"
+                                 Width="188"
+                                 Height="45"
+                                 UniformCornerRadius="6"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                 Grid.Column="0">
+
+                    <StackPanel Name="sortContentCard"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <TextBlock Name="titleSortTextBlock"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource MediumText}"
+                                   Foreground="{DynamicResource MyDarkGreen}"
+                                   Text="{x:Static loc:Resources.title_sort_box}"/>
+
+                        <ComboBox Name="sortTypeComboBox"
+                                  SelectionChanged="sortTypeComboBox_SelectionChanged"
+                                  SelectedIndex="0"
+                                  Style="{StaticResource SearchBoxComboBox}"
+                                  ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                  Height="30"
+                                  BorderBrush="{DynamicResource MyDarkGreen}"
+                                  BorderThickness="0"
+                                  materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                  Margin="4, 1, 0, 0"
+                                  OverridesDefaultStyle="True"
+                                  Width="110">
+
+                            <!-- Date -->
+                            <ComboBoxItem Name="sortByDescStartDate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconDesc}"/>
+
+                                    <TextBlock 
+                                               Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_start_date}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem Name="sortByAscStartDate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconAsc}"/>
+
+                                    <TextBlock 
+                                                Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_start_date}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <!-- A-Z -->
+                            <ComboBoxItem Name="sortByAZ">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconDesc}"/>
+
+                                    <TextBlock 
+                                                Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_az}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem Name="sortByZA">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconAsc}"/>
+
+                                    <TextBlock 
+                                                Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_za}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <!-- End date -->
+                            <ComboBoxItem Name="sortByDescEndDate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconDesc}"/>
+
+                                    <TextBlock 
+                                                Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_end_date}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem Name="sortByAscEndDate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconAsc}"/>
+
+                                    <TextBlock  Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_end_date}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <!-- Level -->
+                            <ComboBoxItem Name="sortByDescRoute">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconDesc}"/>
+
+                                    <TextBlock  Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_route}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem Name="sortByAscRoute">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Width="7"
+                                           Height="13"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource IconAsc}"/>
+
+                                    <TextBlock  Foreground="{DynamicResource MyDarkGreen}"
+                                               Text="{x:Static loc:Resources.text_item_sort_route}"
+                                               VerticalAlignment="Center"
+                                               Margin="5, 0, 0, 0"
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </materialDesign:Card>
+                
+                <!-- filter -->
+                <materialDesign:ColorZone Mode="Custom"
+                                      Margin="0, 0, 4, 0"
+                                      Height="{Binding ActualHeight, ElementName=searchContainer}"
+                                      Grid.Column="1">
+
+                    <materialDesign:ColorZone.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                      ShadowDepth="1" 
+                                      Color="LightGray" 
+                                      Opacity="0.5" 
+                                      RenderingBias="Performance" />
+                    </materialDesign:ColorZone.Effect>
+
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <Button Name="gridViewButton"
+                                Click="gridViewButton_Click"
+                        Style="{StaticResource DrawerButton}"
+                        Width="45"
+                        HorizontalAlignment="Left"
+                        Margin="16, 0, 0, 0"
+                        Height="45"
+                            Background="{DynamicResource MyLightGreen2}"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Padding="0"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Grid.Column="0">
+
+                            <Image Name="gridViewIcon"
+                               HorizontalAlignment="Center"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{DynamicResource IconGridOn}"
+                               Width="23"
+                               Height="23"/>
+                        </Button>
+
+
+                        <Button Name="listViewButton"
+                                Click="listViewButton_Click"
+                        Style="{StaticResource DrawerButton}"
+                        Width="45"
+                        HorizontalAlignment="Left"
+                        Margin="16, 0, 0, 0"
+                        Height="45"
+                            Background="White"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Padding="0"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Grid.Column="0">
+
+                            <Image Name="listViewIcon"
+                               HorizontalAlignment="Center"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{DynamicResource IconListOff}"
+                               Width="23"
+                               Height="23"/>
+                        </Button>
+
+                    </StackPanel>
+                   
+                    
+                    
+                </materialDesign:ColorZone>
+            </StackPanel>
+           
+        </materialDesign:ColorZone>
         
+        
+        <!-- List -->
+        <ListView Name="journeyGridView"
+                 ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
+                  SelectionChanged="journeyGridView_SelectionChanged"
+                  SelectionMode="Single"
+                  VerticalAlignment="Top"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  Height="588"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="4">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        Style="{StaticResource WindowOptionsButton}"
+                        Foreground="Transparent"
+                        ClickMode="Hover"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Margin="0, 0, 20, 20"
+                        Width="294"
+                        Height="248">
+
+                        <Grid Width="294"
+                              Height="248">
+                            <!-- binding -->
+                            <Image Source="{StaticResource TEST_1}"
+                                   VerticalAlignment="Top"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Stretch="UniformToFill"
+                                   Width="294"
+                                   Height="210"/>
+
+                            <Image Name="footerImage"
+                                   Source="{StaticResource ListItemFooter}"
+                                   Width="294"
+                                   Height="111"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Stretch="UniformToFill"
+                                   VerticalAlignment="Bottom"/>
+
+                            <Image Name="statusIcon"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0, 0, 8, 30"
+                                   Width="75"
+                                   Height="75"
+                                   Source="{StaticResource BadgeCur}"/>
+
+                            <StackPanel Margin="24, 16, 16, 12"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left">
+
+                                <!-- binding -->
+                                <TextBlock Name="journeyName"
+                                           Text="Phố cổ hội an"
+                                           Style="{StaticResource BoldMediumText}"
+                                           Foreground="{DynamicResource MyBlack}"/>
+
+                                <Grid Height="20"
+                                      Width="258">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0"
+                                                Orientation="Horizontal">
+                                        
+                                        <Image Source="{StaticResource IconSemiRoute}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="13"
+                                               Height="13"/>
+
+                                        <!-- binding -->
+                                        <TextBlock Text="17 km lộ trình"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1"
+                                                Orientation="Horizontal">
+
+                                        <Image Source="{StaticResource IconGrayCalendar}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="13"
+                                               Height="13"/>
+
+                                        <!-- binding -->
+                                        <TextBlock Text="90 ngày"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2"
+                                                Orientation="Horizontal">
+
+                                        <Image Source="{StaticResource IconGrayTeam}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="16"
+                                               Height="16"/>
+
+                                        <!-- binding -->
+                                        <TextBlock Text="5"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+
+                        </Grid>
+                        
+                    </Button>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <Image Source="{StaticResource TEST_1}"/>
+            <Image Source="{StaticResource TEST_1}"/>
+            <Image Source="{StaticResource TEST_1}"/>
+        </ListView>
+
+        <Grid Name="pageContainer"
+              Grid.Column="1"
+              Grid.ColumnSpan="3"
+              Grid.Row="3">
+
+            <StackPanel Name="pageButtonContainer"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        FlowDirection="RightToLeft">
+
+                <Button Name="lastPageButton"
+                        Click="lastPageButton_Click"
+                        Width="27"
+                        Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        Style="{StaticResource WindowOptionsButton}">
+
+                    <Image Name="iconLast"
+                           Width="27"
+                           Height="36"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenLast}"/>
+                </Button>
+
+                <Button Name="nextPageButton"
+                        Click="nextPageButton_Click"
+                        Width="27"
+                        Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        Style="{StaticResource WindowOptionsButton}">
+
+                    <Image Name="iconNext"
+                           Width="27"
+                           Height="36"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenNext}"/>
+                </Button>
+
+                <materialDesign:ColorZone Mode="Custom"
+                                          Width="70"
+                                      Height="{Binding ActualHeight, ElementName=pageContainer}">
+
+                    <materialDesign:ColorZone.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="1" 
+                                          Color="#00ff5b" 
+                                          Opacity="0.3" 
+                                          RenderingBias="Performance" />
+                    </materialDesign:ColorZone.Effect>
+
+                    <materialDesign:Card Name="currenPageContainer"
+                                         Width="60"
+                                         Background="{StaticResource MyGreenGradient}"
+                                         Margin="0, 0, 0, 4"
+                                         Height="28"
+                                         UniformCornerRadius="14"
+                                         materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <!-- Binding data -->
+                            <TextBlock Name="currentPageTextBlock"
+                                   FlowDirection="LeftToRight"
+                                   Text="1 of 5"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"
+                                   Style="{StaticResource SmallText}"
+                                   FontFamily="{StaticResource GilroySemiBold}"/>
+                        </StackPanel>
+                        
+                    </materialDesign:Card>
+                </materialDesign:ColorZone>
+
+                <Button Name="prevPageButton"
+                        Click="prevPageButton_Click"
+                        Width="27"
+                        Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        Style="{StaticResource WindowOptionsButton}">
+
+                    <Image Name="iconPrev"
+                           Width="27"
+                           Height="36"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenPrev}"/>
+                </Button>
+
+                <Button Name="firstPageButton"
+                        Click="firstPageButton_Click"
+                        Width="27"
+                        Height="40"
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        Style="{StaticResource WindowOptionsButton}">
+
+                    <Image Name="iconFirst"
+                           Width="27"
+                           Height="36"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenFirst}"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+
+        <materialDesign:Card Name="filterContainer"
+                             UniformCornerRadius="10"
+                             Background="#ffffff"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                             Grid.Column="3"
+                             Grid.Row="2">
+
+            <Grid>
+
+                <StackPanel Name="filterContent"
+                            Margin="12">
+
+                    <StackPanel>
+                        <TextBlock Text="Tình trạng chuyến đi"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                        <Border Width="65"
+                                Margin="0, 8, 0, 8"
+                                HorizontalAlignment="Left"
+                                Height="2"
+                                Background="{DynamicResource MyDarkGreen}"/>
+
+
+                        <!-- Food group filter list box -->
+                        <ListBox Name="statusGroupListBox"
+                 SelectionChanged="statusGroupListBox_SelectionChanged"
+                 ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
+                 SelectionMode="Multiple"
+                 Foreground="{DynamicResource MyLightGreenOpacity}"
+                 Grid.Column="1"
+                 Grid.Row="1">
+
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                            <Button Name="doneStatusButton"
+                                    HorizontalAlignment="Left"
+                                    Width="110"
+                    Click="groupButton_Click"
+                    Tag="0"
+                    Background="{Binding Foreground, ElementName=statusGroupListBox}"
+                    Style="{StaticResource GroupButton}">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Name="doneStatusIcon"
+                                               
+                                               
+                           Width="20"
+                           Height="20"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenDone}"/>
+
+
+                                    <TextBlock Name="doneStatusTextBlock"
+                               Grid.Column="1"
+                               Margin="12, 0, 16, 0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MediumText}"
+                               Foreground="{StaticResource MyNeueGreen}"
+                               FontFamily="{DynamicResource GilroySemiBold}"
+                               Text="Đã đi"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="curStatusButton"
+                                    HorizontalAlignment="Left"
+                                    Width="110"
+                    Click="groupButton_Click"
+                    Tag="1"
+                    Background="{Binding Foreground, ElementName=statusGroupListBox}"
+                    Style="{StaticResource GroupButton}">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Name="curStatusIcon"
+                                               Margin="8, 0, 0, 0"
+                           Width="20"
+                           Height="20"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenCur}"/>
+
+
+                                    <TextBlock Name="curStatusTextBlock"
+                               Grid.Column="1"
+                               Margin="12, 0, 16, 0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MediumText}"
+                               Foreground="{StaticResource MyNeueGreen}"
+                               FontFamily="{DynamicResource GilroySemiBold}"
+                               Text="Hiện tại"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="planStatusButton"
+                                    HorizontalAlignment="Left"
+                                    Width="110"
+                    Click="groupButton_Click"
+                    Tag="2"
+                    Background="{Binding Foreground, ElementName=statusGroupListBox}"
+                    Style="{StaticResource GroupButton}">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Name="planStatusIcon"
+                                               Margin="8, 0, 0, 0"
+                           Width="15"
+                           Height="15"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource IconGreenPlan}"/>
+
+
+                                    <TextBlock Name="planStatusTextBlock"
+                               Grid.Column="1"
+                               Margin="12, 0, 16, 0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource MediumText}"
+                               Foreground="{StaticResource MyNeueGreen}"
+                               FontFamily="{DynamicResource GilroySemiBold}"
+                               Text="Sắp tới"/>
+                                </StackPanel>
+                            </Button>
+
+                        </ListBox>
+
+                        <TextBlock Text="Lộ trình"
+                                   Margin="0, 8, 0, 0"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                        <Border Width="30"
+                                Margin="0, 8, 0, 8"
+                                HorizontalAlignment="Left"
+                                Height="2"
+                                Background="{DynamicResource MyDarkGreen}"/>
+
+
+                        <Grid Height="30">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Orientation="Horizontal">
+                                <CheckBox Name="routeOption1SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="0 - 20 km"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Grid.Column="1"
+                                        Orientation="Horizontal">
+                                <CheckBox Name="routeOption2SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="21 - 50 km"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Grid.Column="2"
+                                        Orientation="Horizontal">
+                                <CheckBox Name="routeOption3SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="> 51 km"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                        <TextBlock Text="thời gian"
+                                   Margin="0, 8, 0, 0"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                        <Border Width="34"
+                                Margin="0, 8, 0, 8"
+                                HorizontalAlignment="Left"
+                                Height="2"
+                                Background="{DynamicResource MyDarkGreen}"/>
+
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0, 8, 0, 12">
+                            <DatePicker
+                                Height="42"
+                                Width="130"
+                                materialDesign:HintAssist.IsFloating="False"
+                                materialDesign:HintAssist.Hint="N.Bắt đầu"
+                                FontFamily="{StaticResource GilroyRegular}"
+                                FontSize="14"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                            <TextBlock Text="đến"
+                                       VerticalAlignment="Center"
+                                   Margin="18, 0, 18, 0"
+
+                                   Style="{StaticResource MediumText}"/>
+
+                            <DatePicker
+                                Height="42"
+                                Width="130"
+                                materialDesign:HintAssist.IsFloating="False"
+                                materialDesign:HintAssist.Hint="N.Kết thúc"
+                                FontFamily="{StaticResource GilroyRegular}"
+                                FontSize="14"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+
+                        </StackPanel>
+
+
+                        <TextBlock Text="Thành viên"
+                                   Margin="0, 8, 0, 0"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                        <Border Width="44"
+                                Margin="0, 8, 0, 8"
+                                HorizontalAlignment="Left"
+                                Height="2"
+                                Background="{DynamicResource MyDarkGreen}"/>
+
+
+                        <Grid Height="30">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Orientation="Horizontal">
+                                <CheckBox Name="memberOption1SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="2 - 5 người"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Grid.Column="1"
+                                        Orientation="Horizontal">
+                                <CheckBox Name="memberOption2SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="6 - 9 người"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                            <StackPanel VerticalAlignment="Center" 
+                                        Grid.Column="2"
+                                        Orientation="Horizontal">
+                                <CheckBox Name="memberOption3SheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                                <TextBlock Text="> 10 người"
+                                           Margin="8, 0, 0, 0"
+                                           Style="{StaticResource MediumText}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                    </StackPanel>
+
+
+                </StackPanel>
+
+                <Button Name="closeFilterButton"
+                        Click="closeFilterButton_Click"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Margin="0, 8, 8, 0"
+                    Style="{StaticResource WindowOptionsButton}"
+                    Width="30"
+                    Height="30">
+                    
+                    <Image Source="{StaticResource IconGreenClose}"
+                           Width="16"
+                           Height="16"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Page>
