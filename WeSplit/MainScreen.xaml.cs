@@ -105,7 +105,7 @@ namespace WeSplit
 			{
 				iconMngJourneyPage.Source = (ImageSource)FindResource(_mainScreenButtons[1].Item4);
 				mngJourneyPageName.Foreground = Brushes.White;
-				result = new ManageJourneysPage();
+				result = new AddJourneysPage();
 				//result = new ManageJourneysPage(true);
 				//((HomePage)result).ShowRecipeDetailPage += MainScreen_ShowRecipeDetailPage;
 			}

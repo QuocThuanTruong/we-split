@@ -85,14 +85,12 @@ D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSp
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\HomePage.g.cs
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\JourneyDetailPage.g.cs
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\JourneyListPage.g.cs
-D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\ManageJourneysPage.g.cs
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AboutPage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AddSitePage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\HelpPage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\HomePage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\JourneyDetailPage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\JourneyListPage.baml
-D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\ManageJourneysPage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\list-item-footer.png
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\badge-cur.png
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\badge-done.png
@@ -101,3 +99,6 @@ D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSp
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\ic-green-last.png
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\ic-green-next.png
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\ic-green-prev.png
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AddJourneysPage.g.cs
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AddJourneysPage.baml
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\icon_gray_close.png

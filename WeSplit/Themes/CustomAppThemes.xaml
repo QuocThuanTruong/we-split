@@ -82,6 +82,16 @@
         <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
     </Style>
 
+
+    <Style TargetType="TextBlock"
+                   x:Key="SemiBoldRegularText">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroySemiBold}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
     <Style TargetType="TextBlock"
                    x:Key="SemiBoldMediumText">
         <Setter Property="FontSize" Value="18"/>

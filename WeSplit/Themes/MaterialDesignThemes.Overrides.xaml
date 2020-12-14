@@ -142,6 +142,53 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ImageStepListViewItem" TargetType="ListBoxItem">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" 
+                            Padding="4, 8, 8, 8" 
+                            SnapsToDevicePixels="true"
+                            Background="Transparent">
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                            <Setter Property="Grid.ZIndex" Value="1"/>
+                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AddRecipePageTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+        <Setter Property="materialDesign:HintAssist.IsFloating" Value="False"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="FontFamily" Value="{StaticResource GilroyRegular}"/>
+        <Setter Property="Padding" Value="-5"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
     <Style x:Key="ViewAllButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource ViewDetailButton}">
         <Setter Property="Background" Value="{DynamicResource MyLightOrange}"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -246,6 +293,77 @@
             </EventTrigger>
         </Style.Triggers>-->
 
+    </Style>
+
+    <Style x:Key="MapViewButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="120"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="#601aaf75"/>
+        <Setter Property="Foreground" Value="{DynamicResource RippleGreen}"/>
+        <Setter Property="materialDesign:RippleAssist.Feedback" Value="{DynamicResource RippleGreen}" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                x:Name="border" 
+                                CornerRadius="{Binding Path=(materialDesign:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <materialDesign:Ripple Content="{TemplateBinding Content}" 
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                        Focusable="False"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                <materialDesign:Ripple.Clip>
+                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                        <Binding ElementName="border" Path="ActualWidth" />
+                                        <Binding ElementName="border" Path="ActualHeight" />
+                                        <Binding ElementName="border" Path="CornerRadius" />
+                                        <Binding ElementName="border" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </materialDesign:Ripple.Clip>
+                            </materialDesign:Ripple>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding BorderBrush,
+                                                                                        RelativeSource={RelativeSource Mode=TemplatedParent},
+                                                                                        Converter={StaticResource BrushOpacityConverter},
+                                                                                        ConverterParameter=0.5}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Control.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="Opacity"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Control.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard >
+                        <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="Opacity"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="SearchBoxComboBoxItem" TargetType="ComboBoxItem" BasedOn="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}">
@@ -370,6 +488,105 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="AddRecipeComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource SearchBoxComboBox}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyRegular}"/>
+    </Style>
+
+
+    <Style x:Key="LinearColorHoverListBox" TargetType="ListBoxItem">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Foreground" Value="{DynamicResource RippleGreen}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" 
+                            Padding="0, 0, 0, 3" 
+                            SnapsToDevicePixels="true"
+                            Background="Transparent">
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="{Binding Foreground,
+                                                                                        RelativeSource={RelativeSource Mode=TemplatedParent},
+                                                                                        Converter={StaticResource BrushOpacityConverter},
+                                                                                        ConverterParameter=0.25}" />
+                            <Setter Property="Grid.ZIndex" Value="1"/>
+                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.01" ScaleY="1.01"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="AddJourneyButton" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowOptionsButton}">
+        <Setter Property="Height" Value="126"/>
+        <Setter Property="Width" Value="208"/>
+        <Setter Property="Background" Value="{DynamicResource MyOrangeGradient}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyOrange}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="17"/>
+        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0"/>
+        <Setter Property="materialDesign:RippleAssist.Feedback" Value="Yellow"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                x:Name="border" 
+                                CornerRadius="{Binding Path=(materialDesign:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <materialDesign:Ripple Content="{TemplateBinding Content}" 
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                        Focusable="False"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                <materialDesign:Ripple.Clip>
+                                    <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                        <Binding ElementName="border" Path="ActualWidth" />
+                                        <Binding ElementName="border" Path="ActualHeight" />
+                                        <Binding ElementName="border" Path="CornerRadius" />
+                                        <Binding ElementName="border" Path="BorderThickness" />
+                                    </MultiBinding>
+                                </materialDesign:Ripple.Clip>
+                            </materialDesign:Ripple>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource MyOrangeGradientScale}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SearchTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
         <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
         <Setter Property="FontFamily" Value="{StaticResource GilroyRegular}"/>
@@ -441,7 +658,7 @@
             <Border Grid.RowSpan="3" CornerRadius="4" Background="Transparent" />
             <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
                 <Track.Thumb>
-                    <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0" Background="{DynamicResource MyLightGreen2}" BorderBrush="Transparent"/>
+                    <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0" Background="{DynamicResource MyLightGreen}" BorderBrush="Transparent"/>
                 </Track.Thumb>
             </Track>
         </Grid>
@@ -457,7 +674,7 @@
             <Border Grid.ColumnSpan="3" CornerRadius="4" Background="Transparent"/>
             <Track Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
                 <Track.Thumb>
-                    <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0" Background="{DynamicResource MyLightGreen2}" BorderBrush="Transparent" />
+                    <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0" Background="{DynamicResource MyLightGreen}" BorderBrush="Transparent" />
                 </Track.Thumb>
             </Track>
         </Grid>

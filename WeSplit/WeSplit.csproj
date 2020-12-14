@@ -91,8 +91,8 @@
     <Compile Include="Pages\JourneyListPage.xaml.cs">
       <DependentUpon>JourneyListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ManageJourneysPage.xaml.cs">
-      <DependentUpon>ManageJourneysPage.xaml</DependentUpon>
+    <Compile Include="Pages\AddJourneysPage.xaml.cs">
+      <DependentUpon>AddJourneysPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
@@ -163,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ManageJourneysPage.xaml">
+    <Page Include="Pages\AddJourneysPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,6 +352,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\ic-white-update.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\icon_gray_close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\list-item-footer.png">

@@ -63,6 +63,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/ic-white-plan.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/ic-white-trash.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/ic-white-update.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/icon_gray_close.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/list-item-footer.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/splash-footer.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/images/main-bg.png")]
