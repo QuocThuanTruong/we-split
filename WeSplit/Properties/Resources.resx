@@ -133,7 +133,7 @@
     <value>Home</value>
   </data>
   <data name="manage_journey_page" xml:space="preserve">
-    <value>Manage journeys</value>
+    <value>Add journeys</value>
   </data>
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>

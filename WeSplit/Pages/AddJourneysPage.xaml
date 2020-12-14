@@ -655,8 +655,58 @@
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
                 <StackPanel>
-                    <TextBlock Text="Hình ảnh chuyến đi"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Hình ảnh chuyến đi"
                                Style="{StaticResource RegularHeaderText}"/>
+
+                        <Button Name="addImageOption2Button"
+                                    HorizontalAlignment="Right"
+                                Visibility="Hidden"
+                                    Grid.Column="1"
+                                    Click="addImageButton_Click"
+                                    VerticalAlignment="Center"
+                                    Width="110"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="12"
+                                    Height="24"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                            <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+
+                                <Image 
+                                            Width="11"
+                                            Height="11"
+                                            RenderOptions.BitmapScalingMode="HighQuality"
+                                            Source="{StaticResource IconWhiteAdd}"/>
+
+                                <TextBlock Text="ADD IMAGES"
+                                               Margin="6, 0, 0, 0"
+                                               Foreground="White"
+                                               Style="{StaticResource SmallText}"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+
+                    <Button Name="addImageOption1Button"
+                            Style="{StaticResource ImagePickerButton}"
+                            Background="#a6e2c7"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            Margin="0, 4, 0, 0"
+                            Width="110"
+                            Height="110" 
+                            Click="addImageButton_Click">
+
+                        <Image Width="39"
+                               Height="34"
+                               Source="{StaticResource IconAddImg}"/>
+                    </Button>
 
                     <StackPanel Orientation="Horizontal"
                                 Height="128"
@@ -666,7 +716,7 @@
                         <ListView Name="journeyImageListView"
                                   Height="128"
                                 Width="336"
-                      Visibility="Visible"
+                      Visibility="Collapsed"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       Margin="0, 0, 14, 0"
                       ItemContainerStyle="{StaticResource ImageStepListViewItem}">
@@ -721,6 +771,7 @@
                             <Grid/>
                         </ListView>
                     </StackPanel>
+                                    
                  </StackPanel>
 
             </materialDesign:Card>
@@ -1094,7 +1145,7 @@
 
                 <Button Name="saveJourneyButton"
                         Click="saveJourneyButton_Click"
-                        Width="128"
+                        Width="148"
                         Style="{StaticResource AddJourneyButton}"
                         materialDesign:ButtonAssist.CornerRadius="16"
                         Height="32"                        
@@ -1103,7 +1154,7 @@
                     <TextBlock Name="saveRecipeTextBlock"
                            Style="{StaticResource RegularText}"
                            Foreground="White"
-                           Text="SAVE JOURNEY"/>
+                           Text="UPDATE JOURNEY"/>
                 </Button>
             </StackPanel>
         </materialDesign:ColorZone>

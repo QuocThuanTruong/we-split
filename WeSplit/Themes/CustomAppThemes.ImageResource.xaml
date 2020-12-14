@@ -63,6 +63,7 @@
     <ImageSource x:Key="IconGreenNext">pack://application:,,,/Assets/Images/ic-green-next.png</ImageSource>
     <ImageSource x:Key="IconGreenPrev">pack://application:,,,/Assets/Images/ic-green-prev.png</ImageSource>
     <ImageSource x:Key="IconGrayClose">pack://application:,,,/Assets/Images/icon_gray_close.png</ImageSource>
+    <ImageSource x:Key="IconWhiteTick">pack://application:,,,/Assets/Images/icon_white_tick.png</ImageSource>
     
     <ImageSource x:Key="TEST_1">pack://application:,,,/Assets/test_1.jpg</ImageSource>
 

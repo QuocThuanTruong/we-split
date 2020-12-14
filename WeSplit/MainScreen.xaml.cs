@@ -106,8 +106,7 @@ namespace WeSplit
 				iconMngJourneyPage.Source = (ImageSource)FindResource(_mainScreenButtons[1].Item4);
 				mngJourneyPageName.Foreground = Brushes.White;
 				result = new AddJourneysPage();
-				//result = new ManageJourneysPage(true);
-				//((HomePage)result).ShowRecipeDetailPage += MainScreen_ShowRecipeDetailPage;
+				 
 			}
 			else if (selectedButton.Name == addSitePageButton.Name)
 			{
@@ -134,7 +133,24 @@ namespace WeSplit
 
 		private void MainScreen_ViewAllJourney()
 		{
-			pageNavigation.NavigationService.Navigate(new JourneyListPage());
+			JourneyListPage journeyListPage = new JourneyListPage();
+			journeyListPage.ShowJourneyDetailPage += JourneyListPage_ShowJourneyDetailPage;
+			pageNavigation.NavigationService.Navigate(journeyListPage);
+		}
+
+		private void JourneyListPage_ShowJourneyDetailPage(int recipeID)
+		{
+			JourneyDetailPage journeyDetailPage = new JourneyDetailPage();
+			journeyDetailPage.UpdateJourney += JourneyDetailPage_UpdateJourney;
+
+			pageNavigation.NavigationService.Navigate(journeyDetailPage);
+		}
+
+		private void JourneyDetailPage_UpdateJourney(int journeyID)
+		{
+			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage();
+
+			pageNavigation.NavigationService.Navigate(updateJourneyPage);
 		}
 
 		private void maximizeWindowButton_Click(object sender, RoutedEventArgs e)

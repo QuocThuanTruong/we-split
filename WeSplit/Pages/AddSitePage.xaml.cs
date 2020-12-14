@@ -24,5 +24,25 @@ namespace WeSplit.Pages
 		{
 			InitializeComponent();
 		}
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void addSiteAvatarButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void addSiteButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void cancelAddSiteButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

@@ -5,10 +5,384 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WeSplit.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:loc="clr-namespace:WeSplit.Properties"
+      d:DesignHeight="728" d:DesignWidth="1116"
+      Loaded="Page_Loaded"
+      Background="Transparent"
       Title="AddSitePage">
 
-    <Grid>
+    <Grid Name="mainContainer">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250*"/>
+            <RowDefinition Height="432*"/>
+            <RowDefinition Height="46*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="1036*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card
+            Grid.Column="1"
+            Background="#60ffffff"
+            UniformCornerRadius="10"
+            Padding="14"
+            materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.9*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Tên địa danh"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                    <TextBox Name="siteNameTextBox"
+                             Margin="2, 8, 0 ,0"
+                             Style="{StaticResource AddRecipePageTextBox}"
+                             materialDesign:HintAssist.Hint="Nhập tên địa danh"
+                             Grid.Column="1"
+                             Grid.Row="1"/>
+
+                    <TextBlock Text="Tỉnh thành"
+                               Margin="0, 10, 0, 0"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                    <Grid Name="startProvincePickerContainer"
+                          VerticalAlignment="Top"
+                          Margin="2, 8, 0, 0"
+                      Grid.Column="1"
+                      Grid.Row="1">
+
+                        <Border Height="34"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="4"/>
+
+                        <ComboBox Name="startProvinceComboBox"
+                              HorizontalAlignment="Left"
+                              Style="{StaticResource AddRecipeComboBox}"
+                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                              Height="30"
+                              SelectedIndex="0"
+                              HorizontalContentAlignment="Left"
+                              BorderBrush="{DynamicResource MyBlack}"
+                              BorderThickness="0"
+                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                              Margin="12, 2, 0, 2"
+                              OverridesDefaultStyle="True"
+                              Width="322">
+
+                            <!-- Demo :v còn binding thì item source-->
+                            <ComboBoxItem>
+                                <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                            </ComboBoxItem>
+
+
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock Text="Địa chỉ"
+                               Margin="0, 10, 0, 0"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                    <TextBox Name="provinceNameTextBox"
+                             Margin="2, 8, 0 ,0"
+                             Style="{StaticResource AddRecipePageTextBox}"
+                             materialDesign:HintAssist.Hint="Nhập địa chỉ cụ thể"
+                             Grid.Column="1"
+                             Grid.Row="1"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Margin="18, 0, 18, 0">
+                    <TextBlock Text="Tên địa danh"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                    <Button Name="addSiteAvatarButton"
+                            Style="{StaticResource ImagePickerButton}"
+                            Background="#a6e2c7"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            Margin="0, 8, 0, 0"
+                            Width="276"
+                            Height="186"
+                            Click="addSiteAvatarButton_Click">
+
+                        <Image Width="66"
+                               Height="53"
+                               Source="{StaticResource IconAddImg}"/>
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Mô tả"
+                                   Style="{StaticResource RegularHeaderText}"/>
+
+                    <TextBox Name="siteDescriptionTextBox"
+                             Margin="2, 8, 2 ,0"
+                             Height="110"
+                             TextWrapping="Wrap"
+                             VerticalAlignment="Stretch"
+                             Style="{StaticResource AddRecipePageTextBox}"
+                             materialDesign:HintAssist.Hint="Mô tả thông tin địa danh"
+                             Grid.Column="1"
+                             Grid.Row="1"/>
+
+                    <materialDesign:ColorZone Mode="Custom"
+                                  VerticalAlignment="Center"
+                                  Padding="0, 0, 4, 0"
+                                              Margin="0, 36, 0, 0"
+                                  HorizontalAlignment="Center"
+                                  Width="346"
+                                  Grid.Column="1"
+                                  Grid.Row="4">
+
+                        <materialDesign:ColorZone.Effect>
+                            <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="1" 
+                                          Color="Orange" 
+                                          Opacity="0.4" 
+                                          RenderingBias="Performance" />
+                        </materialDesign:ColorZone.Effect>
+
+                        <StackPanel Name="saveRecipeContainer"
+                        Height="42"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+
+                            <Button Name="cancelAddSiteButton"
+                        Click="cancelAddSiteButton_Click"
+                        Width="32"
+                        Margin="0, 0, 14, 0"
+                        Style="{StaticResource AddJourneyButton}"
+                        materialDesign:ButtonAssist.CornerRadius="16"
+                        Height="32"                        
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                                <Image Name="iconCancel"
+                           VerticalAlignment="Center"
+                           Width="11"
+                           Height="11"
+                           Source="{StaticResource IconGrayClose}"/>
+                            </Button>
+                            
+                            <Button Name="addSiteButton"
+                        Click="addSiteButton_Click"
+                        Width="148"
+                        Style="{StaticResource AddJourneyButton}"
+                        materialDesign:ButtonAssist.CornerRadius="16"
+                        Height="32"                        
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0">
+
+                                <TextBlock Name="saveRecipeTextBlock"
+                           Style="{StaticResource RegularText}"
+                           Foreground="White"
+                           Text="ADD SITE"/>
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    
+                </StackPanel>
+
+            </Grid>
+
+        </materialDesign:Card>
+
         
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Margin="0, 20, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36*"/>
+                <RowDefinition Height="376*"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:Card
+                Grid.Row="1"
+                Margin="0, 10, 0, 0"
+            Background="#60ffffff"
+            UniformCornerRadius="10"
+            Padding="14"
+            materialDesign:ShadowAssist.ShadowDepth="Depth0">
+            </materialDesign:Card>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <materialDesign:Card Background="#321aaf75"
+                                                 Margin="2, 0, 0 ,0"
+                                                 Width="20"
+                                                 Height="34"
+                                     HorizontalAlignment="Left"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                             UniformCornerRadius="5">
+                </materialDesign:Card>
+
+                <materialDesign:Card Background="#321aaf75"
+                                     Grid.Column="1"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                             UniformCornerRadius="5">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="1.3*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Tên địa danh"
+                                           Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+
+                        <TextBlock Text="Tỉnh thành"
+                                           Grid.Column="3"
+                                            VerticalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+
+                        <TextBlock Text="Địa chỉ"
+                                           Grid.Column="5"
+                                            VerticalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+
+                        <TextBlock Text="Mô tả"
+                                           Grid.Column="7"
+                                            VerticalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+
+            </Grid>
+            
+
+            <ListView Name="sitesListView"
+                  Grid.Column="1"
+                  Grid.Row="12"
+                  Grid.RowSpan="2"
+                  Margin="0, 8, 0, 0"
+                  ItemContainerStyle="{StaticResource SiteHoverListBox}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid 
+                              Margin="2, 0, 10, 0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.05*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="1.14*"/>
+                                <ColumnDefinition Width="0.62*"/>
+                                <ColumnDefinition Width="0.98*"/>
+                                <ColumnDefinition Width="1.6*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Binding data -->
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="7, 0, 0, 0"
+                                   Text="1"
+                                VerticalAlignment="Center"
+                                   Style="{StaticResource RegularText}"/>
+
+                            <!-- Binding data -->
+                            <materialDesign:Card
+                                Margin="14, 0, 0, 0"
+                                Grid.Column="1"
+                                Width="34"
+                                Height="34"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                UniformCornerRadius="17">
+                                <Image Width="34"
+                                       Height="34"
+                                       Source="{StaticResource TEST_1}"
+                                       Stretch="UniformToFill"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </materialDesign:Card>
+
+                            <!-- Binding data -->
+                            <TextBlock 
+                                Margin="7, 0, 0, 0"
+                                   Grid.Column="2"
+                                   HorizontalAlignment="Left"
+                                   Text="Đi đâu còn lâu mới nói"
+                                VerticalAlignment="Center"
+                                   Style="{StaticResource RegularText}"/>
+
+                            <!-- Binding data -->
+                            <TextBlock 
+                                   Grid.Column="3"
+                                   HorizontalAlignment="Left"
+                                   Text="TP.Hồ Chí Minh"
+                                VerticalAlignment="Center"
+                                   Style="{StaticResource RegularText}"/>
+
+                            <!-- Binding data -->
+                            <TextBlock 
+                                   Grid.Column="4"
+                                   HorizontalAlignment="Left"
+                                   Text="1707, abc, xyz"
+                                VerticalAlignment="Center"
+                                   Style="{StaticResource RegularText}"/>
+
+                            <!-- Binding data -->
+                            <TextBlock 
+                                   Grid.Column="5"
+                                   HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                   Text="Lorem ipsum dolor adipiscing,.."
+                                   Style="{StaticResource RegularText}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+                <UniformGrid/>
+            </ListView>
+
+        </Grid>
+
+
     </Grid>
 </Page>

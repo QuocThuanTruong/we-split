@@ -106,7 +106,7 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage journeys.
+        ///   Looks up a localized string similar to Add journeys.
         /// </summary>
         public static string manage_journey_page {
             get {

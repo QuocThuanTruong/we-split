@@ -20,9 +20,53 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class JourneyDetailPage : Page
 	{
+
+		public delegate void UpdateJourneyHandler(int journeyID);
+		public event UpdateJourneyHandler UpdateJourney;
+
 		public JourneyDetailPage()
 		{
 			InitializeComponent();
+		}
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void curJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			if (curJourneyProgess.Value == 0)
+			{
+				startIcon.Visibility = Visibility.Hidden;
+			}
+			else if (curJourneyProgess.Value == 100)
+			{
+				endIcon.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				startIcon.Visibility = Visibility.Visible;
+				if (endIcon != null)
+				{
+					endIcon.Visibility = Visibility.Visible;
+				}
+			}
+		}
+
+		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateJourney?.Invoke(0);
+		}
+
+		private void finishJourneyButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

@@ -664,7 +664,7 @@
 
         <materialDesign:Card Name="filterContainer"
                              UniformCornerRadius="10"
-                             Background="#ffffff"
+                             Background="#80ffffff"
                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                              Grid.Column="3"
                              Grid.Row="2">

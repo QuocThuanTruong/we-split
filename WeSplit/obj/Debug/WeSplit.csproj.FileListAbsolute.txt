@@ -102,3 +102,12 @@ D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSp
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AddJourneysPage.g.cs
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\AddJourneysPage.baml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\icon_gray_close.png
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\icon_white_tick.png
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.dll
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.dll
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.pdb
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.xml
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.pdb
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.xml
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\UpdateJourneyPage.g.cs
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\UpdateJourneyPage.baml

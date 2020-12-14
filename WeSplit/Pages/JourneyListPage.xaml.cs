@@ -22,6 +22,8 @@ namespace WeSplit.Pages
 	public partial class JourneyListPage : Page
 	{
 		private List<Tuple<Image, TextBlock, string, string>> _statusGroups;
+		public delegate void ShowJourneyDetailPageHandler(int recipeID);
+		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 		public JourneyListPage()
 		{
 			InitializeComponent();
@@ -90,6 +92,8 @@ namespace WeSplit.Pages
 			{
 				selectedID = journeyGridView.SelectedIndex;
 				Debug.WriteLine(selectedID);
+
+				ShowJourneyDetailPage?.Invoke(selectedID);
 			}
 		}
 

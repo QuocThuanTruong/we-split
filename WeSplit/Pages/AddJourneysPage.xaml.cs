@@ -69,5 +69,13 @@ namespace WeSplit.Pages
 		{
 
 		}
+
+		private void addImageButton_Click(object sender, RoutedEventArgs e)
+		{
+			//nếu list image có hình thì ẩn nút option 1 đi :v
+			addImageOption1Button.Visibility = Visibility.Collapsed;
+			addImageOption2Button.Visibility = Visibility.Visible;
+			journeyImageListView.Visibility = Visibility.Visible;
+		}
 	}
 }
