@@ -111,3 +111,4 @@ D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSp
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\LiveCharts.Wpf.xml
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\UpdateJourneyPage.g.cs
 D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\obj\Debug\Pages\UpdateJourneyPage.baml
+D:\Deadlines\Year 3\Semester I_3\Windows Programming\Project\Project 2\Work\WeSplit\WeSplit\bin\Debug\Assets\Images\ic-404.png
