@@ -55,12 +55,30 @@ namespace WeSplit.Pages
 		{
 			if (filterContainer.Visibility == Visibility.Visible)
 			{
-				journeyGridView.SetValue(Grid.ColumnSpanProperty, 4);
+				if (journeyGridView.Visibility == Visibility.Visible)
+				{
+					journeyGridView.SetValue(Grid.ColumnSpanProperty, 4);
+				}
+
+				if (journeyListView.Visibility == Visibility.Visible)
+				{
+					journeyListView.SetValue(Grid.ColumnSpanProperty, 4);
+				}
+
 				filterContainer.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				journeyGridView.SetValue(Grid.ColumnSpanProperty, 2);
+				if (journeyGridView.Visibility == Visibility.Visible)
+				{
+					journeyGridView.SetValue(Grid.ColumnSpanProperty, 2);
+				}
+
+				if (journeyListView.Visibility == Visibility.Visible)
+				{
+					journeyListView.SetValue(Grid.ColumnSpanProperty, 2);
+				}
+
 				filterContainer.Visibility = Visibility.Visible;
 			}	
 		}
@@ -72,6 +90,24 @@ namespace WeSplit.Pages
 
 			gridViewButton.Background = Brushes.White;
 			gridViewIcon.Source = (ImageSource)FindResource("IconGridOff");
+
+			if (journeyListView.Visibility == Visibility.Visible)
+			{
+				journeyListView.Visibility = Visibility.Collapsed;
+				journeyGridView.Visibility = Visibility.Visible;
+
+					
+			}	
+			else
+			{
+				journeyListView.Visibility = Visibility.Visible;
+				journeyGridView.Visibility = Visibility.Collapsed;
+
+				if (filterContainer.Visibility == Visibility.Visible)
+				{
+					journeyListView.SetValue(Grid.ColumnSpanProperty, 2);
+				}
+			}	
 		}
 
 		private void gridViewButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +117,22 @@ namespace WeSplit.Pages
 
 			listViewButton.Background = Brushes.White;
 			listViewIcon.Source = (ImageSource)FindResource("IconListOff");
+
+			if (journeyGridView.Visibility == Visibility.Visible)
+			{
+				journeyGridView.Visibility = Visibility.Collapsed;
+				journeyListView.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				journeyGridView.Visibility = Visibility.Visible;
+				journeyListView.Visibility = Visibility.Collapsed;
+
+				if (filterContainer.Visibility == Visibility.Visible)
+				{
+					journeyGridView.SetValue(Grid.ColumnSpanProperty, 2);
+				}
+			}
 		}
 
 		private void journeyGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,7 +151,16 @@ namespace WeSplit.Pages
 
 		private void closeFilterButton_Click(object sender, RoutedEventArgs e)
 		{
-			journeyGridView.SetValue(Grid.ColumnSpanProperty, 4);
+			if (journeyGridView.Visibility == Visibility.Visible)
+			{
+				journeyGridView.SetValue(Grid.ColumnSpanProperty, 4);
+			}
+
+			if (journeyListView.Visibility == Visibility.Visible)
+			{
+				journeyListView.SetValue(Grid.ColumnSpanProperty, 4);
+			}
+
 			filterContainer.Visibility = Visibility.Collapsed;
 		}
 

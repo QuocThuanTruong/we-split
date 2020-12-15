@@ -422,8 +422,9 @@
         </materialDesign:ColorZone>
         
         
-        <!-- List -->
+        <!-- Grid -->
         <ListView Name="journeyGridView"
+                  Visibility="Visible"
                  ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
                   SelectionChanged="journeyGridView_SelectionChanged"
                   SelectionMode="Single"
@@ -547,6 +548,161 @@
 
                         </Grid>
                         
+                    </Button>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <Image Source="{StaticResource TEST_1}"/>
+            <Image Source="{StaticResource TEST_1}"/>
+            <Image Source="{StaticResource TEST_1}"/>
+        </ListView>
+
+        <!-- List -->
+        <ListView Name="journeyListView"
+                  Visibility="Collapsed"
+                 ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
+                  SelectionChanged="journeyGridView_SelectionChanged"
+                  SelectionMode="Single"
+                  VerticalAlignment="Top"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  Height="588"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="4">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        Style="{StaticResource JourneyListViewButton}"
+                        Foreground="White"
+                        Background="White"
+                        ClickMode="Hover"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Margin="0, 0, 6, 20"
+                        Width="322"
+                        Height="138">
+
+                        <Grid Width="322"
+                              Height="138"
+                              HorizontalAlignment="Left">
+
+                            <Grid Width="322"
+                                        Height="138">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="142*"/>
+                                    <ColumnDefinition Width="180*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:Card Width="138"
+                                                    Height="138"
+                                                     UniformCornerRadius="10"
+                                                     materialDesign:ShadowAssist.ShadowEdges="Right"
+                                                    materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                    <!-- binding -->
+                                    <Image Source="{StaticResource TEST_1}"
+                                   VerticalAlignment="Top"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Stretch="UniformToFill"
+                                   Grid.Column="0"
+                                   Width="138"
+                                   Height="138"/>
+                                </materialDesign:Card>
+
+                                <StackPanel Margin="16"
+                                            
+                                            Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+
+                                    <!-- binding -->
+                                    <TextBlock Name="journeyName"
+                                           Text="Động Phong Nha Kẻ Bàng"
+                                               FontSize="17"
+                                           Style="{StaticResource BoldMediumText}"
+                                           Foreground="{DynamicResource MyBlack}"/>
+
+                                    <Grid Height="70"
+                                      Width="258">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.2*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Row="1"
+                                                Orientation="Horizontal">
+
+                                            <Image Source="{StaticResource IconSemiRoute}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="13"
+                                               Height="13"/>
+
+                                            <!-- binding -->
+                                            <TextBlock Text="17 km lộ trình"
+                                                       VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                        </StackPanel>
+
+                                        <StackPanel  Grid.Row="2"
+                                                Orientation="Horizontal">
+
+                                            <Image Source="{StaticResource IconGrayCalendar}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="13"
+                                               Height="13"/>
+
+                                            <!-- binding -->
+                                            <TextBlock Text="90 ngày"
+                                                        VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                        </StackPanel>
+
+                                        <StackPanel  Grid.Row="3"
+                                                Orientation="Horizontal">
+
+                                            <Image Source="{StaticResource IconGrayTeam}"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="16"
+                                               Height="16"/>
+
+                                            <!-- binding -->
+                                            <TextBlock Text="5"
+                                                        VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource MyLightGray5}"
+                                                   Margin="8, 0, 0, 0"
+                                                   Style="{StaticResource RegularText}"/>
+
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+
+                                <Image Name="statusIcon"
+                                       Grid.Column="1"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0, 0, -8, -8"
+                                   Width="75"
+                                   Height="75"
+                                   Source="{StaticResource BadgeCur}"/>
+
+
+                            </Grid>
+
+                        </Grid>
+
                     </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -866,29 +1022,56 @@
 
                         <StackPanel Orientation="Horizontal"
                                     Margin="0, 8, 0, 12">
-                            <DatePicker
-                                Height="42"
-                                Width="130"
+                            
+                            <Grid  Margin="2, 8, 2, 0  ">
+                                <Border Height="34"
+                                        Width="132"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="4"/>
+
+                                <DatePicker Name="startDatePicker"
+                                BorderThickness="0"
+                                materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
+                                HorizontalAlignment="Left"
+                                Height="32"
+                                Width="110"
+                                Margin="12,0 ,0, 0"
                                 materialDesign:HintAssist.IsFloating="False"
                                 materialDesign:HintAssist.Hint="N.Bắt đầu"
                                 FontFamily="{StaticResource GilroyRegular}"
                                 FontSize="14"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                                Style="{StaticResource MaterialDesignDatePicker}"/>
+
+                            </Grid>
 
                             <TextBlock Text="đến"
                                        VerticalAlignment="Center"
-                                   Margin="18, 0, 18, 0"
+                                   Margin="12, 8, 12, 0"
 
                                    Style="{StaticResource MediumText}"/>
 
-                            <DatePicker
-                                Height="42"
-                                Width="130"
+                            <Grid  Margin="2, 8, 2, 0  ">
+                                <Border Height="34"
+                                         Width="132"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="4"/>
+
+                                <DatePicker Name="endDatePicker"
+                                BorderThickness="0"
+                                materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
+                                HorizontalAlignment="Left"
+                                Height="32"
+                                Width="110"
+                                Margin="12,0 ,0, 0"
                                 materialDesign:HintAssist.IsFloating="False"
                                 materialDesign:HintAssist.Hint="N.Kết thúc"
                                 FontFamily="{StaticResource GilroyRegular}"
                                 FontSize="14"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                                Style="{StaticResource MaterialDesignDatePicker}"/>
+
+                            </Grid>
 
                         </StackPanel>
 
@@ -977,5 +1160,26 @@
                 </Button>
             </Grid>
         </materialDesign:Card>
+
+
+        <TextBlock Name="currentResultTextBlock"
+                   Grid.Column="1"
+                   Grid.Row="4"
+                   Margin="8, 0, 200, 0"
+                   VerticalAlignment="Center"
+                   Text="Hiển thị 12 trong tổng số 72 chuyến đi"
+                   Foreground="{StaticResource MyNeueGreen}"
+                   Style="{StaticResource RegularText}"/>
+        
+        <!-- Post mesage to notification to user here -->
+        <materialDesign:Snackbar Name="notiMessageSnackbar"
+                                 HorizontalAlignment="Left"
+                                 MessageQueue="{materialDesign:MessageQueue}"
+                                 Margin="8, 8, 0, 4"
+                                 MaxWidth="1000"
+                                 IsActive="False"
+                                 Grid.Column="1"
+                                 Grid.Row="4">
+        </materialDesign:Snackbar>
     </Grid>
 </Page>
