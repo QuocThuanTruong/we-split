@@ -179,7 +179,7 @@
                       Height="360"
                       Grid.RowSpan="2">
 
-                    <materialDesign:Card Name="firstPlanedJourneyBg"
+                        <materialDesign:Card Name="firstPlanedJourneyBg"
                         materialDesign:ShadowAssist.ShadowDepth="Depth0"
                         UniformCornerRadius="10"
                         Width="210"
@@ -194,6 +194,7 @@
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Source="{StaticResource TEST_1}"/>
                     </materialDesign:Card>
+   
 
                     <Button Name="firstPlanedJourneyButton"
                             MouseEnter="firstPlanedJourneyButton_MouseEnter"
@@ -260,6 +261,34 @@
 
                 </Grid>
 
+                <!--404-->
+                <Grid Width="210"
+                      Visibility="Collapsed"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                          Name="firstPlanedNotFound"
+                       Grid.RowSpan="2"
+                          Height="360">
+
+                    <Border Width="210"
+                                Height="360"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="60"
+                           Height="60"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="0, 12, 0, 0"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                </Grid>
 
                 <!-- Second planed-->
                 <Grid Width="434"
@@ -344,6 +373,34 @@
 
                         </StackPanel>
 
+                    </StackPanel>
+
+                </Grid>
+
+                <!--404-->
+                <Grid Width="434"
+                      Visibility="Collapsed"
+                      VerticalAlignment="Top"
+                          Name="secondPlanedNotFound"
+                       Grid.Column="1"
+                          Height="174">
+
+                    <Border Width="434"
+                                Height="174"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="60"
+                           Height="60"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="0, 12, 0, 0"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
                     </StackPanel>
 
                 </Grid>
@@ -441,6 +498,37 @@
                     </StackPanel>
 
                 </Grid>
+
+                <!--404-->
+                <Grid Width="434"
+                      VerticalAlignment="Bottom"
+                      Margin="0, 0, 0, 5"
+                      Visibility="Collapsed"
+                   Name="thirdPlanedNotFound"
+                      Height="172"
+                      Grid.Column="1"
+                      Grid.Row="1">
+
+                    <Border Width="434"
+                                Height="174"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="60"
+                           Height="60"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="0, 12, 0, 0"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                </Grid>
+
 
                 <materialDesign:ColorZone Grid.Column="1"
                                           Grid.RowSpan="2"
@@ -587,6 +675,36 @@
 
                 </Grid>
 
+                <!--404-->
+                <Grid Width="138"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Visibility="Collapsed"
+                   Name="firstDonedNotFound">
+
+                    <Border Width="138"
+                                Height="133"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="50"
+                           Height="50"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 12, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                </Grid>
+
                 <!--second done-->
                 <Grid Width="138"
                       HorizontalAlignment="Center"
@@ -673,6 +791,37 @@
 
                         </StackPanel>
 
+                    </StackPanel>
+
+                </Grid>
+
+                <!--404-->
+                <Grid Width="138"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="1"
+                      Visibility="Collapsed"
+                   Name="secondDonedNotFound">
+
+                    <Border Width="138"
+                                Height="133"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="50"
+                           Height="50"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 12, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
                     </StackPanel>
 
                 </Grid>
@@ -767,6 +916,36 @@
 
                 </Grid>
 
+                <!--404-->
+                <Grid Width="138"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="2"
+                      Visibility="Collapsed"
+                   Name="thirdDonedNotFound">
+
+                    <Border Width="138"
+                                Height="133"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="50"
+                           Height="50"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 12, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                </Grid>
 
                 <!--fourth done-->
                 <Grid Width="138"
@@ -859,6 +1038,38 @@
 
                 </Grid>
 
+                <!--404-->
+                <Grid Width="138"
+                      HorizontalAlignment="Right"
+                      Margin="0, 0, -4, 0"
+                      VerticalAlignment="Top"
+                      Height="133"
+                      Grid.Column="3"
+                      Visibility="Collapsed"
+                   Name="fourthDonedNotFound">
+
+                    <Border Width="138"
+                                Height="133"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="50"
+                           Height="50"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 12, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="12"
+                                   TextAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
+
+                </Grid>
+
                 <materialDesign:ColorZone Grid.Column="4"
                                           Grid.RowSpan="2"
                                           VerticalAlignment="Top"
@@ -902,7 +1113,9 @@
                        Style="{StaticResource MediumHeaderText}"
                        Text="{x:Static loc:Resources.text_cur_journey}"/>
 
-            <materialDesign:Card Name="curJourneyCard"
+            <Grid>
+
+                <materialDesign:Card Name="curJourneyCard"
                                  Width="316"
                                  Height="558"
                                  UniformCornerRadius="10"
@@ -910,131 +1123,131 @@
                                  materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                  Margin="0, 12, 0, 0">
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="188*"/>
-                        <RowDefinition Height="48*"/>
-                        <RowDefinition Height="260*"/>
-                        <RowDefinition Height="62*"/>
-                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="188*"/>
+                            <RowDefinition Height="48*"/>
+                            <RowDefinition Height="260*"/>
+                            <RowDefinition Height="62*"/>
+                        </Grid.RowDefinitions>
 
-                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                          UniformCornerRadius="10">
-                        
-                        <Image Name="curJourneyAvt"
+
+                            <Image Name="curJourneyAvt"
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Stretch="UniformToFill"
                                Source="{StaticResource TEST_1}"/>
-                        
-                    </materialDesign:Card>
 
-                    <StackPanel Grid.Row="1"
+                        </materialDesign:Card>
+
+                        <StackPanel Grid.Row="1"
                                 VerticalAlignment="Bottom">
 
-                        <!-- BInding -->
-                        <TextBlock Name="curJourneyName"
+                            <!-- BInding -->
+                            <TextBlock Name="curJourneyName"
                                    Style="{StaticResource BoldMediumText}"
                                    Text="Động Phong Nha Kẻ Bàng"/>
 
-                        <Border Width="87"
+                            <Border Width="87"
                                 Margin="0, 8, 0, 0"
                                 HorizontalAlignment="Left"
                                 Height="2"
                                 Background="{DynamicResource MyNeueGreen}"/>
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="2"
+                        <StackPanel Grid.Row="2"
                                 Margin="0, 18, 0, 0">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="14"
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="14"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Height="14"
                                    Source="{StaticResource IconOutlineRoute}"/>
 
-                            <TextBlock Text="Lộ trình"
+                                <TextBlock Text="Lộ trình"
                                        Margin="8, 0, 0, 0"
                                        Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <!-- Binding -->
-                        <TextBlock Text="17 km"
+                            <!-- Binding -->
+                            <TextBlock Text="17 km"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
 
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                     Margin="0, 12, 0, 0">
-                            <Image Width="14"
+                                <Image Width="14"
                                    Height="14"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconGrayCalendar}"/>
 
-                            <TextBlock Text="Ngày bắt đầu"
+                                <TextBlock Text="Ngày bắt đầu"
                                        Margin="8, 0, 0, 0"
                                        Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
 
-                            <Image Width="14"
+                                <Image Width="14"
                                    Height="14"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Margin="40, 0, 0, 0"
                                    Source="{StaticResource IconGrayCalendar}"/>
 
-                            <TextBlock Text="Ngày kết thúc"
+                                <TextBlock Text="Ngày kết thúc"
                                        Margin="8, 0, 0, 0"
                                        Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal">
-                            <!-- Binding -->
-                            <TextBlock Name="startDateTextBlock"
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Binding -->
+                                <TextBlock Name="startDateTextBlock"
                                 Text="17/07/2020"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
 
-                            <!-- Binding -->
-                            <TextBlock  Name="endDateTextBlock"
+                                <!-- Binding -->
+                                <TextBlock  Name="endDateTextBlock"
                                 Text="17/07/2020"
                                    Margin="64, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
-                        </StackPanel>
+                            </StackPanel>
 
 
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                 Margin="0, 12, 0, 0">
-                            <Image Width="16"
+                                <Image Width="16"
                                    Height="16"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconGrayTeam}"/>
 
-                            <TextBlock Text="Thành viên"
+                                <TextBlock Text="Thành viên"
                                        Margin="8, 0, 0, 0"
                                        Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <!-- Binding -->
-                        <TextBlock Text="5 người tham gia"
+                            <!-- Binding -->
+                            <TextBlock Text="5 người tham gia"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
 
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                 Margin="0, 12, 0, 0">
-                            <Image Width="14"
+                                <Image Width="14"
                                    Height="14"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{StaticResource IconProgress}"/>
 
-                            <TextBlock Text="Tiến độ (%)"
+                                <TextBlock Text="Tiến độ (%)"
                                        Margin="8, 0, 0, 0"
                                        Style="{StaticResource RegularText}"
                                        Foreground="{StaticResource MyLightGray5}"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <!-- Binding -->
-                        <Slider Name="curJourneyProgess"
+                            <!-- Binding -->
+                            <Slider Name="curJourneyProgess"
                                 Margin="0, 8, 0, 0"
                                 Minimum="0"
                                 Maximum="100"
@@ -1042,24 +1255,56 @@
                                 Style="{StaticResource MyMaterialDesignDiscreteSlider}"                            
                                 Width="258"/>
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <Button Name="exploreCurJourneyButton"
+                        <Button Name="exploreCurJourneyButton"
                             Margin="0, 8, 0, 0"
                             Height="36"
                             Style="{StaticResource ViewDetailButton}"
                             Grid.Row="4">
 
-                        <TextBlock Text="EXPLORE"
+                            <TextBlock Text="EXPLORE"
                                    FontSize="15"
                                    Style="{StaticResource ButtonMediumText}"/>
-                    </Button>
+                        </Button>
 
-                   
+
+
+                    </Grid>
+
+                </materialDesign:Card>
+
+                <!--404-->
+                <Grid Width="316"
+                  Height="558"
+                  Margin="0, 12, 0, 0"
+                  Visibility="Collapsed"
+                   Name="curJourneyNotFound">
+
+                    <Border Width="316"
+                                Height="558"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="60"
+                           Height="60"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                        <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 12, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                    </StackPanel>
 
                 </Grid>
+            </Grid>
 
-            </materialDesign:Card>
         </StackPanel>
+
+        
     </Grid>
 </Page>
