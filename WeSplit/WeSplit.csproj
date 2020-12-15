@@ -59,7 +59,7 @@
       <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -94,6 +94,9 @@
     </Compile>
     <Compile Include="Converter\AbsolutePathConverter.cs" />
     <Compile Include="Converter\BrushOpacityConverter.cs" />
+    <Compile Include="CustomView\VisualRouteDetailDialog.xaml.cs">
+      <DependentUpon>VisualRouteDetailDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DevideMoney_Result.cs">
       <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>
@@ -247,10 +250,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CustomView\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="CustomView\VisualRouteDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -319,6 +324,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\badge-plan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ic-404.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\ic-add-img.png">

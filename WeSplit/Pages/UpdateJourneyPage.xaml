@@ -7,11 +7,14 @@
       mc:Ignorable="d" 
       Background="Transparent"
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
+      xmlns:custom="clr-namespace:WeSplit.CustomView"
         xmlns:loc="clr-namespace:WeSplit.Properties"
       d:DesignHeight="728" d:DesignWidth="1116"
       Loaded="Page_Loaded"
       Title="ManageJourneysPage">
 
+    <Grid>
     <Grid Name="mainContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="139*"/>
@@ -239,8 +242,8 @@
         <Grid   Grid.Column="1"
             Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="3.6*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
             <materialDesign:Card
@@ -253,7 +256,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2.3*"/>
                     </Grid.ColumnDefinitions>
 
 
@@ -381,30 +384,39 @@
                     <Grid Grid.Column="1"
                           Margin="18, 0, 0, 0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1.35*"/>
                             <RowDefinition Height="4*"/>
                         </Grid.RowDefinitions>
 
                         <materialDesign:Card Background="#321aaf75"
+                                         Grid.Row="0"
+                                         Height="34"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                              UniformCornerRadius="5">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.05*"/>
+                                    <ColumnDefinition Width="0.25*"/>
+                                    <ColumnDefinition Width="0.05*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="0.2*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="0.1*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="Địa điểm"
+                                <TextBlock Text="Tiến độ"
                                            Grid.Column="1"
                                             VerticalAlignment="Center"
                                            Style="{StaticResource SemiBoldRegularText}"/>
 
-                                <TextBlock Text="Mô tả"
+                                <TextBlock Text="Địa điểm"
                                            Grid.Column="3"
+                                            VerticalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+
+                                <TextBlock Text="Mô tả"
+                                           Grid.Column="5"
                                             VerticalAlignment="Center"
                                            Style="{StaticResource SemiBoldRegularText}"/>
 
@@ -414,32 +426,95 @@
 
                         <ListView Name="routesListView"
                   Grid.Column="1"
-                  Grid.Row="12"
+                  Grid.Row="2"
                   Grid.RowSpan="2"
-                  Margin="0, 8, 0, 8"
+                  Margin="0, 8, 0, 0"
                   ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <UniformGrid Columns="2"
-                                 Margin="22, 0, 10, 0">
+                                    <Grid 
+                                 Margin="16, 0, 10, 0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.27*"/>
+                                            <ColumnDefinition Width="1.2*"/>
+                                            <ColumnDefinition Width="0.8*"/>
+                                            <ColumnDefinition Width="0.2*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--binding tag-->
+                                        <ToggleButton Name="haveDoneButton"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          Width="16"
+                                          Height="16"
+                                          Margin="0, 0, 14, 0"
+                                          IsChecked="False"
+                                          Tag="0"
+                                          Background="{DynamicResource MyNeueGreen}"
+                                          BorderThickness="0"
+                                          Style="{StaticResource MaterialDesignActionToggleButton}">
+
+                                            <materialDesign:ToggleButtonAssist.OnContentTemplate>
+                                                <DataTemplate>
+                                                    <Image Width="8"
+                                                       Margin="0, 0, 0, 0.6"
+                                               Height="8"
+                                               VerticalAlignment="Center"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Source="{StaticResource IconWhiteTick}"/>
+                                                </DataTemplate>
+                                            </materialDesign:ToggleButtonAssist.OnContentTemplate>
+
+                                            <Border Width="16"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                        Height="16"
+                                        BorderBrush="{DynamicResource MyNeueGreen}"
+                                        CornerRadius="9"
+                                        Background="White"
+                                        BorderThickness="1"/>
+                                        </ToggleButton>
 
                                         <!-- Binding data -->
                                         <TextBlock
+                                        Grid.Column="1"
                                    Text="Khách sạn XXX, TP.Hồ Chí Minh"
                                    Style="{StaticResource RegularText}"/>
 
                                         <!-- Binding data -->
                                         <TextBlock 
-                                                   Margin="12, 0, 0, 0"
-                                   Grid.Column="1"
+                                        Grid.Column="2"
                                    HorizontalAlignment="Left"
                                    Text="Ăn uống ngủ nghỉ 1 đêm"
                                    Style="{StaticResource RegularText}"/>
-                                    </UniformGrid>
+
+                                        <Button Name="deleteRouteButton"
+                                                Click="deleteRouteButton_Click"
+                                                Tag="binding id bro"
+                                                Margin="0, 0, 4, 0"
+                                                HorizontalAlignment="Right"
+                                                Style="{StaticResource DeleteJourneyButton}"
+                                                Grid.Column="3"
+                                                Width="17"
+                                                Height="17">
+
+                                            <Image Width="11"
+                                                   Height="11"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{StaticResource IconWhiteTrash}"/>
+
+                                        </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
 
+                            <UniformGrid/>
+                            <UniformGrid/>
+                            <UniformGrid/>
                             <UniformGrid/>
                             <UniformGrid/>
                             <UniformGrid/>
@@ -460,8 +535,14 @@
                   Margin="12, 10, 0, 0">
 
                 <!-- map view chỗ này (dưới cái viewLargeMapButton-->
+                    <m:Map Name="routeMap" CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
+                       Mode="AerialWithLabels" 
+                       Center="10.840919302156086, 106.73613666721643" 
+                       ZoomLevel="16" 
+                       MouseDoubleClick="map_MouseDown">
+                    </m:Map>
 
-                <Button Name="viewLargeMapButton"
+                    <Button Name="viewLargeMapButton"
                         Click="viewLargeMapButton_Click"
                         Background="Transparent"
                         Width="Auto"
@@ -657,7 +738,8 @@
                                             <ColumnDefinition Width="1.6*"/>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1.36*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="0.4*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Binding data -->
@@ -694,6 +776,25 @@
                                    HorizontalAlignment="Left"
                                    Text="Trưởng nhóm"
                                    Style="{StaticResource RegularText}"/>
+
+                                        <Button Name="deleteMemberButton"
+                                               Click="deleteMemberButton_Click"
+                                                Margin="0, 0, 8, 0"
+                                                Tag="binding id bro"
+                                                HorizontalAlignment="Right"
+                                                Style="{StaticResource DeleteJourneyButton}"
+                                                Grid.Column="5"
+                                                Width="17"
+                                                Height="17">
+
+                                            <Image Width="11"
+                                                   Height="11"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{StaticResource IconWhiteTrash}"/>
+
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -971,7 +1072,8 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.24*"/>
                                             <ColumnDefinition Width="1.3*"/>
-                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="0.8*"/>
+                                            <ColumnDefinition Width="0.25*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Binding data -->
@@ -995,6 +1097,25 @@
                                    HorizontalAlignment="Left"
                                    Text="9.999.999"
                                    Style="{StaticResource RegularText}"/>
+
+                                        <Button Name="deleteExpensesButton"
+                                                Click="deleteExpensesButton_Click"
+                                                Tag="binding id bro"
+                                                HorizontalAlignment="Right"
+                                                Margin="0, 0, 4, 0"
+                                                Style="{StaticResource DeleteJourneyButton}"
+                                                Grid.Column="3"
+                                                Width="17"
+                                                Height="17">
+
+                                            <Image Width="11"
+                                                   Height="11"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{StaticResource IconWhiteTrash}"/>
+
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -1192,7 +1313,8 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1.01*"/>
                                             <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="0.71*"/>
+                                            <ColumnDefinition Width="0.51*"/>
+                                            <ColumnDefinition Width="0.21*"/>
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Binding data -->
@@ -1218,6 +1340,25 @@
                                    HorizontalAlignment="Left"
                                    Text="9.999.999"
                                    Style="{StaticResource RegularText}"/>
+
+                                        <Button Name="deleteAdvancesButton"
+                                               Click="deleteAdvancesButton_Click"
+                                                Tag="binding id bro"
+                                                HorizontalAlignment="Right"
+                                                Margin="0, 0, 4, 0"
+                                                Style="{StaticResource DeleteJourneyButton}"
+                                                Grid.Column="3"
+                                                Width="17"
+                                                Height="17">
+
+                                            <Image Width="11"
+                                                   Height="11"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{StaticResource IconWhiteTrash}"/>
+
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -1291,6 +1432,23 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
+
+        <!-- Post mesage to notification to user here -->
+        <materialDesign:Snackbar Name="notiMessageSnackbar"
+                                 HorizontalAlignment="Left"
+                                 MessageQueue="{materialDesign:MessageQueue}"
+                                 Margin="2, 8, 0, 4"
+                                 MaxWidth="1000"
+                                 IsActive="True"
+                                 Grid.Column="1"
+                                 Grid.Row="4">
+        </materialDesign:Snackbar>
+
+    </Grid>
+
+        <custom:VisualRouteDetailDialog x:Name="visualRouteDetailDialog"
+                                        CloseFullScreenVideoDialog="visualRouteDetailDialog_CloseFullScreenVideoDialog"
+                                        Visibility="Collapsed"/>
     </Grid>
 </Page>
 

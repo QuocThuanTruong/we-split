@@ -29,6 +29,7 @@ namespace WeSplit.Pages
 		public JourneyDetailPage()
 		{
 			InitializeComponent();
+			visualRouteDetailDialog.SetParent(mainContainer);
 		}
 
 		public JourneyDetailPage(int ID_Journey)
@@ -67,7 +68,7 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			visualRouteDetailDialog.ShowDialog();
 		}
 
 		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)
@@ -80,6 +81,16 @@ namespace WeSplit.Pages
 
 		}
 
+
+		private void map_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+
+		}
+
+		private void visualRouteDetailDialog_CloseFullScreenVideoDialog()
+		{
+
+		}
 
 	}
 }

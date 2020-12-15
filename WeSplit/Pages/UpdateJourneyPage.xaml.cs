@@ -23,6 +23,7 @@ namespace WeSplit.Pages
 		public UpdateJourneyPage(int ID_Journey)
 		{
 			InitializeComponent();
+			visualRouteDetailDialog.SetParent(mainContainer);
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -72,7 +73,7 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			visualRouteDetailDialog.ShowDialog();
 		}
 
 		private void deleteRelativeImageInListButton_Click(object sender, RoutedEventArgs e)
@@ -96,6 +97,36 @@ namespace WeSplit.Pages
 			addImageOption1Button.Visibility = Visibility.Collapsed;
 			addImageOption2Button.Visibility = Visibility.Visible;
 			journeyImageListView.Visibility = Visibility.Visible;
+		}
+
+		private void deleteRouteButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteMemberButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteExpensesButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteAdvancesButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void visualRouteDetailDialog_CloseFullScreenVideoDialog()
+		{
+			
+		}
+
+		private void map_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+
 		}
 	}
 }

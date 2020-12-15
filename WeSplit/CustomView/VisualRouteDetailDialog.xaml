@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="WeSplit.CustomView.VisualRouteDetailDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
+             xmlns:local="clr-namespace:WeSplit.CustomView"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             >
+    <Grid>
+        <Border Background="{DynamicResource MyLightGreenOpacity}">
+            <Border.Effect>
+                <BlurEffect KernelType="Gaussian" Radius="100"/>
+            </Border.Effect>
+        </Border>
+
+        <Grid Name="mainContainer">
+            <materialDesign:Card Width="818"
+                                 Height="638"
+                                 UniformCornerRadius="10"
+                                 Background="White"
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth3">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48*"/>
+                        <RowDefinition Height="590*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Tổng quan lộ trình chuyến đi"
+                       
+                       Grid.ColumnSpan="2"
+                               VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource SemiBoldLargeText}"/>
+
+
+                    <Grid Grid.Row="1"
+                          Margin="16, 8, 8, 16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView Name="routeMilestoneListView"
+                                  ItemContainerStyle="{StaticResource MilestoneListBoxItem}">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="60">
+                                        <Ellipse Width="16"
+                                                 Height="16"
+                                                 Fill="{DynamicResource MyOrange}"/>
+
+                                        <Border Name="routeProgressBorder"
+                                                Width="4"
+                                                Height="{Binding Item1}"
+                                                VerticalAlignment="{Binding Item2}"
+                                                Background="{DynamicResource MyOrange}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+
+                        </ListView>
+                        
+
+                        <ListView Name="routeDetailListView"
+                              Grid.Column="1"
+                                  Margin="4, 0, 0, 0"
+                              ItemContainerStyle="{StaticResource RouteDetailListBoxItem}"
+                              Grid.Row="1">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="60">
+
+                                        <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Name="routeDescription"
+                                                   Text="Xuất phát"
+                                                   Style="{StaticResource SemiBoldRegularText}"/>
+
+                                            <TextBlock Name="routeAddress"
+                                                   Text="Khách sạn XXX, TP.Hồ Chí Minh"
+                                                   Style="{StaticResource RegularText}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <Grid/>
+                            <Grid/>
+                            <Grid/>
+                            <Grid/>
+                            <Grid/>
+                        </ListView>
+
+                    </Grid>
+                    
+                    
+                    
+
+                    <m:Map Name="routeMap" 
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Margin="8, 8, 16, 16"
+                           CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
+                       Mode="AerialWithLabels" 
+                       Center="10.840919302156086, 106.73613666721643" 
+                       ZoomLevel="16" 
+                       MouseDoubleClick="map_MouseDown">
+                    </m:Map>
+
+
+                    <Button Name="closeDialogButton"
+                    Click="closeDialogButton_Click"
+                    Margin="8"
+                            Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource WindowOptionsButton}"
+                    materialDesign:ButtonAssist.CornerRadius="6"
+                    Width="30"
+                    Height="30">
+
+                        <Image Name="imgClose"
+                       Width="14"
+                       Height="14"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="{StaticResource IconGreenClose}"/>
+                    </Button>
+
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+    </Grid>
+</UserControl>
