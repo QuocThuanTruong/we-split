@@ -94,6 +94,9 @@
     </Compile>
     <Compile Include="Converter\AbsolutePathConverter.cs" />
     <Compile Include="Converter\BrushOpacityConverter.cs" />
+    <Compile Include="CustomView\VisualRouteDetailDialog.xaml.cs">
+      <DependentUpon>VisualRouteDetailDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DevideMoney_Result.cs">
       <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>
@@ -247,10 +250,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CustomView\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="CustomView\VisualRouteDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

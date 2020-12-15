@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WeSplit.Pages"
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
+      xmlns:custom="clr-namespace:WeSplit.CustomView"
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:loc="clr-namespace:WeSplit.Properties"
       mc:Ignorable="d" 
@@ -12,7 +14,7 @@
        d:DesignHeight="728" d:DesignWidth="1116"
       Loaded="Page_Loaded"
       Title="JourneyDetailPage">
-
+    <Grid>
     <Grid Name="mainContainer">
 
         <Grid.ColumnDefinitions>
@@ -285,8 +287,14 @@
                   Margin="0, 0, 0, 0">
 
                     <!-- map view chỗ này (dưới cái viewLargeMapButton-->
+                        <m:Map Name="routeMap" CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
+                       Mode="AerialWithLabels" 
+                       Center="10.840919302156086, 106.73613666721643" 
+                       ZoomLevel="16" 
+                       MouseDoubleClick="map_MouseDown">
+                        </m:Map>
 
-                    <Button Name="viewLargeMapButton"
+                        <Button Name="viewLargeMapButton"
                         Click="viewLargeMapButton_Click"
                         Background="Transparent"
                         Width="Auto"
@@ -821,5 +829,10 @@
                                  Grid.Row="4">
         </materialDesign:Snackbar>
 
+    </Grid>
+
+        <custom:VisualRouteDetailDialog x:Name="visualRouteDetailDialog"
+                                        CloseFullScreenVideoDialog="visualRouteDetailDialog_CloseFullScreenVideoDialog"
+                                        Visibility="Collapsed"/>
     </Grid>
 </Page>
