@@ -1154,7 +1154,7 @@
                     <TextBlock Name="saveRecipeTextBlock"
                            Style="{StaticResource RegularText}"
                            Foreground="White"
-                           Text="UPDATE JOURNEY"/>
+                           Text="ADD JOURNEY"/>
                 </Button>
             </StackPanel>
         </materialDesign:ColorZone>
