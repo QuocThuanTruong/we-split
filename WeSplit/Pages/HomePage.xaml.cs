@@ -15,6 +15,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeSplit.Utilities;
 
 namespace WeSplit.Pages
 {
@@ -26,15 +27,21 @@ namespace WeSplit.Pages
 		public delegate void ViewAllJourneyHandler();
 		public event ViewAllJourneyHandler ViewAllJourney;
 
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+
 		public HomePage()
 		{
 			InitializeComponent();
+
+			loadPlanedJourneyInHomePageViewType1();
+			loadDoneJourneyInHomePageViewType1();
+			loadcurrentrentJourneyInHomePageViewType1();
 		}
 
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			curJourneyProgess.Value = 4;
+			currentJourneyProgess.Value = 4;
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -103,8 +110,6 @@ namespace WeSplit.Pages
 			thirdPlanedJourneyButton.Opacity = 1;
 			thirdPlanedJourneyButton.FontSize = 6;
 		}
-
-		
 
 		private void thirdPlanedJourneyButton_MouseLeave(object sender, MouseEventArgs e)
 		{
@@ -184,5 +189,147 @@ namespace WeSplit.Pages
 
 		}
 
+		private void loadPlanedJourneyInHomePageViewType1()
+        {
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+
+			if (sites.Count >= 1)
+            {
+				var firstPlaned = sites[0];
+
+				var firstPlanedAvatar = new BitmapImage();
+				firstPlanedAvatar.BeginInit();
+				firstPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
+				firstPlanedAvatar.UriSource = new Uri(firstPlaned.Site_Link_Avt, UriKind.Relative);
+				firstPlanedAvatar.EndInit();
+
+				firstPlanedJourneyAvtImage.Source = firstPlanedAvatar;
+				firstPlanedJourneyAvtHoverImage.Source = firstPlanedAvatar;
+				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km lộ trình";
+				firstPlanedJourneyTitle.Text = firstPlaned.Site_Name;
+
+				if (sites.Count >= 2)
+                {
+					var secondPlaned = sites[1];
+
+					var secondPlanedAvatar = new BitmapImage();
+					secondPlanedAvatar.BeginInit();
+					secondPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
+					secondPlanedAvatar.UriSource = new Uri(secondPlaned.Site_Link_Avt, UriKind.Relative);
+					secondPlanedAvatar.EndInit();
+
+					secondPlanedJourneyAvtImage.Source = secondPlanedAvatar;
+					secondPlanedJourneyAvtHoverImage.Source = secondPlanedAvatar;
+					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km lộ trình";
+					secondPlanedJourneyTitle.Text = secondPlaned.Site_Name;
+
+					if (sites.Count >= 3)
+                    {
+						var thirdPlaned = sites[2];
+
+						var thirdPlanedAvatar = new BitmapImage();
+						thirdPlanedAvatar.BeginInit();
+						thirdPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
+						thirdPlanedAvatar.UriSource = new Uri(thirdPlaned.Site_Link_Avt, UriKind.Relative);
+						thirdPlanedAvatar.EndInit();
+
+						thirdPlanedJourneyAvtImage.Source = thirdPlanedAvatar;
+						thirdPlanedJourneyAvtHoverImage.Source = thirdPlanedAvatar;
+						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km lộ trình";
+						thirdPlanedJourneyTitle.Text = thirdPlaned.Site_Name;
+					}
+				}
+			}
+        }
+
+		public void loadDoneJourneyInHomePageViewType1()
+        {
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+
+			if (sites.Count >= 1)
+			{
+				var firstDone = sites[0];
+
+				var firstDoneAvatar = new BitmapImage();
+				firstDoneAvatar.BeginInit();
+				firstDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
+				firstDoneAvatar.UriSource = new Uri(firstDone.Site_Link_Avt, UriKind.Relative);
+				firstDoneAvatar.EndInit();
+
+				firstDoneJourneyAvtImage.Source = firstDoneAvatar;
+				firstDoneJourneyAvtHoverImage.Source = firstDoneAvatar;
+				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km lộ trình";
+				firstDoneJourneyTitle.Text = firstDone.Site_Name;
+
+				if (sites.Count >= 2)
+				{
+					var secondDone = sites[1];
+
+					var secondDoneAvatar = new BitmapImage();
+					secondDoneAvatar.BeginInit();
+					secondDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
+					secondDoneAvatar.UriSource = new Uri(secondDone.Site_Link_Avt, UriKind.Relative);
+					secondDoneAvatar.EndInit();
+
+					secondDoneJourneyAvtImage.Source = secondDoneAvatar;
+					secondDoneJourneyAvtHoverImage.Source = secondDoneAvatar;
+					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km lộ trình";
+					secondDoneJourneyTitle.Text = secondDone.Site_Name;
+
+					if (sites.Count >= 3)
+					{
+						var thirdDone = sites[2];
+
+						var thirdDoneAvatar = new BitmapImage();
+						thirdDoneAvatar.BeginInit();
+						thirdDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
+						thirdDoneAvatar.UriSource = new Uri(thirdDone.Site_Link_Avt, UriKind.Relative);
+						thirdDoneAvatar.EndInit();
+
+						thirdDoneJourneyAvtImage.Source = thirdDoneAvatar;
+						thirdDoneJourneyAvtHoverImage.Source = thirdDoneAvatar;
+						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km lộ trình";
+						thirdDoneJourneyTitle.Text = thirdDone.Site_Name;
+
+						if (sites.Count >= 4)
+                        {
+							var fourthDone = sites[2];
+
+							var fourthDoneAvatar = new BitmapImage();
+							fourthDoneAvatar.BeginInit();
+							fourthDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
+							fourthDoneAvatar.UriSource = new Uri(fourthDone.Site_Link_Avt, UriKind.Relative);
+							fourthDoneAvatar.EndInit();
+
+							fourthDoneJourneyAvtImage.Source = fourthDoneAvatar;
+							fourthDoneJourneyAvtHoverImage.Source = fourthDoneAvatar;
+							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km lộ trình";
+							fourthDoneJourneyTitle.Text = fourthDone.Site_Name;
+						}
+					}
+				}
+			}
+		}
+
+		private void loadcurrentrentJourneyInHomePageViewType1()
+		{
+			var current = _databaseUtilities.GetcurrentJourney();
+
+			if (current != null)
+            {
+				var currentAvatar = new BitmapImage();
+				currentAvatar.BeginInit();
+				currentAvatar.CacheOption = BitmapCacheOption.OnLoad;
+				currentAvatar.UriSource = new Uri(current.Site_Avatar, UriKind.Relative);
+				currentAvatar.EndInit();
+
+				currentJourneyAvt.Source = currentAvatar;
+				currentJourneyName.Text = current.Site_Name;
+				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km lộ trình";
+				startDateTextBlock.Text = current.StartDate.ToString();
+				endDateTextBlock.Text = current.EndDate.ToString();
+				currentJourneyProgess.Value = current.Journey_Progress;
+			}
+		}
 	}
 }

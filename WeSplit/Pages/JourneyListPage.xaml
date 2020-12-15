@@ -475,7 +475,7 @@
                                    Margin="0, 0, 8, 30"
                                    Width="75"
                                    Height="75"
-                                   Source="{StaticResource BadgeCur}"/>
+                                   Source="{StaticResource Badgecurrent}"/>
 
                             <StackPanel Margin="24, 16, 16, 12"
                                         VerticalAlignment="Bottom"
@@ -606,7 +606,7 @@
                                           RenderingBias="Performance" />
                     </materialDesign:ColorZone.Effect>
 
-                    <materialDesign:Card Name="currenPageContainer"
+                    <materialDesign:Card Name="currentrenPageContainer"
                                          Width="60"
                                          Background="{StaticResource MyGreenGradient}"
                                          Margin="0, 0, 0, 4"
@@ -618,7 +618,7 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                             <!-- Binding data -->
-                            <TextBlock Name="currentPageTextBlock"
+                            <TextBlock Name="currentrentPageTextBlock"
                                    FlowDirection="LeftToRight"
                                    Text="1 of 5"
                                    HorizontalAlignment="Center"
@@ -730,7 +730,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Name="curStatusButton"
+                            <Button Name="currentStatusButton"
                                     HorizontalAlignment="Left"
                                     Width="110"
                     Click="groupButton_Click"
@@ -739,15 +739,15 @@
                     Style="{StaticResource GroupButton}">
                                 <StackPanel Orientation="Horizontal">
 
-                                    <Image Name="curStatusIcon"
+                                    <Image Name="currentStatusIcon"
                                                Margin="8, 0, 0, 0"
                            Width="20"
                            Height="20"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                           Source="{StaticResource IconGreenCur}"/>
+                           Source="{StaticResource IconGreencurrent}"/>
 
 
-                                    <TextBlock Name="curStatusTextBlock"
+                                    <TextBlock Name="currentStatusTextBlock"
                                Grid.Column="1"
                                Margin="12, 0, 16, 0"
                                HorizontalAlignment="Center"

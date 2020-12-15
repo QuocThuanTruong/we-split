@@ -36,7 +36,7 @@ namespace WeSplit.Pages
 			_statusGroups = new List<Tuple<Image, TextBlock, string ,string>>()
 			{
 				new Tuple<Image, TextBlock, string, string>(doneStatusIcon, doneStatusTextBlock, "IconWhiteDone", "IconGreenDone"),
-				new Tuple<Image, TextBlock, string, string>(curStatusIcon, curStatusTextBlock, "IconWhiteCur", "IconGreenCur"),
+				new Tuple<Image, TextBlock, string, string>(currentStatusIcon, currentStatusTextBlock, "IconWhitecurrent", "IconGreencurrent"),
 				new Tuple<Image, TextBlock, string, string>(planStatusIcon, planStatusTextBlock, "IconWhitePlan", "IconGreenPlan")
 			};
 		}
@@ -118,7 +118,7 @@ namespace WeSplit.Pages
 
 		private void groupButton_Click(object sender, RoutedEventArgs e)
 		{
-			//Convert current clicked button to list item
+			//Convert currentrent clicked button to list item
 			var clickedButton = ((Button)sender);
 			var clickedItemIdx = int.Parse(clickedButton.Tag.ToString());
 			var clickedItem = statusGroupListBox.Items.GetItemAt(clickedItemIdx);
