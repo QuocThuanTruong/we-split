@@ -97,5 +97,25 @@ namespace WeSplit.Pages
 			addImageOption2Button.Visibility = Visibility.Visible;
 			journeyImageListView.Visibility = Visibility.Visible;
 		}
+
+		private void deleteRouteButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteMemberButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteExpensesButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void deleteAdvancesButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
