@@ -678,7 +678,8 @@
                                   Grid.Column="1"
                                   Grid.Row="2"
                                   Margin="0, 8, 0, 0"
-                                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
+                                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
+                                  ItemsSource="{Binding Devide_Money_For_Binding}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>

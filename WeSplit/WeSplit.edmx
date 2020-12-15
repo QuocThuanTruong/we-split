@@ -304,10 +304,10 @@
           <ReturnType>
             <CollectionType>
               <RowType>
+                <Property Name="ID_Member" Type="int" Nullable="false" />
                 <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
                 <Property Name="Remain" Type="money" />
-                <Property Name="Advance_Money" Type="money" />
-                <Property Name="ID_Lender" Type="int" />
+                <Property Name="Advance_Money_Lender" Type="nvarchar" MaxLength="78" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -568,10 +568,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="WeSplitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <ComplexType Name="DevideMoney_Result">
+          <Property Name="ID_Member" Type="Int32" Nullable="false" />
           <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Remain" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Advance_Money" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ID_Lender" Type="Int32" />
+          <Property Name="Advance_Money_Lender" Type="String" MaxLength="78" FixedLength="false" Unicode="true" />
         </ComplexType>
         <ComplexType Name="GetAllFromJourney_Result">
           <Property Name="ID_Journey" Type="Int32" Nullable="false" />
@@ -1169,10 +1169,10 @@
           <FunctionImportMapping FunctionName="WeSplitModel.Store.DevideMoney" FunctionImportName="DevideMoney">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WeSplitModel.DevideMoney_Result">
+                <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
                 <ScalarProperty Name="Remain" ColumnName="Remain" />
-                <ScalarProperty Name="Advance_Money" ColumnName="Advance_Money" />
-                <ScalarProperty Name="ID_Lender" ColumnName="ID_Lender" />
+                <ScalarProperty Name="Advance_Money_Lender" ColumnName="Advance_Money_Lender" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

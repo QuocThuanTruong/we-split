@@ -60,5 +60,6 @@ namespace WeSplit
         public List<Route> Route_For_Binding { get; set; }
         public List<GetMemberByIDJourney_Result> Member_For_Binding { get; set; }
         public List<JourneyImage> Images_For_Binding { get; set; }
+        public List<DevideMoney_Result> Devide_Money_For_Binding { get; set; }
     }
 }

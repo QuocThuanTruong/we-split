@@ -162,6 +162,10 @@ namespace WeSplit.Utilities
                     .ToList();
 
                 result.Images_For_Binding = images;
+
+                //Devide Money
+                List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
+                result.Devide_Money_For_Binding = devideMoney;
             }
 
             return result;
