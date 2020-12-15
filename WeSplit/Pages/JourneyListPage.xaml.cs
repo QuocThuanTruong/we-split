@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeSplit.Utilities;
 
 namespace WeSplit.Pages
 {
@@ -22,12 +23,16 @@ namespace WeSplit.Pages
 	public partial class JourneyListPage : Page
 	{
 		private List<Tuple<Image, TextBlock, string, string>> _statusGroups;
-		public delegate void ShowJourneyDetailPageHandler(int recipeID);
+		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
+
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		public JourneyListPage()
 		{
 			InitializeComponent();
 			filterContainer.Visibility = Visibility.Collapsed;
+
+			loadJourneys();
 		}
 
 
@@ -36,7 +41,7 @@ namespace WeSplit.Pages
 			_statusGroups = new List<Tuple<Image, TextBlock, string ,string>>()
 			{
 				new Tuple<Image, TextBlock, string, string>(doneStatusIcon, doneStatusTextBlock, "IconWhiteDone", "IconGreenDone"),
-				new Tuple<Image, TextBlock, string, string>(curStatusIcon, curStatusTextBlock, "IconWhiteCur", "IconGreenCur"),
+				new Tuple<Image, TextBlock, string, string>(currentStatusIcon, currentStatusTextBlock, "IconWhitecurrent", "IconGreencurrent"),
 				new Tuple<Image, TextBlock, string, string>(planStatusIcon, planStatusTextBlock, "IconWhitePlan", "IconGreenPlan")
 			};
 		}
@@ -142,11 +147,12 @@ namespace WeSplit.Pages
 
 			if (selectedItemIndex != -1)
 			{
-				selectedID = journeyGridView.SelectedIndex;
+				selectedID = ((Journey)journeyGridView.SelectedItem).ID_Journey;
 				Debug.WriteLine(selectedID);
-
-				ShowJourneyDetailPage?.Invoke(selectedID);
 			}
+
+			//Get Id recipe base on item clikced
+			ShowJourneyDetailPage?.Invoke(selectedID);
 		}
 
 		private void closeFilterButton_Click(object sender, RoutedEventArgs e)
@@ -179,7 +185,7 @@ namespace WeSplit.Pages
 
 		private void groupButton_Click(object sender, RoutedEventArgs e)
 		{
-			//Convert current clicked button to list item
+			//Convert currentrent clicked button to list item
 			var clickedButton = ((Button)sender);
 			var clickedItemIdx = int.Parse(clickedButton.Tag.ToString());
 			var clickedItem = statusGroupListBox.Items.GetItemAt(clickedItemIdx);
@@ -226,6 +232,13 @@ namespace WeSplit.Pages
 		private void lastPageButton_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		private void loadJourneys()
+        {
+			var journeys = _databaseUtilities.GetListJourney();
+
+			journeyGridView.ItemsSource = journeys;
 		}
 	}
 }

@@ -239,7 +239,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top">
-                        <TextBlock Name="firstPlanedJourneyTile"
+                        <TextBlock Name="firstPlanedJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -256,9 +256,7 @@
                                        Text="17 km lộ trình"/>
 
                         </StackPanel>
-
                     </StackPanel>
-
                 </Grid>
 
                 <!--404-->
@@ -355,7 +353,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="secondPlanedJourneyTile"
+                        <TextBlock Name="secondPlanedJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -477,7 +475,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="thirdPlanedJourneyTile"
+                        <TextBlock Name="thirdPlanedJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -653,7 +651,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="firstDoneJourneyTile"
+                        <TextBlock Name="firstDoneJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -773,7 +771,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="secondDoneJourneyTile"
+                        <TextBlock Name="secondDoneJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -894,7 +892,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="thirdDoneJourneyTile"
+                        <TextBlock Name="thirdDoneJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -1016,7 +1014,7 @@
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
-                        <TextBlock Name="fourthDoneJourneyTile"
+                        <TextBlock Name="fourthDoneJourneyTitle"
                                    Style="{StaticResource SemiBoldMediumText}"
                                    Foreground="white"
                                    Text="Phố cổ hội an"/>
@@ -1103,19 +1101,19 @@
         </StackPanel>
 
 
-        <StackPanel Name="curJourneyContainer"
+        <StackPanel Name="currentJourneyContainer"
                     Margin="0, 0, 0, 0"
                     Grid.Column="3"
                     Grid.Row="2"
                     Grid.RowSpan="2">
 
-            <TextBlock Name="curJourneyTextBlock"
+            <TextBlock Name="currentJourneyTextBlock"
                        Style="{StaticResource MediumHeaderText}"
                        Text="{x:Static loc:Resources.text_cur_journey}"/>
 
             <Grid>
 
-                <materialDesign:Card Name="curJourneyCard"
+                <materialDesign:Card Name="currentJourneyCard"
                                  Width="316"
                                  Height="558"
                                  UniformCornerRadius="10"
@@ -1134,7 +1132,8 @@
                         <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                          UniformCornerRadius="10">
 
-                            <Image Name="curJourneyAvt"
+                        
+                        <Image Name="currentJourneyAvt"
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Stretch="UniformToFill"
                                Source="{StaticResource TEST_1}"/>
@@ -1144,8 +1143,9 @@
                         <StackPanel Grid.Row="1"
                                 VerticalAlignment="Bottom">
 
-                            <!-- BInding -->
-                            <TextBlock Name="curJourneyName"
+
+                        <!-- BInding -->
+                        <TextBlock Name="currentJourneyName"
                                    Style="{StaticResource BoldMediumText}"
                                    Text="Động Phong Nha Kẻ Bàng"/>
 
@@ -1171,8 +1171,9 @@
                                        Foreground="{StaticResource MyLightGray5}"/>
                             </StackPanel>
 
-                            <!-- Binding -->
-                            <TextBlock Text="17 km"
+
+                        <TextBlock Name="currentTotalJourneyDistance"
+                                   Text="17 km"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
 
@@ -1246,8 +1247,9 @@
                                        Foreground="{StaticResource MyLightGray5}"/>
                             </StackPanel>
 
-                            <!-- Binding -->
-                            <Slider Name="curJourneyProgess"
+
+                        <Slider Name="currentJourneyProgess"
+
                                 Margin="0, 8, 0, 0"
                                 Minimum="0"
                                 Maximum="100"
@@ -1257,7 +1259,10 @@
 
                         </StackPanel>
 
-                        <Button Name="exploreCurJourneyButton"
+
+                    <Button Name="exploreCurrentJourneyButton"
+                            Click="exploreCurrentJourneyButton_Click"
+
                             Margin="0, 8, 0, 0"
                             Height="36"
                             Style="{StaticResource ViewDetailButton}"

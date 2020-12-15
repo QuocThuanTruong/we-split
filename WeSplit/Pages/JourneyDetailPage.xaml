@@ -53,11 +53,11 @@
                                Height="112"
                                Stretch="UniformToFill"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="{StaticResource TEST_1}"/>
+                               Source="{Binding Site_Avatar}"/>
                     </materialDesign:Card>
 
                     <TextBlock Name="journeyNameTextBlock"
-                               Text="khám phá xuyên việt 7 ngày 3 đêm 4 buổi"
+                               Text="{Binding Journey_Name}"
                                Margin="0, 8, 0, 0"
                                Style="{StaticResource RegularHeaderText}"/>
 
@@ -69,7 +69,7 @@
                                    Source="{StaticResource IconGreenCalendar}"/>
 
                         <TextBlock Name="startDateTextBlock"
-                            Text="17/07/2020"
+                                   Text="{Binding Start_Date_For_Binding}"
                                    Margin="8, 0, 0, 0"
                                    Foreground="{DynamicResource MyBlack}"
                                    Style="{StaticResource RegularText}"/>
@@ -83,7 +83,7 @@
                                    Source="{StaticResource IconDgreenStart}"/>
 
                         <TextBlock Name="startPlaceTextBlock"
-                                   Text="KTX Khu B, TP.Hồ Chí Minh"
+                                   Text="{Binding Start_Place}"
                                    Margin="8, 0, 0, 0"
                                    Foreground="{DynamicResource MyBlack}"
                                    Style="{StaticResource RegularText}"/>
@@ -97,7 +97,7 @@
                                    Source="{StaticResource IconGreenCalendar}"/>
 
                         <TextBlock Name="endDateTextBlock"
-                            Text="17/07/2020"
+                                   Text="{Binding End_Date_For_Binding}"
                                    Margin="8, 0, 0, 0"
                                    Foreground="{DynamicResource MyBlack}"
                                    Style="{StaticResource RegularText}"/>
@@ -111,12 +111,11 @@
                                    Source="{StaticResource IconDgreenEnd}"/>
 
                         <TextBlock Name="endPlaceTextBlock"
-                            Text="Vịnh Hạ Long, Quảng Ninh"
+                                   Text="{Binding Site_Name}"
                                    Margin="8, 0, 0, 0"
                                    Foreground="{DynamicResource MyBlack}"
                                    Style="{StaticResource RegularText}"/>
                     </StackPanel>
-
                 </StackPanel>
 
                 <Grid Grid.Column="1"
@@ -129,7 +128,6 @@
 
                     <!-- Binding -->
                     <Grid>
-
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="8*"/>
@@ -143,12 +141,12 @@
                                Margin="0, 0, 0, 8"
                                Source="{StaticResource IconGreenStart}"/>
 
-                        <Slider Name="curJourneyProgess"
-                                ValueChanged="curJourneyProgess_ValueChanged"
+                        <Slider Name="currentJourneyProgess"
+                                ValueChanged="currentJourneyProgess_ValueChanged"
                                 Margin="10, 0, 10, 0"
                                 Minimum="0"
                                 Grid.ColumnSpan="3"
-                                Value="6"
+                                Value="{Binding Journey_Progress}"
                                 Maximum="100"
                                 Foreground="{DynamicResource MyNeueGreen}"
                                 Style="{StaticResource MyMaterialDesignDiscreteSlider}"/>
@@ -200,11 +198,12 @@
                     </materialDesign:Card>
 
                     <ListView Name="routesListView"
-                  Grid.Column="1"
-                  Grid.Row="12"
-                  Grid.RowSpan="2"
-                  Margin="0, 8, 0, 8"
-                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
+                              Grid.Column="1"
+                              Grid.Row="12"
+                              Grid.RowSpan="2"
+                              Margin="0, 8, 0, 8"
+                              ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
+                              ItemsSource="{Binding Route_For_Binding}">
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -391,10 +390,11 @@
 
 
                         <ListView Name="membersListView"
-                  Grid.Column="1"
-                  Grid.Row="2"
-                  Margin="0, 8, 0, 0"
-                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
+                                  Grid.Column="1"
+                                  Grid.Row="2"
+                                  Margin="0, 8, 0, 0"
+                                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
+                                  ItemsSource="{Binding Member_For_Binding}">    
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -481,11 +481,11 @@
                         <!-- Binding data -->
                         <ListView Name="journeyImageListView"
                                   Height="128"
-                                Width="336"
-                      Visibility="Visible"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      Margin="0, 0, 14, 0"
-                      ItemContainerStyle="{StaticResource ImageStepListViewItem}">
+                                  Width="336"
+                                  Visibility="Visible"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  Margin="0, 0, 14, 0"
+                                  ItemContainerStyle="{StaticResource ImageStepListViewItem}">
 
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -498,11 +498,11 @@
                                     <Grid Name="relativeImageListItem">
                                         <!-- Binding data -->
                                         <Image Name="relativeStepImage"
-                                   Width="110"
-                                   Height="110"
-                                   Stretch="UniformToFill"
+                                               Width="110"
+                                               Height="110"
+                                               Stretch="UniformToFill"
                                                Source="{StaticResource TEST_1}"
-                                   RenderOptions.BitmapScalingMode="HighQuality">
+                                               RenderOptions.BitmapScalingMode="HighQuality">   
                                             <!--<Image.Source>
                                                 <BitmapImage CacheOption="OnLoad"
                                                  UriSource="{Binding ImageSource}"/>
@@ -689,10 +689,10 @@
 
 
                         <ListView Name="splitMoneyListView"
-                  Grid.Column="1"
-                  Grid.Row="2"
-                  Margin="0, 8, 0, 0"
-                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
+                                  Grid.Column="1"
+                                  Grid.Row="2"
+                                  Margin="0, 8, 0, 0"
+                                  ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -710,31 +710,31 @@
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="0"
-                                   Text="1"
-                                   Margin="7, 0, 0, 0"
-                                   Style="{StaticResource RegularText}"/>
+                                            Text="1"
+                                            Margin="7, 0, 0, 0"
+                                            Style="{StaticResource RegularText}"/>   
 
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="1"
                                             Margin="12, 0, 0, 0"
-                                   Text="Quốc Thuận Trương"
-                                   Style="{StaticResource RegularText}"/>
+                                            Text="Quốc Thuận Trương"
+                                            Style="{StaticResource RegularText}"/>  
 
                                         <!-- Binding data -->
                                         <TextBlock 
-                                                   Margin="6, 0, 0, 0"
-                                   Grid.Column="2"
-                                   HorizontalAlignment="Left"
-                                   Text="+9.999.999 VNĐ"
-                                   Style="{StaticResource RegularText}"/>
+                                            Margin="6, 0, 0, 0"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Left"
+                                            Text="+9.999.999 VNĐ"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <TextBlock 
-                                              Margin="0, 0, 0, 0"
-                                   Grid.Column="3"
-                                   HorizontalAlignment="Left"
-                                   Text="9.999.999 VNĐ cho T.Viên (2)"
-                                   Style="{StaticResource RegularText}"/>
+                                            Margin="0, 0, 0, 0"
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Left"
+                                            Text="9.999.999 VNĐ cho T.Viên (2)"
+                                            Style="{StaticResource RegularText}"/>
 
                                     </Grid>
                                 </DataTemplate>

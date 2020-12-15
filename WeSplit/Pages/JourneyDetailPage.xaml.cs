@@ -20,7 +20,6 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class JourneyDetailPage : Page
 	{
-
 		public delegate void UpdateJourneyHandler(int journeyID);
 		public event UpdateJourneyHandler UpdateJourney;
 
@@ -34,13 +33,13 @@ namespace WeSplit.Pages
 
 		}
 
-		private void curJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		private void currentJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
-			if (curJourneyProgess.Value == 0)
+			if (currentJourneyProgess.Value == 0)
 			{
 				startIcon.Visibility = Visibility.Hidden;
 			}
-			else if (curJourneyProgess.Value == 100)
+			else if (currentJourneyProgess.Value == 100)
 			{
 				endIcon.Visibility = Visibility.Hidden;
 			}

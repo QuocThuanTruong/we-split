@@ -17,7 +17,7 @@
     <ImageSource x:Key="IconGrayTeam">pack://application:,,,/Assets/Images/ic-gray-team.png</ImageSource>
     <ImageSource x:Key="IconGreenAbout">pack://application:,,,/Assets/Images/ic-green-about.png</ImageSource>
     <ImageSource x:Key="IconGreenCalendar">pack://application:,,,/Assets/Images/ic-green-calendar.png</ImageSource>
-    <ImageSource x:Key="IconGreenCur">pack://application:,,,/Assets/Images/ic-green-cur.png</ImageSource>
+    <ImageSource x:Key="IconGreencurrent">pack://application:,,,/Assets/Images/ic-green-cur.png</ImageSource>
     <ImageSource x:Key="IconGreenDone">pack://application:,,,/Assets/Images/ic-green-done.png</ImageSource>
     <ImageSource x:Key="IconGreenEnd">pack://application:,,,/Assets/Images/ic-green-end.png</ImageSource>
     <ImageSource x:Key="IconGreenHelp">pack://application:,,,/Assets/Images/ic-green-help.png</ImageSource>
@@ -41,7 +41,7 @@
     <ImageSource x:Key="IconSemiRoute">pack://application:,,,/Assets/Images/ic-semi-route.png</ImageSource>
     <ImageSource x:Key="IconWhiteAbout">pack://application:,,,/Assets/Images/ic-white-about.png</ImageSource>
     <ImageSource x:Key="IconWhiteAdd">pack://application:,,,/Assets/Images/ic-white-add.png</ImageSource>
-    <ImageSource x:Key="IconWhiteCur">pack://application:,,,/Assets/Images/ic-white-cur.png</ImageSource>
+    <ImageSource x:Key="IconWhitecurrent">pack://application:,,,/Assets/Images/ic-white-current.png</ImageSource>
     <ImageSource x:Key="IconWhiteDone">pack://application:,,,/Assets/Images/ic-white-done.png</ImageSource>
     <ImageSource x:Key="IconWhiteEdit">pack://application:,,,/Assets/Images/ic-white-edit.png</ImageSource>
     <ImageSource x:Key="IconWhiteHelp">pack://application:,,,/Assets/Images/ic-white-help.png</ImageSource>
@@ -55,7 +55,7 @@
     <ImageSource x:Key="SplashBackground">pack://application:,,,/Assets/Images/splash-bg.png</ImageSource>
     <ImageSource x:Key="SplashFooter">pack://application:,,,/Assets/Images/splash-footer.png</ImageSource>
     <ImageSource x:Key="ListItemFooter">pack://application:,,,/Assets/Images/list-item-footer.png</ImageSource>
-    <ImageSource x:Key="BadgeCur">pack://application:,,,/Assets/Images/badge-cur.png</ImageSource>
+    <ImageSource x:Key="Badgecurrent">pack://application:,,,/Assets/Images/badge-cur.png</ImageSource>
     <ImageSource x:Key="BadgeDone">pack://application:,,,/Assets/Images/badge-done.png</ImageSource>
     <ImageSource x:Key="BadgePlan">pack://application:,,,/Assets/Images/badge-plan.png</ImageSource>
     <ImageSource x:Key="IconGreenFirst">pack://application:,,,/Assets/Images/ic-green-first.png</ImageSource>
