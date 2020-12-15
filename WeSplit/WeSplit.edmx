@@ -280,6 +280,9 @@
         <Function Name="CalcJourneyProgress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="idJourney" Type="int" Mode="In" />
         </Function>
+        <Function Name="CalcMemberAttendByJourneyID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="journey_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="CalcRemainByIDMemberAndIDJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
           <Parameter Name="idMember" Type="int" Mode="In" />
           <Parameter Name="idJourney" Type="int" Mode="In" />
@@ -292,6 +295,9 @@
         </Function>
         <Function Name="CalcSumReceivablesByIDJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
           <Parameter Name="idJourney" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CalcTimIntervalByJourneyID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="journey_id" Type="int" Mode="In" />
         </Function>
         <Function Name="DevideMoney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
@@ -485,6 +491,25 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="SearchJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="search_text" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID_Journey" Type="int" />
+                <Property Name="RANK" Type="int" />
+                <Property Name="Journey_Name" Type="nvarchar" MaxLength="200" />
+                <Property Name="ID_Site" Type="int" />
+                <Property Name="Start_Place" Type="nvarchar" MaxLength="200" />
+                <Property Name="Start_Province" Type="nvarchar" MaxLength="200" />
+                <Property Name="Status" Type="int" />
+                <Property Name="StartDate" Type="date" />
+                <Property Name="EndDate" Type="date" />
+                <Property Name="Distance" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="WeSplitModelStoreContainer">
           <EntitySet Name="Advance" EntityType="Self.Advance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
@@ -635,6 +660,18 @@
           <Property Name="Distance" Type="Double" />
         </ComplexType>
         <ComplexType Name="SearchByProvinceName_Result">
+          <Property Name="ID_Journey" Type="Int32" />
+          <Property Name="RANK" Type="Int32" />
+          <Property Name="Journey_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Site" Type="Int32" />
+          <Property Name="Start_Place" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Start_Province" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="Distance" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="SearchJourney_Result">
           <Property Name="ID_Journey" Type="Int32" />
           <Property Name="RANK" Type="Int32" />
           <Property Name="Journey_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -975,6 +1012,9 @@
           <FunctionImport Name="SearchByProvinceName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByProvinceName_Result)">
             <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SearchJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchJourney_Result)">
+            <Parameter Name="search_text" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="AddExpense">
             <Parameter Name="idExpenses" Mode="In" Type="Int32" />
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
@@ -1264,6 +1304,22 @@
           <FunctionImportMapping FunctionName="WeSplitModel.Store.SearchByProvinceName" FunctionImportName="SearchByProvinceName">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WeSplitModel.SearchByProvinceName_Result">
+                <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
+                <ScalarProperty Name="RANK" ColumnName="RANK" />
+                <ScalarProperty Name="Journey_Name" ColumnName="Journey_Name" />
+                <ScalarProperty Name="ID_Site" ColumnName="ID_Site" />
+                <ScalarProperty Name="Start_Place" ColumnName="Start_Place" />
+                <ScalarProperty Name="Start_Province" ColumnName="Start_Province" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="WeSplitModel.Store.SearchJourney" FunctionImportName="SearchJourney">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WeSplitModel.SearchJourney_Result">
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="RANK" ColumnName="RANK" />
                 <ScalarProperty Name="Journey_Name" ColumnName="Journey_Name" />

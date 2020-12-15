@@ -20,7 +20,6 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class JourneyDetailPage : Page
 	{
-
 		public delegate void UpdateJourneyHandler(int journeyID);
 		public event UpdateJourneyHandler UpdateJourney;
 

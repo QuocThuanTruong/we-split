@@ -153,6 +153,16 @@ namespace WeSplit
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SearchByProvinceName_Result>("[WeSplitEntities].[SearchByProvinceName](@search_text)", search_textParameter);
         }
     
+        [DbFunction("WeSplitEntities", "SearchJourney")]
+        public virtual IQueryable<SearchJourney_Result> SearchJourney(string search_text)
+        {
+            var search_textParameter = search_text != null ?
+                new ObjectParameter("search_text", search_text) :
+                new ObjectParameter("search_text", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SearchJourney_Result>("[WeSplitEntities].[SearchJourney](@search_text)", search_textParameter);
+        }
+    
         public virtual int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des)
         {
             var idExpensesParameter = idExpenses.HasValue ?

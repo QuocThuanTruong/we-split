@@ -33,5 +33,6 @@ namespace WeSplit
 
         //For Binding
         public double Distance { get; set; }
+        public int ID_Journey { get; set; }
     }
 }

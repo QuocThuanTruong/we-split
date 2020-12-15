@@ -15,6 +15,6 @@ namespace WeSplit
     {
         public Nullable<decimal> SumReceivable { get; set; }
         public Nullable<decimal> SumExpense { get; set; }
-        public Nullable<decimal> currentrentMoney { get; set; }
+        public Nullable<decimal> CurrentMoney { get; set; }
     }
 }

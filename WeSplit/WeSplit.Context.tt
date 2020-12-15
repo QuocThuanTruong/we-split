@@ -511,7 +511,7 @@ public class TypeMapper
         {
             _errors.Add(
                 new CompilerError(sourceFile, -1, -1, "6023",
-                    String.Format(CultureInfo.currentrentCulture, CodeGenerationTools.GetResourceString("Template_CaseInsensitiveTypeConflict"))));
+                    String.Format(CultureInfo.CurrentCulture, CodeGenerationTools.GetResourceString("Template_CaseInsensitiveTypeConflict"))));
             return false;
         }
         return true;

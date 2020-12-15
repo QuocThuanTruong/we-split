@@ -424,7 +424,7 @@
         
         <!-- List -->
         <ListView Name="journeyGridView"
-                 ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
+                  ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
                   SelectionChanged="journeyGridView_SelectionChanged"
                   SelectionMode="Single"
                   VerticalAlignment="Top"
@@ -452,9 +452,10 @@
                         Height="248">
 
                         <Grid Width="294"
-                              Height="248">
+                              Height="248"
+                              Tag="{Binding ID_Journey}">
                             <!-- binding -->
-                            <Image Source="{StaticResource TEST_1}"
+                            <Image Source="{Binding Site_Avatar}"
                                    VerticalAlignment="Top"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"
@@ -483,7 +484,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
-                                           Text="Phố cổ hội an"
+                                           Text="{Binding Site_Name}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>
 
@@ -497,14 +498,14 @@
 
                                     <StackPanel Grid.Column="0"
                                                 Orientation="Horizontal">
-                                        
+
                                         <Image Source="{StaticResource IconSemiRoute}"
                                                RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="13"
                                                Height="13"/>
 
                                         <!-- binding -->
-                                        <TextBlock Text="17 km lộ trình"
+                                        <TextBlock Text="{Binding Total_Distance_For_Binding}"
                                                    Foreground="{DynamicResource MyLightGray5}"
                                                    Margin="8, 0, 0, 0"
                                                    Style="{StaticResource RegularText}"/>
@@ -520,7 +521,7 @@
                                                Height="13"/>
 
                                         <!-- binding -->
-                                        <TextBlock Text="90 ngày"
+                                        <TextBlock Text="{Binding Total_Day_For_Binding}"
                                                    Foreground="{DynamicResource MyLightGray5}"
                                                    Margin="8, 0, 0, 0"
                                                    Style="{StaticResource RegularText}"/>
@@ -536,7 +537,7 @@
                                                Height="16"/>
 
                                         <!-- binding -->
-                                        <TextBlock Text="5"
+                                        <TextBlock Text="{Binding Total_Member_For_Binding}"
                                                    Foreground="{DynamicResource MyLightGray5}"
                                                    Margin="8, 0, 0, 0"
                                                    Style="{StaticResource RegularText}"/>
@@ -546,14 +547,10 @@
                             </StackPanel>
 
                         </Grid>
-                        
+
                     </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
-            <Image Source="{StaticResource TEST_1}"/>
-            <Image Source="{StaticResource TEST_1}"/>
-            <Image Source="{StaticResource TEST_1}"/>
         </ListView>
 
         <Grid Name="pageContainer"
@@ -618,7 +615,7 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center">
                             <!-- Binding data -->
-                            <TextBlock Name="currentrentPageTextBlock"
+                            <TextBlock Name="currentPageTextBlock"
                                    FlowDirection="LeftToRight"
                                    Text="1 of 5"
                                    HorizontalAlignment="Center"

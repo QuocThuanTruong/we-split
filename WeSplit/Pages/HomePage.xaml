@@ -1043,7 +1043,8 @@
 
                     </StackPanel>
 
-                    <Button Name="explorecurrentJourneyButton"
+                    <Button Name="exploreCurrentJourneyButton"
+                            Click="exploreCurrentJourneyButton_Click"
                             Margin="0, 8, 0, 0"
                             Height="36"
                             Style="{StaticResource ViewDetailButton}"

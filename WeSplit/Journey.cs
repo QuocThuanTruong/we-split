@@ -49,8 +49,15 @@ namespace WeSplit
         //For Binding
         public string Site_Name { get; set; }
         public string Site_Avatar { get; set; }
-
         public double Journey_Progress { get; set; }
-
+        public int Total_Day { get; set; }
+        public int Total_Member { get; set; }
+        public string Total_Day_For_Binding { get; set; }
+        public string Total_Member_For_Binding { get; set; }
+        public string Total_Distance_For_Binding { get; set; }
+        public string Start_Date_For_Binding { get; set; }
+        public string End_Date_For_Binding { get; set; }
+        public List<Route> Route_For_Binding { get; set; }
+        public List<Member> Member_For_Binding { get; set; }
     }
 }

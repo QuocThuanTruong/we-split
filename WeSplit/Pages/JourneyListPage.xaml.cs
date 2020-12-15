@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeSplit.Utilities;
 
 namespace WeSplit.Pages
 {
@@ -22,12 +23,16 @@ namespace WeSplit.Pages
 	public partial class JourneyListPage : Page
 	{
 		private List<Tuple<Image, TextBlock, string, string>> _statusGroups;
-		public delegate void ShowJourneyDetailPageHandler(int recipeID);
+		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
+
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		public JourneyListPage()
 		{
 			InitializeComponent();
 			filterContainer.Visibility = Visibility.Collapsed;
+
+			loadJourneys();
 		}
 
 
@@ -90,11 +95,12 @@ namespace WeSplit.Pages
 
 			if (selectedItemIndex != -1)
 			{
-				selectedID = journeyGridView.SelectedIndex;
+				selectedID = ((Journey)journeyGridView.SelectedItem).ID_Journey;
 				Debug.WriteLine(selectedID);
-
-				ShowJourneyDetailPage?.Invoke(selectedID);
 			}
+
+			//Get Id recipe base on item clikced
+			ShowJourneyDetailPage?.Invoke(selectedID);
 		}
 
 		private void closeFilterButton_Click(object sender, RoutedEventArgs e)
@@ -165,6 +171,13 @@ namespace WeSplit.Pages
 		private void lastPageButton_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		private void loadJourneys()
+        {
+			var journeys = _databaseUtilities.GetListJourney();
+
+			journeyGridView.ItemsSource = journeys;
 		}
 	}
 }

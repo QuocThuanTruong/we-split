@@ -178,6 +178,9 @@
     <Compile Include="SearchByProvinceName_Result.cs">
       <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>
+    <Compile Include="SearchJourney_Result.cs">
+      <DependentUpon>WeSplit.tt</DependentUpon>
+    </Compile>
     <Compile Include="Site.cs">
       <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>

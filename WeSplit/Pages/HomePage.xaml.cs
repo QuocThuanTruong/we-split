@@ -27,6 +27,9 @@ namespace WeSplit.Pages
 		public delegate void ViewAllJourneyHandler();
 		public event ViewAllJourneyHandler ViewAllJourney;
 
+		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
+		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
+
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 
 		public HomePage()
@@ -36,6 +39,7 @@ namespace WeSplit.Pages
 			loadPlanedJourneyInHomePageViewType1();
 			loadDoneJourneyInHomePageViewType1();
 			loadcurrentrentJourneyInHomePageViewType1();
+			_databaseUtilities.GetListJourney();
 		}
 
 
@@ -92,16 +96,22 @@ namespace WeSplit.Pages
 
 		private void secondPlanedJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void firstPlanedJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 		private void thirdPlanedJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void thirdPlanedJourneyButton_MouseEnter(object sender, MouseEventArgs e)
@@ -132,7 +142,9 @@ namespace WeSplit.Pages
 
 		private void firstDoneJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void secondDoneJourneyButton_MouseEnter(object sender, MouseEventArgs e)
@@ -150,7 +162,9 @@ namespace WeSplit.Pages
 
 		private void secondDoneJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void thirdDoneJourneyButton_MouseEnter(object sender, MouseEventArgs e)
@@ -168,7 +182,9 @@ namespace WeSplit.Pages
 
 		private void thirdDoneJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void fourthDoneJourneyButton_MouseEnter(object sender, MouseEventArgs e)
@@ -186,7 +202,9 @@ namespace WeSplit.Pages
 
 		private void fourthDoneJourneyViewDetailButton_Click(object sender, RoutedEventArgs e)
 		{
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
 
 		private void loadPlanedJourneyInHomePageViewType1()
@@ -207,6 +225,7 @@ namespace WeSplit.Pages
 				firstPlanedJourneyAvtHoverImage.Source = firstPlanedAvatar;
 				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km lộ trình";
 				firstPlanedJourneyTitle.Text = firstPlaned.Site_Name;
+				firstPlanedJourneyViewDetailButton.Tag = firstPlaned.ID_Journey;
 
 				if (sites.Count >= 2)
                 {
@@ -222,6 +241,7 @@ namespace WeSplit.Pages
 					secondPlanedJourneyAvtHoverImage.Source = secondPlanedAvatar;
 					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km lộ trình";
 					secondPlanedJourneyTitle.Text = secondPlaned.Site_Name;
+					secondPlanedJourneyViewDetailButton.Tag = secondPlaned.ID_Journey;
 
 					if (sites.Count >= 3)
                     {
@@ -237,6 +257,7 @@ namespace WeSplit.Pages
 						thirdPlanedJourneyAvtHoverImage.Source = thirdPlanedAvatar;
 						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km lộ trình";
 						thirdPlanedJourneyTitle.Text = thirdPlaned.Site_Name;
+						thirdPlanedJourneyViewDetailButton.Tag = thirdPlaned.ID_Journey;
 					}
 				}
 			}
@@ -260,6 +281,7 @@ namespace WeSplit.Pages
 				firstDoneJourneyAvtHoverImage.Source = firstDoneAvatar;
 				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km lộ trình";
 				firstDoneJourneyTitle.Text = firstDone.Site_Name;
+				firstDoneJourneyViewDetailButton.Tag = firstDone.ID_Journey;
 
 				if (sites.Count >= 2)
 				{
@@ -275,6 +297,7 @@ namespace WeSplit.Pages
 					secondDoneJourneyAvtHoverImage.Source = secondDoneAvatar;
 					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km lộ trình";
 					secondDoneJourneyTitle.Text = secondDone.Site_Name;
+					secondDoneJourneyViewDetailButton.Tag = secondDone.ID_Journey;
 
 					if (sites.Count >= 3)
 					{
@@ -290,6 +313,7 @@ namespace WeSplit.Pages
 						thirdDoneJourneyAvtHoverImage.Source = thirdDoneAvatar;
 						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km lộ trình";
 						thirdDoneJourneyTitle.Text = thirdDone.Site_Name;
+						thirdDoneJourneyViewDetailButton.Tag = thirdDone.ID_Journey;
 
 						if (sites.Count >= 4)
                         {
@@ -305,6 +329,7 @@ namespace WeSplit.Pages
 							fourthDoneJourneyAvtHoverImage.Source = fourthDoneAvatar;
 							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km lộ trình";
 							fourthDoneJourneyTitle.Text = fourthDone.Site_Name;
+							fourthDoneJourneyViewDetailButton.Tag = fourthDone.ID_Journey;
 						}
 					}
 				}
@@ -326,10 +351,18 @@ namespace WeSplit.Pages
 				currentJourneyAvt.Source = currentAvatar;
 				currentJourneyName.Text = current.Site_Name;
 				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km lộ trình";
-				startDateTextBlock.Text = current.StartDate.ToString();
-				endDateTextBlock.Text = current.EndDate.ToString();
+				startDateTextBlock.Text = current.StartDate.Value.ToShortDateString();
+				endDateTextBlock.Text = current.EndDate.Value.Date.ToShortDateString();
 				currentJourneyProgess.Value = current.Journey_Progress;
+				exploreCurrentJourneyButton.Tag = current.ID_Journey;
 			}
 		}
-	}
+
+        private void exploreCurrentJourneyButton_Click(object sender, RoutedEventArgs e)
+        {
+			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
+
+			ShowJourneyDetailPage?.Invoke(ID_Journey);
+		}
+    }
 }
