@@ -377,6 +377,7 @@
           <ReturnType>
             <CollectionType>
               <RowType>
+                <Property Name="ID_Member" Type="int" Nullable="false" />
                 <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
                 <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
                 <Property Name="Receivables_Money" Type="money" />
@@ -606,6 +607,7 @@
           <Property Name="Link_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </ComplexType>
         <ComplexType Name="GetMemberByIDJourney_Result">
+          <Property Name="ID_Member" Type="Int32" Nullable="false" />
           <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Receivables_Money" Type="Decimal" Precision="19" Scale="4" />
@@ -1226,6 +1228,7 @@
           <FunctionImportMapping FunctionName="WeSplitModel.Store.GetMemberByIDJourney" FunctionImportName="GetMemberByIDJourney">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WeSplitModel.GetMemberByIDJourney_Result">
+                <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
                 <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
                 <ScalarProperty Name="Receivables_Money" ColumnName="Receivables_Money" />

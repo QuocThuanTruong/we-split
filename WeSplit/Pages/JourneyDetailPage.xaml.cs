@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeSplit.Utilities;
 
 namespace WeSplit.Pages
 {
@@ -23,14 +24,25 @@ namespace WeSplit.Pages
 		public delegate void UpdateJourneyHandler(int journeyID);
 		public event UpdateJourneyHandler UpdateJourney;
 
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private int _ID_Journey;
 		public JourneyDetailPage()
 		{
 			InitializeComponent();
 		}
 
+		public JourneyDetailPage(int ID_Journey)
+		{
+			InitializeComponent();
+
+			_ID_Journey = ID_Journey;
+		}
+
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
+			Journey journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
 
+			this.DataContext = journey;
 		}
 
 		private void currentJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -67,5 +79,7 @@ namespace WeSplit.Pages
 		{
 
 		}
+
+
 	}
 }

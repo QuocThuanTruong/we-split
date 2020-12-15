@@ -138,17 +138,17 @@ namespace WeSplit
 			pageNavigation.NavigationService.Navigate(journeyListPage);
 		}
 
-		private void JourneyListPage_ShowJourneyDetailPage(int recipeID)
+		private void JourneyListPage_ShowJourneyDetailPage(int ID_Journey)
 		{
-			JourneyDetailPage journeyDetailPage = new JourneyDetailPage();
+			JourneyDetailPage journeyDetailPage = new JourneyDetailPage(ID_Journey);
 			journeyDetailPage.UpdateJourney += JourneyDetailPage_UpdateJourney;
 
 			pageNavigation.NavigationService.Navigate(journeyDetailPage);
 		}
 
-		private void JourneyDetailPage_UpdateJourney(int journeyID)
+		private void JourneyDetailPage_UpdateJourney(int ID_Journey)
 		{
-			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage();
+			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage(ID_Journey);
 
 			pageNavigation.NavigationService.Navigate(updateJourneyPage);
 		}

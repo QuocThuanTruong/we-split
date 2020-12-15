@@ -253,28 +253,18 @@
                                     <!-- Binding data -->
                                     <TextBlock
                                         Grid.Column="1"
-                                   Text="Khách sạn XXX, TP.Hồ Chí Minh"
-                                   Style="{StaticResource RegularText}"/>
+                                        Text="{Binding Place}"
+                                        Style="{StaticResource RegularText}"/>
 
                                     <!-- Binding data -->
                                     <TextBlock 
                                         Grid.Column="2"
-                                   HorizontalAlignment="Left"
-                                   Text="Ăn uống ngủ nghỉ 1 đêm"
-                                   Style="{StaticResource RegularText}"/>
+                                        HorizontalAlignment="Left"
+                                        Text="{Binding Route_Description}"
+                                        Style="{StaticResource RegularText}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
-                        <UniformGrid/>
                     </ListView>
 
                 </Grid>
@@ -394,7 +384,7 @@
                                   Grid.Row="2"
                                   Margin="0, 8, 0, 0"
                                   ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                  ItemsSource="{Binding Member_For_Binding}">    
+                                  ItemsSource="{Binding Member_For_Binding}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -412,48 +402,41 @@
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="0"
-                                   Text="1"
-                                   Margin="7, 0, 0, 0"
-                                   Style="{StaticResource RegularText}"/>
+                                            Text="{Binding ID_Member}"
+                                            Margin="7, 0, 0, 0"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="1"
                                             Margin="8, 0, 0, 0"
-                                   Text="Quốc Thuận Trương"
-                                   Style="{StaticResource RegularText}"/>
+                                            Text="{Binding Member_Name}"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <!-- Binding data -->
                                         <TextBlock 
-                                                   Margin="6, 0, 0, 0"
-                                   Grid.Column="2"
-                                   HorizontalAlignment="Left"
-                                   Text="0389294632"
-                                   Style="{StaticResource RegularText}"/>
+                                            Margin="6, 0, 0, 0"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Left"
+                                            Text="{Binding Phone_Number}"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <TextBlock 
-                                              Margin="0, 0, 0, 0"
-                                   Grid.Column="3"
-                                   HorizontalAlignment="Left"
-                                   Text="9.999.999"
-                                   Style="{StaticResource RegularText}"/>
+                                            Margin="0, 0, 0, 0"
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Left"
+                                            Text="{Binding Receivables_Money}"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <TextBlock 
-                                                  Margin="8, 0, 0, 0"
-                                   Grid.Column="4"
-                                   HorizontalAlignment="Left"
-                                   Text="Trưởng nhóm"
-                                   Style="{StaticResource RegularText}"/>
+                                            Margin="8, 0, 0, 0"
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Left"
+                                            Text="{Binding Role}"
+                                            Style="{StaticResource RegularText}"/>   
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
                         </ListView>
 
                     </Grid>
@@ -485,7 +468,8 @@
                                   Visibility="Visible"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   Margin="0, 0, 14, 0"
-                                  ItemContainerStyle="{StaticResource ImageStepListViewItem}">
+                                  ItemContainerStyle="{StaticResource ImageStepListViewItem}"
+                                  ItemsSource="{Binding Images_For_Binding}">
 
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -501,22 +485,16 @@
                                                Width="110"
                                                Height="110"
                                                Stretch="UniformToFill"
-                                               Source="{StaticResource TEST_1}"
-                                               RenderOptions.BitmapScalingMode="HighQuality">   
+                                               Source="{Binding Link_Image}"
+                                               RenderOptions.BitmapScalingMode="HighQuality">
                                             <!--<Image.Source>
                                                 <BitmapImage CacheOption="OnLoad"
                                                  UriSource="{Binding ImageSource}"/>
                                             </Image.Source>-->
                                         </Image>
                                     </Grid>
-
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
                         </ListView>
                     </StackPanel>
                 </StackPanel>
@@ -704,57 +682,46 @@
                                             <ColumnDefinition Width="1.68*"/>
                                             <ColumnDefinition Width="1.4*"/>
                                             <ColumnDefinition Width="1.8*"/>
- 
+
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="0"
-                                            Text="1"
+                                            Text="{Binding ID_Member}"
                                             Margin="7, 0, 0, 0"
-                                            Style="{StaticResource RegularText}"/>   
+                                            Style="{StaticResource RegularText}"/>
 
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="1"
                                             Margin="12, 0, 0, 0"
-                                            Text="Quốc Thuận Trương"
-                                            Style="{StaticResource RegularText}"/>  
+                                            Text="{Binding Member_Name}"
+                                            Style="{StaticResource RegularText}"/>
 
                                         <!-- Binding data -->
                                         <TextBlock 
                                             Margin="6, 0, 0, 0"
                                             Grid.Column="2"
                                             HorizontalAlignment="Left"
-                                            Text="+9.999.999 VNĐ"
+                                            Text="{Binding Remain}"
                                             Style="{StaticResource RegularText}"/>
 
                                         <TextBlock 
                                             Margin="0, 0, 0, 0"
                                             Grid.Column="3"
                                             HorizontalAlignment="Left"
-                                            Text="9.999.999 VNĐ cho T.Viên (2)"
+                                            Text="{Binding Advance_Money_Lender}"
                                             Style="{StaticResource RegularText}"/>
 
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
-                            <UniformGrid/>
+                            <UniformGrid></UniformGrid>
                         </ListView>
-
                     </Grid>
-
-
                 </StackPanel>
-
             </materialDesign:Card>
-
         </Grid>
 
         <materialDesign:ColorZone Mode="Custom"

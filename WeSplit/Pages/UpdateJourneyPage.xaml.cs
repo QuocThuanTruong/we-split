@@ -20,7 +20,7 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class UpdateJourneyPage : Page
 	{
-		public UpdateJourneyPage()
+		public UpdateJourneyPage(int ID_Journey)
 		{
 			InitializeComponent();
 		}

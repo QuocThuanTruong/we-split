@@ -58,6 +58,7 @@ namespace WeSplit
         public string Start_Date_For_Binding { get; set; }
         public string End_Date_For_Binding { get; set; }
         public List<Route> Route_For_Binding { get; set; }
-        public List<Member> Member_For_Binding { get; set; }
+        public List<GetMemberByIDJourney_Result> Member_For_Binding { get; set; }
+        public List<JourneyImage> Images_For_Binding { get; set; }
     }
 }

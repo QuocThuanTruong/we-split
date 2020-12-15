@@ -112,5 +112,59 @@ namespace WeSplit.Utilities
 
             return result;
         }
+
+        public Journey GetJourneyByID(int ID_Journey)
+        {
+            Journey result = _databaseWeSplit
+                .Database
+                .SqlQuery<Journey>($"Select * from Journey where ID_Journey = {ID_Journey}")
+                .FirstOrDefault();
+
+            if (result != null)
+            {
+                //Site
+                Site site = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Site>($"Select * from Site where ID_Site = {result.ID_Site}")
+                    .SingleOrDefault();
+
+                result.Site_Name = site.Site_Name;
+                result.Site_Avatar = site.Site_Link_Avt;
+                
+                //progress slider
+                var journeyProgess = _databaseWeSplit
+                        .Database
+                        .SqlQuery<double>($"select [dbo].[CalcJourneyProgress]({result.ID_Journey})")
+                        .Single();
+
+                result.Journey_Progress = journeyProgess;
+
+                //Date
+                result.Start_Date_For_Binding = result.StartDate.Value.ToShortDateString();
+                result.End_Date_For_Binding = result.EndDate.Value.ToShortDateString();
+
+                //Route
+                List<Route> routes = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Route>($"Select * from Route where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
+                result.Route_For_Binding = routes;
+
+                //Member
+                List<GetMemberByIDJourney_Result> members = _databaseWeSplit.GetMemberByIDJourney(result.ID_Journey).ToList();
+                result.Member_For_Binding = members;
+
+                //Images
+                List<JourneyImage> images = _databaseWeSplit
+                    .Database
+                    .SqlQuery<JourneyImage>($"Select * from JourneyImage where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
+                result.Images_For_Binding = images;
+            }
+
+            return result;
+        }
     }
 }
