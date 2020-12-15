@@ -810,5 +810,16 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
+        <!-- Post mesage to notification to user here -->
+        <materialDesign:Snackbar Name="notiMessageSnackbar"
+                                 HorizontalAlignment="Left"
+                                 MessageQueue="{materialDesign:MessageQueue}"
+                                 Margin="2, 8, 0, 4"
+                                 MaxWidth="1000"
+                                 IsActive="True"
+                                 Grid.Column="1"
+                                 Grid.Row="4">
+        </materialDesign:Snackbar>
+
     </Grid>
 </Page>
