@@ -381,6 +381,36 @@
                 <UniformGrid/>
             </ListView>
 
+            <!--404-->
+            <Grid   Grid.Column="1"
+                  Grid.Row="12"
+                  Grid.RowSpan="2"
+                  Margin="0, 8, 0, 0"
+                  Visibility="Collapsed"
+                   Name="sitesListNotFound">
+
+                <Border Width="1038"
+                                
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+                <StackPanel VerticalAlignment="Center">
+                    <Image Width="80"
+                           Height="80"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                    <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 16, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                           FontSize="16"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+                </StackPanel>
+
+            </Grid>
+
         </Grid>
 
         <!-- Post mesage to notification to user here -->

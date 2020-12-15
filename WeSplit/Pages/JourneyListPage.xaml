@@ -712,6 +712,37 @@
             <Image Source="{StaticResource TEST_1}"/>
         </ListView>
 
+        <!--404-->
+        <Grid  Height="588"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="4"
+               HorizontalAlignment="Left"
+                  Visibility="Collapsed"
+                   Name="journeyListNotFound">
+
+            <Border Width="1038"
+                                Height="588"
+                               CornerRadius="10"
+                                Background="{DynamicResource MyLightGreen3}"/>
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Width="100"
+                           Height="100"
+                           RenderOptions.BitmapScalingMode="HighQuality"
+                           Source="{StaticResource Icon404}"/>
+
+                <TextBlock Text="Chuyến đi hiện tại chưa có"
+                                   Margin="8, 16, 8, 0"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                           FontSize="18"
+                                   Foreground="{StaticResource MyNeueGreen}"
+                                   Style="{StaticResource MediumText}"/>
+            </StackPanel>
+
+        </Grid>
+
         <Grid Name="pageContainer"
               Grid.Column="1"
               Grid.ColumnSpan="3"

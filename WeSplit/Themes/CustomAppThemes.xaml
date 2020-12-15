@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="MyLightGreen" Color="#1aaf75"/>
     <SolidColorBrush x:Key="MyLightGreenOpacity" Color="#409ff4d0"/>
     <SolidColorBrush x:Key="MyLightGreen2" Color="#9ff4d0"/>
+    <SolidColorBrush x:Key="MyLightGreen3" Color="#a6e2c7"/>
     <SolidColorBrush x:Key="MyOrange" Color="#e65925"/>
     <SolidColorBrush x:Key="MyLightOrange" Color="#ffa129"/>
     <SolidColorBrush x:Key="MyBlack" Color="#303030"/>

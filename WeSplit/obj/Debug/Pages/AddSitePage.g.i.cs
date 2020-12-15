@@ -149,7 +149,15 @@ namespace WeSplit.Pages {
         #line hidden
         
         
-        #line 387 "..\..\..\Pages\AddSitePage.xaml"
+        #line 390 "..\..\..\Pages\AddSitePage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Grid sitesListNotFound;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 417 "..\..\..\Pages\AddSitePage.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal MaterialDesignThemes.Wpf.Snackbar notiMessageSnackbar;
         
@@ -252,6 +260,9 @@ namespace WeSplit.Pages {
             this.sitesListView = ((System.Windows.Controls.ListView)(target));
             return;
             case 15:
+            this.sitesListNotFound = ((System.Windows.Controls.Grid)(target));
+            return;
+            case 16:
             this.notiMessageSnackbar = ((MaterialDesignThemes.Wpf.Snackbar)(target));
             return;
             }
