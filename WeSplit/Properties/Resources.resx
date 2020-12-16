@@ -37,7 +37,7 @@
     mimetype set.
     
     The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currentrently not 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
     Note - application/x-microsoft.net.object.binary.base64 is the format 
@@ -63,11 +63,11 @@
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:choice maxOccurrents="unbounded">
+        <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
@@ -84,8 +84,8 @@
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurrents="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
@@ -96,7 +96,7 @@
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
               <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
@@ -138,8 +138,22 @@
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>
   </data>
+  <data name="text_about_app" xml:space="preserve">
+    <value>We Split là một ứng dụng được viết bằng công nghệ WPF của Microsoft giúp bạn có thể dễ quản lí chuyến đi, bao gồm các công việc như xem tiến độ, hình ảnh, thống kê thu, chi và chia tiền giữa các thành viên.</value>
+  </data>
+  <data name="text_about_sort" xml:space="preserve">
+    <value>**Danh sách trên được sắp xếp tăng dần theo MSSV.</value>
+  </data>
+  <data name="text_about_us" xml:space="preserve">
+    <value>Sinh viên đang học môn Lập trình Windows - Thầy Trần Duy Quang, khoa Công nghệ thông tin, Trường Đại học Khoa học tự nhiên, ĐHQG TP.Hồ Chí Minh.</value>
+  </data>
   <data name="text_all" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="text_contact" xml:space="preserve">
+    <value>Mọi thắc mắc về ứng dụng xin vui lòng liên hệ wesplit.hcmus@gmail.com.
+The MIT License (MIT).
+Copy right © 2020 Quoc Thuan Truong, Le Nhat Tuan, Hoang Thi Thuy Trang.</value>
   </data>
   <data name="text_cur_journey" xml:space="preserve">
     <value>chuyến đi hiện tại</value>
@@ -149,6 +163,29 @@
   </data>
   <data name="text_filter" xml:space="preserve">
     <value>Filter</value>
+  </data>
+  <data name="text_github" xml:space="preserve">
+    <value>https://github.com/QuocThuanTruong/WeSplit</value>
+  </data>
+  <data name="text_help_about" xml:space="preserve">
+    <value>Chứa thông tin về ứng dụng dụng và các thành viên phát triển.</value>
+  </data>
+  <data name="text_help_add_recipe" xml:space="preserve">
+    <value>Bạn có thẻ thêm món ăn của mình và danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên món ăn, mô tả, ảnh đại diện, link video của món ăn, thời gian, nhóm của món ăn, mức độ và các bước thực hiện.</value>
+  </data>
+  <data name="text_help_fav" xml:space="preserve">
+    <value>Nơi chứa những món ăn được bạn yêu thích, bạn có thế tìm kiếm với các chế độ khác nhau như HOME.</value>
+  </data>
+  <data name="text_help_help" xml:space="preserve">
+    <value>Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng Food Recipes.</value>
+  </data>
+  <data name="text_help_home" xml:space="preserve">
+    <value>Sử dụng thanh tìm kiếm để tìm món ăn mà bạn muốn, bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
+Mẹo tìm kiếm từ khóa: Bạn có thể sử dụng cú pháp “&lt;key_word_1&gt;” &lt;operator&gt; &lt;”key_word_2&gt;” với &lt;operator&gt; có thể là ‘and’, ‘or’ hoặc ‘and not’ để tìm kiếm.
+Sau khi tìm được món ăn bạn có thể click vào để xem chi tiết món ăn đó. Bên trong mỗi món ăn bạn có thể thêm danh sách nguyên liệu vào shopping list bằng cách click vào nút ADD SHOPPING.</value>
+  </data>
+  <data name="text_help_shopping" xml:space="preserve">
+    <value>Khi bạn thêm nguyên liệu vào shopping list ở trang chi tiết món ăn, danh sách nguyên liệu của bạn sẽ được lưu lại ở trang này và bạn có thể dễ dàng mua sắm với danh sách nguyên liệu cần thiết. Ngoài ra bạn có thể tick vào nút cạnh bên nguyên liệu để đánh dấu rằng bạn đã mua nó.</value>
   </data>
   <data name="text_item_sort_az" xml:space="preserve">
     <value>A-Z</value>
@@ -167,6 +204,27 @@
   </data>
   <data name="text_item_sort_za" xml:space="preserve">
     <value>Z-A</value>
+  </data>
+  <data name="text_link_video_help" xml:space="preserve">
+    <value>https://youtu.be/Rzg9LGXxTtI</value>
+  </data>
+  <data name="text_mssv_ht" xml:space="preserve">
+    <value>18120605</value>
+  </data>
+  <data name="text_mssv_nt" xml:space="preserve">
+    <value>18120632</value>
+  </data>
+  <data name="text_mssv_qt" xml:space="preserve">
+    <value>18120583</value>
+  </data>
+  <data name="text_name_ht" xml:space="preserve">
+    <value>Hoàng Thị Thùy Trang</value>
+  </data>
+  <data name="text_name_nt" xml:space="preserve">
+    <value>Lê Nhật Tuấn</value>
+  </data>
+  <data name="text_name_qt" xml:space="preserve">
+    <value>Quốc Thuận Trương</value>
   </data>
   <data name="text_planed_journey" xml:space="preserve">
     <value>chuyến đi sắp tới</value>
@@ -194,6 +252,24 @@
   </data>
   <data name="tip_restore_window_button" xml:space="preserve">
     <value>Restore down</value>
+  </data>
+  <data name="title_about_app" xml:space="preserve">
+    <value>VỀ ỨNG DỤNG FOOD RECIPES</value>
+  </data>
+  <data name="title_about_us" xml:space="preserve">
+    <value>VỀ CHÚNG TÔI</value>
+  </data>
+  <data name="title_contact" xml:space="preserve">
+    <value>LIÊN HỆ</value>
+  </data>
+  <data name="title_link_how_to_use" xml:space="preserve">
+    <value>LINK HƯỚNG DẪN CHI TIẾT</value>
+  </data>
+  <data name="title_link_video" xml:space="preserve">
+    <value>LINK VIDEO</value>
+  </data>
+  <data name="title_open_source" xml:space="preserve">
+    <value>MÃ NGUỒN MỞ</value>
   </data>
   <data name="title_sort_box" xml:space="preserve">
     <value>Sort by:</value>
