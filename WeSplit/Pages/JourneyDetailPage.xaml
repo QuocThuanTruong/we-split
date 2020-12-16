@@ -285,12 +285,12 @@
                         </m:Map>
 
                         <Button Name="viewLargeMapButton"
-                        Click="viewLargeMapButton_Click"
-                        Background="Transparent"
-                        Width="Auto"
-                        Height="{Binding ActualHeight, ElementName=mapContainer}"
-                        Opacity="0"
-                        Style="{StaticResource MapViewButton}">
+                            Click="viewLargeMapButton_Click"
+                            Background="Transparent"
+                            Width="Auto"
+                            Height="{Binding ActualHeight, ElementName=mapContainer}"
+                            Opacity="0"
+                            Style="{StaticResource MapViewButton}">
 
                         <Image Source="{StaticResource IconSearch}"
                            RenderOptions.BitmapScalingMode="HighQuality"

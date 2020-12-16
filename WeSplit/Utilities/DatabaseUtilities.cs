@@ -29,6 +29,26 @@ namespace WeSplit.Utilities
             return _databaseInstance;
         }
 
+        public int GetMaxIDJourney()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Journey) from Journey")
+                .Single();
+
+            return result;
+        }
+
+        public int GetMaxIDSite()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Site) from Site")
+                .Single();
+
+            return result;
+        }
+
         public List<Site> GetSiteForBindingInHomePageView(int status)
         {
             List<Site> result = new List<Site>();
@@ -153,7 +173,7 @@ namespace WeSplit.Utilities
 
                 //Member
                 List<GetMemberByIDJourney_Result> members = _databaseWeSplit.GetMemberByIDJourney(result.ID_Journey).ToList();
-                result.Member_For_Binding = members;
+                result.Members_For_Binding = members;
 
                 //Images
                 List<JourneyImage> images = _databaseWeSplit
@@ -164,11 +184,49 @@ namespace WeSplit.Utilities
                 result.Images_For_Binding = images;
 
                 //Devide Money
-                List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
-                result.Devide_Money_For_Binding = devideMoney;
+                //List<DevideMoney_Result> devideMoney = _databaseWeSplit
+                //    .Database
+                //    .SqlQuery<DevideMoney_Result>($"SELECT M.ID_Member, M.Member_Name, [dbo].[CalcRemainByIDMemberAndIDJourney](M.ID_Member, {result.ID_Journey}) AS Remain, (CAST(A.Advance_Money as nvarchar) + ' VNĐ cho T.Viên (' + CAST(A.ID_Lender as nvarchar) + ')') as Advance_Money_Lender FROM ([dbo].[Member] M lEFT JOIN [dbo].[Advance] A ON A.ID_Borrower = M.ID_Member AND A.ID_Journey = {result.ID_Journey}) LEFT JOIN [dbo].[JourneyAttendance] JA ON A.ID_Journey = JA.ID_Journey AND M.ID_Member = JA.ID_Member")
+                //    .ToList();
+                //result.Devide_Money_For_Binding = devideMoney;
             }
 
             return result;
+        }
+
+        public List<Site> GetListSite()
+        {
+            List<Site> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Site>("Select * from Site")
+                .ToList();
+
+            for (int i = 0; i < result.Count; ++i)
+            {
+                Province province = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Province>($"Select * from Province where ID_Province = {result[i].ID_Province}")
+                    .Single();
+
+                result[i].Province_Name = province.Province_Name;
+            }
+
+            return result;
+        }
+
+        public List<Province> GetListProvince()
+        {
+            List<Province> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Province>("Select * from Province")
+                .ToList();
+
+            return result;
+        }
+
+        public int AddNewSite(int idSite, int idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)
+        {
+            return _databaseWeSplit.AddSite(idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
         }
     }
 }

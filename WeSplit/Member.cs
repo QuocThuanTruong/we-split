@@ -33,5 +33,9 @@ namespace WeSplit
         public virtual ICollection<Advance> Advances1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JourneyAttendance> JourneyAttendances { get; set; }
+
+        //For Binding
+        public Nullable<decimal> Receivables_Money { get; set; }
+        public string Role { get; set; }
     }
 }
