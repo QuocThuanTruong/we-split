@@ -32,8 +32,6 @@ namespace WeSplit.CustomView
 
 		private ObservableCollection<Tuple<int, VerticalAlignment>> _borderMilestones = new ObservableCollection<Tuple<int, VerticalAlignment>>();
 
-	
-
 		public VisualRouteDetailDialog()
 		{
 			InitializeComponent();

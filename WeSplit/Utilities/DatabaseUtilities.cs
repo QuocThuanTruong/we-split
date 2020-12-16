@@ -59,6 +59,16 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public int GetMaxIDExpenses()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Expenses) from Expenses")
+                .Single();
+
+            return result;
+        }
+
         public List<Site> GetSiteForBindingInHomePageView(int status)
         {
             List<Site> result = new List<Site>();
@@ -251,8 +261,8 @@ namespace WeSplit.Utilities
             return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
         }
 
-        public int AddNewJourney(Nullable<int> idJourney, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance) {
-            return _databaseWeSplit.AddJourney(idJourney, idSite, startPlace, startProvince, status, startDate, endDate, distance);
+        public int AddNewJourney(Nullable<int> idJourney, string journeyName, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance) {
+            return _databaseWeSplit.AddJourney(idJourney, journeyName, idSite, startPlace, startProvince, status, startDate, endDate, distance);
         }
 
         public int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des)
@@ -263,6 +273,11 @@ namespace WeSplit.Utilities
         public int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus)
         {
             return _databaseWeSplit.AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus);
+        }
+
+        public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, Nullable<decimal> receivable, string role)
+        {
+            return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, receivable, role);
         }
     }
 }
