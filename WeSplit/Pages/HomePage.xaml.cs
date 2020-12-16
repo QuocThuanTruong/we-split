@@ -24,7 +24,7 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class HomePage : Page
 	{
-		public delegate void ViewAllJourneyHandler();
+		public delegate void ViewAllJourneyHandler(int journeyStatus);
 		public event ViewAllJourneyHandler ViewAllJourney;
 
 		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
@@ -55,7 +55,8 @@ namespace WeSplit.Pages
 
 		private void viewAllJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-			ViewAllJourney?.Invoke();
+			//Adjust here
+			ViewAllJourney?.Invoke(1);
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
