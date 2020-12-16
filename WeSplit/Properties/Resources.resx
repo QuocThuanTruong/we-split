@@ -37,7 +37,7 @@
     mimetype set.
     
     The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currentrently not 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
     
     Note - application/x-microsoft.net.object.binary.base64 is the format 
@@ -63,11 +63,11 @@
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
-        <xsd:choice maxOccurrents="unbounded">
+        <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
               <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
@@ -84,8 +84,8 @@
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurrents="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
               <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
@@ -96,7 +96,7 @@
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurrents="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
               <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_page_upper" xml:space="preserve">
+    <value>ABOUT US</value>
+  </data>
   <data name="about_us_page_name" xml:space="preserve">
     <value>About us</value>
+  </data>
+  <data name="add_journey_page_upper" xml:space="preserve">
+    <value>ADD JOURNEY</value>
   </data>
   <data name="add_site_page" xml:space="preserve">
     <value>Add Site</value>
   </data>
+  <data name="add_site_page_upper" xml:space="preserve">
+    <value>ADD SITE</value>
+  </data>
   <data name="help_page_name" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="help_page_upper" xml:space="preserve">
+    <value>HELP</value>
   </data>
   <data name="hint_text_search" xml:space="preserve">
     <value>Search your journey by name and member...</value>
@@ -132,14 +144,31 @@
   <data name="home_page_name" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="home_page_upper" xml:space="preserve">
+    <value>HOME</value>
+  </data>
   <data name="manage_journey_page" xml:space="preserve">
-    <value>Add journeys</value>
+    <value>Add journey</value>
   </data>
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>
   </data>
+  <data name="text_about_app" xml:space="preserve">
+    <value>We Split là một ứng dụng được viết bằng công nghệ WPF của Microsoft giúp bạn có thể dễ quản lí chuyến đi, bao gồm các công việc như xem tiến độ, hình ảnh, thống kê thu, chi và chia tiền giữa các thành viên.</value>
+  </data>
+  <data name="text_about_sort" xml:space="preserve">
+    <value>**Danh sách trên được sắp xếp tăng dần theo MSSV.</value>
+  </data>
+  <data name="text_about_us" xml:space="preserve">
+    <value>Sinh viên đang học môn Lập trình Windows - Thầy Trần Duy Quang, khoa Công nghệ thông tin, Trường Đại học Khoa học tự nhiên, ĐHQG TP.Hồ Chí Minh.</value>
+  </data>
   <data name="text_all" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="text_contact" xml:space="preserve">
+    <value>Mọi thắc mắc về ứng dụng xin vui lòng liên hệ wesplit.hcmus@gmail.com.
+The MIT License (MIT).
+Copy right © 2020 Quoc Thuan Truong, Le Nhat Tuan, Hoang Thi Thuy Trang.</value>
   </data>
   <data name="text_cur_journey" xml:space="preserve">
     <value>chuyến đi hiện tại</value>
@@ -149,6 +178,26 @@
   </data>
   <data name="text_filter" xml:space="preserve">
     <value>Filter</value>
+  </data>
+  <data name="text_github" xml:space="preserve">
+    <value>https://github.com/QuocThuanTruong/WeSplit</value>
+  </data>
+  <data name="text_help_about" xml:space="preserve">
+    <value>Chứa thông tin về ứng dụng dụng và các thành viên phát triển.</value>
+  </data>
+  <data name="text_help_add_journey" xml:space="preserve">
+    <value>Bạn có thẻ thêm chuyến của mình vào danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên chuyến đi, điểm xuất phát, điểm đến, thông tin lộ trình ,danh sách thành viên và các chi phí cho chuyến đi.</value>
+  </data>
+  <data name="text_help_add_site" xml:space="preserve">
+    <value>Nơi bạn có thể xem và thêm các địa danh du lịch bao gồm các thông tin như tên địa danh, địa chỉ, mô tả và ảnh đại diện.</value>
+  </data>
+  <data name="text_help_help" xml:space="preserve">
+    <value>Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng We Split.</value>
+  </data>
+  <data name="text_help_home" xml:space="preserve">
+    <value>Sử dụng thanh tìm kiếm để tìm chuyến đi mà bạn muốn theo tên chuyến đi, tên địa danh hoặc tên thành viên trong nhóm. Ngoài ra bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
+Mẹo tìm kiếm từ khóa: Bạn có thể sử dụng cú pháp “&lt;key_word_1&gt;” &lt;operator&gt; &lt;”key_word_2&gt;” với &lt;operator&gt; có thể là ‘and’, ‘or’ hoặc ‘and not’ để tìm kiếm.
+Sau khi tìm được chuyến đi bạn có thể click vào để xem chi tiết chuyến đi đó. Bên trong mỗi chuyến đi bạn có thể cập nhật lại các thông tin cho chuyến đi đó bằng cách click vào nút UPDATE JOURNEY.</value>
   </data>
   <data name="text_item_sort_az" xml:space="preserve">
     <value>A-Z</value>
@@ -167,6 +216,27 @@
   </data>
   <data name="text_item_sort_za" xml:space="preserve">
     <value>Z-A</value>
+  </data>
+  <data name="text_link_video_help" xml:space="preserve">
+    <value>https://youtu.be/Rzg9LGXxTtI</value>
+  </data>
+  <data name="text_mssv_ht" xml:space="preserve">
+    <value>18120605</value>
+  </data>
+  <data name="text_mssv_nt" xml:space="preserve">
+    <value>18120632</value>
+  </data>
+  <data name="text_mssv_qt" xml:space="preserve">
+    <value>18120583</value>
+  </data>
+  <data name="text_name_ht" xml:space="preserve">
+    <value>Hoàng Thị Thùy Trang</value>
+  </data>
+  <data name="text_name_nt" xml:space="preserve">
+    <value>Lê Nhật Tuấn</value>
+  </data>
+  <data name="text_name_qt" xml:space="preserve">
+    <value>Quốc Thuận Trương</value>
   </data>
   <data name="text_planed_journey" xml:space="preserve">
     <value>chuyến đi sắp tới</value>
@@ -194,6 +264,27 @@
   </data>
   <data name="tip_restore_window_button" xml:space="preserve">
     <value>Restore down</value>
+  </data>
+  <data name="title_about_app" xml:space="preserve">
+    <value>VỀ ỨNG DỤNG FOOD RECIPES</value>
+  </data>
+  <data name="title_about_us" xml:space="preserve">
+    <value>VỀ CHÚNG TÔI</value>
+  </data>
+  <data name="title_contact" xml:space="preserve">
+    <value>LIÊN HỆ</value>
+  </data>
+  <data name="title_how_to_use" xml:space="preserve">
+    <value>HƯỚNG DẪN SỬ DỤNG WE SPLIT</value>
+  </data>
+  <data name="title_link_how_to_use" xml:space="preserve">
+    <value>LINK HƯỚNG DẪN CHI TIẾT</value>
+  </data>
+  <data name="title_link_video" xml:space="preserve">
+    <value>LINK VIDEO</value>
+  </data>
+  <data name="title_open_source" xml:space="preserve">
+    <value>MÃ NGUỒN MỞ</value>
   </data>
   <data name="title_sort_box" xml:space="preserve">
     <value>Sort by:</value>
