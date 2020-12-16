@@ -149,6 +149,10 @@
                     <Grid Margin="22, 0, 0, 0"
                     Grid.Column="2">
 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
                         <StackPanel>
                             <TextBlock Text="Điểm đến"
@@ -161,9 +165,9 @@
                              Grid.Column="1"
                              Grid.Row="1"/>-->
 
-                            <Grid Name="endProvincePickerContainer"
+                            <Grid Name="endSitePickerContainer"
                           VerticalAlignment="Top"
-                          Margin="2, 8, 0, 0"
+                          Margin="2, 8, 2, 0"
                       Grid.Column="1"
                       Grid.Row="1">
 
@@ -184,7 +188,7 @@
                               materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                               Margin="4, 2, 0, 2"
                               OverridesDefaultStyle="True"
-                              Width="316">
+                              Width="164">
 
                                     <!-- Demo :v còn binding thì item source-->
                                     <ComboBoxItem>
@@ -209,8 +213,6 @@
                             <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
                             BorderBrush="Black"
-                                        HorizontalAlignment="Left"
-                                        Width="178"
                             BorderThickness="1"
                             CornerRadius="4"/>
 
@@ -230,6 +232,51 @@
                             </Grid>
                         </StackPanel>
 
+
+                        <Grid Name="endProvincePickerContainer"
+                          VerticalAlignment="Top"
+                          Margin="12, 34, 0, 0"
+                      Grid.Column="1"
+                      Grid.Row="1">
+
+                            <Border Height="34"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="4"/>
+
+                            <ComboBox Name="endProvinceComboBox"
+                              HorizontalAlignment="Left"
+                              Style="{StaticResource AddRecipeComboBox}"
+                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                              Height="30"
+                              SelectedIndex="0"
+                              HorizontalContentAlignment="Center"
+                              BorderBrush="{DynamicResource MyBlack}"
+                              BorderThickness="0"
+                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                              Margin="4, 2, 0, 2"
+                              OverridesDefaultStyle="True"
+                              Width="126">
+
+                                <!-- Demo :v còn binding thì item source-->
+                                <ComboBoxItem>
+                                    <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                </ComboBoxItem>
+
+                                <ComboBoxItem>
+                                    <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                </ComboBoxItem>
+
+                                <ComboBoxItem>
+                                    <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                </ComboBoxItem>
+
+
+                            </ComboBox>
+                        </Grid>
 
                     </Grid>
                 </Grid>
@@ -279,7 +326,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Grid Name="startProvinceRoutePickerContainer"
                                   HorizontalAlignment="Left"
-                                  Width="160"
+                                  Width="180"
                           VerticalAlignment="Top"
                           Margin="2, 8, 0, 0"
                       Grid.Column="1"
@@ -302,7 +349,7 @@
                               materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                               Margin="12, 2, 0, 2"
                               OverridesDefaultStyle="True"
-                              Width="138">
+                              Width="158">
 
                                         <!-- Demo :v còn binding thì item source-->
                                         <ComboBoxItem>
@@ -327,7 +374,7 @@
 
                                 <Button Name="addRouteButton"
                                 Click="addRouteButton_Click"
-                                    Margin="38,8,0,0"
+                                    Margin="19,8,0,0"
                                     VerticalAlignment="Center"
                         Width="34"
                         Style="{StaticResource AddJourneyButton}"
