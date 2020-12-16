@@ -27,6 +27,7 @@ namespace WeSplit.Pages
 
 		private List<Site> _sites;
 		private List<Province> _provinces;
+		private string _srcAvatarSite = "";
 		public AddSitePage()
 		{
 			InitializeComponent();
@@ -50,6 +51,8 @@ namespace WeSplit.Pages
 
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 				{
+					_srcAvatarSite = openFileDialog.FileName;
+
 					BitmapImage bitmap = new BitmapImage();
 
 					bitmap.BeginInit();
@@ -84,7 +87,7 @@ namespace WeSplit.Pages
 				return;
             }
 
-			if (avatarImage.Source.ToString() == "")
+			if (_srcAvatarSite == "")
 			{
 				return;
 			}
@@ -95,13 +98,27 @@ namespace WeSplit.Pages
 				return;
             }
 
-			var srcAvatar = avatarImage.Source.ToString();
-			site.Site_Link_Avt = _appUtilities.getTypeOfImage(srcAvatar);
+			site.Site_Link_Avt = _appUtilities.getTypeOfImage(_srcAvatarSite);
 
+			//Add
 			_databaseUtilities.AddNewSite(site.ID_Site, site.ID_Province, site.Site_Name, site.Site_Description, site.Site_Link_Avt, site.Site_Address);
 
 			_appUtilities.createSitesDirectory();
-			_appUtilities.copyImageToIDirectory(site.ID_Site, srcAvatar, "", true);
+			_appUtilities.copyImageToIDirectory(site.ID_Site, _srcAvatarSite, "", true);
+
+			_sites.Add(site);
+
+			//Reset Input
+			siteNameTextBox.Text = "";
+			siteAddressTextBox.Text = "";
+			siteDescriptionTextBox.Text = "";
+
+			sitesListView.ItemsSource = null;
+			sitesListView.ItemsSource = _sites;
+
+			avatarImage.Visibility = Visibility.Collapsed;
+			addSiteAvatarButton.Visibility = Visibility.Visible;
+			startProvinceComboBox.SelectedIndex = 0;
 		}
 
 		private void cancelAddSiteButton_Click(object sender, RoutedEventArgs e)

@@ -22,26 +22,8 @@ namespace WeSplit
             this.JourneyAttendances = new HashSet<JourneyAttendance>();
             this.JourneyImages = new HashSet<JourneyImage>();
             this.Routes = new HashSet<Route>();
-            this.Members_For_Binding = new List<GetMemberByIDJourney_Result>();
-            this.Route_For_Binding = new List<Route>();
-            this.Images_For_Binding = new List<JourneyImage>();
-            this.Devide_Money_For_Binding = new List<DevideMoney_Result>();
         }
-
-        public Journey(int ID_Journey)
-        {
-            this.ID_Journey = ID_Journey;
-            this.Advances = new HashSet<Advance>();
-            this.Expenses = new HashSet<Expens>();
-            this.JourneyAttendances = new HashSet<JourneyAttendance>();
-            this.JourneyImages = new HashSet<JourneyImage>();
-            this.Routes = new HashSet<Route>();
-            this.Members_For_Binding = new List<GetMemberByIDJourney_Result>();
-            this.Route_For_Binding = new List<Route>();
-            this.Images_For_Binding = new List<JourneyImage>();
-            this.Devide_Money_For_Binding = new List<DevideMoney_Result>();
-        }
-
+    
         public int ID_Journey { get; set; }
         public string Journey_Name { get; set; }
         public Nullable<int> ID_Site { get; set; }
@@ -76,7 +58,7 @@ namespace WeSplit
         public string Start_Date_For_Binding { get; set; }
         public string End_Date_For_Binding { get; set; }
         public List<Route> Route_For_Binding { get; set; }
-        public List<GetMemberByIDJourney_Result> Members_For_Binding { get; set; }
+        public List<JourneyAttendance> Members_For_Binding { get; set; }
         public List<JourneyImage> Images_For_Binding { get; set; }
         public List<DevideMoney_Result> Devide_Money_For_Binding { get; set; }
     }

@@ -35,6 +35,5 @@ namespace WeSplit
         public double Distance { get; set; }
         public int ID_Journey { get; set; }
         public string Province_Name { get; set; }
-
     }
 }

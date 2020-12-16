@@ -392,7 +392,7 @@
                                   Grid.Row="2"
                                   Margin="0, 8, 0, 0"
                                   ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                  ItemsSource="{Binding Member_For_Binding}">
+                                  ItemsSource="{Binding Members_For_Binding}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -681,53 +681,52 @@
                                   ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
                                   ItemsSource="{Binding Devide_Money_For_Binding}">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid 
                                  Margin="2, 0, 10, 0">
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.3*"/>
-                                            <ColumnDefinition Width="1.68*"/>
-                                            <ColumnDefinition Width="1.4*"/>
-                                            <ColumnDefinition Width="1.8*"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.3*"/>
+                                                <ColumnDefinition Width="1.68*"/>
+                                                <ColumnDefinition Width="1.4*"/>
+                                                <ColumnDefinition Width="1.8*"/>
 
-                                        </Grid.ColumnDefinitions>
+                                            </Grid.ColumnDefinitions>
 
-                                        <!-- Binding data -->
-                                        <TextBlock
+                                            <!-- Binding data -->
+                                            <TextBlock
                                             Grid.Column="0"
                                             Text="{Binding ID_Member}"
                                             Margin="7, 0, 0, 0"
                                             Style="{StaticResource RegularText}"/>
 
-                                        <!-- Binding data -->
-                                        <TextBlock
+                                            <!-- Binding data -->
+                                            <TextBlock
                                             Grid.Column="1"
                                             Margin="12, 0, 0, 0"
                                             Text="{Binding Member_Name}"
                                             Style="{StaticResource RegularText}"/>
 
-                                        <!-- Binding data -->
-                                        <TextBlock 
+                                            <!-- Binding data -->
+                                            <TextBlock 
                                             Margin="6, 0, 0, 0"
                                             Grid.Column="2"
                                             HorizontalAlignment="Left"
                                             Text="{Binding Remain}"
                                             Style="{StaticResource RegularText}"/>
 
-                                        <TextBlock 
+                                            <TextBlock 
                                             Margin="0, 0, 0, 0"
                                             Grid.Column="3"
                                             HorizontalAlignment="Left"
                                             Text="{Binding Advance_Money_Lender}"
                                             Style="{StaticResource RegularText}"/>
 
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <UniformGrid></UniformGrid>
-                        </ListView>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                     </Grid>
                 </StackPanel>
             </materialDesign:Card>
@@ -755,7 +754,7 @@
                     HorizontalAlignment="Right">
 
                 <Button Name="updateJourneyButton"
-                       Click="updateJourneyButton_Click"
+                        Click="updateJourneyButton_Click"
                         Margin="0, 0, 20, 0"
                         Width="148"
                         Style="{StaticResource AddJourneyButton}"

@@ -69,75 +69,65 @@
                                    Style="{StaticResource RegularHeaderText}"/>
 
                             <TextBox Name="journeyStartPlaceTextBox"
-                             Margin="2, 8, 2 ,0"
-                             Style="{StaticResource AddRecipePageTextBox}"
-                             materialDesign:HintAssist.Hint="Địa điểm"
-                             Grid.Column="1"
-                             Grid.Row="1"/>
+                                Margin="2, 8, 2 ,0"
+                                Style="{StaticResource AddRecipePageTextBox}"
+                                materialDesign:HintAssist.Hint="Địa điểm"
+                                Grid.Column="1"
+                                Grid.Row="1"/>
 
                             <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="4"/>
 
                                 <DatePicker Name="startDatePicker"
-                                BorderThickness="0"
-                                materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
-                                HorizontalAlignment="Left"
-                                Height="32"
-                                Width="158"
-                                Margin="12,0 ,0, 0"
-                                materialDesign:HintAssist.IsFloating="False"
-                                materialDesign:HintAssist.Hint="Ngày bắt đầu"
-                                FontFamily="{StaticResource GilroyRegular}"
-                                FontSize="14"
-                                Style="{StaticResource MaterialDesignDatePicker}"/>
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
+                                    HorizontalAlignment="Left"
+                                    Height="32"
+                                    Width="158"
+                                    Margin="12,0 ,0, 0"
+                                    materialDesign:HintAssist.IsFloating="False"
+                                    materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    FontFamily="{StaticResource GilroyRegular}"
+                                    FontSize="14"
+                                    Style="{StaticResource MaterialDesignDatePicker}"/>
 
                             </Grid>
                         </StackPanel>
 
 
                         <Grid Name="startProvincePickerContainer"
-                          VerticalAlignment="Top"
-                          Margin="12, 34, 0, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
+                            VerticalAlignment="Top"
+                            Margin="12, 34, 0, 0"
+                            Grid.Column="1"
+                            Grid.Row="1">
 
                             <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="4"/>
 
                             <ComboBox Name="startProvinceComboBox"
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Center"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="4, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="126">
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource AddRecipeComboBox}"
+                                ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                Height="30"
+                                SelectedIndex="0"
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="{DynamicResource MyBlack}"
+                                BorderThickness="0"
+                                materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                Margin="4, 2, 0, 2"
+                                OverridesDefaultStyle="True"
+                                Width="126">
 
-                                <!-- Demo :v còn binding thì item source-->
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Province_Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
 
 
                             </ComboBox>
@@ -147,7 +137,7 @@
 
 
                     <Grid Margin="22, 0, 0, 0"
-                    Grid.Column="2">
+                        Grid.Column="2">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.2*"/>
@@ -159,77 +149,65 @@
                                    Style="{StaticResource RegularHeaderText}"/>
 
                             <TextBox Name="journeyEndPlaceTextBox"
-                             Margin="2, 8, 2 ,0"
-                             Style="{StaticResource AddRecipePageTextBox}"
-                             materialDesign:HintAssist.Hint="Địa điểm"
-                             Grid.Column="1"
-                             Grid.Row="1"/>
+                                 Margin="2, 8, 2 ,0"
+                                 Style="{StaticResource AddRecipePageTextBox}"
+                                 materialDesign:HintAssist.Hint="Địa điểm"
+                                 Grid.Column="1"
+                                 Grid.Row="1"/>
 
                             <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="4"/>
 
                                 <DatePicker Name="endDatePicker"
-                                BorderThickness="0"
-                                materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
-                                HorizontalAlignment="Left"
-                                Height="32"
-                                Width="158"
-                                Margin="12,0 ,0, 0"
-                                materialDesign:HintAssist.IsFloating="False"
-                                materialDesign:HintAssist.Hint="Ngày kết thúc"
-                                FontFamily="{StaticResource GilroyRegular}"
-                                FontSize="14"
-                                Style="{StaticResource MaterialDesignDatePicker}"/>
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
+                                    HorizontalAlignment="Left"
+                                    Height="32"
+                                    Width="158"
+                                    Margin="12,0 ,0, 0"
+                                    materialDesign:HintAssist.IsFloating="False"
+                                    materialDesign:HintAssist.Hint="Ngày kết thúc"
+                                    FontFamily="{StaticResource GilroyRegular}"
+                                    FontSize="14"
+                                    Style="{StaticResource MaterialDesignDatePicker}"/>
 
                             </Grid>
                         </StackPanel>
 
 
                         <Grid Name="endProvincePickerContainer"
-                          VerticalAlignment="Top"
-                          Margin="12, 34, 0, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
+                            VerticalAlignment="Top"
+                            Margin="12, 34, 0, 0"
+                            Grid.Column="1"
+                            Grid.Row="1">
 
                             <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="4"/>
 
                             <ComboBox Name="endProvinceComboBox"
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Center"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="4, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="126">
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource AddRecipeComboBox}"
+                                ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                Height="30"
+                                SelectedIndex="0"
+                                HorizontalContentAlignment="Center"
+                                BorderBrush="{DynamicResource MyBlack}"
+                                BorderThickness="0"
+                                materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                Margin="4, 2, 0, 2"
+                                OverridesDefaultStyle="True"
+                                Width="126">
 
-                                <!-- Demo :v còn binding thì item source-->
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Province_Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
 

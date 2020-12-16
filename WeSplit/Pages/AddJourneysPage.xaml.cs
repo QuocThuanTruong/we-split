@@ -24,11 +24,19 @@ namespace WeSplit.Pages
 	{
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private Journey _journey = new Journey();
+		private List<Province> _provinces;
 		private int _ordinal_number = 0;
+		private int _maxIDMember = 0;
 		public AddJourneysPage()
 		{
 			InitializeComponent();
 			visualRouteDetailDialog.SetParent(mainContainer);
+
+			_maxIDMember = _databaseUtilities.GetMaxIDMember() + 1;
+			_provinces = _databaseUtilities.GetListProvince();
+
+			startProvinceComboBox.ItemsSource = _provinces;
+			endProvinceComboBox.ItemsSource = _provinces;
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -83,10 +91,10 @@ namespace WeSplit.Pages
 
 		private void addMemberButton_Click(object sender, RoutedEventArgs e)
 		{
-			GetMemberByIDJourney_Result member = new GetMemberByIDJourney_Result();
-			JourneyAttendance journeyAttendance = new JourneyAttendance();
+			JourneyAttendance member = new JourneyAttendance();
+			member.ID_Member = _maxIDMember++;
 
-			journeyAttendance.ID_Journey = _journey.ID_Journey;
+			member.ID_Journey = _journey.ID_Journey;
 
 			member.Member_Name = memberNameTextBox.Text;
 			if (member.Member_Name.Length <= 0)
@@ -102,13 +110,13 @@ namespace WeSplit.Pages
 				return;
 			}
 
-			journeyAttendance.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
-			member.Receivables_Money = journeyAttendance.Receivables_Money;
+			member.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			member.Receivables_Money = member.Receivables_Money;
 
 
 			string[] roles = { "Trưởng nhóm", "Thành viên" };
-			journeyAttendance.Role = roles[memberRoleComboBox.SelectedIndex];
-			member.Role = journeyAttendance.Role;
+			member.Role = roles[memberRoleComboBox.SelectedIndex];
+			member.Role = member.Role;
 
 			//Reset
 			memberNameTextBox.Text = "";
@@ -116,10 +124,9 @@ namespace WeSplit.Pages
 			memberReceiptMoneyTextBox.Text = "";
 			memberRoleComboBox.SelectedIndex = 0;
 
-			_journey.Members_For_Binding.Add(member);
-			_journey.JourneyAttendances.Add(journeyAttendance);
+			_journey.JourneyAttendances.Add(member);
 
-			membersListView.ItemsSource = _journey.Members_For_Binding.ToList();
+			membersListView.ItemsSource = _journey.JourneyAttendances.ToList();
 		}
 
 		private void addExpensesButton_Click(object sender, RoutedEventArgs e)
@@ -153,7 +160,27 @@ namespace WeSplit.Pages
 
 		private void saveJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
+			//Get Data
+			_journey.Journey_Name = journeyNameTextBox.Text;
+			if (_journey.Journey_Name.Length == 0)
+            {
+				return;
+            }
 
+			_journey.Start_Place = journeyStartPlaceTextBox.Text;
+			if (_journey.Start_Place.Length == 0)
+            {
+				return;
+            }
+
+			_journey.Start_Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
+			_journey.Status = 1;
+
+			_journey.StartDate = startDatePicker.SelectedDate;
+			_journey.EndDate = endDatePicker.SelectedDate;
+
+			//Insert 
+			 
 		}
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)

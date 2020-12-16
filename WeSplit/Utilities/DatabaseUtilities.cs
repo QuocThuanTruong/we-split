@@ -49,6 +49,16 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public int GetMaxIDMember()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Member) from JourneyAttendance")
+                .Single();
+
+            return result;
+        }
+
         public List<Site> GetSiteForBindingInHomePageView(int status)
         {
             List<Site> result = new List<Site>();
@@ -172,7 +182,11 @@ namespace WeSplit.Utilities
                 result.Route_For_Binding = routes;
 
                 //Member
-                List<GetMemberByIDJourney_Result> members = _databaseWeSplit.GetMemberByIDJourney(result.ID_Journey).ToList();
+                List<JourneyAttendance> members = _databaseWeSplit
+                    .Database
+                    .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
                 result.Members_For_Binding = members;
 
                 //Images
@@ -184,11 +198,9 @@ namespace WeSplit.Utilities
                 result.Images_For_Binding = images;
 
                 //Devide Money
-                //List<DevideMoney_Result> devideMoney = _databaseWeSplit
-                //    .Database
-                //    .SqlQuery<DevideMoney_Result>($"SELECT M.ID_Member, M.Member_Name, [dbo].[CalcRemainByIDMemberAndIDJourney](M.ID_Member, {result.ID_Journey}) AS Remain, (CAST(A.Advance_Money as nvarchar) + ' VNĐ cho T.Viên (' + CAST(A.ID_Lender as nvarchar) + ')') as Advance_Money_Lender FROM ([dbo].[Member] M lEFT JOIN [dbo].[Advance] A ON A.ID_Borrower = M.ID_Member AND A.ID_Journey = {result.ID_Journey}) LEFT JOIN [dbo].[JourneyAttendance] JA ON A.ID_Journey = JA.ID_Journey AND M.ID_Member = JA.ID_Member")
-                //    .ToList();
-                //result.Devide_Money_For_Binding = devideMoney;
+                List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
+
+                result.Devide_Money_For_Binding = devideMoney;
             }
 
             return result;
@@ -226,7 +238,7 @@ namespace WeSplit.Utilities
 
         public int AddNewSite(int idSite, int idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)
         {
-            return _databaseWeSplit.AddSite(idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
+            return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
         }
     }
 }

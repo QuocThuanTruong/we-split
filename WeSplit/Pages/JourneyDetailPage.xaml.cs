@@ -35,6 +35,7 @@ namespace WeSplit.Pages
 		public JourneyDetailPage(int ID_Journey)
 		{
 			InitializeComponent();
+			visualRouteDetailDialog.SetParent(mainContainer);
 
 			_ID_Journey = ID_Journey;
 		}
@@ -73,7 +74,7 @@ namespace WeSplit.Pages
 
 		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-			UpdateJourney?.Invoke(0);
+			UpdateJourney?.Invoke(_ID_Journey);
 		}
 
 		private void finishJourneyButton_Click(object sender, RoutedEventArgs e)
