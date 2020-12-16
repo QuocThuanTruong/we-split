@@ -59,12 +59,50 @@
     </Style>
 
     <Style TargetType="TextBlock"
+                   x:Key="MemberRegularText">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroySemiBold}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+
+    
+
+    <Style TargetType="TextBlock"
+               x:Key="MemberLargeText">
+        <Setter Property="FontSize" Value="19"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyBold}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource MyBlack}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
                x:Key="MediumHeaderText">
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="FontFamily" Value="{DynamicResource Bebas}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="Foreground" Value="{DynamicResource MyDarkGreen}"/>
+    </Style>
+
+    <Style TargetType="TextBlock"
+                   x:Key="DetailTextBlock">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="{DynamicResource GilroyMedium}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Foreground" Value="{DynamicResource MyBlack}"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="LinkTextBlock" BasedOn="{StaticResource DetailTextBlock}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock"
