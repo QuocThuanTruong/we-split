@@ -148,14 +148,65 @@
                             <TextBlock Text="Điểm đến"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                            <TextBox Name="journeyEndPlaceTextBox"
+                            <!--<TextBox Name="journeyEndPlaceTextBox"
                                  Margin="2, 8, 2 ,0"
                                  Style="{StaticResource AddRecipePageTextBox}"
                                  materialDesign:HintAssist.Hint="Địa điểm"
                                  Grid.Column="1"
-                                 Grid.Row="1"/>
+                                 Grid.Row="1"/>-->
+                                <!--<TextBox Name="journeyEndPlaceTextBox"
+                             Margin="2, 8, 2 ,0"
+                             Style="{StaticResource AddRecipePageTextBox}"
+                             materialDesign:HintAssist.Hint="Địa điểm"
+                             Grid.Column="1"
+                             Grid.Row="1"/>-->
 
-                            <Grid  Margin="2, 8, 2, 0  ">
+                            <Grid Name="endSitePickerContainer"
+                                VerticalAlignment="Top"
+                                Margin="2, 8, 2, 0"
+                                Grid.Column="1"
+                                Grid.Row="1">
+
+                                <Border Height="34"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="4"/>
+
+                                <ComboBox Name="endSiteComboBox"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource AddRecipeComboBox}"
+                                    ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                    Height="30"
+                                    SelectedIndex="0"
+                                    HorizontalContentAlignment="Center"
+                                    BorderBrush="{DynamicResource MyBlack}"
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                    Margin="4, 2, 0, 2"
+                                    OverridesDefaultStyle="True"
+                                    Width="164">
+
+                                    <!-- Demo :v còn binding thì item source-->
+                                        <ComboBoxItem>
+                                            <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                        </ComboBoxItem>
+
+                                        <ComboBoxItem>
+                                            <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                        </ComboBoxItem>
+
+                                        <ComboBoxItem>
+                                            <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                        </ComboBoxItem>
+
+
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
                                     BorderBrush="Black"
                                     BorderThickness="1"
@@ -258,12 +309,12 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Grid Name="startProvinceRoutePickerContainer"
-                                      HorizontalAlignment="Left"
-                                      Width="160"
-                                      VerticalAlignment="Top"
-                                      Margin="2, 8, 0, 0"
-                                      Grid.Column="1"
-                                      Grid.Row="1">     
+                                    HorizontalAlignment="Left"
+                                    Width="180"
+                                    VerticalAlignment="Top"
+                                    Margin="2, 8, 0, 0"
+                                    Grid.Column="1"
+                                    Grid.Row="1">    
 
                                     <Border Height="34"
                                             BorderBrush="Black"
@@ -271,49 +322,32 @@
                                             CornerRadius="4"/>
 
                                     <ComboBox Name="startProvinceRouteComboBox"
-                                              HorizontalAlignment="Left"
-                                              Style="{StaticResource AddRecipeComboBox}"
-                                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                                              Height="30"
-                                              SelectedIndex="0"
-                                              HorizontalContentAlignment="Left"
-                                              BorderBrush="{DynamicResource MyBlack}"
-                                              BorderThickness="0"
-                                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                                              Margin="12, 2, 0, 2"
-                                              OverridesDefaultStyle="True"
-                                              Width="138">
-
-                                        <!-- Demo :v còn binding thì item source-->
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource AddRecipeComboBox}"
+                                        ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                        Height="30"
+                                        SelectedIndex="0"
+                                        HorizontalContentAlignment="Left"
+                                        BorderBrush="{DynamicResource MyBlack}"
+                                        BorderThickness="0"
+                                        materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                        Margin="12, 2, 0, 2"
+                                        OverridesDefaultStyle="True">
 
                                     </ComboBox>
 
                                 </Grid>
 
                                 <Button Name="addRouteButton"
-                                        Click="addRouteButton_Click"
-                                        Margin="38,8,0,0"
-                                        VerticalAlignment="Center"
-                                        Width="34"
-                                        Style="{StaticResource AddJourneyButton}"
-                                        materialDesign:ButtonAssist.CornerRadius="17"
-                                        Height="34"                        
-                                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    Click="addRouteButton_Click"
+                                    Margin="19,8,0,0"
+                                    VerticalAlignment="Center"
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                
 
                                     <Image Name="iconAdd"
                                            Width="16"

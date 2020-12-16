@@ -185,7 +185,6 @@ namespace WeSplit.Pages
 			startRoute.Province = _journey.Start_Province;
 
 			Route endRoute = new Route();
-			endRoute.Place = journeyEndPlaceTextBox.Text;
 			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
 
 
