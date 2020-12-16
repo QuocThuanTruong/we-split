@@ -149,25 +149,68 @@
                     <Grid Margin="22, 0, 0, 0"
                     Grid.Column="2">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.2*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
 
                         <StackPanel>
                             <TextBlock Text="Điểm đến"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                            <TextBox Name="journeyEndPlaceTextBox"
+                            <!--<TextBox Name="journeyEndPlaceTextBox"
                              Margin="2, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Địa điểm"
                              Grid.Column="1"
-                             Grid.Row="1"/>
+                             Grid.Row="1"/>-->
+
+                            <Grid Name="endProvincePickerContainer"
+                          VerticalAlignment="Top"
+                          Margin="2, 8, 0, 0"
+                      Grid.Column="1"
+                      Grid.Row="1">
+
+                                <Border Height="34"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            CornerRadius="4"/>
+
+                                <ComboBox Name="endSiteComboBox"
+                              HorizontalAlignment="Left"
+                              Style="{StaticResource AddRecipeComboBox}"
+                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                              Height="30"
+                              SelectedIndex="0"
+                              HorizontalContentAlignment="Center"
+                              BorderBrush="{DynamicResource MyBlack}"
+                              BorderThickness="0"
+                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                              Margin="4, 2, 0, 2"
+                              OverridesDefaultStyle="True"
+                              Width="316">
+
+                                    <!-- Demo :v còn binding thì item source-->
+                                    <ComboBoxItem>
+                                        <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                    </ComboBoxItem>
+
+                                    <ComboBoxItem>
+                                        <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                    </ComboBoxItem>
+
+                                    <ComboBoxItem>
+                                        <TextBlock
+                                      Text="TP.Hồ Chí Minh"/>
+                                    </ComboBoxItem>
+
+
+                                </ComboBox>
+                            </Grid>
 
                             <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
                             BorderBrush="Black"
+                                        HorizontalAlignment="Left"
+                                        Width="178"
                             BorderThickness="1"
                             CornerRadius="4"/>
 
@@ -187,51 +230,6 @@
                             </Grid>
                         </StackPanel>
 
-
-                        <Grid Name="endProvincePickerContainer"
-                          VerticalAlignment="Top"
-                          Margin="12, 34, 0, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
-
-                            <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
-
-                            <ComboBox Name="endProvinceComboBox"
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Center"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="4, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="126">
-
-                                <!-- Demo :v còn binding thì item source-->
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-                                <ComboBoxItem>
-                                    <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                </ComboBoxItem>
-
-
-                            </ComboBox>
-                        </Grid>
 
                     </Grid>
                 </Grid>
