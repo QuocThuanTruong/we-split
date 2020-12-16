@@ -153,6 +153,37 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public List<Journey> GetListJourneyByStatus(int status)
+        {
+            List<Journey> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Journey>($"Select * from Journey where Status = {status}")
+                .ToList();
+
+            if (result.Count > 0)
+            {
+                for (int i = 0; i < result.Count; ++i)
+                {
+                    Site site = _databaseWeSplit
+                        .Database
+                        .SqlQuery<Site>($"Select * from Site where ID_Site = {result[i].ID_Site}")
+                        .FirstOrDefault();
+
+                    result[i].Site_Name = site.Site_Name;
+                    result[i].Site_Avatar = site.Site_Link_Avt;
+
+                    result[i].Total_Day = (int)(result[i].EndDate - result[i].StartDate).Value.TotalDays;
+
+                    result[i].Total_Day_For_Binding = $"{result[i].Total_Day} ngày";
+                    result[i].Total_Distance_For_Binding = $"{result[i].Distance} km lộ trình";
+                    result[i].Total_Member_For_Binding = $"{result[i].Total_Member} thành viên";
+
+                }
+            }
+
+            return result;
+        }
+
         public Journey GetJourneyByID(int ID_Journey)
         {
             Journey result = _databaseWeSplit

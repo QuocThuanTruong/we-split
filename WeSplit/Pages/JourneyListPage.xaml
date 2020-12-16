@@ -485,7 +485,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
-                                           Text="{Binding Site_Name}"
+                                           Text="{Binding Journey_Name}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>
 

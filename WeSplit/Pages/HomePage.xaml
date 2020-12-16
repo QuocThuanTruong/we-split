@@ -548,7 +548,8 @@
                             HorizontalAlignment="Center"
                             Style="{StaticResource ViewAllButton}"
                             Width="58"
-                            Height="172">
+                            Height="172"
+                            Click="viewAllPlanedButton_Click">
 
                         <TextBlock Text="{x:Static loc:Resources.text_all}"
                                    Style="{StaticResource ButtonMediumText}"/>
@@ -1088,7 +1089,8 @@
                             HorizontalAlignment="Center"
                             Style="{StaticResource ViewAllButton}"
                             Width="58"
-                            Height="133">
+                            Height="133"
+                            Click="viewAllDoneButton_Click">
 
                         <TextBlock Text="{x:Static loc:Resources.text_all}"
                                    Style="{StaticResource ButtonMediumText}"/>

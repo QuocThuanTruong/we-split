@@ -32,6 +32,10 @@ namespace WeSplit.Pages
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 
+		const int PLANED = 1;
+		const int CURRENT = 0;
+		const int DONE = 1;
+
 		public HomePage()
 		{
 			InitializeComponent();
@@ -209,7 +213,7 @@ namespace WeSplit.Pages
 
 		private void loadPlanedJourneyInHomePageViewType1()
         {
-			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(PLANED);
 
 			if (sites.Count >= 1)
             {
@@ -265,7 +269,7 @@ namespace WeSplit.Pages
 
 		public void loadDoneJourneyInHomePageViewType1()
         {
-			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(DONE);
 
 			if (sites.Count >= 1)
 			{
@@ -364,5 +368,15 @@ namespace WeSplit.Pages
 
 			ShowJourneyDetailPage?.Invoke(ID_Journey);
 		}
+
+        private void viewAllPlanedButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void viewAllDoneButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
