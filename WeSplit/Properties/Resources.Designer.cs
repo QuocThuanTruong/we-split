@@ -61,11 +61,29 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ABOUT US.
+        /// </summary>
+        public static string about_page_upper {
+            get {
+                return ResourceManager.GetString("about_page_upper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About us.
         /// </summary>
         public static string about_us_page_name {
             get {
                 return ResourceManager.GetString("about_us_page_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD JOURNEY.
+        /// </summary>
+        public static string add_journey_page_upper {
+            get {
+                return ResourceManager.GetString("add_journey_page_upper", resourceCulture);
             }
         }
         
@@ -79,11 +97,29 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD SITE.
+        /// </summary>
+        public static string add_site_page_upper {
+            get {
+                return ResourceManager.GetString("add_site_page_upper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string help_page_name {
             get {
                 return ResourceManager.GetString("help_page_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HELP.
+        /// </summary>
+        public static string help_page_upper {
+            get {
+                return ResourceManager.GetString("help_page_upper", resourceCulture);
             }
         }
         
@@ -106,7 +142,16 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add journeys.
+        ///   Looks up a localized string similar to HOME.
+        /// </summary>
+        public static string home_page_upper {
+            get {
+                return ResourceManager.GetString("home_page_upper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add journey.
         /// </summary>
         public static string manage_journey_page {
             get {
@@ -216,25 +261,25 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bạn có thẻ thêm món ăn của mình và danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên món ăn, mô tả, ảnh đại diện, link video của món ăn, thời gian, nhóm của món ăn, mức độ và các bước thực hiện..
+        ///   Looks up a localized string similar to Bạn có thẻ thêm chuyến của mình vào danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên chuyến đi, điểm xuất phát, điểm đến, thông tin lộ trình ,danh sách thành viên và các chi phí cho chuyến đi..
         /// </summary>
-        public static string text_help_add_recipe {
+        public static string text_help_add_journey {
             get {
-                return ResourceManager.GetString("text_help_add_recipe", resourceCulture);
+                return ResourceManager.GetString("text_help_add_journey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nơi chứa những món ăn được bạn yêu thích, bạn có thế tìm kiếm với các chế độ khác nhau như HOME..
+        ///   Looks up a localized string similar to Nơi bạn có thể xem và thêm các địa danh du lịch bao gồm các thông tin như tên địa danh, địa chỉ, mô tả và ảnh đại diện..
         /// </summary>
-        public static string text_help_fav {
+        public static string text_help_add_site {
             get {
-                return ResourceManager.GetString("text_help_fav", resourceCulture);
+                return ResourceManager.GetString("text_help_add_site", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng Food Recipes..
+        ///   Looks up a localized string similar to Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng We Split..
         /// </summary>
         public static string text_help_help {
             get {
@@ -243,22 +288,13 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sử dụng thanh tìm kiếm để tìm món ăn mà bạn muốn, bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
+        ///   Looks up a localized string similar to Sử dụng thanh tìm kiếm để tìm chuyến đi mà bạn muốn theo tên chuyến đi, tên địa danh hoặc tên thành viên trong nhóm. Ngoài ra bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
         ///Mẹo tìm kiếm từ khóa: Bạn có thể sử dụng cú pháp “&lt;key_word_1&gt;” &lt;operator&gt; &lt;”key_word_2&gt;” với &lt;operator&gt; có thể là ‘and’, ‘or’ hoặc ‘and not’ để tìm kiếm.
-        ///Sau khi tìm được món ăn bạn có thể click vào để xem chi tiết món ăn đó. Bên trong mỗi món ăn bạn có thể thêm danh sách nguyên liệu vào shopping list bằng cách click vào nút AD [rest of string was truncated]&quot;;.
+        ///Sau khi tìm được chuyến đi bạn có thể click vào để xem chi tiết chuyến đi đó. Bên trong mỗi chuyến  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string text_help_home {
             get {
                 return ResourceManager.GetString("text_help_home", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Khi bạn thêm nguyên liệu vào shopping list ở trang chi tiết món ăn, danh sách nguyên liệu của bạn sẽ được lưu lại ở trang này và bạn có thể dễ dàng mua sắm với danh sách nguyên liệu cần thiết. Ngoài ra bạn có thể tick vào nút cạnh bên nguyên liệu để đánh dấu rằng bạn đã mua nó..
-        /// </summary>
-        public static string text_help_shopping {
-            get {
-                return ResourceManager.GetString("text_help_shopping", resourceCulture);
             }
         }
         
@@ -484,6 +520,15 @@ namespace WeSplit.Properties {
         public static string title_contact {
             get {
                 return ResourceManager.GetString("title_contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HƯỚNG DẪN SỬ DỤNG WE SPLIT.
+        /// </summary>
+        public static string title_how_to_use {
+            get {
+                return ResourceManager.GetString("title_how_to_use", resourceCulture);
             }
         }
         
