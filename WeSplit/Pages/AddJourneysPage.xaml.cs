@@ -103,7 +103,6 @@ namespace WeSplit.Pages
 		{
 			JourneyAttendance member = new JourneyAttendance();
 			member.ID_Member = _maxIDMember++;
-
 			member.ID_Journey = _journey.ID_Journey;
 
 			member.Member_Name = memberNameTextBox.Text;
@@ -121,12 +120,9 @@ namespace WeSplit.Pages
 			}
 
 			member.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
-			member.Receivables_Money = member.Receivables_Money;
-
 
 			string[] roles = { "Trưởng nhóm", "Thành viên" };
 			member.Role = roles[memberRoleComboBox.SelectedIndex];
-			member.Role = member.Role;
 
 			//Reset
 			memberNameTextBox.Text = "";
@@ -225,7 +221,7 @@ namespace WeSplit.Pages
 
 			foreach (var member in _journey.JourneyAttendances)
             {
-				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Receivables_Money, member.Role);
+				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
             }
 
 			_journey = new Journey();

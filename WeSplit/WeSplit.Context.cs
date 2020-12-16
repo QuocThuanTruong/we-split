@@ -224,7 +224,7 @@ namespace WeSplit
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourney", idJourneyParameter, journeyNameParameter, idSiteParameter, startPlaceParameter, startProvinceParameter, statusParameter, startDateParameter, endDateParameter, distanceParameter);
         }
     
-        public virtual int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, Nullable<decimal> receivable, string role)
+        public virtual int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role)
         {
             var idMemberParameter = idMember.HasValue ?
                 new ObjectParameter("idMember", idMember) :
@@ -234,6 +234,14 @@ namespace WeSplit
                 new ObjectParameter("idJourney", idJourney) :
                 new ObjectParameter("idJourney", typeof(int));
     
+            var memberNameParameter = memberName != null ?
+                new ObjectParameter("memberName", memberName) :
+                new ObjectParameter("memberName", typeof(string));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
             var receivableParameter = receivable.HasValue ?
                 new ObjectParameter("Receivable", receivable) :
                 new ObjectParameter("Receivable", typeof(decimal));
@@ -242,7 +250,7 @@ namespace WeSplit
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyAttendance", idMemberParameter, idJourneyParameter, receivableParameter, roleParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyAttendance", idMemberParameter, idJourneyParameter, memberNameParameter, phoneNumberParameter, receivableParameter, roleParameter);
         }
     
         public virtual int AddJourneyImages(Nullable<int> idJourney, Nullable<int> oridnalNum, string linkImage)

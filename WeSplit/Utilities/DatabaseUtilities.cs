@@ -275,9 +275,9 @@ namespace WeSplit.Utilities
             return _databaseWeSplit.AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus);
         }
 
-        public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, Nullable<decimal> receivable, string role)
+        public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role)
         {
-            return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, receivable, role);
+            return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, memberName, phoneNumber, receivable, role);
         }
     }
 }

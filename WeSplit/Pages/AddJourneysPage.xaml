@@ -173,7 +173,6 @@
                                     CornerRadius="4"/>
 
                                 <ComboBox Name="endSiteComboBox"
-<<<<<<< HEAD
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource AddRecipeComboBox}"
                                     ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
@@ -192,45 +191,11 @@
                                             <TextBlock Text="{Binding Site_Name}"/>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
-                                    
-                                    </ComboBox>
-                                </Grid>
-=======
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Center"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="4, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="164">
-
-                                    <!-- Demo :v còn binding thì item source-->
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
 
                                 </ComboBox>
                             </Grid>
->>>>>>> a0c24153cf21b0a4bfe38656831882a7b3553a73
 
-                                <Grid  Margin="2, 8, 2, 0  ">
+                            <Grid  Margin="2, 8, 2, 0  ">
                                 <Border Height="34"
                                     BorderBrush="Black"
                                     BorderThickness="1"
@@ -334,22 +299,14 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Grid Name="startProvinceRoutePickerContainer"
-<<<<<<< HEAD
+
                                     HorizontalAlignment="Left"
                                     Width="180"
                                     VerticalAlignment="Top"
                                     Margin="2, 8, 0, 0"
                                     Grid.Column="1"
                                     Grid.Row="1">    
-=======
 
-                                  HorizontalAlignment="Left"
-                                  Width="180"
-                          VerticalAlignment="Top"
-                          Margin="2, 8, 0, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
->>>>>>> a0c24153cf21b0a4bfe38656831882a7b3553a73
 
                                     <Border Height="34"
                                             BorderBrush="Black"
@@ -357,7 +314,7 @@
                                             CornerRadius="4"/>
 
                                     <ComboBox Name="startProvinceRouteComboBox"
-<<<<<<< HEAD
+
                                         HorizontalAlignment="Left"
                                         Style="{StaticResource AddRecipeComboBox}"
                                         ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
@@ -369,38 +326,6 @@
                                         materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                                         Margin="12, 2, 0, 2"
                                         OverridesDefaultStyle="True">
-=======
-
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Left"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="12, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="158">
-
-                                        <!-- Demo :v còn binding thì item source-->
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
->>>>>>> a0c24153cf21b0a4bfe38656831882a7b3553a73
 
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -412,7 +337,7 @@
                                 </Grid>
 
                                 <Button Name="addRouteButton"
-<<<<<<< HEAD
+
                                     Click="addRouteButton_Click"
                                     Margin="19,8,0,0"
                                     VerticalAlignment="Center"
@@ -422,18 +347,6 @@
                                     Height="34"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
                                 
-=======
-
-                                Click="addRouteButton_Click"
-                                    Margin="19,8,0,0"
-                                    VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-
->>>>>>> a0c24153cf21b0a4bfe38656831882a7b3553a73
 
                                     <Image Name="iconAdd"
                                            Width="16"
