@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -49,7 +50,7 @@ namespace WeSplit.CustomView
 		public void ShowDialog()
 		{
 			//Giả sử list lộ trình có 5 phần tử
-			int routesLength = 5;
+			int routesLength = 12;
 
 			_borderMilestones.Add(new Tuple<int, VerticalAlignment>(30, VerticalAlignment.Bottom));
 
@@ -97,6 +98,11 @@ namespace WeSplit.CustomView
 		private void map_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 
+		}
+
+		private void routeDetailListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+		{
+			e.Handled = true;
 		}
 	}
 }
