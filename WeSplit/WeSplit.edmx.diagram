@@ -4,16 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d84c75c457ae48afb2aae45898e5530e" Name="Diagram1">
-        <EntityTypeShape EntityType="WeSplitModel.Advance" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Expens" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Journey" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.JourneyAttendance" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.JourneyImage" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Member" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Province" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Route" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeSplitModel.Site" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+      <Diagram DiagramId="d0112464447a48d089624acb5a14896e" Name="Diagram1">
+        <EntityTypeShape EntityType="WeSplitModel.Advance" Width="1.5" PointX="9.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.Expens" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.Journey" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.JourneyAttendance" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.JourneyImage" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.Province" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.Route" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeSplitModel.Site" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="WeSplitModel.FK_ADVANCE_JOURNEY" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_ADVANCE_MEMBER_01" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_ADVANCE_MEMBER_02" ManuallyRouted="false" />
@@ -22,7 +21,6 @@
         <AssociationConnector Association="WeSplitModel.FK_JourneyAttendance_Journey" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_JourneyImage_Journey" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_Route_Journey" ManuallyRouted="false" />
-        <AssociationConnector Association="WeSplitModel.FK_JourneyAttendance_Member" ManuallyRouted="false" />
         <AssociationConnector Association="WeSplitModel.FK_Site_Province" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

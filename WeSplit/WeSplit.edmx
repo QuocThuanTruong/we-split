@@ -42,10 +42,11 @@
         <EntityType Name="JourneyAttendance">
           <Key>
             <PropertyRef Name="ID_Member" />
-            <PropertyRef Name="ID_Journey" />
           </Key>
           <Property Name="ID_Member" Type="int" Nullable="false" />
           <Property Name="ID_Journey" Type="int" Nullable="false" />
+          <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
           <Property Name="Receivables_Money" Type="money" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -57,15 +58,6 @@
           <Property Name="ID_Journey" Type="int" Nullable="false" />
           <Property Name="Ordinal_Number" Type="int" Nullable="false" />
           <Property Name="Link_Image" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="ID_Member" />
-          </Key>
-          <Property Name="ID_Member" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
-          <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
-          <Property Name="Member_Link_Avt" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -110,10 +102,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADVANCE_MEMBER_01">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="1" />
           <End Role="Advance" Type="Self.Advance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Member">
+            <Principal Role="JourneyAttendance">
               <PropertyRef Name="ID_Member" />
             </Principal>
             <Dependent Role="Advance">
@@ -122,10 +114,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADVANCE_MEMBER_02">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="1" />
           <End Role="Advance" Type="Self.Advance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Member">
+            <Principal Role="JourneyAttendance">
               <PropertyRef Name="ID_Member" />
             </Principal>
             <Dependent Role="Advance">
@@ -172,20 +164,6 @@
             </Principal>
             <Dependent Role="JourneyAttendance">
               <PropertyRef Name="ID_Journey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JourneyAttendance_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="ID_Member" />
-            </Principal>
-            <Dependent Role="JourneyAttendance">
-              <PropertyRef Name="ID_Member" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -238,6 +216,7 @@
           <Parameter Name="des" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="AddJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idJourney" Type="int" Mode="In" />
           <Parameter Name="idSite" Type="int" Mode="In" />
           <Parameter Name="startPlace" Type="nvarchar" Mode="In" />
           <Parameter Name="startProvince" Type="nvarchar" Mode="In" />
@@ -257,11 +236,6 @@
           <Parameter Name="oridnalNum" Type="int" Mode="In" />
           <Parameter Name="linkImage" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="AddMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="memberName" Type="nvarchar" Mode="In" />
-          <Parameter Name="phoneNumber" Type="nchar" Mode="In" />
-          <Parameter Name="memberLinkAvt" Type="nvarchar(max)" Mode="In" />
-        </Function>
         <Function Name="AddRoute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
           <Parameter Name="ordinalNumber" Type="int" Mode="In" />
@@ -271,6 +245,7 @@
           <Parameter Name="routeStatus" Type="int" Mode="In" />
         </Function>
         <Function Name="AddSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSite" Type="int" Mode="In" />
           <Parameter Name="idProvince" Type="int" Mode="In" />
           <Parameter Name="siteName" Type="nvarchar" Mode="In" />
           <Parameter Name="siteDescription" Type="nvarchar(max)" Mode="In" />
@@ -304,10 +279,10 @@
           <ReturnType>
             <CollectionType>
               <RowType>
+                <Property Name="ID_Member" Type="int" Nullable="false" />
                 <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
                 <Property Name="Remain" Type="money" />
-                <Property Name="Advance_Money" Type="money" />
-                <Property Name="ID_Lender" Type="int" />
+                <Property Name="Advance_Money_Lender" Type="nvarchar" MaxLength="78" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -377,6 +352,7 @@
           <ReturnType>
             <CollectionType>
               <RowType>
+                <Property Name="ID_Member" Type="int" Nullable="false" />
                 <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
                 <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
                 <Property Name="Receivables_Money" Type="money" />
@@ -516,7 +492,6 @@
           <EntitySet Name="Journey" EntityType="Self.Journey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JourneyAttendance" EntityType="Self.JourneyAttendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JourneyImage" EntityType="Self.JourneyImage" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Site" EntityType="Self.Site" Schema="dbo" store:Type="Tables" />
@@ -525,11 +500,11 @@
             <End Role="Advance" EntitySet="Advance" />
           </AssociationSet>
           <AssociationSet Name="FK_ADVANCE_MEMBER_01" Association="Self.FK_ADVANCE_MEMBER_01">
-            <End Role="Member" EntitySet="Member" />
+            <End Role="JourneyAttendance" EntitySet="JourneyAttendance" />
             <End Role="Advance" EntitySet="Advance" />
           </AssociationSet>
           <AssociationSet Name="FK_ADVANCE_MEMBER_02" Association="Self.FK_ADVANCE_MEMBER_02">
-            <End Role="Member" EntitySet="Member" />
+            <End Role="JourneyAttendance" EntitySet="JourneyAttendance" />
             <End Role="Advance" EntitySet="Advance" />
           </AssociationSet>
           <AssociationSet Name="FK_Expenses_Journey" Association="Self.FK_Expenses_Journey">
@@ -542,10 +517,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_JourneyAttendance_Journey" Association="Self.FK_JourneyAttendance_Journey">
             <End Role="Journey" EntitySet="Journey" />
-            <End Role="JourneyAttendance" EntitySet="JourneyAttendance" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JourneyAttendance_Member" Association="Self.FK_JourneyAttendance_Member">
-            <End Role="Member" EntitySet="Member" />
             <End Role="JourneyAttendance" EntitySet="JourneyAttendance" />
           </AssociationSet>
           <AssociationSet Name="FK_JourneyImage_Journey" Association="Self.FK_JourneyImage_Journey">
@@ -567,10 +538,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="WeSplitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <ComplexType Name="DevideMoney_Result">
+          <Property Name="ID_Member" Type="Int32" Nullable="false" />
           <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Remain" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Advance_Money" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ID_Lender" Type="Int32" />
+          <Property Name="Advance_Money_Lender" Type="String" MaxLength="78" FixedLength="false" Unicode="true" />
         </ComplexType>
         <ComplexType Name="GetAllFromJourney_Result">
           <Property Name="ID_Journey" Type="Int32" Nullable="false" />
@@ -606,6 +577,7 @@
           <Property Name="Link_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </ComplexType>
         <ComplexType Name="GetMemberByIDJourney_Result">
+          <Property Name="ID_Member" Type="Int32" Nullable="false" />
           <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Receivables_Money" Type="Decimal" Precision="19" Scale="4" />
@@ -694,8 +666,8 @@
           <Property Name="ID_Lender" Type="Int32" Nullable="false" />
           <Property Name="Advance_Money" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_ADVANCE_JOURNEY" FromRole="Advance" ToRole="Journey" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="Advance" ToRole="Member" />
-          <NavigationProperty Name="Member1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="Advance" ToRole="Member" />
+          <NavigationProperty Name="JourneyAttendance" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="Advance" ToRole="JourneyAttendance" />
+          <NavigationProperty Name="JourneyAttendance1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="Advance" ToRole="JourneyAttendance" />
         </EntityType>
         <EntityType Name="Expens">
           <Key>
@@ -730,14 +702,16 @@
         <EntityType Name="JourneyAttendance">
           <Key>
             <PropertyRef Name="ID_Member" />
-            <PropertyRef Name="ID_Journey" />
           </Key>
           <Property Name="ID_Member" Type="Int32" Nullable="false" />
           <Property Name="ID_Journey" Type="Int32" Nullable="false" />
+          <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Receivables_Money" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advances" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="JourneyAttendance" ToRole="Advance" />
+          <NavigationProperty Name="Advances1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="JourneyAttendance" ToRole="Advance" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyAttendance_Journey" FromRole="JourneyAttendance" ToRole="Journey" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_JourneyAttendance_Member" FromRole="JourneyAttendance" ToRole="Member" />
         </EntityType>
         <EntityType Name="JourneyImage">
           <Key>
@@ -748,18 +722,6 @@
           <Property Name="Ordinal_Number" Type="Int32" Nullable="false" />
           <Property Name="Link_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyImage_Journey" FromRole="JourneyImage" ToRole="Journey" />
-        </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="ID_Member" />
-          </Key>
-          <Property Name="ID_Member" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Member_Link_Avt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Advances" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="Member" ToRole="Advance" />
-          <NavigationProperty Name="Advances1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="Member" ToRole="Advance" />
-          <NavigationProperty Name="JourneyAttendances" Relationship="Self.FK_JourneyAttendance_Member" FromRole="Member" ToRole="JourneyAttendance" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -808,10 +770,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADVANCE_MEMBER_01">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="1" />
           <End Role="Advance" Type="Self.Advance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Member">
+            <Principal Role="JourneyAttendance">
               <PropertyRef Name="ID_Member" />
             </Principal>
             <Dependent Role="Advance">
@@ -820,10 +782,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADVANCE_MEMBER_02">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="1" />
           <End Role="Advance" Type="Self.Advance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Member">
+            <Principal Role="JourneyAttendance">
               <PropertyRef Name="ID_Member" />
             </Principal>
             <Dependent Role="Advance">
@@ -901,20 +863,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_JourneyAttendance_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="JourneyAttendance" Type="Self.JourneyAttendance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="ID_Member" />
-            </Principal>
-            <Dependent Role="JourneyAttendance">
-              <PropertyRef Name="ID_Member" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Site_Province">
           <End Role="Province" Type="Self.Province" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -935,7 +883,6 @@
           <EntitySet Name="Journeys" EntityType="Self.Journey" />
           <EntitySet Name="JourneyAttendances" EntityType="Self.JourneyAttendance" />
           <EntitySet Name="JourneyImages" EntityType="Self.JourneyImage" />
-          <EntitySet Name="Members" EntityType="Self.Member" />
           <EntitySet Name="Provinces" EntityType="Self.Province" />
           <EntitySet Name="Routes" EntityType="Self.Route" />
           <EntitySet Name="Sites" EntityType="Self.Site" />
@@ -944,11 +891,11 @@
             <End Role="Advance" EntitySet="Advances" />
           </AssociationSet>
           <AssociationSet Name="FK_ADVANCE_MEMBER_01" Association="Self.FK_ADVANCE_MEMBER_01">
-            <End Role="Member" EntitySet="Members" />
+            <End Role="JourneyAttendance" EntitySet="JourneyAttendances" />
             <End Role="Advance" EntitySet="Advances" />
           </AssociationSet>
           <AssociationSet Name="FK_ADVANCE_MEMBER_02" Association="Self.FK_ADVANCE_MEMBER_02">
-            <End Role="Member" EntitySet="Members" />
+            <End Role="JourneyAttendance" EntitySet="JourneyAttendances" />
             <End Role="Advance" EntitySet="Advances" />
           </AssociationSet>
           <AssociationSet Name="FK_Expenses_Journey" Association="Self.FK_Expenses_Journey">
@@ -970,10 +917,6 @@
           <AssociationSet Name="FK_Route_Journey" Association="Self.FK_Route_Journey">
             <End Role="Journey" EntitySet="Journeys" />
             <End Role="Route" EntitySet="Routes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JourneyAttendance_Member" Association="Self.FK_JourneyAttendance_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="JourneyAttendance" EntitySet="JourneyAttendances" />
           </AssociationSet>
           <AssociationSet Name="FK_Site_Province" Association="Self.FK_Site_Province">
             <End Role="Province" EntitySet="Provinces" />
@@ -1022,6 +965,7 @@
             <Parameter Name="des" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddJourney">
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="idSite" Mode="In" Type="Int32" />
             <Parameter Name="startPlace" Mode="In" Type="String" />
             <Parameter Name="startProvince" Mode="In" Type="String" />
@@ -1041,11 +985,6 @@
             <Parameter Name="oridnalNum" Mode="In" Type="Int32" />
             <Parameter Name="linkImage" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AddMember">
-            <Parameter Name="memberName" Mode="In" Type="String" />
-            <Parameter Name="phoneNumber" Mode="In" Type="String" />
-            <Parameter Name="memberLinkAvt" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="AddRoute">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="ordinalNumber" Mode="In" Type="Int32" />
@@ -1055,6 +994,7 @@
             <Parameter Name="routeStatus" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddSite">
+            <Parameter Name="idSite" Mode="In" Type="Int32" />
             <Parameter Name="idProvince" Mode="In" Type="Int32" />
             <Parameter Name="siteName" Mode="In" Type="String" />
             <Parameter Name="siteDescription" Mode="In" Type="String" />
@@ -1108,6 +1048,8 @@
               <MappingFragment StoreEntitySet="JourneyAttendance">
                 <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
+                <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
                 <ScalarProperty Name="Receivables_Money" ColumnName="Receivables_Money" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
@@ -1119,16 +1061,6 @@
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Ordinal_Number" ColumnName="Ordinal_Number" />
                 <ScalarProperty Name="Link_Image" ColumnName="Link_Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="WeSplitModel.Member">
-              <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
-                <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
-                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
-                <ScalarProperty Name="Member_Link_Avt" ColumnName="Member_Link_Avt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1167,10 +1099,10 @@
           <FunctionImportMapping FunctionName="WeSplitModel.Store.DevideMoney" FunctionImportName="DevideMoney">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WeSplitModel.DevideMoney_Result">
+                <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
                 <ScalarProperty Name="Remain" ColumnName="Remain" />
-                <ScalarProperty Name="Advance_Money" ColumnName="Advance_Money" />
-                <ScalarProperty Name="ID_Lender" ColumnName="ID_Lender" />
+                <ScalarProperty Name="Advance_Money_Lender" ColumnName="Advance_Money_Lender" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1226,6 +1158,7 @@
           <FunctionImportMapping FunctionName="WeSplitModel.Store.GetMemberByIDJourney" FunctionImportName="GetMemberByIDJourney">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WeSplitModel.GetMemberByIDJourney_Result">
+                <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
                 <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
                 <ScalarProperty Name="Receivables_Money" ColumnName="Receivables_Money" />
@@ -1337,7 +1270,6 @@
           <FunctionImportMapping FunctionImportName="AddJourney" FunctionName="WeSplitModel.Store.AddJourney" />
           <FunctionImportMapping FunctionImportName="AddJourneyAttendance" FunctionName="WeSplitModel.Store.AddJourneyAttendance" />
           <FunctionImportMapping FunctionImportName="AddJourneyImages" FunctionName="WeSplitModel.Store.AddJourneyImages" />
-          <FunctionImportMapping FunctionImportName="AddMember" FunctionName="WeSplitModel.Store.AddMember" />
           <FunctionImportMapping FunctionImportName="AddRoute" FunctionName="WeSplitModel.Store.AddRoute" />
           <FunctionImportMapping FunctionImportName="AddSite" FunctionName="WeSplitModel.Store.AddSite" />
         </EntityContainerMapping>

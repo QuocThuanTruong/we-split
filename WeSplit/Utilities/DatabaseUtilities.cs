@@ -29,6 +29,36 @@ namespace WeSplit.Utilities
             return _databaseInstance;
         }
 
+        public int GetMaxIDJourney()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Journey) from Journey")
+                .Single();
+
+            return result;
+        }
+
+        public int GetMaxIDSite()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Site) from Site")
+                .Single();
+
+            return result;
+        }
+
+        public int GetMaxIDMember()
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select Max(ID_Member) from JourneyAttendance")
+                .Single();
+
+            return result;
+        }
+
         public List<Site> GetSiteForBindingInHomePageView(int status)
         {
             List<Site> result = new List<Site>();
@@ -111,6 +141,128 @@ namespace WeSplit.Utilities
             }
 
             return result;
+        }
+
+        public Journey GetJourneyByID(int ID_Journey)
+        {
+            Journey result = _databaseWeSplit
+                .Database
+                .SqlQuery<Journey>($"Select * from Journey where ID_Journey = {ID_Journey}")
+                .FirstOrDefault();
+
+            if (result != null)
+            {
+                //Site
+                Site site = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Site>($"Select * from Site where ID_Site = {result.ID_Site}")
+                    .SingleOrDefault();
+
+                result.Site_Name = site.Site_Name;
+                result.Site_Avatar = site.Site_Link_Avt;
+                
+                //progress slider
+                var journeyProgess = _databaseWeSplit
+                        .Database
+                        .SqlQuery<double>($"select [dbo].[CalcJourneyProgress]({result.ID_Journey})")
+                        .Single();
+
+                result.Journey_Progress = journeyProgess;
+
+                //Date
+                result.Start_Date_For_Binding = result.StartDate.Value.ToShortDateString();
+                result.End_Date_For_Binding = result.EndDate.Value.ToShortDateString();
+
+                //Route
+                List<Route> routes = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Route>($"Select * from Route where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
+                result.Route_For_Binding = routes;
+
+                //Member
+                List<JourneyAttendance> members = _databaseWeSplit
+                    .Database
+                    .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
+                result.Members_For_Binding = members;
+
+                //Images
+                List<JourneyImage> images = _databaseWeSplit
+                    .Database
+                    .SqlQuery<JourneyImage>($"Select * from JourneyImage where ID_Journey = {result.ID_Journey}")
+                    .ToList();
+
+                result.Images_For_Binding = images;
+
+                //Devide Money
+                List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
+
+                result.Devide_Money_For_Binding = devideMoney;
+            }
+
+            return result;
+        }
+
+        public List<Site> GetListSite()
+        {
+            List<Site> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Site>("Select * from Site")
+                .ToList();
+
+            for (int i = 0; i < result.Count; ++i)
+            {
+                Province province = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Province>($"Select * from Province where ID_Province = {result[i].ID_Province}")
+                    .Single();
+
+                result[i].Province_Name = province.Province_Name;
+            }
+
+            return result;
+        }
+
+        public List<Province> GetListProvince()
+        {
+            List<Province> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Province>("Select * from Province")
+                .ToList();
+
+            return result;
+        }
+
+        public List<Site> GetListSiteByProvince(int ID_Province)
+        {
+            List<Site> result = _databaseWeSplit
+                .Database
+                .SqlQuery<Site>($"Select * from Site where ID_Province = {ID_Province}")
+                .ToList();
+
+            return result;
+        }
+
+        public int AddNewSite(int idSite, int idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)
+        {
+            return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
+        }
+
+        public int AddNewJourney(Nullable<int> idJourney, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance) {
+            return _databaseWeSplit.AddJourney(idJourney, idSite, startPlace, startProvince, status, startDate, endDate, distance);
+        }
+
+        public int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des)
+        {
+            return _databaseWeSplit.AddExpense(idExpenses, idJourney, expense, des);
+        }
+
+        public int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus)
+        {
+            return _databaseWeSplit.AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus);
         }
     }
 }

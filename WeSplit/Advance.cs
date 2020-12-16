@@ -20,7 +20,7 @@ namespace WeSplit
         public Nullable<decimal> Advance_Money { get; set; }
     
         public virtual Journey Journey { get; set; }
-        public virtual Member Member { get; set; }
-        public virtual Member Member1 { get; set; }
+        public virtual JourneyAttendance JourneyAttendance { get; set; }
+        public virtual JourneyAttendance JourneyAttendance1 { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace WeSplit
     
     public partial class GetMemberByIDJourney_Result
     {
+        public int ID_Member { get; set; }
         public string Member_Name { get; set; }
         public string Phone_Number { get; set; }
         public Nullable<decimal> Receivables_Money { get; set; }
