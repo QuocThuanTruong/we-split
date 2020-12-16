@@ -183,8 +183,12 @@ namespace WeSplit
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddExpense", idExpensesParameter, idJourneyParameter, expenseParameter, desParameter);
         }
     
-        public virtual int AddJourney(Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance)
+        public virtual int AddJourney(Nullable<int> idJourney, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance)
         {
+            var idJourneyParameter = idJourney.HasValue ?
+                new ObjectParameter("idJourney", idJourney) :
+                new ObjectParameter("idJourney", typeof(int));
+    
             var idSiteParameter = idSite.HasValue ?
                 new ObjectParameter("idSite", idSite) :
                 new ObjectParameter("idSite", typeof(int));
@@ -213,7 +217,7 @@ namespace WeSplit
                 new ObjectParameter("distance", distance) :
                 new ObjectParameter("distance", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourney", idSiteParameter, startPlaceParameter, startProvinceParameter, statusParameter, startDateParameter, endDateParameter, distanceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourney", idJourneyParameter, idSiteParameter, startPlaceParameter, startProvinceParameter, statusParameter, startDateParameter, endDateParameter, distanceParameter);
         }
     
         public virtual int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, Nullable<decimal> receivable, string role)

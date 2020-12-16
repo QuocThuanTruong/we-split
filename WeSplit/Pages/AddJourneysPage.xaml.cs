@@ -23,8 +23,12 @@ namespace WeSplit.Pages
 	public partial class AddJourneysPage : Page
 	{
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
+		private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+
 		private Journey _journey = new Journey();
 		private List<Province> _provinces;
+
 		private int _ordinal_number = 0;
 		private int _maxIDMember = 0;
 		public AddJourneysPage()
@@ -176,11 +180,43 @@ namespace WeSplit.Pages
 			_journey.Start_Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
 			_journey.Status = 1;
 
+			Route startRoute = new Route();
+			startRoute.Place = _journey.Start_Place;
+			startRoute.Province = _journey.Start_Province;
+
+			Route endRoute = new Route();
+			endRoute.Place = journeyEndPlaceTextBox.Text;
+			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
+
+
 			_journey.StartDate = startDatePicker.SelectedDate;
 			_journey.EndDate = endDatePicker.SelectedDate;
 
+			//Get distance
+			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute);
+
 			//Insert 
-			 
+			_databaseUtilities.AddNewJourney(
+				_journey.ID_Journey,
+				_journey.ID_Site,
+				_journey.Start_Place,
+				_journey.Start_Province,
+				_journey.Status,
+				_journey.StartDate,
+				_journey.EndDate,
+				_journey.Distance);
+
+			foreach(var expense in _journey.Expenses)
+            {
+				_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money.Value, expense.Expenses_Description);
+            }
+
+			foreach (var route in _journey.Routes)
+			{
+				_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status.Value);
+			}
+
+
 		}
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)

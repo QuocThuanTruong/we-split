@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WeSplitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WeSplitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advance">
           <Key>
             <PropertyRef Name="ID_Journey" />
@@ -216,6 +216,7 @@
           <Parameter Name="des" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="AddJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idJourney" Type="int" Mode="In" />
           <Parameter Name="idSite" Type="int" Mode="In" />
           <Parameter Name="startPlace" Type="nvarchar" Mode="In" />
           <Parameter Name="startProvince" Type="nvarchar" Mode="In" />
@@ -531,7 +532,8 @@
             <End Role="Site" EntitySet="Site" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WeSplitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -921,40 +923,40 @@
             <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
           <FunctionImport Name="DevideMoney" IsComposable="true" ReturnType="Collection(WeSplitModel.DevideMoney_Result)">
-          <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAllFromJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetAllFromJourney_Result)" />
           <FunctionImport Name="GetAllFromSite" IsComposable="true" ReturnType="Collection(WeSplitModel.GetAllFromSite_Result)" />
           <FunctionImport Name="GetJourneyByStatus" IsComposable="true" ReturnType="Collection(WeSplitModel.GetJourneyByStatus_Result)">
-          <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetLinkImageByIDJourneyAndOrdinalNumber" IsComposable="true" ReturnType="Collection(WeSplitModel.GetLinkImageByIDJourneyAndOrdinalNumber_Result)">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="ordinalNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetMemberByIDJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetMemberByIDJourney_Result)">
-          <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetRouteByIDJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetRouteByIDJourney_Result)">
-          <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Result" IsComposable="true" ReturnType="Collection(WeSplitModel.Result_Result)">
-          <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SearchByJourneyName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByJourneyName_Result)">
-          <Parameter Name="search_text" Mode="In" Type="String" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByJourneySiteName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByJourneySiteName_Result)">
-          <Parameter Name="search_text" Mode="In" Type="String" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByMemberName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByMemberName_Result)">
-          <Parameter Name="search_text" Mode="In" Type="String" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByProvinceName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByProvinceName_Result)">
-          <Parameter Name="search_text" Mode="In" Type="String" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchJourney_Result)">
-          <Parameter Name="search_text" Mode="In" Type="String" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddExpense">
             <Parameter Name="idExpenses" Mode="In" Type="Int32" />
@@ -963,6 +965,7 @@
             <Parameter Name="des" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddJourney">
+            <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="idSite" Mode="In" Type="Int32" />
             <Parameter Name="startPlace" Mode="In" Type="String" />
             <Parameter Name="startProvince" Mode="In" Type="String" />
