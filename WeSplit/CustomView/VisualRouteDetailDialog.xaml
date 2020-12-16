@@ -41,68 +41,88 @@
                        Style="{StaticResource SemiBoldLargeText}"/>
 
 
-                    <Grid Grid.Row="1"
+                    <ScrollViewer Grid.Row="1"
+                                  VerticalAlignment="Top"
+                                  Margin="0, 8, 0, 0"
+                                  Height="566">
+                        <Grid Grid.Row="1"
+                             
                           Margin="16, 8, 8, 16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="10*"/>
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <ListView Name="routeMilestoneListView"
+
+                            <ListView Name="routeMilestoneListView"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ItemContainerStyle="{StaticResource MilestoneListBoxItem}">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="60">
-                                        <Ellipse Width="16"
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="60">
+                                            <Ellipse Width="16"
                                                  Height="16"
                                                  Fill="{DynamicResource MyOrange}"/>
 
-                                        <Border Name="routeProgressBorder"
+                                            <Border Name="routeProgressBorder"
                                                 Width="4"
                                                 Height="{Binding Item1}"
                                                 VerticalAlignment="{Binding Item2}"
                                                 Background="{DynamicResource MyOrange}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
 
 
-                        </ListView>
-                        
+                            </ListView>
 
-                        <ListView Name="routeDetailListView"
-                              Grid.Column="1"
+
+                            <ListView Name="routeDetailListView"
+                                  Grid.Column="1"
+                                  
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   Margin="4, 0, 0, 0"
                               ItemContainerStyle="{StaticResource RouteDetailListBoxItem}"
                               Grid.Row="1">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="60">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="60">
 
-                                        <StackPanel Grid.Column="1"
+                                            <StackPanel Grid.Column="1"
                                                 VerticalAlignment="Center">
-                                            <TextBlock Name="routeDescription"
+                                                <TextBlock Name="routeDescription"
                                                    Text="Xuất phát"
                                                    Style="{StaticResource SemiBoldRegularText}"/>
 
-                                            <TextBlock Name="routeAddress"
+                                                <TextBlock Name="routeAddress"
                                                    Text="Khách sạn XXX, TP.Hồ Chí Minh"
                                                    Style="{StaticResource RegularText}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
 
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
-                            <Grid/>
-                        </ListView>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                                <Grid/>
+                            </ListView>
 
-                    </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                   
                     
                     
                     
