@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_page_upper" xml:space="preserve">
+    <value>ABOUT US</value>
+  </data>
   <data name="about_us_page_name" xml:space="preserve">
     <value>About us</value>
+  </data>
+  <data name="add_journey_page_upper" xml:space="preserve">
+    <value>ADD JOURNEY</value>
   </data>
   <data name="add_site_page" xml:space="preserve">
     <value>Add Site</value>
   </data>
+  <data name="add_site_page_upper" xml:space="preserve">
+    <value>ADD SITE</value>
+  </data>
   <data name="help_page_name" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="help_page_upper" xml:space="preserve">
+    <value>HELP</value>
   </data>
   <data name="hint_text_search" xml:space="preserve">
     <value>Search your journey by name and member...</value>
@@ -132,8 +144,11 @@
   <data name="home_page_name" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="home_page_upper" xml:space="preserve">
+    <value>HOME</value>
+  </data>
   <data name="manage_journey_page" xml:space="preserve">
-    <value>Add journeys</value>
+    <value>Add journey</value>
   </data>
   <data name="message_not_show_splash" xml:space="preserve">
     <value>Không hiển thị Splash Screen khi khởi chạy ứng dụng vào lần tới.</value>
@@ -170,22 +185,19 @@ Copy right © 2020 Quoc Thuan Truong, Le Nhat Tuan, Hoang Thi Thuy Trang.</value
   <data name="text_help_about" xml:space="preserve">
     <value>Chứa thông tin về ứng dụng dụng và các thành viên phát triển.</value>
   </data>
-  <data name="text_help_add_recipe" xml:space="preserve">
-    <value>Bạn có thẻ thêm món ăn của mình và danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên món ăn, mô tả, ảnh đại diện, link video của món ăn, thời gian, nhóm của món ăn, mức độ và các bước thực hiện.</value>
+  <data name="text_help_add_journey" xml:space="preserve">
+    <value>Bạn có thẻ thêm chuyến của mình vào danh sách bằng cách điền đầy đủ thông tin và hình ảnh vào trang này. Các thông tin đó bao gồm tên chuyến đi, điểm xuất phát, điểm đến, thông tin lộ trình ,danh sách thành viên và các chi phí cho chuyến đi.</value>
   </data>
-  <data name="text_help_fav" xml:space="preserve">
-    <value>Nơi chứa những món ăn được bạn yêu thích, bạn có thế tìm kiếm với các chế độ khác nhau như HOME.</value>
+  <data name="text_help_add_site" xml:space="preserve">
+    <value>Nơi bạn có thể xem và thêm các địa danh du lịch bao gồm các thông tin như tên địa danh, địa chỉ, mô tả và ảnh đại diện.</value>
   </data>
   <data name="text_help_help" xml:space="preserve">
-    <value>Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng Food Recipes.</value>
+    <value>Cung cấp thông tin về các trang và hướng dẫn bạn sử dụng We Split.</value>
   </data>
   <data name="text_help_home" xml:space="preserve">
-    <value>Sử dụng thanh tìm kiếm để tìm món ăn mà bạn muốn, bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
+    <value>Sử dụng thanh tìm kiếm để tìm chuyến đi mà bạn muốn theo tên chuyến đi, tên địa danh hoặc tên thành viên trong nhóm. Ngoài ra bạn có thể sử dụng các chế độ sắp xếp, chế độ hiển thị của danh sách món ăn và bộ lọc các món ăn theo nhóm để tìm kiếm nhanh hơn.
 Mẹo tìm kiếm từ khóa: Bạn có thể sử dụng cú pháp “&lt;key_word_1&gt;” &lt;operator&gt; &lt;”key_word_2&gt;” với &lt;operator&gt; có thể là ‘and’, ‘or’ hoặc ‘and not’ để tìm kiếm.
-Sau khi tìm được món ăn bạn có thể click vào để xem chi tiết món ăn đó. Bên trong mỗi món ăn bạn có thể thêm danh sách nguyên liệu vào shopping list bằng cách click vào nút ADD SHOPPING.</value>
-  </data>
-  <data name="text_help_shopping" xml:space="preserve">
-    <value>Khi bạn thêm nguyên liệu vào shopping list ở trang chi tiết món ăn, danh sách nguyên liệu của bạn sẽ được lưu lại ở trang này và bạn có thể dễ dàng mua sắm với danh sách nguyên liệu cần thiết. Ngoài ra bạn có thể tick vào nút cạnh bên nguyên liệu để đánh dấu rằng bạn đã mua nó.</value>
+Sau khi tìm được chuyến đi bạn có thể click vào để xem chi tiết chuyến đi đó. Bên trong mỗi chuyến đi bạn có thể cập nhật lại các thông tin cho chuyến đi đó bằng cách click vào nút UPDATE JOURNEY.</value>
   </data>
   <data name="text_item_sort_az" xml:space="preserve">
     <value>A-Z</value>
@@ -261,6 +273,9 @@ Sau khi tìm được món ăn bạn có thể click vào để xem chi tiết m
   </data>
   <data name="title_contact" xml:space="preserve">
     <value>LIÊN HỆ</value>
+  </data>
+  <data name="title_how_to_use" xml:space="preserve">
+    <value>HƯỚNG DẪN SỬ DỤNG WE SPLIT</value>
   </data>
   <data name="title_link_how_to_use" xml:space="preserve">
     <value>LINK HƯỚNG DẪN CHI TIẾT</value>
