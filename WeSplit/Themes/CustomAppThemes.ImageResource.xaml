@@ -65,6 +65,9 @@
     <ImageSource x:Key="IconGrayClose">pack://application:,,,/Assets/Images/icon_gray_close.png</ImageSource>
     <ImageSource x:Key="IconWhiteTick">pack://application:,,,/Assets/Images/icon_white_tick.png</ImageSource>
     <ImageSource x:Key="Icon404">pack://application:,,,/Assets/Images/ic-404.png</ImageSource>
+    <ImageSource x:Key="MarkerEnd">pack://application:,,,/Assets/Images/marker-end.png</ImageSource>
+    <ImageSource x:Key="MarkerSite">pack://application:,,,/Assets/Images/marker-site.png</ImageSource>
+    <ImageSource x:Key="MarkerStart">pack://application:,,,/Assets/Images/marker-start.png</ImageSource>
     
     <ImageSource x:Key="TEST_1">pack://application:,,,/Assets/test_1.jpg</ImageSource>
 

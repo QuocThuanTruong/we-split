@@ -35,6 +35,11 @@ namespace WeSplit.Pages
 			loadJourneys();
 		}
 
+		public JourneyListPage(int journeyStatus)
+		{
+			//TO DO
+		}
+
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{

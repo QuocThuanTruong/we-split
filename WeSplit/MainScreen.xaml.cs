@@ -141,7 +141,7 @@ namespace WeSplit
 
 		private void MainScreen_ViewAllJourney()
 		{
-			JourneyListPage journeyListPage = new JourneyListPage();
+			JourneyListPage journeyListPage = new JourneyListPage(journeyStatus);
 			journeyListPage.ShowJourneyDetailPage += JourneyListPage_ShowJourneyDetailPage;
 			pageNavigation.NavigationService.Navigate(journeyListPage);
 		}
