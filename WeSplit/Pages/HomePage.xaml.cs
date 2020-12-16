@@ -34,7 +34,7 @@ namespace WeSplit.Pages
 
 		const int PLANED = 1;
 		const int CURRENT = 0;
-		const int DONE = 1;
+		const int DONE = -1;
 
 		public HomePage()
 		{
@@ -60,7 +60,7 @@ namespace WeSplit.Pages
 		private void viewAllJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
 			//Adjust here
-			ViewAllJourney?.Invoke(1);
+			ViewAllJourney?.Invoke(2);
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -372,12 +372,12 @@ namespace WeSplit.Pages
 
         private void viewAllPlanedButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+			ViewAllJourney?.Invoke(PLANED);
+		}
 
         private void viewAllDoneButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+			ViewAllJourney?.Invoke(DONE);
+		}
     }
 }
