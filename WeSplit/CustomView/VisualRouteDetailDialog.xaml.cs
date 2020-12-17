@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WeSplit.Utilities;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace WeSplit.CustomView
 {
@@ -32,6 +34,10 @@ namespace WeSplit.CustomView
 
 		private ObservableCollection<Tuple<int, VerticalAlignment>> _borderMilestones = new ObservableCollection<Tuple<int, VerticalAlignment>>();
 
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
+		private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+
 		public VisualRouteDetailDialog()
 		{
 			InitializeComponent();
@@ -45,10 +51,45 @@ namespace WeSplit.CustomView
 		}
 
 		//Params will define depend on your need
-		public void ShowDialog()
+		public void ShowDialog(List<Route> routes, Route startRoute, Route endRoute)
 		{
+			startRoute.Route_Detail = startRoute.Place + ", " + startRoute.Province;
+			Location startRouteLocation = _googleMapUtilities.GetLocationByKeyName(startRoute.Route_Detail);
+
+			endRoute.Route_Detail = endRoute.Place + ", " + endRoute.Province;
+			Location endRouteLocation = _googleMapUtilities.GetLocationByKeyName(endRoute.Route_Detail);
+
+			List<Location> locations = new List<Location>();
+			locations.Add(startRouteLocation);
+
+			routes.Insert(0, startRoute);
+			routes.Add(endRoute);
+
+			routeDetailListView.ItemsSource = routes;
+
+			for (int i = 0; i < routes.Count; ++i)
+			{
+				routes[i].Route_Detail = routes[i].Place + ", " + routes[i].Province;
+
+				Location location = _googleMapUtilities.GetLocationByKeyName(routes[i].Route_Detail);
+				locations.Add(location);
+
+				routeMap.Children.Add(_bingMapUtilities.CreateMarkerWithImage(FindResource("MarkerSite").ToString(), location));
+			}
+
+			locations.Add(endRouteLocation);
+
+			_ = CreateDirection(locations);
+
+			routeMap.Children.Add(_bingMapUtilities.CreateMarkerWithImage(FindResource("MarkerStart").ToString(), startRouteLocation));
+			routeMap.Children.Add(_bingMapUtilities.CreateMarkerWithImage(FindResource("MarkerEnd").ToString(), endRouteLocation));
+
+			routeMap.ZoomLevel = 8;
+			routeMap.Center.Longitude = (startRouteLocation.Longitude + endRouteLocation.Longitude);
+			routeMap.Center.Latitude = (startRouteLocation.Latitude + endRouteLocation.Latitude);
+
 			//Giả sử list lộ trình có 5 phần tử
-			int routesLength = 12;
+			int routesLength = routes.Count;
 
 			_borderMilestones.Add(new Tuple<int, VerticalAlignment>(30, VerticalAlignment.Bottom));
 
@@ -78,6 +119,8 @@ namespace WeSplit.CustomView
 				this.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
 				Thread.Sleep(20);
 			}
+
+			
 		}
 
 		public void HideDialog()
@@ -101,6 +144,13 @@ namespace WeSplit.CustomView
 		private void routeDetailListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
 		{
 			e.Handled = true;
+		}
+
+		private async Task CreateDirection(List<Location> locations)
+		{
+			var routeLine = await _bingMapUtilities.CreateDirectionInMap(locations);
+
+			routeMap.Children.Add(routeLine);
 		}
 	}
 }

@@ -86,7 +86,23 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			Route startRoute = new Route();
+			startRoute.Place = journeyStartPlaceTextBox.Text;
+			startRoute.Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
+
+			Route endRoute = new Route();
+			if (endSiteComboBox.SelectedItem == null)
+            {
+				endRoute.Place = "";
+			} 
+			else
+            {
+				endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
+
+			}
+			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
+
+			visualRouteDetailDialog.ShowDialog(_journey.Routes.ToList(), startRoute, endRoute);
 		}
 
 		private void visualRouteDetailDialog_CloseFullScreenVideoDialog()
@@ -188,7 +204,7 @@ namespace WeSplit.Pages
 
 			Route endRoute = new Route();
 			endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
-			endRoute.Province = ((Site)endSiteComboBox.SelectedItem).Province_Name;
+			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
 			_journey.ID_Site = ((Site)endSiteComboBox.SelectedItem).ID_Site;
 
 			_journey.StartDate = startDatePicker.SelectedDate;

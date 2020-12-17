@@ -73,7 +73,7 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			//visualRouteDetailDialog.ShowDialog();
 		}
 
 		private void deleteRelativeImageInListButton_Click(object sender, RoutedEventArgs e)

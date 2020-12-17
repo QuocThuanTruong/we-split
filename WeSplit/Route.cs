@@ -22,5 +22,8 @@ namespace WeSplit
         public Nullable<int> Route_Status { get; set; }
     
         public virtual Journey Journey { get; set; }
+
+        //For Binding
+        public string Route_Detail { get; set; }
     }
 }

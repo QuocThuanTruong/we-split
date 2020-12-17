@@ -287,6 +287,26 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public List<Route> GetListRouteOfJourney(int ID_Journey)
+        {
+            List<Route> result = _databaseWeSplit
+               .Database
+               .SqlQuery<Route>($"Select * from Route where ID_Journey = {ID_Journey}")
+               .ToList();
+
+            return result;
+        }
+
+        public Site GetSiteByID(int ID_Site)
+        {
+            Site result = _databaseWeSplit
+                .Database
+                .SqlQuery<Site>($"Select * from Site where ID_Site = {ID_Site}")
+                .Single();
+
+            return result;
+        }
+
         public int AddNewSite(int idSite, int idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)
         {
             return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);

@@ -33,11 +33,10 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Tổng quan lộ trình chuyến đi"
-                       
-                       Grid.ColumnSpan="2"
-                               VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Style="{StaticResource SemiBoldLargeText}"/>
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource SemiBoldLargeText}"/>
 
 
                     <ScrollViewer Grid.Row="1"
@@ -80,7 +79,6 @@
 
                             <ListView Name="routeDetailListView"
                                   Grid.Column="1"
-                                  
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   Margin="4, 0, 0, 0"
@@ -94,60 +92,43 @@
                                             <StackPanel Grid.Column="1"
                                                 VerticalAlignment="Center">
                                                 <TextBlock Name="routeDescription"
-                                                   Text="Xuất phát"
+                                                   Text="{Binding Route_Description}"
                                                    Style="{StaticResource SemiBoldRegularText}"/>
 
                                                 <TextBlock Name="routeAddress"
-                                                   Text="Khách sạn XXX, TP.Hồ Chí Minh"
+                                                   Text="{Binding Route_Detail}"
                                                    Style="{StaticResource RegularText}"/>
                                             </StackPanel>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
                             </ListView>
 
                         </Grid>
                     </ScrollViewer>
-                   
-                    
-                    
-                    
 
                     <m:Map Name="routeMap" 
-                           Grid.Column="1"
-                           Grid.Row="1"
-                           Margin="8, 8, 16, 16"
-                           CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
-                       Mode="AerialWithLabels" 
-                       Center="10.840919302156086, 106.73613666721643" 
-                       ZoomLevel="16" 
-                       MouseDoubleClick="map_MouseDown">
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Margin="8, 8, 16, 16"
+                        CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
+                        Mode="AerialWithLabels" 
+                        Center="10.840919302156086, 106.73613666721643" 
+                        ZoomLevel="16" 
+                        MouseDoubleClick="map_MouseDown">
                     </m:Map>
 
 
                     <Button Name="closeDialogButton"
-                    Click="closeDialogButton_Click"
-                    Margin="8"
-                            Grid.Column="1"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource WindowOptionsButton}"
-                    materialDesign:ButtonAssist.CornerRadius="6"
-                    Width="30"
-                    Height="30">
+                        Click="closeDialogButton_Click"
+                        Margin="8"
+                        Grid.Column="1"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource WindowOptionsButton}"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Width="30"
+                        Height="30">
 
                         <Image Name="imgClose"
                        Width="14"

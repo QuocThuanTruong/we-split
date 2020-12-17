@@ -26,6 +26,7 @@ namespace WeSplit.Pages
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private int _ID_Journey;
+		Journey _journey;
 		public JourneyDetailPage()
 		{
 			InitializeComponent();
@@ -42,9 +43,9 @@ namespace WeSplit.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			Journey journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
+			_journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
 
-			this.DataContext = journey;
+			this.DataContext = _journey;
 		}
 
 		private void currentJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -69,7 +70,7 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			//visualRouteDetailDialog.ShowDialog(_journey);
 		}
 
 		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)
