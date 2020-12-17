@@ -23,5 +23,10 @@ namespace WeSplit
         public virtual Journey Journey { get; set; }
         public virtual JourneyAttendance JourneyAttendance { get; set; }
         public virtual JourneyAttendance JourneyAttendance1 { get; set; }
+
+        //For Binding
+        public string Borrower_Name { get; set; }
+        public string Lender_Name { get; set; }
+        public string Money_For_Binding { get; set; }
     }
 }

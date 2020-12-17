@@ -650,6 +650,7 @@
 
 
                 <materialDesign:Card
+                    Name="ImageCard"
                     Margin="12, 10, 0, 0"
                     Background="#60ffffff"
                     UniformCornerRadius="10"
@@ -767,11 +768,6 @@
 
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
                             </ListView>
                         </StackPanel>
 
@@ -911,6 +907,7 @@
 
 
                 <materialDesign:Card
+                    Name="AdvanceCard"
                     Grid.Column="1"
                     Margin="12, 10, 0, 0"
                     Background="#60ffffff"

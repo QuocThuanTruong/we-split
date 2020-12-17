@@ -234,22 +234,22 @@
                                         <materialDesign:ToggleButtonAssist.OnContentTemplate>
                                             <DataTemplate>
                                                 <Image Width="8"
-                                                       Margin="0, 0, 0, 0.6"
-                                               Height="8"
-                                               VerticalAlignment="Center"
-                                               RenderOptions.BitmapScalingMode="HighQuality"
-                                               Source="{StaticResource IconWhiteTick}"/>
-                                            </DataTemplate>
+                                                    Margin="0, 0, 0, 0.6"
+                                                    Height="8"
+                                                    VerticalAlignment="Center"
+                                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                                    Source="{StaticResource IconWhiteTick}"/>
+                                                </DataTemplate>
                                         </materialDesign:ToggleButtonAssist.OnContentTemplate>
 
                                         <Border Width="16"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                        Height="16"
-                                        BorderBrush="{DynamicResource MyNeueGreen}"
-                                        CornerRadius="9"
-                                        Background="White"
-                                        BorderThickness="1"/>
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Height="16"
+                                            BorderBrush="{DynamicResource MyNeueGreen}"
+                                            CornerRadius="9"
+                                            Background="White"
+                                            BorderThickness="1"/>
                                     </ToggleButton>
 
                                     <!-- Binding data -->

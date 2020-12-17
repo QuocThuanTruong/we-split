@@ -50,6 +50,10 @@ namespace WeSplit.Pages
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+
+			ImageCard.Visibility = Visibility.Collapsed;
+			AdvanceCard.Visibility = Visibility.Collapsed;
+
 		}
 
 		private void addRouteButton_Click(object sender, RoutedEventArgs e)
@@ -250,10 +254,10 @@ namespace WeSplit.Pages
 			journeyNameTextBox.Text = "";
 			journeyStartPlaceTextBox.Text = "";
 			startProvinceComboBox.SelectedIndex = 0;
-			startDatePicker.SelectedDate = DateTime.Now;
+			startDatePicker.Text = "";
 			endSiteComboBox.SelectedIndex = 0;
 			endProvinceComboBox.SelectedIndex = 0;
-			endDatePicker.SelectedDate = DateTime.Now;
+			endDatePicker.Text = "";
 			startProvinceRouteComboBox.SelectedIndex = 0;
 			routesListView.ItemsSource = null;
 			membersListView.ItemsSource = null;

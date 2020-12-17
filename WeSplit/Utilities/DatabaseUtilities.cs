@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,16 @@ namespace WeSplit.Utilities
                 .Database
                 .SqlQuery<int>("Select Max(ID_Expenses) from Expenses")
                 .Single();
+
+            return result;
+        }
+
+        public Province GetProvinceByName(string Province_Name)
+        {
+            Province result = _databaseWeSplit
+               .Database
+               .SqlQuery<Province>($"Select* from Province where Province_Name = N'{Province_Name}'")
+               .Single();
 
             return result;
         }
@@ -273,6 +284,36 @@ namespace WeSplit.Utilities
                     .Database
                     .SqlQuery<Expens>($"Select * from Expenses where ID_Journey = {ID_Journey}")
                     .ToList();
+
+                result.Expens_For_Binding = result.Expenses.ToList();
+
+                for (int i = 0; i < result.Expens_For_Binding.Count; ++i)
+                {
+                    result.Expens_For_Binding[i].Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Expens_For_Binding[i].Expenses_Money ?? 0));
+                }
+
+                //Advance
+                result.Advances = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Advance>($"Select * from Advance where ID_Journey = {ID_Journey}")
+                    .ToList();
+
+                result.Advances_For_Binding = result.Advances.ToList();
+                for (int i = 0; i < result.Advances_For_Binding.Count; ++i)
+                {
+                    result.Advances_For_Binding[i].Borrower_Name = _databaseWeSplit
+                        .Database
+                        .SqlQuery<string>($"Select Member_Name from JourneyAttendance where ID_Member = {result.Advances_For_Binding[i].ID_Borrower}")
+                        .Single();
+
+                    result.Advances_For_Binding[i].Lender_Name = _databaseWeSplit
+                       .Database
+                       .SqlQuery<string>($"Select Member_Name from JourneyAttendance where ID_Member = {result.Advances_For_Binding[i].ID_Lender}")
+                       .Single();
+
+                    result.Advances_For_Binding[i].Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Advances_For_Binding[i].Advance_Money ?? 0));
+                }
+
             }
 
             return result;

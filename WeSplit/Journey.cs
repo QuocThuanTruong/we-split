@@ -67,5 +67,7 @@ namespace WeSplit
         public string Total_Expenses_For_Binding { get; set; }
         public decimal Remain { get; set; }
         public string Remain_For_Binding { get; set; }
+        public List<Expens> Expens_For_Binding { get; set; }
+        public List<Advance> Advances_For_Binding { get; set; }
     }
 }
