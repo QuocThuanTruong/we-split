@@ -61,5 +61,11 @@ namespace WeSplit
         public List<JourneyAttendance> Members_For_Binding { get; set; }
         public List<JourneyImage> Images_For_Binding { get; set; }
         public List<DevideMoney_Result> Devide_Money_For_Binding { get; set; }
+        public decimal Total_Receivables { get; set; }
+        public string Total_Receivables_For_Binding { get; set; }
+        public decimal Total_Expenses { get; set; }
+        public string Total_Expenses_For_Binding { get; set; }
+        public decimal Remain { get; set; }
+        public string Remain_For_Binding { get; set; }
     }
 }

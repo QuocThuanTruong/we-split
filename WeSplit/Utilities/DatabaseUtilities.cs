@@ -12,7 +12,7 @@ namespace WeSplit.Utilities
 
         private static DatabaseUtilities _databaseInstance;
         private static WeSplitEntities _databaseWeSplit;
-        //private AppUtilities _appUtilities = new AppUtilities();
+        private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 
         public static DatabaseUtilities GetDBInstance()
         {
@@ -228,7 +228,12 @@ namespace WeSplit.Utilities
                     .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey}")
                     .ToList();
 
-                result.Members_For_Binding = members;
+                for (int i = 0; i < members.Count; ++i)
+                {
+                    members[i].Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(members[i].Receivables_Money ?? 0));
+                }
+
+                result.JourneyAttendances = members;
 
                 //Images
                 List<JourneyImage> images = _databaseWeSplit
@@ -242,6 +247,22 @@ namespace WeSplit.Utilities
                 List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
 
                 result.Devide_Money_For_Binding = devideMoney;
+
+                //Statistical
+                result.Total_Receivables = _databaseInstance.GetTotalReceivable(ID_Journey);
+                result.Total_Receivables_For_Binding = "Tổng thu: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Total_Receivables));
+
+                result.Total_Expenses = _databaseInstance.GetTotalExpenses(ID_Journey);
+                result.Total_Expenses_For_Binding = "Tổng chi: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Total_Expenses));
+
+                result.Remain = result.Total_Receivables - result.Total_Expenses;
+                result.Remain_For_Binding = "Số dư: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Remain)); 
+
+                //Expenses
+                result.Expenses = _databaseWeSplit
+                    .Database
+                    .SqlQuery<Expens>($"Select * from Expenses where ID_Journey = {ID_Journey}")
+                    .ToList();
             }
 
             return result;
@@ -339,6 +360,26 @@ namespace WeSplit.Utilities
         public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role)
         {
             return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, memberName, phoneNumber, receivable, role);
+        }
+
+        public decimal GetTotalReceivable(int ID_Journey)
+        {
+            decimal result = _databaseWeSplit
+                 .Database
+                 .SqlQuery<decimal>($"select [dbo].[CalcSumReceivablesByIDJourney]({ID_Journey})")
+                 .Single();
+
+            return result;
+        }
+
+        public decimal GetTotalExpenses(int ID_Journey)
+        {
+            decimal result = _databaseWeSplit
+                 .Database
+                 .SqlQuery<decimal>($"select [dbo].[CalcSumExpensesByIDJourney]({ID_Journey})")
+                 .Single();
+
+            return result;
         }
     }
 }

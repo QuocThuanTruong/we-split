@@ -17,5 +17,8 @@ namespace WeSplit
         public string Member_Name { get; set; }
         public Nullable<decimal> Remain { get; set; }
         public string Advance_Money_Lender { get; set; }
+
+        //For Binding
+        public string Remain_For_Binding { get; set; }
     }
 }

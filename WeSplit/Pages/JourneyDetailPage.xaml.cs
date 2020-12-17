@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +47,30 @@ namespace WeSplit.Pages
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			_journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
+
+			var expenseSeriesCollection = new SeriesCollection();
+			foreach (var expense in _journey.Expenses)
+            {
+				expenseSeriesCollection.Add(new PieSeries
+				{
+					Title = expense.Expenses_Description,
+					Values = new ChartValues<int> { decimal.ToInt32(expense.Expenses_Money ?? 0) }
+				});
+			}
+
+			expensesChart.Series = expenseSeriesCollection;
+
+			var receivablesSeriesCollection = new SeriesCollection();
+			foreach (var member in _journey.JourneyAttendances)
+			{
+				receivablesSeriesCollection.Add(new PieSeries
+				{
+					Title = member.Member_Name,
+					Values = new ChartValues<int> { decimal.ToInt32(member.Receivables_Money ?? 0) }
+				});
+			}
+
+			receivablesChart.Series = receivablesSeriesCollection;
 
 			this.DataContext = _journey;
 		}

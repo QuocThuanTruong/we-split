@@ -392,7 +392,7 @@
                                   Grid.Row="2"
                                   Margin="0, 8, 0, 0"
                                   ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                  ItemsSource="{Binding Members_For_Binding}">
+                                  ItemsSource="{Binding JourneyAttendances}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -433,7 +433,7 @@
                                             Margin="0, 0, 0, 0"
                                             Grid.Column="3"
                                             HorizontalAlignment="Left"
-                                            Text="{Binding Receivables_Money}"
+                                            Text="{Binding Money_For_Binding}"
                                             Style="{StaticResource RegularText}"/>
 
                                         <TextBlock 
@@ -528,7 +528,7 @@
 
                 <StackPanel>
                     <TextBlock Text="Tổng kết"
-                                   Style="{StaticResource RegularHeaderText}"/>
+                        Style="{StaticResource RegularHeaderText}"/>
 
                     <Grid Height="136">
                         <Grid.ColumnDefinitions>
@@ -539,14 +539,14 @@
 
 
                         <StackPanel Grid.Column="1">
-                            <lvc:PieChart Name="expensesChart"
+                                <lvc:PieChart Name="expensesChart"
                                           Hoverable="True"
                                           Width="110"
                                           Height="110">
-                                
-                                <!-- demo binding thì vô code set :v-->
+
+                                    <!-- demo binding thì vô code set :v-->
                                 <lvc:PieChart.Series>
-                                    <lvc:PieSeries Title="Maria" Values="3" />
+                                    <lvc:PieSeries Title="Maria" Values="3"/>
                                     <lvc:PieSeries Title="Maria" Values="4" />
                                     <lvc:PieSeries Title="Maria" Values="5" />
                                     <lvc:PieSeries Title="Maria" Values="6" />
@@ -585,15 +585,15 @@
                                     Margin="8, 0, 0, 14"
                                     VerticalAlignment="Center">
                             <TextBlock Name="totalReceivablesTextBlock"
-                                       Text="Tổng thu: 9.999.999 VNĐ"
+                                       Text="{Binding Total_Receivables_For_Binding}"
                                        Style="{StaticResource SemiBoldRegularText}"/>
                             
                             <TextBlock Name="totalExpensesTextBlock"
-                                       Text="Tổng chi: 9.999.999 VNĐ"
+                                       Text="{Binding Total_Expenses_For_Binding}"
                                        Style="{StaticResource SemiBoldRegularText}"/>
                             
                             <TextBlock Name="remainMoneyTextBlock"
-                                       Text="Số dư hiện tại: 9.999.999 VNĐ"
+                                       Text="{Binding Remain_For_Binding}"
                                        Style="{StaticResource SemiBoldRegularText}"/>
                         </StackPanel>
 

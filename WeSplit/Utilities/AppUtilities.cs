@@ -84,5 +84,14 @@ namespace WeSplit.Utilities
 
             return result;
         }
+
+        public string GetMoneyForBinding(int money)
+        {
+            string result = string.Format("{0:n0}", money);
+
+            result += " VNĐ";
+
+            return result;
+        }
     }
 }
