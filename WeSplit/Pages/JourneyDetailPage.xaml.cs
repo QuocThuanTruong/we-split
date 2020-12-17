@@ -70,7 +70,18 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			//visualRouteDetailDialog.ShowDialog(_journey);
+			Route startRoute = new Route();
+			startRoute.Place = _journey.Start_Place;
+			startRoute.Province = _journey.Start_Province;
+
+			Site endSite = _databaseUtilities.GetSiteByID(_journey.ID_Site.Value);
+			Province endProvince = _databaseUtilities.GetProvinceByID(endSite.ID_Province);
+
+			Route endRoute = new Route();
+			endRoute.Place = _journey.Site_Name;
+			endRoute.Province = endProvince.Province_Name;
+
+			visualRouteDetailDialog.ShowDialog(_journey.Route_For_Binding.ToList(), startRoute, endRoute);
 		}
 
 		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)

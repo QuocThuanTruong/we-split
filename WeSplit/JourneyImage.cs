@@ -17,6 +17,7 @@ namespace WeSplit
         public int ID_Journey { get; set; }
         public int Ordinal_Number { get; set; }
         public string Link_Image { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
     }

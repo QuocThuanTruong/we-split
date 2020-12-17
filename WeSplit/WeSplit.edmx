@@ -15,6 +15,7 @@
           <Property Name="ID_Borrower" Type="int" Nullable="false" />
           <Property Name="ID_Lender" Type="int" Nullable="false" />
           <Property Name="Advance_Money" Type="money" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Expenses">
           <Key>
@@ -24,6 +25,7 @@
           <Property Name="ID_Journey" Type="int" />
           <Property Name="Expenses_Money" Type="money" />
           <Property Name="Expenses_Description" Type="nvarchar(max)" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Journey">
           <Key>
@@ -49,6 +51,7 @@
           <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
           <Property Name="Receivables_Money" Type="money" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="JourneyImage">
           <Key>
@@ -58,6 +61,7 @@
           <Property Name="ID_Journey" Type="int" Nullable="false" />
           <Property Name="Ordinal_Number" Type="int" Nullable="false" />
           <Property Name="Link_Image" Type="nvarchar(max)" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -77,6 +81,7 @@
           <Property Name="Province" Type="nvarchar" MaxLength="200" />
           <Property Name="Route_Description" Type="nvarchar(max)" />
           <Property Name="Route_Status" Type="int" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Site">
           <Key>
@@ -670,6 +675,7 @@
           <NavigationProperty Name="Journey" Relationship="Self.FK_ADVANCE_JOURNEY" FromRole="Advance" ToRole="Journey" />
           <NavigationProperty Name="JourneyAttendance" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="Advance" ToRole="JourneyAttendance" />
           <NavigationProperty Name="JourneyAttendance1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="Advance" ToRole="JourneyAttendance" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Expens">
           <Key>
@@ -680,6 +686,7 @@
           <Property Name="Expenses_Money" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Expenses_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_Expenses_Journey" FromRole="Expenses" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Journey">
           <Key>
@@ -714,6 +721,7 @@
           <NavigationProperty Name="Advances" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="JourneyAttendance" ToRole="Advance" />
           <NavigationProperty Name="Advances1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="JourneyAttendance" ToRole="Advance" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyAttendance_Journey" FromRole="JourneyAttendance" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="JourneyImage">
           <Key>
@@ -724,6 +732,7 @@
           <Property Name="Ordinal_Number" Type="Int32" Nullable="false" />
           <Property Name="Link_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyImage_Journey" FromRole="JourneyImage" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -745,6 +754,7 @@
           <Property Name="Route_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Route_Status" Type="Int32" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_Route_Journey" FromRole="Route" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Site">
           <Key>
@@ -1016,6 +1026,7 @@
           <EntitySetMapping Name="Advances">
             <EntityTypeMapping TypeName="WeSplitModel.Advance">
               <MappingFragment StoreEntitySet="Advance">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="ID_Borrower" ColumnName="ID_Borrower" />
                 <ScalarProperty Name="ID_Lender" ColumnName="ID_Lender" />
@@ -1026,6 +1037,7 @@
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="WeSplitModel.Expens">
               <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Expenses" ColumnName="ID_Expenses" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Expenses_Money" ColumnName="Expenses_Money" />
@@ -1051,6 +1063,7 @@
           <EntitySetMapping Name="JourneyAttendances">
             <EntityTypeMapping TypeName="WeSplitModel.JourneyAttendance">
               <MappingFragment StoreEntitySet="JourneyAttendance">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
@@ -1063,6 +1076,7 @@
           <EntitySetMapping Name="JourneyImages">
             <EntityTypeMapping TypeName="WeSplitModel.JourneyImage">
               <MappingFragment StoreEntitySet="JourneyImage">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Ordinal_Number" ColumnName="Ordinal_Number" />
                 <ScalarProperty Name="Link_Image" ColumnName="Link_Image" />
@@ -1080,6 +1094,7 @@
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="WeSplitModel.Route">
               <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Ordinal_Number" ColumnName="Ordinal_Number" />
                 <ScalarProperty Name="Place" ColumnName="Place" />

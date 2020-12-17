@@ -307,6 +307,16 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public Province GetProvinceByID(int ID_Province)
+        {
+            Province result = _databaseWeSplit
+                .Database
+                .SqlQuery<Province>($"Select * from Province where ID_Province = {ID_Province}")
+                .Single();
+
+            return result;
+        }
+
         public int AddNewSite(int idSite, int idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)
         {
             return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);

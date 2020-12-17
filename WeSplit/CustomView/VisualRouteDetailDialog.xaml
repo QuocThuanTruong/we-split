@@ -39,10 +39,12 @@
                         Style="{StaticResource SemiBoldLargeText}"/>
 
 
-                    <ScrollViewer Grid.Row="1"
-                                  VerticalAlignment="Top"
-                                  Margin="0, 8, 0, 0"
-                                  Height="566">
+                    <ScrollViewer x:Name="scrollViewer"
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        Margin="0, 8, 0, 0"
+                        Height="566">
+                        
                         <Grid Grid.Row="1"
                              
                           Margin="16, 8, 8, 16">
@@ -72,10 +74,7 @@
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-
-
                             </ListView>
-
 
                             <ListView Name="routeDetailListView"
                                   Grid.Column="1"
@@ -103,7 +102,6 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-
                         </Grid>
                     </ScrollViewer>
 

@@ -132,6 +132,10 @@ namespace WeSplit.CustomView
 
 		private void closeDialogButton_Click(object sender, RoutedEventArgs e)
 		{
+			routeDetailListView.ItemsSource = null;
+			routeMilestoneListView.ItemsSource = null;
+			_borderMilestones = new ObservableCollection<Tuple<int, VerticalAlignment>>();
+
 			HideDialog();
 			CloseFullScreenVideoDialog?.Invoke();
 		}

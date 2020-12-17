@@ -27,6 +27,7 @@ namespace WeSplit
         public string Phone_Number { get; set; }
         public Nullable<decimal> Receivables_Money { get; set; }
         public string Role { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advance> Advances { get; set; }

@@ -18,6 +18,7 @@ namespace WeSplit
         public int ID_Borrower { get; set; }
         public int ID_Lender { get; set; }
         public Nullable<decimal> Advance_Money { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
         public virtual JourneyAttendance JourneyAttendance { get; set; }
