@@ -21,5 +21,8 @@ namespace WeSplit
         public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
+
+        //For Binding 
+        public string Expenses_For_Binding { get; set; }
     }
 }

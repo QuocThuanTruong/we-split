@@ -630,7 +630,7 @@
                                                 Margin="0, 0, 0, 0"
                                                 Grid.Column="3"
                                                 HorizontalAlignment="Left"
-                                                Text="{Binding Receivables_Money}"
+                                                Text="{Binding Money_For_Binding}"
                                                 Style="{StaticResource RegularText}"/>
 
                                             <TextBlock 
@@ -897,7 +897,7 @@
                                                 Margin="0, 0, 0, 0"
                                                 Grid.Column="2"
                                                 HorizontalAlignment="Left"
-                                                Text="{Binding Expenses_Money}"
+                                                Text="{Binding Expenses_For_Binding}"
                                                 Style="{StaticResource RegularText}"/>
                                         </Grid>
                                     </DataTemplate>

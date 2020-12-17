@@ -713,7 +713,7 @@
                                             Margin="6, 0, 0, 0"
                                             Grid.Column="2"
                                             HorizontalAlignment="Left"
-                                            Text="{Binding Remain}"
+                                            Text="{Binding Remain_For_Binding}"
                                             Style="{StaticResource RegularText}"/>
 
                                             <TextBlock 

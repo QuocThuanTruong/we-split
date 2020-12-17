@@ -16,9 +16,12 @@ namespace WeSplit
         public int ID_Member { get; set; }
         public string Member_Name { get; set; }
         public Nullable<decimal> Remain { get; set; }
-        public string Advance_Money_Lender { get; set; }
+        public Nullable<decimal> Advance_Money { get; set; }
+        public Nullable<int> ID_Lender { get; set; }
 
         //For Binding
         public string Remain_For_Binding { get; set; }
+
+        public string Advance_Money_Lender { get; set; }
     }
 }

@@ -246,6 +246,16 @@ namespace WeSplit.Utilities
                 //Devide Money
                 List<DevideMoney_Result> devideMoney = _databaseWeSplit.DevideMoney(result.ID_Journey).ToList();
 
+                for (int i = 0; i < devideMoney.Count; ++i)
+                {
+                    devideMoney[i].Remain_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(devideMoney[i].Remain ?? 0));
+
+                    if (devideMoney[i].ID_Lender != null)
+                    {
+                        devideMoney[i].Advance_Money_Lender = $"{_appUtilities.GetMoneyForBinding(decimal.ToInt32(devideMoney[i].Advance_Money ?? 0))} cho T.Viên ({devideMoney[i].ID_Lender})";
+                    }
+                }
+
                 result.Devide_Money_For_Binding = devideMoney;
 
                 //Statistical

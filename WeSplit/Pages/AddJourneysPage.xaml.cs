@@ -25,6 +25,7 @@ namespace WeSplit.Pages
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
 		private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 
 		private Journey _journey = new Journey();
 		private List<Province> _provinces;
@@ -136,6 +137,7 @@ namespace WeSplit.Pages
 			}
 
 			member.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			member.Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(member.Receivables_Money ?? 0));
 
 			string[] roles = { "Trưởng nhóm", "Thành viên" };
 			member.Role = roles[memberRoleComboBox.SelectedIndex];
@@ -159,6 +161,7 @@ namespace WeSplit.Pages
 			expens.ID_Expenses = _maxIDExpenses++;
 
 			expens.Expenses_Money = decimal.Parse(expensesMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			expens.Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(expens.Expenses_Money ?? 0));
 
 			expens.Expenses_Description = descriptionExpensesTextBox.Text;
 			if (expens.Expenses_Description.Length <= 0)
