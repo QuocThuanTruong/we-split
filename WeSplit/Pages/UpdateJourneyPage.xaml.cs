@@ -295,7 +295,10 @@ namespace WeSplit.Pages
 			int Route_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
 			_journey.Route_For_Binding[Route_Index].Is_Active = 0;
 
-			Route_For_Binding.RemoveAt(Route_Index);
+			Debug.WriteLine("deleted " + Route_Index);
+
+
+			//Route_For_Binding.RemoveAt(Route_Index);
 
 			routesListView.ItemsSource = null;
 			routesListView.ItemsSource = Route_For_Binding;
@@ -346,5 +349,6 @@ namespace WeSplit.Pages
 
 			_journey.Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
 		}
-    }
+
+	}
 }

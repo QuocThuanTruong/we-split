@@ -16,6 +16,7 @@
       Title="ManageJourneysPage">
     <Page.Resources>
         <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
+        <converter:IsActiveViewConverter x:Key="isActiveConverter"></converter:IsActiveViewConverter>
     </Page.Resources>
 
     <Grid>
@@ -437,7 +438,8 @@
 
                                 <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid 
+                                        <Grid Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"
                                  Margin="16, 0, 10, 0">
 
                                         <Grid.ColumnDefinitions>
@@ -454,7 +456,7 @@
                                           Width="16"
                                           Height="16"
                                           Margin="0, 0, 14, 0"
-                                          IsChecked="False"
+                                          IsChecked="{Binding Path=Route_Status, Converter={StaticResource routeStatusConverter}}"
                                           Tag="{Binding Route_Index}"
                                           Background="{DynamicResource MyNeueGreen}"
                                           BorderThickness="0"

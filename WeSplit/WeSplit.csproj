@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Converter\AbsolutePathConverter.cs" />
     <Compile Include="Converter\BrushOpacityConverter.cs" />
+    <Compile Include="Converter\IsActiveViewConverter.cs" />
     <Compile Include="Converter\RouteStatusConverter.cs" />
     <Compile Include="CustomView\VisualRouteDetailDialog.xaml.cs">
       <DependentUpon>VisualRouteDetailDialog.xaml</DependentUpon>
