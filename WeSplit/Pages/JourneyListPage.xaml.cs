@@ -23,10 +23,38 @@ namespace WeSplit.Pages
 	public partial class JourneyListPage : Page
 	{
 		private List<Tuple<Image, TextBlock, string, string>> _statusGroups;
+		
 		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+
+		public class RouteGroup
+		{
+			public RouteGroup(int index, string content)
+			{
+				Index = index;
+				Content = content;
+			}
+
+			public int Index { get; set; }
+			public string Content { get; set; }
+		}
+
+		public class MemberGroup
+		{
+			public MemberGroup(int index, string content)
+			{
+				Index = index;
+				Content = content;
+			}
+
+			public int Index { get; set; }
+			public string Content { get; set; }
+		}
+
+		private List<RouteGroup> _routeGroups;
+		private List<MemberGroup> _memberGroups;
 
 		const int PLANED = 1;
 		const int CURRENT = 0;
@@ -77,6 +105,24 @@ namespace WeSplit.Pages
 				new Tuple<Image, TextBlock, string, string>(currentStatusIcon, currentStatusTextBlock, "IconWhitecurrent", "IconGreencurrent"),
 				new Tuple<Image, TextBlock, string, string>(planStatusIcon, planStatusTextBlock, "IconWhitePlan", "IconGreenPlan")
 			};
+
+			_routeGroups = new List<RouteGroup>()
+			{
+				new RouteGroup( 0, "0 - 20 km"),
+				new RouteGroup(1, "21 - 50 km"),
+				new RouteGroup(2, "> 51 km")
+			}; 
+
+			routeGroupListBox.ItemsSource = _routeGroups;
+
+			_memberGroups = new List<MemberGroup>()
+			{
+				new MemberGroup(0, "2 - 5 người"),
+				new MemberGroup(1, "6 - 9 người"),
+				new MemberGroup(2, "> 10 người")
+			};
+
+			memGroupListBox.ItemsSource = _memberGroups;
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -535,5 +581,21 @@ namespace WeSplit.Pages
 			return result;
         }
 
-    }
+		private void routeGroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			
+			foreach (var item in routeGroupListBox.SelectedItems)
+			{
+				Debug.WriteLine(((RouteGroup)item).Index.ToString());
+			}	
+		}
+
+		private void memGroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (var item in memGroupListBox.SelectedItems)
+			{
+				Debug.WriteLine(((MemberGroup)item).Index.ToString());
+			}
+		}
+	}
 }

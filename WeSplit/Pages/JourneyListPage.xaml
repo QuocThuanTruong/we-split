@@ -989,46 +989,44 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel VerticalAlignment="Center" 
+                            <ListView Name="routeGroupListBox"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 SelectionChanged="routeGroupListBox_SelectionChanged"
+                 ItemContainerStyle="{StaticResource BindingSelectedListViewItem}"
+                 SelectionMode="Multiple"
+                 Foreground="{DynamicResource MyOrange}"
+                 Grid.Column="0"
+                Grid.ColumnSpan="3">
+
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel VerticalAlignment="Center" 
+                                                     Margin="0, 0, 16, 0"
+                                         Tag="{Binding Index}"
                                         Orientation="Horizontal">
-                                <CheckBox Name="routeOption1SheckBox"
-                                          IsChecked="False"
+                                            <CheckBox Name="routeOption1SheckBox"
+                                          IsChecked="{Binding Path=IsSelected, 
+                                                              RelativeSource={RelativeSource FindAncestor,
+                                                              AncestorType={x:Type ListViewItem}}}"
                                           Foreground="{DynamicResource MyNeueGreen}"
                                           materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
 
-                                <TextBlock Text="0 - 20 km"
+                                            <TextBlock Text="{Binding Content}"
+                                               VerticalAlignment="Center"
                                            Margin="8, 0, 0, 0"
                                            Style="{StaticResource MediumText}"/>
 
-                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
 
-                            <StackPanel VerticalAlignment="Center" 
-                                        Grid.Column="1"
-                                        Orientation="Horizontal">
-                                <CheckBox Name="routeOption2SheckBox"
-                                          IsChecked="False"
-                                          Foreground="{DynamicResource MyNeueGreen}"
-                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
-
-                                <TextBlock Text="21 - 50 km"
-                                           Margin="8, 0, 0, 0"
-                                           Style="{StaticResource MediumText}"/>
-
-                            </StackPanel>
-
-                            <StackPanel VerticalAlignment="Center" 
-                                        Grid.Column="2"
-                                        Orientation="Horizontal">
-                                <CheckBox Name="routeOption3SheckBox"
-                                          IsChecked="False"
-                                          Foreground="{DynamicResource MyNeueGreen}"
-                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
-
-                                <TextBlock Text="> 51 km"
-                                           Margin="8, 0, 0, 0"
-                                           Style="{StaticResource MediumText}"/>
-
-                            </StackPanel>
+                            </ListView>
 
                         </Grid>
 
@@ -1119,46 +1117,44 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel VerticalAlignment="Center" 
+                            <ListView Name="memGroupListBox"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 SelectionChanged="memGroupListBox_SelectionChanged"
+                 ItemContainerStyle="{StaticResource BindingSelectedListViewItem}"
+                 SelectionMode="Multiple"
+                 Foreground="{DynamicResource MyOrange}"
+                 Grid.Column="0"
+                Grid.ColumnSpan="3">
+
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel VerticalAlignment="Center" 
+                                                     Margin="0, 0, 16, 0"
+                                         Tag="{Binding Index}"
                                         Orientation="Horizontal">
-                                <CheckBox Name="memberOption1SheckBox"
-                                          IsChecked="False"
+                                            <CheckBox Name="routeOption1SheckBox"
+                                          IsChecked="{Binding Path=IsSelected, 
+                                                              RelativeSource={RelativeSource FindAncestor,
+                                                              AncestorType={x:Type ListViewItem}}}"
                                           Foreground="{DynamicResource MyNeueGreen}"
                                           materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
 
-                                <TextBlock Text="2 - 5 người"
+                                            <TextBlock Text="{Binding Content}"
+                                               VerticalAlignment="Center"
                                            Margin="8, 0, 0, 0"
                                            Style="{StaticResource MediumText}"/>
 
-                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
 
-                            <StackPanel VerticalAlignment="Center" 
-                                        Grid.Column="1"
-                                        Orientation="Horizontal">
-                                <CheckBox Name="memberOption2SheckBox"
-                                          IsChecked="False"
-                                          Foreground="{DynamicResource MyNeueGreen}"
-                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
-
-                                <TextBlock Text="6 - 9 người"
-                                           Margin="8, 0, 0, 0"
-                                           Style="{StaticResource MediumText}"/>
-
-                            </StackPanel>
-
-                            <StackPanel VerticalAlignment="Center" 
-                                        Grid.Column="2"
-                                        Orientation="Horizontal">
-                                <CheckBox Name="memberOption3SheckBox"
-                                          IsChecked="False"
-                                          Foreground="{DynamicResource MyNeueGreen}"
-                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
-
-                                <TextBlock Text="> 10 người"
-                                           Margin="8, 0, 0, 0"
-                                           Style="{StaticResource MediumText}"/>
-
-                            </StackPanel>
+                            </ListView>
 
                         </Grid>
 
