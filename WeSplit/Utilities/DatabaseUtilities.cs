@@ -945,5 +945,11 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public void FinishJourney(int ID_Journey)
+        {
+            _databaseWeSplit
+                .Database
+                .ExecuteSqlCommand($"Update Journey Set Status = -1 Where ID_Journey = {ID_Journey}");
+        }
     }
 }
