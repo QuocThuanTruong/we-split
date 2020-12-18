@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +29,7 @@ namespace WeSplit.Pages
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private int _ID_Journey;
+		Journey _journey;
 		public JourneyDetailPage()
 		{
 			InitializeComponent();
@@ -42,9 +46,33 @@ namespace WeSplit.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			Journey journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
+			_journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
 
-			this.DataContext = journey;
+			var expenseSeriesCollection = new SeriesCollection();
+			foreach (var expense in _journey.Expenses)
+            {
+				expenseSeriesCollection.Add(new PieSeries
+				{
+					Title = expense.Expenses_Description,
+					Values = new ChartValues<int> { decimal.ToInt32(expense.Expenses_Money ?? 0) }
+				});
+			}
+
+			expensesChart.Series = expenseSeriesCollection;
+
+			var receivablesSeriesCollection = new SeriesCollection();
+			foreach (var member in _journey.JourneyAttendances)
+			{
+				receivablesSeriesCollection.Add(new PieSeries
+				{
+					Title = member.Member_Name,
+					Values = new ChartValues<int> { decimal.ToInt32(member.Receivables_Money ?? 0) }
+				});
+			}
+
+			receivablesChart.Series = receivablesSeriesCollection;
+
+			this.DataContext = _journey;
 		}
 
 		private void currentJourneyProgess_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -69,7 +97,18 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			Route startRoute = new Route();
+			startRoute.Place = _journey.Start_Place;
+			startRoute.Province = _journey.Start_Province;
+
+			Site endSite = _databaseUtilities.GetSiteByID(_journey.ID_Site.Value);
+			Province endProvince = _databaseUtilities.GetProvinceByID(endSite.ID_Province);
+
+			Route endRoute = new Route();
+			endRoute.Place = _journey.Site_Name;
+			endRoute.Province = endProvince.Province_Name;
+
+			visualRouteDetailDialog.ShowDialog(_journey.Route_For_Binding.ToList(), startRoute, endRoute);
 		}
 
 		private void updateJourneyButton_Click(object sender, RoutedEventArgs e)

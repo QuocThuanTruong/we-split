@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WeSplitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WeSplitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advance">
           <Key>
             <PropertyRef Name="ID_Journey" />
@@ -15,6 +15,7 @@
           <Property Name="ID_Borrower" Type="int" Nullable="false" />
           <Property Name="ID_Lender" Type="int" Nullable="false" />
           <Property Name="Advance_Money" Type="money" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Expenses">
           <Key>
@@ -24,6 +25,7 @@
           <Property Name="ID_Journey" Type="int" />
           <Property Name="Expenses_Money" Type="money" />
           <Property Name="Expenses_Description" Type="nvarchar(max)" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Journey">
           <Key>
@@ -49,6 +51,7 @@
           <Property Name="Phone_Number" Type="nchar" MaxLength="20" />
           <Property Name="Receivables_Money" Type="money" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="JourneyImage">
           <Key>
@@ -58,6 +61,7 @@
           <Property Name="ID_Journey" Type="int" Nullable="false" />
           <Property Name="Ordinal_Number" Type="int" Nullable="false" />
           <Property Name="Link_Image" Type="nvarchar(max)" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -77,6 +81,7 @@
           <Property Name="Province" Type="nvarchar" MaxLength="200" />
           <Property Name="Route_Description" Type="nvarchar(max)" />
           <Property Name="Route_Status" Type="int" />
+          <Property Name="Is_Active" Type="int" />
         </EntityType>
         <EntityType Name="Site">
           <Key>
@@ -217,6 +222,7 @@
         </Function>
         <Function Name="AddJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
+          <Parameter Name="journeyName" Type="nvarchar" Mode="In" />
           <Parameter Name="idSite" Type="int" Mode="In" />
           <Parameter Name="startPlace" Type="nvarchar" Mode="In" />
           <Parameter Name="startProvince" Type="nvarchar" Mode="In" />
@@ -228,6 +234,8 @@
         <Function Name="AddJourneyAttendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idMember" Type="int" Mode="In" />
           <Parameter Name="idJourney" Type="int" Mode="In" />
+          <Parameter Name="memberName" Type="nvarchar" Mode="In" />
+          <Parameter Name="phoneNumber" Type="nchar" Mode="In" />
           <Parameter Name="Receivable" Type="money" Mode="In" />
           <Parameter Name="role" Type="nvarchar" Mode="In" />
         </Function>
@@ -282,7 +290,8 @@
                 <Property Name="ID_Member" Type="int" Nullable="false" />
                 <Property Name="Member_Name" Type="nvarchar" MaxLength="200" />
                 <Property Name="Remain" Type="money" />
-                <Property Name="Advance_Money_Lender" Type="nvarchar" MaxLength="78" />
+                <Property Name="Advance_Money" Type="money" />
+                <Property Name="ID_Lender" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -532,16 +541,16 @@
             <End Role="Site" EntitySet="Site" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WeSplitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <ComplexType Name="DevideMoney_Result">
           <Property Name="ID_Member" Type="Int32" Nullable="false" />
-          <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Remain" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Advance_Money_Lender" Type="String" MaxLength="78" FixedLength="false" Unicode="true" />
+          <Property Name="Member_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Remain" Type="Decimal" Precision="19" Scale="4" Nullable="true" />
+          <Property Type="Decimal" Name="Advance_Money" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="ID_Lender" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetAllFromJourney_Result">
           <Property Name="ID_Journey" Type="Int32" Nullable="false" />
@@ -668,6 +677,7 @@
           <NavigationProperty Name="Journey" Relationship="Self.FK_ADVANCE_JOURNEY" FromRole="Advance" ToRole="Journey" />
           <NavigationProperty Name="JourneyAttendance" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="Advance" ToRole="JourneyAttendance" />
           <NavigationProperty Name="JourneyAttendance1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="Advance" ToRole="JourneyAttendance" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Expens">
           <Key>
@@ -678,6 +688,7 @@
           <Property Name="Expenses_Money" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Expenses_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_Expenses_Journey" FromRole="Expenses" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Journey">
           <Key>
@@ -712,6 +723,7 @@
           <NavigationProperty Name="Advances" Relationship="Self.FK_ADVANCE_MEMBER_01" FromRole="JourneyAttendance" ToRole="Advance" />
           <NavigationProperty Name="Advances1" Relationship="Self.FK_ADVANCE_MEMBER_02" FromRole="JourneyAttendance" ToRole="Advance" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyAttendance_Journey" FromRole="JourneyAttendance" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="JourneyImage">
           <Key>
@@ -722,6 +734,7 @@
           <Property Name="Ordinal_Number" Type="Int32" Nullable="false" />
           <Property Name="Link_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_JourneyImage_Journey" FromRole="JourneyImage" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -743,6 +756,7 @@
           <Property Name="Route_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Route_Status" Type="Int32" />
           <NavigationProperty Name="Journey" Relationship="Self.FK_Route_Journey" FromRole="Route" ToRole="Journey" />
+          <Property Name="Is_Active" Type="Int32" />
         </EntityType>
         <EntityType Name="Site">
           <Key>
@@ -923,40 +937,40 @@
             <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
           <FunctionImport Name="DevideMoney" IsComposable="true" ReturnType="Collection(WeSplitModel.DevideMoney_Result)">
-            <Parameter Name="idJourney" Mode="In" Type="Int32" />
+          <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAllFromJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetAllFromJourney_Result)" />
           <FunctionImport Name="GetAllFromSite" IsComposable="true" ReturnType="Collection(WeSplitModel.GetAllFromSite_Result)" />
           <FunctionImport Name="GetJourneyByStatus" IsComposable="true" ReturnType="Collection(WeSplitModel.GetJourneyByStatus_Result)">
-            <Parameter Name="status" Mode="In" Type="Int32" />
+          <Parameter Name="status" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetLinkImageByIDJourneyAndOrdinalNumber" IsComposable="true" ReturnType="Collection(WeSplitModel.GetLinkImageByIDJourneyAndOrdinalNumber_Result)">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="ordinalNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetMemberByIDJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetMemberByIDJourney_Result)">
-            <Parameter Name="idJourney" Mode="In" Type="Int32" />
+          <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetRouteByIDJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.GetRouteByIDJourney_Result)">
-            <Parameter Name="idJourney" Mode="In" Type="Int32" />
+          <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Result" IsComposable="true" ReturnType="Collection(WeSplitModel.Result_Result)">
-            <Parameter Name="idJourney" Mode="In" Type="Int32" />
+          <Parameter Name="idJourney" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SearchByJourneyName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByJourneyName_Result)">
-            <Parameter Name="search_text" Mode="In" Type="String" />
+          <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByJourneySiteName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByJourneySiteName_Result)">
-            <Parameter Name="search_text" Mode="In" Type="String" />
+          <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByMemberName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByMemberName_Result)">
-            <Parameter Name="search_text" Mode="In" Type="String" />
+          <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchByProvinceName" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchByProvinceName_Result)">
-            <Parameter Name="search_text" Mode="In" Type="String" />
+          <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchJourney" IsComposable="true" ReturnType="Collection(WeSplitModel.SearchJourney_Result)">
-            <Parameter Name="search_text" Mode="In" Type="String" />
+          <Parameter Name="search_text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddExpense">
             <Parameter Name="idExpenses" Mode="In" Type="Int32" />
@@ -966,6 +980,7 @@
           </FunctionImport>
           <FunctionImport Name="AddJourney">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="journeyName" Mode="In" Type="String" />
             <Parameter Name="idSite" Mode="In" Type="Int32" />
             <Parameter Name="startPlace" Mode="In" Type="String" />
             <Parameter Name="startProvince" Mode="In" Type="String" />
@@ -977,6 +992,8 @@
           <FunctionImport Name="AddJourneyAttendance">
             <Parameter Name="idMember" Mode="In" Type="Int32" />
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
+            <Parameter Name="memberName" Mode="In" Type="String" />
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
             <Parameter Name="Receivable" Mode="In" Type="Decimal" />
             <Parameter Name="role" Mode="In" Type="String" />
           </FunctionImport>
@@ -1011,6 +1028,7 @@
           <EntitySetMapping Name="Advances">
             <EntityTypeMapping TypeName="WeSplitModel.Advance">
               <MappingFragment StoreEntitySet="Advance">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="ID_Borrower" ColumnName="ID_Borrower" />
                 <ScalarProperty Name="ID_Lender" ColumnName="ID_Lender" />
@@ -1021,6 +1039,7 @@
           <EntitySetMapping Name="Expenses">
             <EntityTypeMapping TypeName="WeSplitModel.Expens">
               <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Expenses" ColumnName="ID_Expenses" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Expenses_Money" ColumnName="Expenses_Money" />
@@ -1046,6 +1065,7 @@
           <EntitySetMapping Name="JourneyAttendances">
             <EntityTypeMapping TypeName="WeSplitModel.JourneyAttendance">
               <MappingFragment StoreEntitySet="JourneyAttendance">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
@@ -1058,6 +1078,7 @@
           <EntitySetMapping Name="JourneyImages">
             <EntityTypeMapping TypeName="WeSplitModel.JourneyImage">
               <MappingFragment StoreEntitySet="JourneyImage">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Ordinal_Number" ColumnName="Ordinal_Number" />
                 <ScalarProperty Name="Link_Image" ColumnName="Link_Image" />
@@ -1075,6 +1096,7 @@
           <EntitySetMapping Name="Routes">
             <EntityTypeMapping TypeName="WeSplitModel.Route">
               <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
                 <ScalarProperty Name="ID_Journey" ColumnName="ID_Journey" />
                 <ScalarProperty Name="Ordinal_Number" ColumnName="Ordinal_Number" />
                 <ScalarProperty Name="Place" ColumnName="Place" />
@@ -1102,7 +1124,8 @@
                 <ScalarProperty Name="ID_Member" ColumnName="ID_Member" />
                 <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
                 <ScalarProperty Name="Remain" ColumnName="Remain" />
-                <ScalarProperty Name="Advance_Money_Lender" ColumnName="Advance_Money_Lender" />
+                <ScalarProperty Name="Advance_Money" ColumnName="Advance_Money" />
+                <ScalarProperty Name="ID_Lender" ColumnName="ID_Lender" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

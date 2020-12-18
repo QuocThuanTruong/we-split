@@ -149,6 +149,12 @@
                                    Style="{StaticResource RegularHeaderText}"/>
 
                             <!--<TextBox Name="journeyEndPlaceTextBox"
+                                 Margin="2, 8, 2 ,0"
+                                 Style="{StaticResource AddRecipePageTextBox}"
+                                 materialDesign:HintAssist.Hint="Địa điểm"
+                                 Grid.Column="1"
+                                 Grid.Row="1"/>-->
+                                <!--<TextBox Name="journeyEndPlaceTextBox"
                              Margin="2, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Địa điểm"
@@ -156,46 +162,35 @@
                              Grid.Row="1"/>-->
 
                             <Grid Name="endSitePickerContainer"
-                          VerticalAlignment="Top"
-                          Margin="2, 8, 2, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
+                                VerticalAlignment="Top"
+                                Margin="2, 8, 2, 0"
+                                Grid.Column="1"
+                                Grid.Row="1">
 
                                 <Border Height="34"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="4"/>
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="4"/>
 
                                 <ComboBox Name="endSiteComboBox"
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Center"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="4, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="164">
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource AddRecipeComboBox}"
+                                    ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                    Height="30"
+                                    SelectedIndex="0"
+                                    HorizontalContentAlignment="Center"
+                                    BorderBrush="{DynamicResource MyBlack}"
+                                    BorderThickness="0"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                    Margin="4, 2, 0, 2"
+                                    OverridesDefaultStyle="True"
+                                    Width="164">
 
-                                    <!-- Demo :v còn binding thì item source-->
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
-                                    <ComboBoxItem>
-                                        <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                    </ComboBoxItem>
-
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Site_Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
 
                                 </ComboBox>
                             </Grid>
@@ -246,7 +241,8 @@
                                 materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                                 Margin="4, 2, 0, 2"
                                 OverridesDefaultStyle="True"
-                                Width="126">
+                                Width="126"
+                                SelectionChanged="endProvinceComboBox_SelectionChanged">
 
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -304,12 +300,13 @@
                             <StackPanel Orientation="Horizontal">
                                 <Grid Name="startProvinceRoutePickerContainer"
 
-                                  HorizontalAlignment="Left"
-                                  Width="180"
-                          VerticalAlignment="Top"
-                          Margin="2, 8, 0, 0"
-                      Grid.Column="1"
-                      Grid.Row="1">
+                                    HorizontalAlignment="Left"
+                                    Width="180"
+                                    VerticalAlignment="Top"
+                                    Margin="2, 8, 0, 0"
+                                    Grid.Column="1"
+                                    Grid.Row="1">    
+
 
                                     <Border Height="34"
                                             BorderBrush="Black"
@@ -318,51 +315,38 @@
 
                                     <ComboBox Name="startProvinceRouteComboBox"
 
-                              HorizontalAlignment="Left"
-                              Style="{StaticResource AddRecipeComboBox}"
-                              ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
-                              Height="30"
-                              SelectedIndex="0"
-                              HorizontalContentAlignment="Left"
-                              BorderBrush="{DynamicResource MyBlack}"
-                              BorderThickness="0"
-                              materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                              Margin="12, 2, 0, 2"
-                              OverridesDefaultStyle="True"
-                              Width="158">
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource AddRecipeComboBox}"
+                                        ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
+                                        Height="30"
+                                        SelectedIndex="0"
+                                        HorizontalContentAlignment="Left"
+                                        BorderBrush="{DynamicResource MyBlack}"
+                                        BorderThickness="0"
+                                        materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                                        Margin="12, 2, 0, 2"
+                                        OverridesDefaultStyle="True">
 
-                                        <!-- Demo :v còn binding thì item source-->
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-                                        <ComboBoxItem>
-                                            <TextBlock
-                                      Text="TP.Hồ Chí Minh"/>
-                                        </ComboBoxItem>
-
-
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Province_Name}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
                                     </ComboBox>
 
                                 </Grid>
 
                                 <Button Name="addRouteButton"
 
-                                Click="addRouteButton_Click"
+                                    Click="addRouteButton_Click"
                                     Margin="19,8,0,0"
                                     VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                
 
                                     <Image Name="iconAdd"
                                            Width="16"
@@ -482,11 +466,11 @@
                 </Grid.ColumnDefinitions>
 
                 <materialDesign:Card
-            Margin="0, 10, 0, 0"
-            Background="#60ffffff"
-            UniformCornerRadius="10"
-            Padding="14"
-            materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    Margin="0, 10, 0, 0"
+                    Background="#60ffffff"
+                    UniformCornerRadius="10"
+                    Padding="14"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
                     <StackPanel>
                         <TextBlock Text="Thông tin thành viên"
@@ -646,7 +630,7 @@
                                                 Margin="0, 0, 0, 0"
                                                 Grid.Column="3"
                                                 HorizontalAlignment="Left"
-                                                Text="{Binding Receivables_Money}"
+                                                Text="{Binding Money_For_Binding}"
                                                 Style="{StaticResource RegularText}"/>
 
                                             <TextBlock 
@@ -666,6 +650,7 @@
 
 
                 <materialDesign:Card
+                    Name="ImageCard"
                     Margin="12, 10, 0, 0"
                     Background="#60ffffff"
                     UniformCornerRadius="10"
@@ -783,11 +768,6 @@
 
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
-                                <Grid/>
                             </ListView>
                         </StackPanel>
 
@@ -913,7 +893,7 @@
                                                 Margin="0, 0, 0, 0"
                                                 Grid.Column="2"
                                                 HorizontalAlignment="Left"
-                                                Text="{Binding Expenses_Money}"
+                                                Text="{Binding Expenses_For_Binding}"
                                                 Style="{StaticResource RegularText}"/>
                                         </Grid>
                                     </DataTemplate>
@@ -927,6 +907,7 @@
 
 
                 <materialDesign:Card
+                    Name="AdvanceCard"
                     Grid.Column="1"
                     Margin="12, 10, 0, 0"
                     Background="#60ffffff"

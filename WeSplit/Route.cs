@@ -20,7 +20,11 @@ namespace WeSplit
         public string Province { get; set; }
         public string Route_Description { get; set; }
         public Nullable<int> Route_Status { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
+
+        //For Binding
+        public string Route_Detail { get; set; }
     }
 }

@@ -67,16 +67,27 @@ namespace WeSplit.Utilities
             return result;
         }
 
-        public double GetDistanceByRoutes(List<Route> routes, Route startRoute)
+        public double GetDistanceByRoutes(List<Route> routes, Route startRoute, Route endRoute)
         {
             double result = 0;
 
-            result += GetDistanceBetweenTwoRoute(startRoute, routes[0]);
-
-            for (int i = 0; i < routes.Count - 1; ++i)
+            if (routes.Count > 0)
             {
-                result += GetDistanceBetweenTwoRoute(routes[i], routes[i + 1]);
+                result += GetDistanceBetweenTwoRoute(startRoute, routes[0]);
+
+                for (int i = 0; i < routes.Count - 1; ++i)
+                {
+                    result += GetDistanceBetweenTwoRoute(routes[i], routes[i + 1]);
+                }
+
+                result += GetDistanceBetweenTwoRoute(endRoute, routes[routes.Count - 1]);
+            } 
+            else
+            {
+                result += GetDistanceBetweenTwoRoute(startRoute, endRoute);
             }
+
+            
 
             return result;
         }
@@ -87,7 +98,7 @@ namespace WeSplit.Utilities
 
             string DistanceApi = ConfigurationManager.AppSettings["DistanceApi"];
 
-            string url = DistanceApi + "&origins=" + route1.Place + " " + route1.Province + "&destinations=" + route2.Place + " " + route2.Province + "&key=" + _googleMapApiKey;
+            string url = DistanceApi + "&origins=" + route1.Place + " " + route1.Province + "&destinations=" + route2.Place + " " + route2.Province + "&" + _googleMapApiKey;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 

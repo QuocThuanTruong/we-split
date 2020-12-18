@@ -18,7 +18,11 @@ namespace WeSplit
         public Nullable<int> ID_Journey { get; set; }
         public Nullable<decimal> Expenses_Money { get; set; }
         public string Expenses_Description { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
+
+        //For Binding 
+        public string Expenses_For_Binding { get; set; }
     }
 }

@@ -25,27 +25,35 @@ namespace WeSplit.Pages
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
 		private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 
 		private Journey _journey = new Journey();
 		private List<Province> _provinces;
 
 		private int _ordinal_number = 0;
 		private int _maxIDMember = 0;
+		private int _maxIDExpenses = 0;
 		public AddJourneysPage()
 		{
 			InitializeComponent();
 			visualRouteDetailDialog.SetParent(mainContainer);
 
 			_maxIDMember = _databaseUtilities.GetMaxIDMember() + 1;
+			_maxIDExpenses = _databaseUtilities.GetMaxIDExpenses() + 1;
 			_provinces = _databaseUtilities.GetListProvince();
 
+			startProvinceRouteComboBox.ItemsSource = _provinces;
 			startProvinceComboBox.ItemsSource = _provinces;
 			endProvinceComboBox.ItemsSource = _provinces;
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney();
+			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+
+			ImageCard.Visibility = Visibility.Collapsed;
+			AdvanceCard.Visibility = Visibility.Collapsed;
+
 		}
 
 		private void addRouteButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +62,7 @@ namespace WeSplit.Pages
 
 			route.ID_Journey = _journey.ID_Journey;
 			route.Ordinal_Number = ++_ordinal_number;
+			route.Route_Status = 0;
 
 			route.Place = routeStartPlaceTextBox.Text;
 			if (route.Place.Length <= 0)
@@ -69,6 +78,8 @@ namespace WeSplit.Pages
 				return;
 			}
 
+			route.Province = ((Province)startProvinceRouteComboBox.SelectedItem).Province_Name;
+
 			routeStartPlaceTextBox.Text = "";
 			descriptionRouteTextBox.Text = "";
 
@@ -80,7 +91,23 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			Route startRoute = new Route();
+			startRoute.Place = journeyStartPlaceTextBox.Text;
+			startRoute.Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
+
+			Route endRoute = new Route();
+			if (endSiteComboBox.SelectedItem == null)
+            {
+				endRoute.Place = "";
+			} 
+			else
+            {
+				endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
+
+			}
+			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
+
+			visualRouteDetailDialog.ShowDialog(_journey.Routes.ToList(), startRoute, endRoute);
 		}
 
 		private void visualRouteDetailDialog_CloseFullScreenVideoDialog()
@@ -97,7 +124,6 @@ namespace WeSplit.Pages
 		{
 			JourneyAttendance member = new JourneyAttendance();
 			member.ID_Member = _maxIDMember++;
-
 			member.ID_Journey = _journey.ID_Journey;
 
 			member.Member_Name = memberNameTextBox.Text;
@@ -115,12 +141,10 @@ namespace WeSplit.Pages
 			}
 
 			member.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
-			member.Receivables_Money = member.Receivables_Money;
-
+			member.Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(member.Receivables_Money ?? 0));
 
 			string[] roles = { "Trưởng nhóm", "Thành viên" };
 			member.Role = roles[memberRoleComboBox.SelectedIndex];
-			member.Role = member.Role;
 
 			//Reset
 			memberNameTextBox.Text = "";
@@ -138,9 +162,10 @@ namespace WeSplit.Pages
 			Expens expens = new Expens();
 
 			expens.ID_Journey = _journey.ID_Journey;
-			expens.ID_Expenses = _journey.Expenses.Count + 1;
+			expens.ID_Expenses = _maxIDExpenses++;
 
 			expens.Expenses_Money = decimal.Parse(expensesMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			expens.Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(expens.Expenses_Money ?? 0));
 
 			expens.Expenses_Description = descriptionExpensesTextBox.Text;
 			if (expens.Expenses_Description.Length <= 0)
@@ -185,19 +210,20 @@ namespace WeSplit.Pages
 			startRoute.Province = _journey.Start_Province;
 
 			Route endRoute = new Route();
-			endRoute.Place = journeyEndPlaceTextBox.Text;
+			endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
 			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
-
+			_journey.ID_Site = ((Site)endSiteComboBox.SelectedItem).ID_Site;
 
 			_journey.StartDate = startDatePicker.SelectedDate;
 			_journey.EndDate = endDatePicker.SelectedDate;
 
 			//Get distance
-			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute);
+			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute, endRoute);
 
 			//Insert 
 			_databaseUtilities.AddNewJourney(
 				_journey.ID_Journey,
+				_journey.Journey_Name,
 				_journey.ID_Site,
 				_journey.Start_Place,
 				_journey.Start_Province,
@@ -208,15 +234,35 @@ namespace WeSplit.Pages
 
 			foreach(var expense in _journey.Expenses)
             {
-				_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money.Value, expense.Expenses_Description);
+				_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description);
             }
 
 			foreach (var route in _journey.Routes)
 			{
-				_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status.Value);
+				_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status);
 			}
 
+			foreach (var member in _journey.JourneyAttendances)
+            {
+				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
+            }
 
+			_journey = new Journey();
+			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+
+			//Reset
+			journeyNameTextBox.Text = "";
+			journeyStartPlaceTextBox.Text = "";
+			startProvinceComboBox.SelectedIndex = 0;
+			startDatePicker.Text = "";
+			endSiteComboBox.SelectedIndex = 0;
+			endProvinceComboBox.SelectedIndex = 0;
+			endDatePicker.Text = "";
+			startProvinceRouteComboBox.SelectedIndex = 0;
+			routesListView.ItemsSource = null;
+			membersListView.ItemsSource = null;
+			expensesListView.ItemsSource = null;
+			_ordinal_number = 0;
 		}
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)
@@ -237,6 +283,14 @@ namespace WeSplit.Pages
 
 		}
 
-	
-	}
+        private void endProvinceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			Province province = (Province)endProvinceComboBox.SelectedItem;
+
+			List<Site> sites = _databaseUtilities.GetListSiteByProvince(province.ID_Province);
+
+			endSiteComboBox.ItemsSource = sites;
+			endSiteComboBox.SelectedIndex = 0;
+		}
+    }
 }

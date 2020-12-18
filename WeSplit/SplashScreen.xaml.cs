@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Diagnostics;
+using WeSplit.Utilities;
 
 namespace WeSplit
 {
@@ -30,10 +31,32 @@ namespace WeSplit
 		private const int TIME_LOAD_UNIT = 1000;
 		private const int TOTAL_TIME_LOAD_IN_SECOND = 5;
 		#endregion
-		
+
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private Random _rng = new Random();
+
+		private bool _showSplashScreenFlag = true;
+
 		public SplashScreen()
 		{
 			InitializeComponent();
+
+			int maxID = _databaseUtilities.GetMaxIDSite();
+
+			if (maxID > 0)
+			{
+				_showSplashScreenFlag = true;
+
+				int randomIndex = _rng.Next(maxID) + 1;
+
+				Site site = _databaseUtilities.GetSiteByID(randomIndex);
+
+				DataContext = site;
+			}
+			else
+			{
+				_showSplashScreenFlag = false;
+			}
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeSplit.Utilities;
 
 namespace WeSplit.Pages
 {
@@ -20,16 +21,50 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class UpdateJourneyPage : Page
 	{
+		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private List<Province> _provinces;
+		private int _ID_Journey;
+		Journey _journey;
+
 		public UpdateJourneyPage(int ID_Journey)
 		{
 			InitializeComponent();
 			visualRouteDetailDialog.SetParent(mainContainer);
+
+			_ID_Journey = ID_Journey;
 		}
 
-		private void Page_Loaded(object sender, RoutedEventArgs e)
-		{
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            startProvinceRouteComboBox.ItemsSource = _provinces;
+            startProvinceComboBox.ItemsSource = _provinces;
+            endProvinceComboBox.ItemsSource = _provinces;
 
-		}
+            _journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
+
+			_provinces = _databaseUtilities.GetListProvince();
+			startProvinceRouteComboBox.ItemsSource = _provinces;
+            startProvinceComboBox.ItemsSource = _provinces;
+            endProvinceComboBox.ItemsSource = _provinces;
+
+			Province province = _databaseUtilities.GetProvinceByName(_journey.Start_Province);
+			startProvinceComboBox.SelectedIndex = province.ID_Province - 1;
+
+			Site site = _databaseUtilities.GetSiteByID(_journey.ID_Site ?? 0);
+			endProvinceComboBox.SelectedIndex = site.ID_Province;
+			endSiteComboBox.SelectedIndex = _journey.ID_Site - 1 ?? 0;
+
+			if (_journey.Images_For_Binding.Count > 0)
+			{
+				addImageOption1Button.Visibility = Visibility.Collapsed;
+				addImageOption2Button.Visibility = Visibility.Visible;
+				journeyImageListView.Visibility = Visibility.Visible;
+			}
+
+
+			
+			DataContext = _journey;
+        }
 
 		private void addMemberButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -73,7 +108,18 @@ namespace WeSplit.Pages
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
 		{
-			visualRouteDetailDialog.ShowDialog();
+			Route startRoute = new Route();
+			startRoute.Place = _journey.Start_Place;
+			startRoute.Province = _journey.Start_Province;
+
+			Site endSite = _databaseUtilities.GetSiteByID(_journey.ID_Site.Value);
+			Province endProvince = _databaseUtilities.GetProvinceByID(endSite.ID_Province);
+
+			Route endRoute = new Route();
+			endRoute.Place = _journey.Site_Name;
+			endRoute.Province = endProvince.Province_Name;
+
+			visualRouteDetailDialog.ShowDialog(_journey.Route_For_Binding.ToList(), startRoute, endRoute);
 		}
 
 		private void deleteRelativeImageInListButton_Click(object sender, RoutedEventArgs e)
@@ -128,5 +174,15 @@ namespace WeSplit.Pages
 		{
 
 		}
-	}
+
+        private void endProvinceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			Province province = (Province)endProvinceComboBox.SelectedItem;
+
+			List<Site> sites = _databaseUtilities.GetListSiteByProvince(province.ID_Province);
+
+			endSiteComboBox.ItemsSource = sites;
+			endSiteComboBox.SelectedIndex = 0;
+		}
+    }
 }

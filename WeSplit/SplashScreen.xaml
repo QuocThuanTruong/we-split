@@ -88,7 +88,7 @@
 
                 <!--Binding-->
                 <TextBlock Name="siteNameTextBlock"
-                   Text="khu di tích cố đô hoa lưu"
+                   Text="{Binding Site_Name}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    Style="{StaticResource LargeHeaderText}"/>
@@ -100,7 +100,7 @@
                     <!--Binding-->
                     <ScrollViewer Margin="0, 16, 0, 0">
                         <TextBlock Name="siteDescriptionTextBlock"          
-                               Text="L Lpiscing elitcing elit, sed diam nonummy nib, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui"
+                               Text="{Binding Site_Description}"
                                Style="{StaticResource RegularText}"
                                Margin="0, 0, 12, 0"
                                ScrollViewer.VerticalScrollBarVisibility="Auto"/>
@@ -120,7 +120,7 @@
                 <Image Name="siteAvatarImage"
                    Stretch="UniformToFill"
                    RenderOptions.BitmapScalingMode="HighQuality"
-                   Source="{DynamicResource TEST_1}"/>
+                   Source="{Binding Site_Link_Avt}"/>
 
             </materialDesign:Card>
 
