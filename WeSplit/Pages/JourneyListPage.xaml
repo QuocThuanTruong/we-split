@@ -967,7 +967,7 @@
                                                      Margin="0, 0, 16, 0"
                                          Tag="{Binding Index}"
                                         Orientation="Horizontal">
-                                            <CheckBox Name="routeOption1SheckBox"
+                                            <CheckBox Name="routeOptionCheckBox"
                                           IsChecked="{Binding Path=IsSelected, 
                                                               RelativeSource={RelativeSource FindAncestor,
                                                               AncestorType={x:Type ListViewItem}}}"
@@ -1020,7 +1020,8 @@
                                 materialDesign:HintAssist.Hint="N.Bắt đầu"
                                 FontFamily="{StaticResource GilroyRegular}"
                                 FontSize="14"
-                                Style="{StaticResource MaterialDesignDatePicker}"/>
+                                Style="{StaticResource MaterialDesignDatePicker}"
+                                SelectedDateChanged="startDatePicker_SelectedDateChanged"/>
 
                             </Grid>
 
@@ -1048,7 +1049,8 @@
                                 materialDesign:HintAssist.Hint="N.Kết thúc"
                                 FontFamily="{StaticResource GilroyRegular}"
                                 FontSize="14"
-                                Style="{StaticResource MaterialDesignDatePicker}"/>
+                                Style="{StaticResource MaterialDesignDatePicker}"
+                                SelectedDateChanged="endDatePicker_SelectedDateChanged"/>
 
                             </Grid>
 

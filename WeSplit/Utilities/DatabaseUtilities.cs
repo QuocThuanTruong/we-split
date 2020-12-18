@@ -518,7 +518,7 @@ namespace WeSplit.Utilities
             return result;
         }
 
-        public (List<Journey>, int) GetJourneySearchResult(string search_text, string condition, (string column, string type) sortedBy)
+        public (List<Journey>, int) GetJourneySearchResult(string search_text, string condition)
         {
             (List<Journey> journeysSearchResultList, int totalJourneySearch) result;
             List<Journey> journeysSearchResultList = new List<Journey>();
