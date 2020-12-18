@@ -230,7 +230,9 @@
                                           Width="16"
                                           Height="16"
                                           Margin="0, 0, 14, 0"
+
                                           IsChecked="{Binding Route_Status, Converter={StaticResource routeStatusConverter}, Mode=OneWay}"
+
                                           Tag="0"
                                           Background="{DynamicResource MyNeueGreen}"
                                           BorderThickness="0"

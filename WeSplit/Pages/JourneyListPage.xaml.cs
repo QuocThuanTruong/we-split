@@ -120,11 +120,13 @@ namespace WeSplit.Pages
 					//Do Nothing
 				}
 
+
 				loadJourneySearch();
 			}
 			else
 			{
 				_isSearching = false;
+
 
 				loadJourneys();
 			}
@@ -460,6 +462,7 @@ namespace WeSplit.Pages
             return result;
 		}
 
+
 		private void loadJourneys()
         {
 			if (!_isSearching)
@@ -510,11 +513,14 @@ namespace WeSplit.Pages
 		}
 
 
+
 		private void loadJourneySearch()
 		{
 			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy]);
 
+
 			_maxPage = getMaxPage(JourneysSearchResults.totalJourneyResult);
+
             if (_maxPage == 0)
             {
                 _maxPage = 1;
@@ -535,7 +541,9 @@ namespace WeSplit.Pages
                 journeyGridView.ItemsSource = Journeys;
 				journeyListView.ItemsSource = Journeys;
 
+
                 currentResultTextBlock.Text = $"Hiển thị {Journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} kết quả phù hợp";
+
             }
             else
             {
@@ -595,5 +603,6 @@ namespace WeSplit.Pages
 
 			return result;
         }
+
     }
 }
