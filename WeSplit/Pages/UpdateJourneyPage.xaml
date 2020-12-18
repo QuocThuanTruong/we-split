@@ -429,45 +429,68 @@
                                 Grid.Row="2"
                                 Grid.RowSpan="2"
                                 Margin="0, 8, 0, 0"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
+                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
 
                                 <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid 
-                                            Margin="16, 0, 10, 0">
+                                <DataTemplate>
+                                    <Grid 
+                                 Margin="16, 0, 10, 0">
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.27*"/>
-                                                <ColumnDefinition Width="1.2*"/>
-                                                <ColumnDefinition Width="0.8*"/>
-                                                <ColumnDefinition Width="0.2*"/>
-                                            </Grid.ColumnDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.27*"/>
+                                            <ColumnDefinition Width="1.2*"/>
+                                            <ColumnDefinition Width="0.8*"/>
+                                            <ColumnDefinition Width="0.2*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                            <!--binding tag-->
+                                        <!--binding tag-->
                                             <ToggleButton Name="haveDoneButton"
-                                                Grid.Column="0"
+                                          Grid.Column="0"
+                                          VerticalAlignment="Center"
+                                          Width="16"
+                                          Height="16"
+                                          Margin="0, 0, 14, 0"
+                                          IsChecked="False"
+                                          Tag="0"
+                                          Background="{DynamicResource MyNeueGreen}"
+                                          BorderThickness="0"
+                                          Style="{StaticResource MaterialDesignActionToggleButton}">
+
+                                                <materialDesign:ToggleButtonAssist.OnContentTemplate>
+                                                    <DataTemplate>
+                                                        <Image Width="8"
+                                                       Margin="0, 0, 0, 0.6"
+                                               Height="8"
+                                               VerticalAlignment="Center"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               Source="{StaticResource IconWhiteTick}"/>
+                                                    </DataTemplate>
+                                                </materialDesign:ToggleButtonAssist.OnContentTemplate>
+
+                                                <Border
+                                                HorizontalAlignment="Center"
+
                                                 VerticalAlignment="Center"
                                                 Width="16"
                                                 Height="16"
                                                 Margin="0, 0, 14, 0"
-                                                IsChecked="False"
                                                 Tag="0"
                                                 Background="{DynamicResource MyNeueGreen}"
                                                 BorderThickness="0"
                                                 Style="{StaticResource MaterialDesignActionToggleButton}">
 
-                                                <materialDesign:ToggleButtonAssist.OnContentTemplate>
-                                                    <DataTemplate>
-                                                        <Image Width="8"
+                                                    <materialDesign:ToggleButtonAssist.OnContentTemplate>
+                                                        <DataTemplate>
+                                                            <Image Width="8"
                                                             Margin="0, 0, 0, 0.6"
                                                             Height="8"
                                                             VerticalAlignment="Center"
                                                             RenderOptions.BitmapScalingMode="HighQuality"
                                                             Source="{StaticResource IconWhiteTick}"/>
-                                                    </DataTemplate>
-                                                </materialDesign:ToggleButtonAssist.OnContentTemplate>
+                                                        </DataTemplate>
+                                                    </materialDesign:ToggleButtonAssist.OnContentTemplate>
 
-                                                <Border Width="16"
+                                                    <Border Width="16"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     Height="16"
@@ -475,6 +498,7 @@
                                                     CornerRadius="9"
                                                     Background="White"
                                                     BorderThickness="1"/>
+                                                </Border>
                                             </ToggleButton>
 
                                             <TextBlock
@@ -712,8 +736,7 @@
                                 Grid.Column="1"
                                 Grid.Row="2"
                                 Margin="0, 8, 0, 0"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
-
+                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid 
@@ -1033,14 +1056,15 @@
 
 
                         <ListView Name="expensesListView"
-                            Grid.Column="1"
-                            Grid.Row="2"
-                            Margin="0, 8, 0, 9"
-                            ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
-                            
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid 
+
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Margin="0, 8, 0, 9"
+                  ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid 
                                  Margin="2, 0, 10, 0">
 
                                             <Grid.ColumnDefinitions>
@@ -1265,12 +1289,12 @@
 
                         </StackPanel>
 
+                                <ListView Name="advanceListView"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  Margin="0, 8, 0, 9"
+                  ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
 
-                            <ListView Name="advanceListView"
-                                Grid.Column="1"
-                                Grid.Row="2"
-                                Margin="0, 8, 0, 9"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
