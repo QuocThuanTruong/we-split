@@ -9,10 +9,14 @@
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
       xmlns:custom="clr-namespace:WeSplit.CustomView"
+      xmlns:converter="clr-namespace:WeSplit.Converter"
         xmlns:loc="clr-namespace:WeSplit.Properties"
       d:DesignHeight="728" d:DesignWidth="1116"
       Loaded="Page_Loaded"
       Title="ManageJourneysPage">
+    <Page.Resources>
+        <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
+    </Page.Resources>
 
     <Grid>
     <Grid Name="mainContainer">
