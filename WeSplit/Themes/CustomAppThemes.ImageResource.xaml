@@ -41,7 +41,7 @@
     <ImageSource x:Key="IconSemiRoute">pack://application:,,,/Assets/Images/ic-semi-route.png</ImageSource>
     <ImageSource x:Key="IconWhiteAbout">pack://application:,,,/Assets/Images/ic-white-about.png</ImageSource>
     <ImageSource x:Key="IconWhiteAdd">pack://application:,,,/Assets/Images/ic-white-add.png</ImageSource>
-    <ImageSource x:Key="IconWhitecurrent">pack://application:,,,/Assets/Images/ic-white-current.png</ImageSource>
+    <ImageSource x:Key="IconWhitecurrent">pack://application:,,,/Assets/Images/ic-white-cur.png</ImageSource>
     <ImageSource x:Key="IconWhiteDone">pack://application:,,,/Assets/Images/ic-white-done.png</ImageSource>
     <ImageSource x:Key="IconWhiteEdit">pack://application:,,,/Assets/Images/ic-white-edit.png</ImageSource>
     <ImageSource x:Key="IconWhiteHelp">pack://application:,,,/Assets/Images/ic-white-help.png</ImageSource>
