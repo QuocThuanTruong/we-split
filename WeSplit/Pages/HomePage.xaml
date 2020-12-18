@@ -89,6 +89,7 @@
                         <!-- Search text box -->
                         <TextBox Name="searchTextBox"
                                  Margin="0, 8, 10, 0"
+                                 PreviewKeyUp="searchTextBox_PreviewKeyUp"
                                  Style="{StaticResource SearchTextBox}"
                                  materialDesign:HintAssist.Hint="{x:Static loc:Resources.hint_text_search}"
                                  Grid.Column="1" TextChanged="searchTextBox_TextChanged"/>

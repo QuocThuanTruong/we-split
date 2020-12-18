@@ -103,6 +103,7 @@ namespace WeSplit
 				result = new HomePage();
 				((HomePage)result).ViewAllJourney += MainScreen_ViewAllJourney;
 				((HomePage)result).ShowJourneyDetailPage += MainScreen_ShowJourneyDetailPage;
+				((HomePage)result).ShowJourneySearchPage += MainScreen_ShowJourneySearchPage;
 			}
 			else if (selectedButton.Name == mngJourneyPageButton.Name)
 			{
@@ -132,6 +133,13 @@ namespace WeSplit
 			}
 
 			return result;
+		}
+
+		private void MainScreen_ShowJourneySearchPage(string textSearch)
+		{
+			JourneyListPage journeyListPage = new JourneyListPage(textSearch);
+			journeyListPage.ShowJourneyDetailPage += JourneyListPage_ShowJourneyDetailPage;
+			pageNavigation.NavigationService.Navigate(journeyListPage);
 		}
 
 		private void MainScreen_ShowJourneyDetailPage(int ID_Journey)
