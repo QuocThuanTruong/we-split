@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -26,19 +27,18 @@ namespace WeSplit.Pages
 		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 
+		private Configuration _configuration;
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 
 		const int PLANED = 1;
 		const int CURRENT = 0;
 		const int DONE = 1;
-		const int TOTAL_JOURNEY_PER_PAGE = 3;
+		const int TOTAL_JOURNEY_PER_PAGE = 4;
 
 		private int _journeyStatus = 2;
 
 		private int _currentPage;
 		private int _maxPage = 0;
-		private bool _isFavorite = false;
-		private int _typeGridCard = 0;
 		private bool _isSearching = false;
 		private string _prevCondition = "init";
 		private bool _isFirstSearch = true;
@@ -63,9 +63,12 @@ namespace WeSplit.Pages
 			InitializeComponent();
 			filterContainer.Visibility = Visibility.Collapsed;
 
-			_journeyStatus = journeyStatus;
+			_configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-			loadJourneys();
+			_sortedBy = int.Parse(ConfigurationManager.AppSettings["SortedByHomePage"]);
+			sortTypeComboBox.SelectedIndex = _sortedBy;
+
+			_journeyStatus = journeyStatus;
 		}
 
 
@@ -77,6 +80,8 @@ namespace WeSplit.Pages
 				new Tuple<Image, TextBlock, string, string>(currentStatusIcon, currentStatusTextBlock, "IconWhitecurrent", "IconGreencurrent"),
 				new Tuple<Image, TextBlock, string, string>(planStatusIcon, planStatusTextBlock, "IconWhitePlan", "IconGreenPlan")
 			};
+
+			loadJourneys();
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -127,7 +132,22 @@ namespace WeSplit.Pages
 
 		private void sortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (this.IsLoaded)
+			{
+				_sortedBy = sortTypeComboBox.SelectedIndex;
 
+				_configuration.AppSettings.Settings["SortedByHomePage"].Value = _sortedBy.ToString();
+				_configuration.Save(ConfigurationSaveMode.Modified);
+
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
 		}
 
 		private void filterButton_Click(object sender, RoutedEventArgs e)
@@ -254,6 +274,7 @@ namespace WeSplit.Pages
 				_statusGroups[int.Parse(selectedButton.Tag.ToString())].Item2.Foreground = Brushes.White;
 			}
 
+			_journeyStatus = 2;
 			if (this.IsLoaded)
 			{
 				if (_isSearching)
@@ -373,19 +394,19 @@ namespace WeSplit.Pages
 
             if (_journeyStatus != 2)
             {
-                //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                //Select * from [dbo].[Journey] where Status = *
                 result += $"Status = {_journeyStatus} ";
 
-                //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1 AND (
-                if (statusGroupListBox.SelectedItems.Count > 0)
+				//Select * from [dbo].[Journey] where Status = * AND (
+				if (statusGroupListBox.SelectedItems.Count > 0)
                 {
                     result += " AND (";
                 }
                 else
                 {
-                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
-                }
-            }
+					//Select * from [dbo].[Journey] where Status = *
+				}
+			}
             else
             {
                 if (statusGroupListBox.SelectedItems.Count > 0)
@@ -394,7 +415,7 @@ namespace WeSplit.Pages
                 }
                 else
                 {
-                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                    //Select * from [dbo].[Journey]
                 }
             }
 
@@ -405,7 +426,7 @@ namespace WeSplit.Pages
             {
                 var selectedButton = ((Button)statusJourneySelectedItem);
                 int index = int.Parse(selectedButton.Tag.ToString());
-                result += $" FOOD_GROUP = N\'{statusJourney[index]}\' OR";
+                result += $" Status = {statusJourney[index]} OR";
             }
 
             if (result.Length > 0)
@@ -457,13 +478,20 @@ namespace WeSplit.Pages
 					//Do Nothing
 				}
 
-				if (_journeyStatus != 2)
-				{
-					journeys = _databaseUtilities.GetListJourneyByStatus(_journeyStatus);
-				}
+				if (condition.Length > 0)
+                {
+					journeys = _databaseUtilities.ExecQureyToGetJourneys(condition).Item1;
+				} 
 				else
-				{
-					journeys = _databaseUtilities.GetListJourney();
+                {
+					if (_journeyStatus != 2)
+					{
+						journeys = _databaseUtilities.GetListJourneyByStatus(_journeyStatus);
+					}
+					else
+					{
+						journeys = _databaseUtilities.GetListJourney();
+					}
 				}
 
 				_maxPage = getMaxPage(journeys.Count);
@@ -519,7 +547,48 @@ namespace WeSplit.Pages
 
 		private List<Journey> Paging(List<Journey> journeys)
         {
-			List<Journey> result = journeys
+			//{
+			//	("StartDate", "DESC"), ("StartDate", "ASC"),
+			//	("EndDate", "ASC"), ("EndDate", "DESC"),
+			//	("Name", "DESC"), ("Name", "ASC")
+			//}
+
+			switch (_sortedBy)
+            {
+				case 0:
+					journeys = (from journey in journeys
+								orderby journey.StartDate descending
+								select journey).ToList();
+					break;
+				case 1:
+					journeys = (from journey in journeys
+								orderby journey.StartDate
+								select journey).ToList();
+					break;
+				case 2:
+					journeys = (from journey in journeys
+								orderby journey.Journey_Name 
+								select journey).ToList();
+					break;
+				case 3:
+					journeys = (from journey in journeys
+								orderby journey.Journey_Name descending
+								select journey).ToList();
+					break;
+				case 4:
+					journeys = (from journey in journeys
+								orderby journey.EndDate descending
+								select journey).ToList();
+					break;
+				case 5:
+					journeys = (from journey in journeys
+								orderby journey.EndDate
+								select journey).ToList();
+					break;
+
+			}
+
+			List < Journey > result = journeys
 				.Skip((_currentPage - 1) * TOTAL_JOURNEY_PER_PAGE)
 				.Take(TOTAL_JOURNEY_PER_PAGE)
 				.ToList();
