@@ -228,7 +228,7 @@ namespace WeSplit.Utilities
                 //Route
                 List<Route> routes = _databaseWeSplit
                     .Database
-                    .SqlQuery<Route>($"Select * from Route where ID_Journey = {result.ID_Journey}")
+                    .SqlQuery<Route>($"Select * from Route where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
 
                 result.Route_For_Binding = routes;
@@ -236,7 +236,7 @@ namespace WeSplit.Utilities
                 //Member
                 List<JourneyAttendance> members = _databaseWeSplit
                     .Database
-                    .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey}")
+                    .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
 
                 for (int i = 0; i < members.Count; ++i)
@@ -249,7 +249,7 @@ namespace WeSplit.Utilities
                 //Images
                 List<JourneyImage> images = _databaseWeSplit
                     .Database
-                    .SqlQuery<JourneyImage>($"Select * from JourneyImage where ID_Journey = {result.ID_Journey}")
+                    .SqlQuery<JourneyImage>($"Select * from JourneyImage where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
 
                 result.Images_For_Binding = images;
@@ -282,7 +282,7 @@ namespace WeSplit.Utilities
                 //Expenses
                 result.Expenses = _databaseWeSplit
                     .Database
-                    .SqlQuery<Expens>($"Select * from Expenses where ID_Journey = {ID_Journey}")
+                    .SqlQuery<Expens>($"Select * from Expenses where ID_Journey = {ID_Journey} and Is_Active = 1")
                     .ToList();
 
                 result.Expens_For_Binding = result.Expenses.ToList();
@@ -295,7 +295,7 @@ namespace WeSplit.Utilities
                 //Advance
                 result.Advances = _databaseWeSplit
                     .Database
-                    .SqlQuery<Advance>($"Select * from Advance where ID_Journey = {ID_Journey}")
+                    .SqlQuery<Advance>($"Select * from Advance where ID_Journey = {ID_Journey} and Is_Active = 1")
                     .ToList();
 
                 result.Advances_For_Binding = result.Advances.ToList();

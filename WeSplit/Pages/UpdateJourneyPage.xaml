@@ -424,15 +424,14 @@
 
                             </materialDesign:Card>
 
+                            <ListView Name="routesListView"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Grid.RowSpan="2"
+                                Margin="0, 8, 0, 0"
+                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
 
-                        <ListView Name="routesListView"
-                  Grid.Column="1"
-                  Grid.Row="2"
-                  Grid.RowSpan="2"
-                  Margin="0, 8, 0, 0"
-                  ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
-
-                            <ListView.ItemTemplate>
+                                <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid 
                                  Margin="16, 0, 10, 0">
@@ -445,7 +444,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--binding tag-->
-                                        <ToggleButton Name="haveDoneButton"
+                                            <ToggleButton Name="haveDoneButton"
                                           Grid.Column="0"
                                           VerticalAlignment="Center"
                                           Width="16"
@@ -457,50 +456,27 @@
                                           BorderThickness="0"
                                           Style="{StaticResource MaterialDesignActionToggleButton}">
 
-                                            <materialDesign:ToggleButtonAssist.OnContentTemplate>
-                                                <DataTemplate>
-                                                    <Image Width="8"
-                                                       Margin="0, 0, 0, 0.6"
-                                               Height="8"
-                                               VerticalAlignment="Center"
-                                               RenderOptions.BitmapScalingMode="HighQuality"
-                                               Source="{StaticResource IconWhiteTick}"/>
-                                                </DataTemplate>
-                                            </materialDesign:ToggleButtonAssist.OnContentTemplate>
-
-                                            <Border Width="16"
-                                                HorizontalAlignment="Center"
-
-                                                VerticalAlignment="Center"
-                                                Width="16"
-                                                Height="16"
-                                                Margin="0, 0, 14, 0"
-                                                IsChecked="False"
-                                                Tag="0"
-                                                Background="{DynamicResource MyNeueGreen}"
-                                                BorderThickness="0"
-                                                Style="{StaticResource MaterialDesignActionToggleButton}">
-
                                                 <materialDesign:ToggleButtonAssist.OnContentTemplate>
                                                     <DataTemplate>
                                                         <Image Width="8"
-                                                            Margin="0, 0, 0, 0.6"
-                                                            Height="8"
-                                                            VerticalAlignment="Center"
-                                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                                            Source="{StaticResource IconWhiteTick}"/>
+                                                    Margin="0, 0, 0, 0.6"
+                                                    Height="8"
+                                                    VerticalAlignment="Center"
+                                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                                    Source="{StaticResource IconWhiteTick}"/>
                                                     </DataTemplate>
                                                 </materialDesign:ToggleButtonAssist.OnContentTemplate>
 
                                                 <Border Width="16"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Height="16"
-                                                    BorderBrush="{DynamicResource MyNeueGreen}"
-                                                    CornerRadius="9"
-                                                    Background="White"
-                                                    BorderThickness="1"/>
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Height="16"
+                                            BorderBrush="{DynamicResource MyNeueGreen}"
+                                            CornerRadius="9"
+                                            Background="White"
+                                            BorderThickness="1"/>
                                             </ToggleButton>
+
 
                                             <TextBlock
                                                 Grid.Column="1"
@@ -733,14 +709,11 @@
                         </StackPanel>
 
 
-
-                        <ListView Name="membersListView"
-                  Grid.Column="1"
-                  Grid.Row="2"
-                  Margin="0, 8, 0, 0"
-                  ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
-
-
+                            <ListView Name="membersListView"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Margin="0, 8, 0, 0"
+                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid 
@@ -892,8 +865,7 @@
                             Visibility="Collapsed"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
                             Margin="0, 0, 14, 0"
-                            ItemContainerStyle="{StaticResource ImageStepListViewItem}"
-                            ItemsSource="{Binding Images_For_Binding}">
+                            ItemContainerStyle="{StaticResource ImageStepListViewItem}">
 
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -1024,13 +996,13 @@
 
                             <Grid>
                                 <TextBox Name="expensesMoneyTextBox"
-                                 Padding="-5, -5, 26, -5"
-                                 Width="118"
-                             Margin="12, 8, 2 ,0"
-                             Style="{StaticResource AddRecipePageTextBox}"
-                             materialDesign:HintAssist.Hint="Tiền thu"
-                             Grid.Column="1"
-                             Grid.Row="1"/>
+                                    Padding="-5, -5, 26, -5"
+                                    Width="118"
+                                    Margin="12, 8, 2 ,0"
+                                    Style="{StaticResource AddRecipePageTextBox}"
+                                    materialDesign:HintAssist.Hint="Tiền thu"
+                                    Grid.Column="1"
+                                    Grid.Row="1"/>
 
                                 <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
@@ -1044,17 +1016,17 @@
                                     Click="updateExpensesButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
                                 <Image 
-                           Width="16"
-                           Height="16"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Source="{StaticResource IconWhiteUpdate}"/>
+                                    Width="16"
+                                    Height="16"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="{StaticResource IconWhiteUpdate}"/>
                             </Button>
 
                         </StackPanel>
@@ -1070,7 +1042,6 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid 
-
                                  Margin="2, 0, 10, 0">
 
                                             <Grid.ColumnDefinitions>
@@ -1280,24 +1251,22 @@
                                     Click="updateAdvanceButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
                                 <Image 
-                           Width="16"
-                           Height="16"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Source="{StaticResource IconWhiteUpdate}"/>
+                                    Width="16"
+                                    Height="16"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="{StaticResource IconWhiteUpdate}"/>
                             </Button>
 
                         </StackPanel>
 
-
-
-                        <ListView Name="advanceListView"
+                                <ListView Name="advanceListView"
                   Grid.Column="1"
                   Grid.Row="2"
                   Margin="0, 8, 0, 9"
