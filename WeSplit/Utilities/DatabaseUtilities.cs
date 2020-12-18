@@ -258,6 +258,11 @@ namespace WeSplit.Utilities
                     .SqlQuery<Route>($"Select * from Route where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
 
+                for (int i = 0; i < routes.Count; ++i)
+                {
+                    routes[i].Route_Index = i;
+                }
+
                 result.Route_For_Binding = routes;
 
                 //Member
