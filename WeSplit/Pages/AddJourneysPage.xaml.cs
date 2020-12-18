@@ -86,7 +86,6 @@ namespace WeSplit.Pages
 			_journey.Routes.Add(route);
 
 			routesListView.ItemsSource = _journey.Routes.ToList();
-
 		}
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
