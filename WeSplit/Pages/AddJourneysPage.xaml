@@ -1166,6 +1166,17 @@
                 </StackPanel>
             </materialDesign:ColorZone>
 
+            <!-- Post mesage to notification to user here -->
+            <materialDesign:Snackbar Name="notiMessageSnackbar"
+                                 HorizontalAlignment="Left"
+                                 MessageQueue="{materialDesign:MessageQueue}"
+                                 Margin="2, 4, 0, 4"
+                                 MaxWidth="1000"
+                                 IsActive="False"
+                                 Grid.Column="1"
+                                 Grid.Row="4">
+            </materialDesign:Snackbar>
+
         </Grid>
 
         <custom:VisualRouteDetailDialog x:Name="visualRouteDetailDialog"

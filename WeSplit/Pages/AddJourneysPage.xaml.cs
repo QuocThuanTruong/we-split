@@ -249,6 +249,8 @@ namespace WeSplit.Pages
 			_journey = new Journey();
 			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
 
+			notiMessageSnackbar.MessageQueue.Enqueue($"Đã thêm thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
+
 			//Reset
 			journeyNameTextBox.Text = "";
 			journeyStartPlaceTextBox.Text = "";
@@ -266,7 +268,19 @@ namespace WeSplit.Pages
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			//Reset
+			journeyNameTextBox.Text = "";
+			journeyStartPlaceTextBox.Text = "";
+			startProvinceComboBox.SelectedIndex = 0;
+			startDatePicker.Text = "";
+			endSiteComboBox.SelectedIndex = 0;
+			endProvinceComboBox.SelectedIndex = 0;
+			endDatePicker.Text = "";
+			startProvinceRouteComboBox.SelectedIndex = 0;
+			routesListView.ItemsSource = null;
+			membersListView.ItemsSource = null;
+			expensesListView.ItemsSource = null;
+			_ordinal_number = 0;
 		}
 
 		private void addImageButton_Click(object sender, RoutedEventArgs e)

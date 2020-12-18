@@ -54,8 +54,9 @@ namespace WeSplit.Utilities
 
             Image imageStart = new Image();
             imageStart.Source = new BitmapImage(new Uri(imageUri, UriKind.Absolute));
-            imageStart.Width = 50;
-            imageStart.Height = 50;
+            imageStart.Width = 30;
+            imageStart.Height = 30;
+            
 
             result.AddChild(imageStart, location);
 
@@ -117,7 +118,7 @@ namespace WeSplit.Utilities
                 }
 
                 result.Locations = locations;
-                result.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Blue);
+                result.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Cyan);
                 result.StrokeThickness = 5;
             }
 

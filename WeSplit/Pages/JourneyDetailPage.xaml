@@ -17,6 +17,7 @@
       Title="JourneyDetailPage">
     <Page.Resources>
         <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
+        <converter:JourneyStatusConverter x:Key="journeyStatusConverter"></converter:JourneyStatusConverter>
     </Page.Resources>
     
     <Grid>
@@ -762,7 +763,7 @@
 
                 <Button Name="updateJourneyButton"
                         Click="updateJourneyButton_Click"
-                        Margin="0, 0, 20, 0"
+                        Margin="0, 0, 0, 0"
                         Width="148"
                         Style="{StaticResource AddJourneyButton}"
                         materialDesign:ButtonAssist.CornerRadius="16"
@@ -777,6 +778,8 @@
                 
 
                 <Button Name="finishJourneyButton"
+                        Margin="20, 0, 0, 0"
+                        Visibility="{Binding Path=Status, Converter={StaticResource journeyStatusConverter}}"
                         Click="finishJourneyButton_Click"
                         Width="138"
                         Style="{StaticResource AddJourneyButton}"
@@ -798,7 +801,7 @@
                                  MessageQueue="{materialDesign:MessageQueue}"
                                  Margin="2, 8, 0, 4"
                                  MaxWidth="1000"
-                                 IsActive="True"
+                                 IsActive="False"
                                  Grid.Column="1"
                                  Grid.Row="4">
         </materialDesign:Snackbar>
