@@ -60,7 +60,23 @@
                              Text="{Binding Journey_Name}"
                              Grid.Column="1"
                              Grid.Row="1"/>
-                </StackPanel>
+
+                        <StackPanel VerticalAlignment="Center" 
+                                    Margin="0, 24, 0, 0"
+                                        Grid.Column="1"
+                                        Orientation="Horizontal">
+                            <CheckBox Name="isCurrentJourneyCheckBox"
+                                          IsChecked="False"
+                                          Foreground="{DynamicResource MyNeueGreen}"
+                                          materialDesign:CheckBoxAssist.CheckBoxSize="18"/>
+
+                            <TextBlock Text="Is Current Journey"
+                                           Margin="8, 0, 0, 0"
+                                       Foreground="{StaticResource MyBlack}"
+                                           Style="{StaticResource MediumText}"/>
+
+                        </StackPanel>
+                    </StackPanel>
 
                 <Grid Margin="22, 0, 0, 0"
                     Grid.Column="1">
