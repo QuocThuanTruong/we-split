@@ -112,16 +112,16 @@ namespace WeSplit.Pages
 			loadJourneys();
 			_routeGroups = new List<RouteGroup>()
 			{
-				new RouteGroup( 0, "0 - 20 km"),
-				new RouteGroup(1, "21 - 50 km"),
-				new RouteGroup(2, "> 51 km")
+				new RouteGroup(0, "0 - 20 km"),
+				new RouteGroup(1, "20 - 50 km"),
+				new RouteGroup(2, "> 50 km")
 			}; 
 
 			routeGroupListBox.ItemsSource = _routeGroups;
 
 			_memberGroups = new List<MemberGroup>()
 			{
-				new MemberGroup(0, "2 - 5 người"),
+				new MemberGroup(0, "1 - 5 người"),
 				new MemberGroup(1, "6 - 9 người"),
 				new MemberGroup(2, "> 10 người")
 			};
@@ -505,7 +505,160 @@ namespace WeSplit.Pages
                 }
             }
 
-            return result;
+			if (result.Length > 0)
+            {
+				if (routeGroupListBox.SelectedItems.Count > 0)
+                {
+					result += " AND ";
+
+					foreach (var routeOption in routeGroupListBox.SelectedItems)
+                    {
+						if (((RouteGroup)routeOption).Index == 0)
+                        {
+							result += $"(Distance <= 20) OR";
+                        }
+
+						if (((RouteGroup)routeOption).Index == 1)
+						{
+							result += $"(Distance > 20 And Distance <= 50) OR";
+						}
+
+						if (((RouteGroup)routeOption).Index == 2)
+						{
+							result += $"(Distance > 50) OR";
+						}
+					}
+
+					result = result.Substring(0, result.Length - 3);
+				}
+            } 
+			else
+            {
+				if (routeGroupListBox.SelectedItems.Count > 0)
+				{
+					foreach (var routeOption in routeGroupListBox.SelectedItems)
+					{
+						if (((RouteGroup)routeOption).Index == 0)
+						{
+							result += $"(Distance <= 20) OR";
+						}
+
+						if (((RouteGroup)routeOption).Index == 1)
+						{
+							result += $"(Distance > 20 And Distance <= 50) OR";
+						}
+
+						if (((RouteGroup)routeOption).Index == 2)
+						{
+							result += $"(Distance > 50) OR";
+						}
+					}
+
+					result = result.Substring(0, result.Length - 3);
+				}
+			}
+
+			if (result.Length > 0)
+            {
+				if (startDatePicker.SelectedDate != null)
+                {
+					result += " AND ";
+
+					if (endDatePicker.SelectedDate != null)
+                    {
+						result += $"(StartDate >= '{startDatePicker.SelectedDate.Value}' And EndDate <= '{endDatePicker.SelectedDate.Value}')";
+                    } 
+					else
+                    {
+						result += $"(StartDate >= '{startDatePicker.SelectedDate.Value}')";
+					}
+                } 
+				else
+                {
+					if (endDatePicker.SelectedDate != null)
+					{
+						result += " AND ";
+
+						result += $"(EndDate <= '{endDatePicker.SelectedDate.Value}')";
+					}
+				}
+            } 
+			else
+            {
+				if (startDatePicker.SelectedDate != null)
+				{
+					if (endDatePicker.SelectedDate != null)
+					{
+						result += $"(StartDate >= '{startDatePicker.SelectedDate.Value}' And EndDate <= '{endDatePicker.SelectedDate.Value}')";
+					}
+					else
+					{
+						result += $"(StartDate >= '{startDatePicker.SelectedDate.Value}')";
+					}
+				}
+				else
+				{
+					if (endDatePicker.SelectedDate != null)
+					{
+						result += $"(EndDate <= '{endDatePicker.SelectedDate.Value}')";
+					}
+				}
+			}
+
+			if (result.Length > 0)
+			{
+				if (memGroupListBox.SelectedItems.Count > 0)
+				{
+					result += " AND ";
+
+					foreach (var totalMember in memGroupListBox.SelectedItems)
+					{
+						if (((MemberGroup)totalMember).Index == 0)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 1 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 5) OR";
+						}
+
+						if (((MemberGroup)totalMember).Index == 1)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 10) OR";
+						}
+
+						if (((MemberGroup)totalMember).Index == 2)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) > 10) OR";
+						}
+					}
+
+					result = result.Substring(0, result.Length - 3);
+				}
+			}
+			else
+			{
+				if (memGroupListBox.SelectedItems.Count > 0)
+				{
+					foreach (var totalMember in memGroupListBox.SelectedItems)
+					{
+						if (((MemberGroup)totalMember).Index == 0)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 1 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 5) OR";
+						}
+
+						if (((MemberGroup)totalMember).Index == 1)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 10) OR";
+						}
+
+						if (((MemberGroup)totalMember).Index == 2)
+						{
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) > 10) OR";
+						}
+					}
+
+					result = result.Substring(0, result.Length - 3);
+				}
+			}
+
+			return result;
 		}
 
 
@@ -562,8 +715,8 @@ namespace WeSplit.Pages
 
 		private void loadJourneySearch()
 		{
-			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy]);
-
+			string condition = getConditionInQuery();
+			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, condition);
 
 			_maxPage = getMaxPage(JourneysSearchResults.totalJourneyResult);
 
@@ -581,14 +734,16 @@ namespace WeSplit.Pages
 
             currentPageTextBlock.Text = $"{_currentPage} of {(_maxPage)}";
 
-            List<Journey> Journeys = JourneysSearchResults.Journeys;
-            if (Journeys.Count > 0)
+            List<Journey> journeys = JourneysSearchResults.Journeys;
+            if (journeys.Count > 0)
             {
-                journeyGridView.ItemsSource = Journeys;
-				journeyListView.ItemsSource = Journeys;
+				journeys = Paging(journeys);
+
+				journeyGridView.ItemsSource = journeys;
+				journeyListView.ItemsSource = journeys;
 
 
-                currentResultTextBlock.Text = $"Hiển thị {Journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} kết quả phù hợp";
+                currentResultTextBlock.Text = $"Hiển thị {journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} kết quả phù hợp";
 
             }
             else
@@ -652,11 +807,22 @@ namespace WeSplit.Pages
 
 		private void routeGroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			
 			foreach (var item in routeGroupListBox.SelectedItems)
 			{
 				Debug.WriteLine(((RouteGroup)item).Index.ToString());
-			}	
+			}
+
+			if (this.IsLoaded)
+			{
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
 		}
 
 		private void memGroupListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -665,6 +831,48 @@ namespace WeSplit.Pages
 			{
 				Debug.WriteLine(((MemberGroup)item).Index.ToString());
 			}
+
+			if (this.IsLoaded)
+			{
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
 		}
-	}
+
+        private void startDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+			if (this.IsLoaded)
+			{
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
+		}
+
+        private void endDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+			if (this.IsLoaded)
+			{
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
+		}
+    }
 }
