@@ -31,6 +31,7 @@ namespace WeSplit.Pages
 		const int PLANED = 1;
 		const int CURRENT = 0;
 		const int DONE = 1;
+		const int TOTAL_JOURNEY_PER_PAGE = 3;
 
 		private int _journeyStatus = 2;
 
@@ -79,7 +80,7 @@ namespace WeSplit.Pages
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-	{
+		{
 			string search_text = searchTextBox.Text;
 
 			if (search_text.Length != 0)
@@ -114,11 +115,13 @@ namespace WeSplit.Pages
 					//Do Nothing
 				}
 
+
 				loadJourneySearch();
 			}
 			else
 			{
 				_isSearching = false;
+
 
 				loadJourneys();
 			}
@@ -252,6 +255,18 @@ namespace WeSplit.Pages
 				_statusGroups[int.Parse(selectedButton.Tag.ToString())].Item1.Source = (ImageSource)FindResource(_statusGroups[int.Parse(selectedButton.Tag.ToString())].Item3);
 				_statusGroups[int.Parse(selectedButton.Tag.ToString())].Item2.Foreground = Brushes.White;
 			}
+
+			if (this.IsLoaded)
+			{
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
+			}
 		}
 
 		private void groupButton_Click(object sender, RoutedEventArgs e)
@@ -287,45 +302,197 @@ namespace WeSplit.Pages
 
 		private void prevPageButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (_currentPage > 1)
+			{
+				--_currentPage;
+			}
 
-		}
-
-		private void firstPageButton_Click(object sender, RoutedEventArgs e)
-		{
-
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
 		}
 
 		private void nextPageButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (_currentPage < (int)_maxPage)
+			{
+				++_currentPage;
+			}
 
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
+		}
+
+		private void firstPageButton_Click(object sender, RoutedEventArgs e)
+		{
+			_currentPage = 1;
+
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
 		}
 
 		private void lastPageButton_Click(object sender, RoutedEventArgs e)
 		{
+			_currentPage = _maxPage;
 
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
 		}
+
+		private int getMaxPage(int totalResult)
+		{
+			var result = Math.Ceiling((double)totalResult / TOTAL_JOURNEY_PER_PAGE);
+
+			return (int)result;
+		}
+
+		private string getConditionInQuery() 
+        {
+			string result = "";
+
+            if (_journeyStatus != 2)
+            {
+                //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                result += $"Status = {_journeyStatus} ";
+
+                //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1 AND (
+                if (statusGroupListBox.SelectedItems.Count > 0)
+                {
+                    result += " AND (";
+                }
+                else
+                {
+                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                }
+            }
+            else
+            {
+                if (statusGroupListBox.SelectedItems.Count > 0)
+                {
+                    result += "(";
+                }
+                else
+                {
+                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                }
+            }
+
+            //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1 AND (FOOD_GROUP = N'Ăn sáng' OR ...
+            //Select * from [dbo].[Recipe] where FOOD_GROUP = N'Ăn sáng' OR
+            string[] statusJourney = { "-1", "0", "1"};
+            foreach (var statusJourneySelectedItem in statusGroupListBox.SelectedItems)
+            {
+                var selectedButton = ((Button)statusJourneySelectedItem);
+                int index = int.Parse(selectedButton.Tag.ToString());
+                result += $" FOOD_GROUP = N\'{statusJourney[index]}\' OR";
+            }
+
+            if (result.Length > 0)
+            {
+                //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1 AND (FOOD_GROUP = N'Ăn sáng'
+                //Select * from [dbo].[Recipe] where FOOD_GROUP = N'Ăn sáng'
+                result = result.Substring(0, result.Length - 3);
+
+                if (_journeyStatus != 2)
+                {
+                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1 AND (FOOD_GROUP = N'Ăn sáng')
+                    if (statusGroupListBox.SelectedItems.Count > 0)
+                    {
+                        result += ")";
+                    }
+                    //Select * from [dbo].[Recipe] where FAVORITE_FLAG = 1
+                    else
+                    {
+                        result += _journeyStatus;
+                    }
+                }
+                else
+                {
+                    if (statusGroupListBox.SelectedItems.Count > 0)
+                    {
+                        result += ")";
+                    }
+                }
+            }
+
+            return result;
+		}
+
 
 		private void loadJourneys()
         {
-			List<Journey> journeys;
+			if (!_isSearching)
+            {
+				List<Journey> journeys;
 
-			if (_journeyStatus != 2)
+				string condition = getConditionInQuery();
+
+				if (_prevCondition != condition)
+				{
+					_currentPage = 1;
+					_prevCondition = condition;
+				}
+				else
+				{
+					//Do Nothing
+				}
+
+				if (_journeyStatus != 2)
+				{
+					journeys = _databaseUtilities.GetListJourneyByStatus(_journeyStatus);
+				}
+				else
+				{
+					journeys = _databaseUtilities.GetListJourney();
+				}
+
+				_maxPage = getMaxPage(journeys.Count);
+
+				currentPageTextBlock.Text = $"{_currentPage} of {(_maxPage)}";
+
+				journeys = Paging(journeys);
+
+				journeyGridView.ItemsSource = journeys;
+				journeyListView.ItemsSource = journeys;
+			}
+			else
             {
-				journeys = _databaseUtilities.GetListJourneyByStatus(_journeyStatus);
-            } else
-            {
-				journeys = _databaseUtilities.GetListJourney();
+				searchTextBox_TextChanged(null, null);
             }
-
-			journeyGridView.ItemsSource = journeys;
-			journeyListView.ItemsSource = journeys;
 		}
+
+
 
 		private void loadJourneySearch()
 		{
 			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy]);
 
-			_maxPage = 10;
+
+			_maxPage = getMaxPage(JourneysSearchResults.totalJourneyResult);
+
             if (_maxPage == 0)
             {
                 _maxPage = 1;
@@ -346,7 +513,9 @@ namespace WeSplit.Pages
                 journeyGridView.ItemsSource = Journeys;
 				journeyListView.ItemsSource = Journeys;
 
-                currentResultTextBlock.Text = $"Hiển thị {Journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} món ăn";
+
+                currentResultTextBlock.Text = $"Hiển thị {Journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} kết quả phù hợp";
+
             }
             else
             {
@@ -355,5 +524,16 @@ namespace WeSplit.Pages
                 currentResultTextBlock.Text = "Không tìm thấy món ăn thỏa yêu cầu";
             }
         }
+
+		private List<Journey> Paging(List<Journey> journeys)
+        {
+			List<Journey> result = journeys
+				.Skip((_currentPage - 1) * TOTAL_JOURNEY_PER_PAGE)
+				.Take(TOTAL_JOURNEY_PER_PAGE)
+				.ToList();
+
+			return result;
+        }
+
     }
 }
