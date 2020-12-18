@@ -294,9 +294,8 @@ namespace WeSplit.Pages
 		{
 			int Route_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
 			_journey.Route_For_Binding[Route_Index].Is_Active = 0;
-
+			Route_For_Binding[Route_Index].Is_Active = 0;
 			Debug.WriteLine("deleted " + Route_Index);
-
 
 			//Route_For_Binding.RemoveAt(Route_Index);
 
