@@ -323,7 +323,7 @@ namespace WeSplit.Pages
 
 		private void loadJourneySearch()
 		{
-			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy], _currentPage, 10);
+			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy]);
 
 			_maxPage = 10;
             if (_maxPage == 0)
