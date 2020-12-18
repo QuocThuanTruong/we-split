@@ -33,6 +33,22 @@ namespace WeSplit.Pages
 		const int DONE = 1;
 
 		private int _journeyStatus = 2;
+
+		private int _currentPage;
+		private int _maxPage = 0;
+		private bool _isFavorite = false;
+		private int _typeGridCard = 0;
+		private bool _isSearching = false;
+		private string _prevCondition = "init";
+		private bool _isFirstSearch = true;
+		private int _sortedBy = 0;
+		private bool _canSearchRequest = false;
+		private string _search_text = "";
+		private string _condition = "";
+
+		private (string column, string type)[] _conditionSortedBy = {("StartDate", "DESC"), ("StartDate", "ASC"),
+																	 ("EndDate", "ASC"), ("EndDate", "DESC"),
+																	 ("Name", "DESC"), ("Name", "ASC")};
 		public JourneyListPage()
 		{
 			InitializeComponent();
@@ -63,8 +79,49 @@ namespace WeSplit.Pages
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-		{
+	{
+			string search_text = searchTextBox.Text;
 
+			if (search_text.Length != 0)
+			{
+				_isSearching = true;
+
+				if (_isFirstSearch)
+				{
+					_currentPage = 1;
+					_isFirstSearch = false;
+				}
+
+				string condition = "";
+
+				if (_search_text != search_text || _condition != condition)
+				{
+					_search_text = search_text;
+					_condition = condition;
+
+					_canSearchRequest = true;
+				}
+
+				_condition = condition;
+
+				if (_prevCondition != condition)
+				{
+					_currentPage = 1;
+					_prevCondition = condition;
+				}
+				else
+				{
+					//Do Nothing
+				}
+
+				loadJourneySearch();
+			}
+			else
+			{
+				_isSearching = false;
+
+				loadJourneys();
+			}
 		}
 
 		private void sortTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -165,7 +222,7 @@ namespace WeSplit.Pages
 				Debug.WriteLine(selectedID);
 			}
 
-			//Get Id recipe base on item clikced
+			//Get Id Journey base on item clikced
 			ShowJourneyDetailPage?.Invoke(selectedID);
 		}
 
@@ -263,5 +320,40 @@ namespace WeSplit.Pages
 			journeyGridView.ItemsSource = journeys;
 			journeyListView.ItemsSource = journeys;
 		}
-	}
+
+		private void loadJourneySearch()
+		{
+			(List<Journey> Journeys, int totalJourneyResult) JourneysSearchResults = _databaseUtilities.GetJourneySearchResult(_search_text, _condition, _conditionSortedBy[_sortedBy], _currentPage, 10);
+
+			_maxPage = 10;
+            if (_maxPage == 0)
+            {
+                _maxPage = 1;
+                _currentPage = 1;
+
+               // messageNotFoundContainer.Visibility = Visibility.Visible;
+            }
+            else
+            {
+               // messageNotFoundContainer.Visibility = Visibility.Hidden;
+            }
+
+            currentPageTextBlock.Text = $"{_currentPage} of {(_maxPage)}";
+
+            List<Journey> Journeys = JourneysSearchResults.Journeys;
+            if (Journeys.Count > 0)
+            {
+                journeyGridView.ItemsSource = Journeys;
+				journeyListView.ItemsSource = Journeys;
+
+                currentResultTextBlock.Text = $"Hiển thị {Journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} món ăn";
+            }
+            else
+            {
+				journeyGridView.ItemsSource = null;
+				journeyListView.ItemsSource = null;
+                currentResultTextBlock.Text = "Không tìm thấy món ăn thỏa yêu cầu";
+            }
+        }
+    }
 }

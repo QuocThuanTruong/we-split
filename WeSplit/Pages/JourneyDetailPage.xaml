@@ -9,11 +9,16 @@
       xmlns:custom="clr-namespace:WeSplit.CustomView"
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:loc="clr-namespace:WeSplit.Properties"
+      xmlns:converter="clr-namespace:WeSplit.Converter"
       mc:Ignorable="d" 
       Background="Transparent"
        d:DesignHeight="728" d:DesignWidth="1116"
       Loaded="Page_Loaded"
       Title="JourneyDetailPage">
+    <Page.Resources>
+        <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
+    </Page.Resources>
+    
     <Grid>
     <Grid Name="mainContainer">
 
@@ -225,7 +230,7 @@
                                           Width="16"
                                           Height="16"
                                           Margin="0, 0, 14, 0"
-                                          IsChecked="False"
+                                          IsChecked="{Binding Route_Status, Converter={StaticResource routeStatusConverter}}"
                                           Tag="0"
                                           Background="{DynamicResource MyNeueGreen}"
                                           BorderThickness="0"
