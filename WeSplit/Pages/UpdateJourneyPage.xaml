@@ -429,8 +429,7 @@
                                 Grid.Row="2"
                                 Grid.RowSpan="2"
                                 Margin="0, 8, 0, 0"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                ItemsSource="{Binding Route_For_Binding}">
+                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -713,8 +712,7 @@
                                 Grid.Column="1"
                                 Grid.Row="2"
                                 Margin="0, 8, 0, 0"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                ItemsSource="{Binding JourneyAttendances}">
+                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -867,8 +865,7 @@
                             Visibility="Collapsed"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
                             Margin="0, 0, 14, 0"
-                            ItemContainerStyle="{StaticResource ImageStepListViewItem}"
-                            ItemsSource="{Binding Images_For_Binding}">
+                            ItemContainerStyle="{StaticResource ImageStepListViewItem}">
 
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -999,13 +996,13 @@
 
                             <Grid>
                                 <TextBox Name="expensesMoneyTextBox"
-                                 Padding="-5, -5, 26, -5"
-                                 Width="118"
-                             Margin="12, 8, 2 ,0"
-                             Style="{StaticResource AddRecipePageTextBox}"
-                             materialDesign:HintAssist.Hint="Tiền thu"
-                             Grid.Column="1"
-                             Grid.Row="1"/>
+                                    Padding="-5, -5, 26, -5"
+                                    Width="118"
+                                    Margin="12, 8, 2 ,0"
+                                    Style="{StaticResource AddRecipePageTextBox}"
+                                    materialDesign:HintAssist.Hint="Tiền thu"
+                                    Grid.Column="1"
+                                    Grid.Row="1"/>
 
                                 <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
@@ -1019,17 +1016,17 @@
                                     Click="updateExpensesButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
                                 <Image 
-                           Width="16"
-                           Height="16"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Source="{StaticResource IconWhiteUpdate}"/>
+                                    Width="16"
+                                    Height="16"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="{StaticResource IconWhiteUpdate}"/>
                             </Button>
 
                         </StackPanel>
@@ -1039,8 +1036,7 @@
                             Grid.Column="1"
                             Grid.Row="2"
                             Margin="0, 8, 0, 9"
-                            ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                            ItemsSource="{Binding Expens_For_Binding}">
+                            ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
                             
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -1254,17 +1250,17 @@
                                     Click="updateAdvanceButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
-                        Width="34"
-                        Style="{StaticResource AddJourneyButton}"
-                        materialDesign:ButtonAssist.CornerRadius="17"
-                        Height="34"                        
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    Width="34"
+                                    Style="{StaticResource AddJourneyButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="17"
+                                    Height="34"                        
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
                                 <Image 
-                           Width="16"
-                           Height="16"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Source="{StaticResource IconWhiteUpdate}"/>
+                                    Width="16"
+                                    Height="16"
+                                    RenderOptions.BitmapScalingMode="HighQuality"
+                                    Source="{StaticResource IconWhiteUpdate}"/>
                             </Button>
 
                         </StackPanel>
@@ -1274,8 +1270,7 @@
                                 Grid.Column="1"
                                 Grid.Row="2"
                                 Margin="0, 8, 0, 9"
-                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}"
-                                ItemsSource="{Binding Advances_For_Binding}">
+                                ItemContainerStyle="{StaticResource LinearColorHoverListBox}">
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
