@@ -306,49 +306,6 @@
                                                Grid.Column="1"/>
                                 </Grid>
                             </ComboBoxItem>
-
-                            <!-- Level -->
-                            <ComboBoxItem Name="sortByDescRoute">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="8*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Width="7"
-                                           Height="13"
-                                           Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Source="{StaticResource IconDesc}"/>
-
-                                    <TextBlock  Foreground="{DynamicResource MyDarkGreen}"
-                                               Text="{x:Static loc:Resources.text_item_sort_route}"
-                                               VerticalAlignment="Center"
-                                               Margin="5, 0, 0, 0"
-                                               Grid.Column="1"/>
-                                </Grid>
-                            </ComboBoxItem>
-
-                            <ComboBoxItem Name="sortByAscRoute">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="8*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Width="7"
-                                           Height="13"
-                                           Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Source="{StaticResource IconAsc}"/>
-
-                                    <TextBlock  Foreground="{DynamicResource MyDarkGreen}"
-                                               Text="{x:Static loc:Resources.text_item_sort_route}"
-                                               VerticalAlignment="Center"
-                                               Margin="5, 0, 0, 0"
-                                               Grid.Column="1"/>
-                                </Grid>
-                            </ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                 </materialDesign:Card>

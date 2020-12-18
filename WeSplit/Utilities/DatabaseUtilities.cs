@@ -901,5 +901,49 @@ namespace WeSplit.Utilities
             }
             return result;
         }
+        public (List<Journey>, int) ExecQureyToGetJourneys(string condition)
+        {
+            (List<Journey> JourneysResult, int totalJourney) result;
+            List<Journey> JourneysResult = new List<Journey>();
+            int totalJourney = 0;
+
+            string query = "";
+
+            if (condition.Length > 0)
+            {
+                query = $"SELECT COUNT(ID_Journey) FROM [dbo].[Journey] WHERE {condition}";
+            }
+            else
+            {
+                query = $"SELECT COUNT(ID_Journey) FROM [dbo].[Journey]";
+            }
+
+            totalJourney = _databaseWeSplit
+                .Database
+                .SqlQuery<int>(query)
+                .Single();
+
+            if (totalJourney > 0)
+            {
+                query = query.Replace("COUNT(ID_Journey)", "*");
+                //query += $" ORDER BY [{sortedBy.column}] {sortedBy.type} OFFSET {currentPage - 1}*{totalJourneyPerPage} ROWS FETCH NEXT {totalJourneyPerPage} ROWS ONLY";
+
+                JourneysResult = _databaseWeSplit
+                .Database
+                .SqlQuery<Journey>(query)
+                .ToList();
+
+                for (int i = 0; i < JourneysResult.Count; ++i)
+                {
+                    JourneysResult[i] = GetJourneyForBindingInListView(JourneysResult[i]);
+                }
+            }
+
+            result.JourneysResult = JourneysResult;
+            result.totalJourney = totalJourney;
+
+            return result;
+        }
+
     }
 }
