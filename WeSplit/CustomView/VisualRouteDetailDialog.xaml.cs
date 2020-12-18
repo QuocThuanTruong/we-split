@@ -37,6 +37,7 @@ namespace WeSplit.CustomView
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
 		private BingMapUtilities _bingMapUtilities = BingMapUtilities.GetBingMapInstance();
+		private MapPolyline routeLine;
 
 		public VisualRouteDetailDialog()
 		{
@@ -136,6 +137,8 @@ namespace WeSplit.CustomView
 			routeMilestoneListView.ItemsSource = null;
 			_borderMilestones = new ObservableCollection<Tuple<int, VerticalAlignment>>();
 
+			routeMap.Children.Clear();
+
 			HideDialog();
 			CloseFullScreenVideoDialog?.Invoke();
 		}
@@ -152,7 +155,7 @@ namespace WeSplit.CustomView
 
 		private async Task CreateDirection(List<Location> locations)
 		{
-			var routeLine = await _bingMapUtilities.CreateDirectionInMap(locations);
+			routeLine = await _bingMapUtilities.CreateDirectionInMap(locations);
 
 			routeMap.Children.Add(routeLine);
 		}

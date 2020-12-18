@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -52,11 +53,11 @@ namespace WeSplit.Pages
             _journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
 
 			//Detach List for binding from journey
-			Route_For_Binding = _journey.Route_For_Binding;
-			JourneyAttendances = _journey.JourneyAttendances.ToList();
-			Images_For_Binding = _journey.Images_For_Binding;
-			Expens_For_Binding = _journey.Expens_For_Binding;
-			Advances_For_Binding = _journey.Advances_For_Binding;
+			Route_For_Binding = new List<Route>(_journey.Route_For_Binding);
+			JourneyAttendances = new List<JourneyAttendance>(_journey.JourneyAttendances.ToList());
+			Images_For_Binding = new List<JourneyImage>(_journey.Images_For_Binding);
+			Expens_For_Binding = new List<Expens>(_journey.Expens_For_Binding);
+			Advances_For_Binding = new List<Advance>(_journey.Advances_For_Binding);
 
 			//Set ItemSource
 			routesListView.ItemsSource = Route_For_Binding;
@@ -100,7 +101,52 @@ namespace WeSplit.Pages
 
 		private void addRouteButton_Click(object sender, RoutedEventArgs e)
 		{
+			Route route = new Route();
 
+			route.ID_Journey = _journey.ID_Journey;
+			route.Route_Status = 0;
+
+			route.Place = routeStartPlaceTextBox.Text;
+			if (route.Place.Length <= 0)
+			{
+
+				return;
+			}
+
+			route.Route_Description = descriptionRouteTextBox.Text;
+			if (route.Route_Description.Length <= 0)
+			{
+
+				return;
+			}
+
+			route.Province = ((Province)startProvinceRouteComboBox.SelectedItem).Province_Name;
+
+			routeStartPlaceTextBox.Text = "";
+			descriptionRouteTextBox.Text = "";
+
+			if (routesListView.SelectedIndex != -1)
+            {
+				route.Route_Index = Route_For_Binding[routesListView.SelectedIndex].Route_Index;
+				route.Ordinal_Number = route.Route_Index;
+
+				Route_For_Binding[routesListView.SelectedIndex] = route;
+				_journey.Route_For_Binding[routesListView.SelectedIndex] = route;
+
+				routesListView.SelectedIndex = -1;
+			} 
+			else
+            {
+				route.Route_Index = Route_For_Binding.Count;
+				route.Ordinal_Number = route.Route_Index;
+				route.Is_Active = 1;
+
+				Route_For_Binding.Add(route);
+				_journey.Route_For_Binding.Add(route);
+			}
+
+			routesListView.ItemsSource = null;
+			routesListView.ItemsSource = Route_For_Binding;
 		}
 
 		private void addAdvanceButton_Click(object sender, RoutedEventArgs e)
@@ -246,7 +292,13 @@ namespace WeSplit.Pages
 
 		private void deleteRouteButton_Click(object sender, RoutedEventArgs e)
 		{
+			int Route_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
+			_journey.Route_For_Binding[Route_Index].Is_Active = 0;
 
+			Route_For_Binding.RemoveAt(Route_Index);
+
+			routesListView.ItemsSource = null;
+			routesListView.ItemsSource = Route_For_Binding;
 		}
 
 		private void deleteMemberButton_Click(object sender, RoutedEventArgs e)
@@ -282,6 +334,17 @@ namespace WeSplit.Pages
 
 			endSiteComboBox.ItemsSource = sites;
 			endSiteComboBox.SelectedIndex = 0;
+		}
+
+        private void haveDoneButton_Click(object sender, RoutedEventArgs e)
+        {
+			int Route_Index = int.Parse(((ToggleButton)sender).Tag.ToString());
+
+			bool isDoneRoute = ((ToggleButton)sender).IsChecked.Value;
+
+			Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
+
+			_journey.Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
 		}
     }
 }

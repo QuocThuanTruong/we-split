@@ -454,10 +454,11 @@
                                           Width="16"
                                           Height="16"
                                           Margin="0, 0, 14, 0"
-                                          IsChecked="True"
-                                          Tag="0"
+                                          IsChecked="False"
+                                          Tag="{Binding Route_Index}"
                                           Background="{DynamicResource MyNeueGreen}"
                                           BorderThickness="0"
+                                          Click="haveDoneButton_Click"
                                           Style="{StaticResource MaterialDesignActionToggleButton}">
 
                                                 <materialDesign:ToggleButtonAssist.OnContentTemplate>
@@ -496,7 +497,7 @@
 
                                             <Button Name="deleteRouteButton"
                                                 Click="deleteRouteButton_Click"
-                                                Tag="binding id bro"
+                                                Tag="{Binding Route_Index}"
                                                 Margin="0, 0, 4, 0"
                                                 HorizontalAlignment="Right"
                                                 Style="{StaticResource DeleteJourneyButton}"

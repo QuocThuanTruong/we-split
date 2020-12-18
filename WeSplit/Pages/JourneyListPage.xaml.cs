@@ -116,8 +116,6 @@ namespace WeSplit.Pages
 			{
 				journeyListView.Visibility = Visibility.Collapsed;
 				journeyGridView.Visibility = Visibility.Visible;
-
-					
 			}	
 			else
 			{
@@ -263,6 +261,7 @@ namespace WeSplit.Pages
             }
 
 			journeyGridView.ItemsSource = journeys;
+			journeyListView.ItemsSource = journeys;
 		}
 	}
 }
