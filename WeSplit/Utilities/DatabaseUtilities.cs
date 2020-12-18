@@ -4,10 +4,14 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Collections;
+using System.ComponentModel;
+using System.Windows.Controls;
 
-namespace WeSplit.Utilities
+namespace WeSplit.Utilities 
 {
-    class DatabaseUtilities
+    class DatabaseUtilities : Page
     {
         private DatabaseUtilities() { }
 
@@ -156,8 +160,25 @@ namespace WeSplit.Utilities
 
                     result[i].Total_Day_For_Binding = $"{result[i].Total_Day} ngày";
                     result[i].Total_Distance_For_Binding = $"{result[i].Distance} km lộ trình";
+
+                    result[i].Total_Member = _databaseWeSplit
+                        .Database
+                        .SqlQuery<int>($"Select Count(*) as Total_Member from JourneyAttendance where ID_Journey = {result[i].ID_Journey}")
+                        .Single();
                     result[i].Total_Member_For_Binding = $"{result[i].Total_Member} thành viên";
 
+                    switch (result[i].Status)
+                    {
+                        case -1:
+                            result[i].Icon_Status_Source = FindResource("BadgeDone").ToString();
+                            break;
+                        case 0:
+                            result[i].Icon_Status_Source = FindResource("Badgecurrent").ToString();
+                            break;
+                        case 1:
+                            result[i].Icon_Status_Source = FindResource("BadgePlan").ToString();
+                            break;
+                    }
                 }
             }
 
@@ -187,6 +208,12 @@ namespace WeSplit.Utilities
 
                     result[i].Total_Day_For_Binding = $"{result[i].Total_Day} ngày";
                     result[i].Total_Distance_For_Binding = $"{result[i].Distance} km lộ trình";
+
+                    result[i].Total_Member = _databaseWeSplit
+                        .Database
+                        .SqlQuery<int>($"Select Count(*) as Total_Member from JourneyAttendance where ID_Journey = {result[i].ID_Journey}")
+                        .Single();
+
                     result[i].Total_Member_For_Binding = $"{result[i].Total_Member} thành viên";
 
                 }

@@ -100,7 +100,7 @@ namespace WeSplit.Pages
 
 		private void addRouteButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			
 		}
 
 		private void addAdvanceButton_Click(object sender, RoutedEventArgs e)
