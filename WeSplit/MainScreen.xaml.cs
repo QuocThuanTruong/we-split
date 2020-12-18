@@ -139,7 +139,7 @@ namespace WeSplit
 			JourneyListPage_ShowJourneyDetailPage(ID_Journey);
 		}
 
-		private void MainScreen_ViewAllJourney()
+		private void MainScreen_ViewAllJourney(int journeyStatus)
 		{
 			JourneyListPage journeyListPage = new JourneyListPage(journeyStatus);
 			journeyListPage.ShowJourneyDetailPage += JourneyListPage_ShowJourneyDetailPage;
