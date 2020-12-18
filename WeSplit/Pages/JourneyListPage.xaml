@@ -393,16 +393,16 @@
 
                         <Button Name="listViewButton"
                                 Click="listViewButton_Click"
-                        Style="{StaticResource DrawerButton}"
-                        Width="45"
-                        HorizontalAlignment="Left"
-                        Margin="16, 0, 0, 0"
-                        Height="45"
-                            Background="White"
-                        materialDesign:ButtonAssist.CornerRadius="6"
-                        Padding="0"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        Grid.Column="0">
+                                Style="{StaticResource DrawerButton}"
+                                Width="45"
+                                HorizontalAlignment="Left"
+                                Margin="16, 0, 0, 0"
+                                Height="45"
+                                Background="White"
+                                materialDesign:ButtonAssist.CornerRadius="6"
+                                Padding="0"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Grid.Column="0">
 
                             <Image Name="listViewIcon"
                                HorizontalAlignment="Center"
@@ -485,7 +485,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
-                                           Text="{Binding Site_Name}"
+                                           Text="{Binding Journey_Name}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>
 
@@ -693,7 +693,7 @@
                                    Margin="0, 0, -8, -8"
                                    Width="75"
                                    Height="75"
-                                   Source="{StaticResource BadgeCur}"/>
+                                   Source="{StaticResource Badgecurrent}"/>
 
 
                             </Grid>

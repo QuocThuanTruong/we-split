@@ -53,7 +53,7 @@ namespace WeSplit.Utilities
             MapLayer result = new MapLayer();
 
             Image imageStart = new Image();
-            imageStart.Source = new BitmapImage(new Uri(imageUri, UriKind.Relative));
+            imageStart.Source = new BitmapImage(new Uri(imageUri, UriKind.Absolute));
             imageStart.Width = 50;
             imageStart.Height = 50;
 

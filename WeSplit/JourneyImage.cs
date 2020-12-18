@@ -11,13 +11,22 @@ namespace WeSplit
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class JourneyImage
+    using System.ComponentModel;
+
+    public partial class JourneyImage : INotifyPropertyChanged
     {
         public int ID_Journey { get; set; }
         public int Ordinal_Number { get; set; }
         public string Link_Image { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
         public virtual Journey Journey { get; set; }
+
+        //For Coppy
+        public string ImageSource { get; set; }
+        public int ImageIndex { get; set; }
+
+        //For Update
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -14,12 +14,28 @@ namespace WeSplit
     
     public partial class JourneyAttendance
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JourneyAttendance()
+        {
+            this.Advances = new HashSet<Advance>();
+            this.Advances1 = new HashSet<Advance>();
+        }
+    
         public int ID_Member { get; set; }
         public int ID_Journey { get; set; }
+        public string Member_Name { get; set; }
+        public string Phone_Number { get; set; }
         public Nullable<decimal> Receivables_Money { get; set; }
         public string Role { get; set; }
+        public Nullable<int> Is_Active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Advance> Advances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Advance> Advances1 { get; set; }
         public virtual Journey Journey { get; set; }
-        public virtual Member Member { get; set; }
+
+        //For Binding 
+        public string Money_For_Binding { get; set; }
     }
 }

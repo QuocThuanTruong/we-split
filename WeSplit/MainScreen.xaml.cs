@@ -30,7 +30,9 @@ namespace WeSplit
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			pageNavigation.NavigationService.Navigate(new HomePage());
+			HomePage homePage = new HomePage();
+			homePage.ShowJourneyDetailPage += MainScreen_ShowJourneyDetailPage;
+			pageNavigation.NavigationService.Navigate(homePage);
 
 			_mainScreenButtons = new List<Tuple<Button, Image, string, string, TextBlock>>()
 			{
@@ -100,6 +102,7 @@ namespace WeSplit
 				homePageName.Foreground = Brushes.White;
 				result = new HomePage();
 				((HomePage)result).ViewAllJourney += MainScreen_ViewAllJourney;
+				((HomePage)result).ShowJourneyDetailPage += MainScreen_ShowJourneyDetailPage;
 			}
 			else if (selectedButton.Name == mngJourneyPageButton.Name)
 			{
@@ -131,24 +134,42 @@ namespace WeSplit
 			return result;
 		}
 
-		private void MainScreen_ViewAllJourney()
+		private void MainScreen_ShowJourneyDetailPage(int ID_Journey)
 		{
-			JourneyListPage journeyListPage = new JourneyListPage();
+			JourneyListPage_ShowJourneyDetailPage(ID_Journey);
+		}
+
+		private void MainScreen_ViewAllJourney(int journeyStatus)
+		{
+			JourneyListPage journeyListPage = new JourneyListPage(journeyStatus);
 			journeyListPage.ShowJourneyDetailPage += JourneyListPage_ShowJourneyDetailPage;
 			pageNavigation.NavigationService.Navigate(journeyListPage);
 		}
 
-		private void JourneyListPage_ShowJourneyDetailPage(int recipeID)
+		private void JourneyListPage_ShowJourneyDetailPage(int ID_Journey)
 		{
-			JourneyDetailPage journeyDetailPage = new JourneyDetailPage();
+			JourneyDetailPage journeyDetailPage = new JourneyDetailPage(ID_Journey);
 			journeyDetailPage.UpdateJourney += JourneyDetailPage_UpdateJourney;
 
 			pageNavigation.NavigationService.Navigate(journeyDetailPage);
+
+
+			//clear selected button
+			foreach (var button in _mainScreenButtons)
+			{
+				
+					button.Item1.Background = Brushes.Transparent;
+					button.Item1.IsEnabled = true;
+
+					button.Item2.Source = (ImageSource)FindResource(button.Item3);
+					button.Item5.Foreground = (Brush)FindResource("MyDarkGreen");
+				
+			}
 		}
 
-		private void JourneyDetailPage_UpdateJourney(int journeyID)
+		private void JourneyDetailPage_UpdateJourney(int ID_Journey)
 		{
-			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage();
+			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage(ID_Journey);
 
 			pageNavigation.NavigationService.Navigate(updateJourneyPage);
 		}

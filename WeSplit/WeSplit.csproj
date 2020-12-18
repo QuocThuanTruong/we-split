@@ -67,6 +67,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -94,6 +95,9 @@
     </Compile>
     <Compile Include="Converter\AbsolutePathConverter.cs" />
     <Compile Include="Converter\BrushOpacityConverter.cs" />
+    <Compile Include="CustomView\VisualRouteDetailDialog.xaml.cs">
+      <DependentUpon>VisualRouteDetailDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DevideMoney_Result.cs">
       <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>
@@ -129,9 +133,6 @@
     </Compile>
     <Compile Include="MainScreen.xaml.cs">
       <DependentUpon>MainScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Member.cs">
-      <DependentUpon>WeSplit.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -247,10 +248,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CustomView\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="CustomView\VisualRouteDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -484,6 +487,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\list-item-footer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\marker-end.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\marker-site.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\marker-start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\splash-footer.png">

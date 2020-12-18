@@ -24,13 +24,17 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class HomePage : Page
 	{
-		public delegate void ViewAllJourneyHandler();
+		public delegate void ViewAllJourneyHandler(int journeyStatus);
 		public event ViewAllJourneyHandler ViewAllJourney;
 
 		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+
+		const int PLANED = 1;
+		const int CURRENT = 0;
+		const int DONE = -1;
 
 		public HomePage()
 		{
@@ -55,7 +59,8 @@ namespace WeSplit.Pages
 
 		private void viewAllJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-			ViewAllJourney?.Invoke();
+			//Adjust here
+			ViewAllJourney?.Invoke(2);
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -209,7 +214,7 @@ namespace WeSplit.Pages
 
 		private void loadPlanedJourneyInHomePageViewType1()
         {
-			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(PLANED);
 
 			if (sites.Count >= 1)
             {
@@ -265,7 +270,7 @@ namespace WeSplit.Pages
 
 		public void loadDoneJourneyInHomePageViewType1()
         {
-			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(1);
+			var sites = _databaseUtilities.GetSiteForBindingInHomePageView(DONE);
 
 			if (sites.Count >= 1)
 			{
@@ -363,6 +368,16 @@ namespace WeSplit.Pages
 			int ID_Journey = int.Parse(((Button)sender).Tag.ToString());
 
 			ShowJourneyDetailPage?.Invoke(ID_Journey);
+		}
+
+        private void viewAllPlanedButton_Click(object sender, RoutedEventArgs e)
+        {
+			ViewAllJourney?.Invoke(PLANED);
+		}
+
+        private void viewAllDoneButton_Click(object sender, RoutedEventArgs e)
+        {
+			ViewAllJourney?.Invoke(DONE);
 		}
     }
 }

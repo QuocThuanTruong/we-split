@@ -27,10 +27,26 @@ namespace WeSplit.Pages
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+
+		const int PLANED = 1;
+		const int CURRENT = 0;
+		const int DONE = 1;
+
+		private int _journeyStatus = 2;
 		public JourneyListPage()
 		{
 			InitializeComponent();
 			filterContainer.Visibility = Visibility.Collapsed;
+
+			loadJourneys();
+		}
+
+		public JourneyListPage(int journeyStatus)
+		{
+			InitializeComponent();
+			filterContainer.Visibility = Visibility.Collapsed;
+
+			_journeyStatus = journeyStatus;
 
 			loadJourneys();
 		}
@@ -236,7 +252,15 @@ namespace WeSplit.Pages
 
 		private void loadJourneys()
         {
-			var journeys = _databaseUtilities.GetListJourney();
+			List<Journey> journeys;
+
+			if (_journeyStatus != 2)
+            {
+				journeys = _databaseUtilities.GetListJourneyByStatus(_journeyStatus);
+            } else
+            {
+				journeys = _databaseUtilities.GetListJourney();
+            }
 
 			journeyGridView.ItemsSource = journeys;
 		}

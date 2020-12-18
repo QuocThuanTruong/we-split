@@ -67,5 +67,63 @@ namespace WeSplit.Utilities
             return result;
         }
 
+        public double GetDistanceByRoutes(List<Route> routes, Route startRoute, Route endRoute)
+        {
+            double result = 0;
+
+            if (routes.Count > 0)
+            {
+                result += GetDistanceBetweenTwoRoute(startRoute, routes[0]);
+
+                for (int i = 0; i < routes.Count - 1; ++i)
+                {
+                    result += GetDistanceBetweenTwoRoute(routes[i], routes[i + 1]);
+                }
+
+                result += GetDistanceBetweenTwoRoute(endRoute, routes[routes.Count - 1]);
+            } 
+            else
+            {
+                result += GetDistanceBetweenTwoRoute(startRoute, endRoute);
+            }
+
+            
+
+            return result;
+        }
+
+        public double GetDistanceBetweenTwoRoute(Route route1, Route route2)
+        {
+            double result = 0;
+
+            string DistanceApi = ConfigurationManager.AppSettings["DistanceApi"];
+
+            string url = DistanceApi + "&origins=" + route1.Place + " " + route1.Province + "&destinations=" + route2.Place + " " + route2.Province + "&" + _googleMapApiKey;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+            WebResponse response = request.GetResponse();
+
+            Stream dataStream = response.GetResponseStream();
+            StreamReader streamReader = new StreamReader(dataStream);
+
+            string responseReader = streamReader.ReadToEnd();
+
+            response.Close();
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(new XmlTextReader(new StringReader(responseReader)));
+
+            if (ds.Tables.Count > 0)
+            {
+                if (ds.Tables["element"].Rows[0]["status"].ToString() == "OK")
+                {
+                    result += (Convert.ToDouble(ds.Tables["distance"].Rows[0]["value"].ToString()) / 1000.0);
+                }
+            }
+
+            return result;
+        }
+
     }
 }
