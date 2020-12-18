@@ -118,7 +118,7 @@ namespace WeSplit.Pages
 
 		private void finishJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			_databaseUtilities.FinishJourney(_ID_Journey);
 		}
 
 
