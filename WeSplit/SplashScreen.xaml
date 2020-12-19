@@ -125,7 +125,7 @@
                 <Image Name="siteAvatarImage"
                    Stretch="UniformToFill"
                    RenderOptions.BitmapScalingMode="HighQuality"
-                   Source="{Binding Site_Link_Avt}"/>
+                   Source="{Binding Site_Link_Avt, Converter={StaticResource PathConverter}}"/>
 
             </materialDesign:Card>
 
