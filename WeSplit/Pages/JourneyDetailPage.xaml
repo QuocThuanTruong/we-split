@@ -19,6 +19,7 @@
         <converter:AbsolutePathConverter x:Key="abosolutePathConverter"></converter:AbsolutePathConverter>
         <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
         <converter:JourneyStatusConverter x:Key="journeyStatusConverter"></converter:JourneyStatusConverter>
+        <converter:AbsolutePathConverter x:Key="absolutePathConverter"></converter:AbsolutePathConverter>
     </Page.Resources>
     
     <Grid>

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WeSplit.Pages"
+      xmlns:converter="clr-namespace:WeSplit.Converter"
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:loc="clr-namespace:WeSplit.Properties"
@@ -296,17 +297,18 @@
                   Grid.Column="1"
                   Grid.Row="12"
                   Grid.RowSpan="2"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Margin="0, 8, 0, 0"
                   ItemContainerStyle="{StaticResource SiteHoverListBox}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid 
+                        <Grid Width="1032"
                               Margin="2, 0, 10, 0">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.05*"/>
-                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="0.30*"/>
                                 <ColumnDefinition Width="1.14*"/>
                                 <ColumnDefinition Width="0.62*"/>
                                 <ColumnDefinition Width="0.98*"/>
@@ -371,6 +373,7 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
             </ListView>
 
             <!--404-->
