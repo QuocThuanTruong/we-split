@@ -288,6 +288,7 @@ namespace WeSplit.Pages
 			}
 
 			TOTAL_JOURNEY_PER_PAGE = 9;
+			_currentPage = 1;
 
 			if (_isSearching)
 			{
@@ -327,6 +328,7 @@ namespace WeSplit.Pages
 			}
 
 			TOTAL_JOURNEY_PER_PAGE = 6;
+			_currentPage = 1;
 
 			if (_isSearching)
 			{
@@ -604,7 +606,7 @@ namespace WeSplit.Pages
 
 						if (((RouteGroup)routeOption).Index == 1)
 						{
-							result += $"(Distance >= 400 And Distance <= 6999) OR";
+							result += $"(Distance >= 400 And Distance <= 699) OR";
 						}
 
 						if (((RouteGroup)routeOption).Index == 2)
@@ -822,8 +824,8 @@ namespace WeSplit.Pages
 
 				for (int i = 0; i < journeys.Count; ++i)
                 {
-					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 25);
-					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Journey_Name, 20);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Journey_Name, 31);
 
 					Site site = _databaseUtilities.GetSiteByID(journeys[i].ID_Site ?? 0);
 
