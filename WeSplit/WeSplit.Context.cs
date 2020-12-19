@@ -162,7 +162,7 @@ namespace WeSplit
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SearchJourney_Result>("[WeSplitEntities].[SearchJourney](@search_text)", search_textParameter);
         }
     
-        public virtual int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des)
+        public virtual int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des, Nullable<int> is_active)
         {
             var idExpensesParameter = idExpenses.HasValue ?
                 new ObjectParameter("idExpenses", idExpenses) :
@@ -180,7 +180,11 @@ namespace WeSplit
                 new ObjectParameter("des", des) :
                 new ObjectParameter("des", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddExpense", idExpensesParameter, idJourneyParameter, expenseParameter, desParameter);
+            var is_activeParameter = is_active.HasValue ?
+                new ObjectParameter("is_active", is_active) :
+                new ObjectParameter("is_active", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddExpense", idExpensesParameter, idJourneyParameter, expenseParameter, desParameter, is_activeParameter);
         }
     
         public virtual int AddJourney(Nullable<int> idJourney, string journeyName, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance)
@@ -224,7 +228,7 @@ namespace WeSplit
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourney", idJourneyParameter, journeyNameParameter, idSiteParameter, startPlaceParameter, startProvinceParameter, statusParameter, startDateParameter, endDateParameter, distanceParameter);
         }
     
-        public virtual int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role)
+        public virtual int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role, Nullable<int> is_active)
         {
             var idMemberParameter = idMember.HasValue ?
                 new ObjectParameter("idMember", idMember) :
@@ -250,10 +254,14 @@ namespace WeSplit
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyAttendance", idMemberParameter, idJourneyParameter, memberNameParameter, phoneNumberParameter, receivableParameter, roleParameter);
+            var is_activeParameter = is_active.HasValue ?
+                new ObjectParameter("is_active", is_active) :
+                new ObjectParameter("is_active", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyAttendance", idMemberParameter, idJourneyParameter, memberNameParameter, phoneNumberParameter, receivableParameter, roleParameter, is_activeParameter);
         }
     
-        public virtual int AddJourneyImages(Nullable<int> idJourney, Nullable<int> oridnalNum, string linkImage)
+        public virtual int AddJourneyImages(Nullable<int> idJourney, Nullable<int> oridnalNum, string linkImage, Nullable<int> is_active)
         {
             var idJourneyParameter = idJourney.HasValue ?
                 new ObjectParameter("idJourney", idJourney) :
@@ -267,10 +275,14 @@ namespace WeSplit
                 new ObjectParameter("linkImage", linkImage) :
                 new ObjectParameter("linkImage", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyImages", idJourneyParameter, oridnalNumParameter, linkImageParameter);
+            var is_activeParameter = is_active.HasValue ?
+                new ObjectParameter("is_active", is_active) :
+                new ObjectParameter("is_active", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddJourneyImages", idJourneyParameter, oridnalNumParameter, linkImageParameter, is_activeParameter);
         }
     
-        public virtual int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus)
+        public virtual int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus, Nullable<int> is_active)
         {
             var idJourneyParameter = idJourney.HasValue ?
                 new ObjectParameter("idJourney", idJourney) :
@@ -296,7 +308,11 @@ namespace WeSplit
                 new ObjectParameter("routeStatus", routeStatus) :
                 new ObjectParameter("routeStatus", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRoute", idJourneyParameter, ordinalNumberParameter, placeParameter, provinceParameter, routeDescriptionParameter, routeStatusParameter);
+            var is_activeParameter = is_active.HasValue ?
+                new ObjectParameter("is_active", is_active) :
+                new ObjectParameter("is_active", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRoute", idJourneyParameter, ordinalNumberParameter, placeParameter, provinceParameter, routeDescriptionParameter, routeStatusParameter, is_activeParameter);
         }
     
         public virtual int AddSite(Nullable<int> idSite, Nullable<int> idProvince, string siteName, string siteDescription, string siteLinkAvt, string siteAddress)

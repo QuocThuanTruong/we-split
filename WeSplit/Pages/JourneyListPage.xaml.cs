@@ -122,9 +122,9 @@ namespace WeSplit.Pages
 			loadJourneys();
 			_routeGroups = new List<RouteGroup>()
 			{
-				new RouteGroup(0, "0 - 20 km"),
-				new RouteGroup(1, "20 - 50 km"),
-				new RouteGroup(2, "> 50 km")
+				new RouteGroup(0, "0 - 399 km"),
+				new RouteGroup(1, "400 - 699 km"),
+				new RouteGroup(2, ">= 700 km")
 			}; 
 
 			routeGroupListBox.ItemsSource = _routeGroups;
@@ -550,17 +550,17 @@ namespace WeSplit.Pages
 					{
 						if (((RouteGroup)routeOption).Index == 0)
 						{
-							result += $"(Distance <= 20) OR";
+							result += $"(Distance <= 399) OR";
 						}
 
 						if (((RouteGroup)routeOption).Index == 1)
 						{
-							result += $"(Distance > 20 And Distance <= 50) OR";
+							result += $"(Distance >= 400 And Distance <= 6999) OR";
 						}
 
 						if (((RouteGroup)routeOption).Index == 2)
 						{
-							result += $"(Distance > 50) OR";
+							result += $"(Distance >= 700) OR";
 						}
 					}
 

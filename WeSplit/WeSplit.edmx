@@ -219,6 +219,7 @@
           <Parameter Name="idJourney" Type="int" Mode="In" />
           <Parameter Name="expense" Type="money" Mode="In" />
           <Parameter Name="des" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="is_active" Type="int" Mode="In" />
         </Function>
         <Function Name="AddJourney" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
@@ -238,11 +239,13 @@
           <Parameter Name="phoneNumber" Type="nchar" Mode="In" />
           <Parameter Name="Receivable" Type="money" Mode="In" />
           <Parameter Name="role" Type="nvarchar" Mode="In" />
+          <Parameter Name="is_active" Type="int" Mode="In" />
         </Function>
         <Function Name="AddJourneyImages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
           <Parameter Name="oridnalNum" Type="int" Mode="In" />
           <Parameter Name="linkImage" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="is_active" Type="int" Mode="In" />
         </Function>
         <Function Name="AddRoute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idJourney" Type="int" Mode="In" />
@@ -251,6 +254,7 @@
           <Parameter Name="province" Type="nvarchar" Mode="In" />
           <Parameter Name="routeDescription" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="routeStatus" Type="int" Mode="In" />
+          <Parameter Name="is_active" Type="int" Mode="In" />
         </Function>
         <Function Name="AddSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idSite" Type="int" Mode="In" />
@@ -977,6 +981,7 @@
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="expense" Mode="In" Type="Decimal" />
             <Parameter Name="des" Mode="In" Type="String" />
+            <Parameter Name="is_active" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddJourney">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
@@ -996,11 +1001,13 @@
             <Parameter Name="phoneNumber" Mode="In" Type="String" />
             <Parameter Name="Receivable" Mode="In" Type="Decimal" />
             <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="is_active" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddJourneyImages">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
             <Parameter Name="oridnalNum" Mode="In" Type="Int32" />
             <Parameter Name="linkImage" Mode="In" Type="String" />
+            <Parameter Name="is_active" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddRoute">
             <Parameter Name="idJourney" Mode="In" Type="Int32" />
@@ -1009,6 +1016,7 @@
             <Parameter Name="province" Mode="In" Type="String" />
             <Parameter Name="routeDescription" Mode="In" Type="String" />
             <Parameter Name="routeStatus" Mode="In" Type="Int32" />
+            <Parameter Name="is_active" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddSite">
             <Parameter Name="idSite" Mode="In" Type="Int32" />

@@ -70,6 +70,7 @@ namespace WeSplit.Pages
 				
 				return;
             }
+			route.Standard_Place = _appUtilities.getStandardName(route.Place, 30);
 
 			route.Route_Description = descriptionRouteTextBox.Text;
 			if (route.Route_Description.Length <= 0)
@@ -77,6 +78,7 @@ namespace WeSplit.Pages
 
 				return;
 			}
+			route.Standard_Description = _appUtilities.getStandardName(route.Route_Description, 30);
 
 			route.Province = ((Province)startProvinceRouteComboBox.SelectedItem).Province_Name;
 
@@ -244,17 +246,17 @@ namespace WeSplit.Pages
 
 			foreach(var expense in _journey.Expenses)
             {
-				_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description);
+				_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description, 1);
             }
 
 			foreach (var route in _journey.Routes)
 			{
-				_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status);
+				_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status, 1);
 			}
 
 			foreach (var member in _journey.JourneyAttendances)
             {
-				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
+				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role, 1);
             }
 
 			_journey = new Journey();

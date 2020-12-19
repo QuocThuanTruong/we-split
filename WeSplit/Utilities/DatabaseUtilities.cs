@@ -155,18 +155,21 @@ namespace WeSplit.Utilities
                         .FirstOrDefault();
 
                     result[i].Site_Name = site.Site_Name;
+                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
+                    result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
+
                     result[i].Site_Avatar = site.Site_Link_Avt;
 
                     result[i].Total_Day = (int)(result[i].EndDate - result[i].StartDate).Value.TotalDays;
 
                     result[i].Total_Day_For_Binding = $"{result[i].Total_Day} ngày";
-                    result[i].Total_Distance_For_Binding = $"{result[i].Distance} km lộ trình";
+                    result[i].Total_Distance_For_Binding = $"{result[i].Distance} km";
 
                     result[i].Total_Member = _databaseWeSplit
                         .Database
                         .SqlQuery<int>($"Select Count(*) as Total_Member from JourneyAttendance where ID_Journey = {result[i].ID_Journey}")
                         .Single();
-                    result[i].Total_Member_For_Binding = $"{result[i].Total_Member} thành viên";
+                    result[i].Total_Member_For_Binding = $"{result[i].Total_Member}";
 
                     switch (result[i].Status)
                     {
@@ -203,19 +206,22 @@ namespace WeSplit.Utilities
                         .FirstOrDefault();
 
                     result[i].Site_Name = site.Site_Name;
+                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
+                    result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
+
                     result[i].Site_Avatar = site.Site_Link_Avt;
 
                     result[i].Total_Day = (int)(result[i].EndDate - result[i].StartDate).Value.TotalDays;
 
                     result[i].Total_Day_For_Binding = $"{result[i].Total_Day} ngày";
-                    result[i].Total_Distance_For_Binding = $"{result[i].Distance} km lộ trình";
+                    result[i].Total_Distance_For_Binding = $"{result[i].Distance} km";
 
                     result[i].Total_Member = _databaseWeSplit
                         .Database
                         .SqlQuery<int>($"Select Count(*) as Total_Member from JourneyAttendance where ID_Journey = {result[i].ID_Journey}")
                         .Single();
 
-                    result[i].Total_Member_For_Binding = $"{result[i].Total_Member} thành viên";
+                    result[i].Total_Member_For_Binding = $"{result[i].Total_Member}";
 
                     switch (result[i].Status)
                     {
@@ -250,14 +256,14 @@ namespace WeSplit.Utilities
             result.Total_Day = (int)(result.EndDate - result.StartDate).Value.TotalDays;
 
             result.Total_Day_For_Binding = $"{result.Total_Day} ngày";
-            result.Total_Distance_For_Binding = $"{result.Distance} km lộ trình";
+            result.Total_Distance_For_Binding = $"{result.Distance} km";
 
             result.Total_Member = _databaseWeSplit
                 .Database
                 .SqlQuery<int>($"Select Count(*) as Total_Member from JourneyAttendance where ID_Journey = {result.ID_Journey}")
                 .Single();
 
-            result.Total_Member_For_Binding = $"{result.Total_Member} thành viên";
+            result.Total_Member_For_Binding = $"{result.Total_Member}";
 
             switch (result.Status)
             {
@@ -313,7 +319,10 @@ namespace WeSplit.Utilities
 
                 for (int i = 0; i < routes.Count; ++i)
                 {
-                    routes[i].Route_Index = i;
+                    routes[i].Route_Index = i + 1;
+
+                    routes[i].Standard_Place = _appUtilities.getStandardName(routes[i].Place, 30);
+                    routes[i].Standard_Description = _appUtilities.getStandardName(routes[i].Route_Description, 30);
                 }
 
                 result.Route_For_Binding = routes;
@@ -438,6 +447,11 @@ namespace WeSplit.Utilities
                     .Single();
 
                 result[i].Province_Name = province.Province_Name;
+
+                result[i].Standard_Site_Name = _appUtilities.getStandardName(result[i].Site_Name, 25);
+                result[i].Standard_Site_Address = _appUtilities.getStandardName(result[i].Site_Address, 28);
+                result[i].Standard_Site_Description = _appUtilities.getStandardName(result[i].Site_Description, 50);
+
             }
 
             return result;
@@ -502,19 +516,19 @@ namespace WeSplit.Utilities
             return _databaseWeSplit.AddJourney(idJourney, journeyName, idSite, startPlace, startProvince, status, startDate, endDate, distance);
         }
 
-        public int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des)
+        public int AddExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des, int is_active)
         {
-            return _databaseWeSplit.AddExpense(idExpenses, idJourney, expense, des);
+            return _databaseWeSplit.AddExpense(idExpenses, idJourney, expense, des, is_active);
         }
 
-        public int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus)
+        public int AddRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus, int is_active)
         {
-            return _databaseWeSplit.AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus);
+            return _databaseWeSplit.AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus, is_active);
         }
 
-        public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role)
+        public int AddJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role, int is_active)
         {
-            return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, memberName, phoneNumber, receivable, role);
+            return _databaseWeSplit.AddJourneyAttendance(idMember, idJourney, memberName, phoneNumber, receivable, role, is_active);
         }
 
         public decimal GetTotalReceivable(int ID_Journey)
@@ -986,11 +1000,42 @@ namespace WeSplit.Utilities
                 .ExecuteSqlCommand($"Update Journey Set Journey_Name = N'{journeyName}', ID_Site = {idSite}, Start_Place = N'{startPlace}', Start_Province = N'{startProvince}', Status = {status}, StartDate = N'{startDate}', EndDate = N'{endDate}', Distance = {distance} Where ID_Journey = {idJourney}");
         }
 
-        public void Expense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des, int Is_Active)
+        public void UpdateExpense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des, int Is_Active)
         {
-            _databaseWeSplit
+            var checkExist = _databaseWeSplit
                 .Database
-                .ExecuteSqlCommand($"Update Expenses Set Expenses_Money = {expense}, Expenses_Description = N'{des}', Is_Active = {Is_Active} Where ID_Expenses = {idExpenses} And ID_Journey = {idJourney}");
+                .SqlQuery<Expens>($"Select * from Expenses where ID_Expenses = {idExpenses} and ID_Journey = {idJourney}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                _databaseWeSplit
+               .Database
+               .ExecuteSqlCommand($"Update Expenses Set Expenses_Money = {expense}, Expenses_Description = N'{des}', Is_Active = {Is_Active} Where ID_Expenses = {idExpenses} And ID_Journey = {idJourney}");
+            } 
+            else
+            {
+                AddExpense(idExpenses, idJourney, expense, des, Is_Active);
+            }
+        }
+
+        public void UpdateRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus, int is_active)
+        {
+            var checkExist = _databaseWeSplit
+                .Database
+                .SqlQuery<Route>($"Select * from Route where Ordinal_Number = {ordinalNumber} and ID_Journey = {idJourney}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                _databaseWeSplit
+               .Database
+               .ExecuteSqlCommand($"Update Route Set Place = N'{place}', Province = N'{province}', Route_Description = N'{routeDescription}', Route_Status = {routeStatus}, Is_Active = {is_active}  Where Ordinal_Number = {ordinalNumber} And ID_Journey = {idJourney}");
+            }
+            else
+            {
+                AddRoute(idJourney, ordinalNumber, place, province, routeDescription, routeStatus, is_active);
+            }
         }
 
         public void FinishCurrentJourney()
@@ -1002,5 +1047,18 @@ namespace WeSplit.Utilities
 
             UpdateJourneyStatus(ID_Current_Journey, -1);
         }
+
+        public int GetMaxOrdinalNumber(int ID_Journey)
+        {
+            int result = _databaseWeSplit
+                .Database
+                .SqlQuery<int>($"Select MAX(Ordinal_Number) from Route where ID_Journey = {ID_Journey}")
+                .Single();
+
+            return result;
+        }
+        
     }
+
+
 }

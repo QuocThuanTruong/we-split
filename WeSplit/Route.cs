@@ -27,5 +27,8 @@ namespace WeSplit
         //For Binding
         public string Route_Detail { get; set; }
         public int Route_Index { get; set; }
+        public string Standard_Place { get; set; }
+        public string Standard_Description { get; set; }
+
     }
 }

@@ -49,15 +49,17 @@ namespace WeSplit.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            startProvinceRouteComboBox.ItemsSource = _provinces;
-            startProvinceComboBox.ItemsSource = _provinces;
-            endProvinceComboBox.ItemsSource = _provinces;
-
 			//Get journey for update
             _journey = _databaseUtilities.GetJourneyByID(_ID_Journey);
 
 			//Detach List for binding from journey
 			Route_For_Binding = new List<Route>(_journey.Route_For_Binding);
+			for (int i = 0; i < Route_For_Binding.Count; ++i)
+            {
+				Route_For_Binding[i].Standard_Place = _appUtilities.getStandardName(Route_For_Binding[i].Place, 20);
+				Route_For_Binding[i].Standard_Description = _appUtilities.getStandardName(Route_For_Binding[i].Route_Description, 20);
+			}
+			
 			JourneyAttendances = new List<JourneyAttendance>(_journey.JourneyAttendances.ToList());
 			Images_For_Binding = new List<JourneyImage>(_journey.Images_For_Binding);
 			Expens_For_Binding = new List<Expens>(_journey.Expens_For_Binding);
@@ -82,8 +84,7 @@ namespace WeSplit.Pages
 			startProvinceComboBox.SelectedIndex = province.ID_Province - 1;
 
 			Site site = _databaseUtilities.GetSiteByID(_journey.ID_Site ?? 0);
-			endProvinceComboBox.SelectedIndex = site.ID_Province;
-			endSiteComboBox.SelectedIndex = _journey.ID_Site - 1 ?? 0;
+			endProvinceComboBox.SelectedIndex = site.ID_Province - 1;
 
 			if (Images_For_Binding.Count > 0)
 			{
@@ -91,6 +92,8 @@ namespace WeSplit.Pages
 				addImageOption2Button.Visibility = Visibility.Visible;
 				journeyImageListView.Visibility = Visibility.Visible;
 			}
+
+			_ordinal_number = _databaseUtilities.GetMaxOrdinalNumber(_ID_Journey);
 
 			DataContext = _journey;
         }
@@ -213,6 +216,7 @@ namespace WeSplit.Pages
 
 				return;
 			}
+			route.Standard_Place = _appUtilities.getStandardName(route.Place, 20);
 
 			route.Route_Description = descriptionRouteTextBox.Text;
 			if (route.Route_Description.Length <= 0)
@@ -220,6 +224,7 @@ namespace WeSplit.Pages
 
 				return;
 			}
+			route.Standard_Description = _appUtilities.getStandardName(route.Route_Description, 20);
 
 			route.Province = ((Province)startProvinceRouteComboBox.SelectedItem).Province_Name;
 
@@ -229,21 +234,19 @@ namespace WeSplit.Pages
 			if (routesListView.SelectedIndex != -1)
             {
 				route.Route_Index = Route_For_Binding[routesListView.SelectedIndex].Route_Index;
-				route.Ordinal_Number = route.Route_Index;
+				route.Ordinal_Number = Route_For_Binding[routesListView.SelectedIndex].Ordinal_Number;
 
 				Route_For_Binding[routesListView.SelectedIndex] = route;
-				_journey.Route_For_Binding[routesListView.SelectedIndex] = route;
 
 				routesListView.SelectedIndex = -1;
 			} 
 			else
             {
-				route.Route_Index = Route_For_Binding.Count;
-				route.Ordinal_Number = route.Route_Index;
+				route.Route_Index = Route_For_Binding.Count + 1;
+				route.Ordinal_Number = ++_ordinal_number;
 				route.Is_Active = 1;
 
 				Route_For_Binding.Add(route);
-				_journey.Route_For_Binding.Add(route);
 			}
 
 			routesListView.ItemsSource = null;
@@ -431,7 +434,7 @@ namespace WeSplit.Pages
 			}
 			else
 			{
-				_journey.Status = 1;
+				
 			}
 
 			Route startRoute = new Route();
@@ -447,7 +450,11 @@ namespace WeSplit.Pages
 			_journey.EndDate = endDatePicker.SelectedDate;
 
 			//Get distance
-			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute, endRoute);
+			var routeForCalcDistance = (from r in Route_For_Binding
+										where r.Is_Active == 1
+										select r).ToList();
+
+			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(routeForCalcDistance, startRoute, endRoute);
 
 			//Insert 
 			_databaseUtilities.UpdateJourney(
@@ -461,39 +468,38 @@ namespace WeSplit.Pages
 				_journey.EndDate,
 				_journey.Distance);
 
-			//foreach (var expense in _journey.Expenses)
-			//{
-			//	_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description);
-			//}
+            foreach (var expense in Expens_For_Binding)
+            {
+                _databaseUtilities.UpdateExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description, expense.Is_Active ?? 0);
+            }
 
-			//foreach (var route in _journey.Routes)
-			//{
-			//	_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status);
-			//}
+            foreach (var route in Route_For_Binding)
+            {
+                _databaseUtilities.UpdateRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status, route.Is_Active ?? 0);
+            }
 
-			//foreach (var member in _journey.JourneyAttendances)
-			//{
-			//	_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
-			//}
+            //foreach (var member in _journey.JourneyAttendances)
+            //{
+            //	_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
+            //}
 
-			_journey = new Journey();
-			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+   //         _journey = new Journey();
+			//_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
 
 			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
 
 			//Reset
-			journeyNameTextBox.Text = "";
-			journeyStartPlaceTextBox.Text = "";
-			startProvinceComboBox.SelectedIndex = 0;
-			startDatePicker.Text = "";
-			endSiteComboBox.SelectedIndex = 0;
-			endProvinceComboBox.SelectedIndex = 0;
-			endDatePicker.Text = "";
-			startProvinceRouteComboBox.SelectedIndex = 0;
-			routesListView.ItemsSource = null;
-			membersListView.ItemsSource = null;
-			expensesListView.ItemsSource = null;
-			_ordinal_number = 0;
+			//journeyNameTextBox.Text = "";
+			//journeyStartPlaceTextBox.Text = "";
+			//startProvinceComboBox.SelectedIndex = 0;
+			//startDatePicker.Text = "";
+			//endSiteComboBox.SelectedIndex = 0;
+			//endProvinceComboBox.SelectedIndex = 0;
+			//endDatePicker.Text = "";
+			//startProvinceRouteComboBox.SelectedIndex = 0;
+			//routesListView.ItemsSource = null;
+			//membersListView.ItemsSource = null;
+			//expensesListView.ItemsSource = null;
 		}
 
 		private void addImageButton_Click(object sender, RoutedEventArgs e)
@@ -535,11 +541,7 @@ namespace WeSplit.Pages
 		private void deleteRouteButton_Click(object sender, RoutedEventArgs e)
 		{
 			int Route_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
-			_journey.Route_For_Binding[Route_Index].Is_Active = 0;
-			Route_For_Binding[Route_Index].Is_Active = 0;
-			Debug.WriteLine("deleted " + Route_Index);
-
-			//Route_For_Binding.RemoveAt(Route_Index);
+			Route_For_Binding[Route_Index - 1].Is_Active = 0;
 
 			routesListView.ItemsSource = null;
 			routesListView.ItemsSource = Route_For_Binding;
@@ -595,7 +597,22 @@ namespace WeSplit.Pages
 			List<Site> sites = _databaseUtilities.GetListSiteByProvince(province.ID_Province);
 
 			endSiteComboBox.ItemsSource = sites;
-			endSiteComboBox.SelectedIndex = 0;
+
+			Site site = _databaseUtilities.GetSiteByID(_journey.ID_Site ?? 0);
+
+			if (site.ID_Province == province.ID_Province)
+            {
+				for (int i = 0; i < sites.Count; ++i)
+					if (sites[i].Site_Name == site.Site_Name)
+                    {
+						endSiteComboBox.SelectedIndex = i;
+					}
+            } else
+            {
+				endSiteComboBox.SelectedIndex = 0;
+			}
+
+			
 		}
 
         private void haveDoneButton_Click(object sender, RoutedEventArgs e)

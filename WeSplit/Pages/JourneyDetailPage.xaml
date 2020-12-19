@@ -263,14 +263,14 @@
                                     <!-- Binding data -->
                                     <TextBlock
                                         Grid.Column="1"
-                                        Text="{Binding Place}"
+                                        Text="{Binding Standard_Place}"
                                         Style="{StaticResource RegularText}"/>
 
                                     <!-- Binding data -->
                                     <TextBlock 
                                         Grid.Column="2"
                                         HorizontalAlignment="Left"
-                                        Text="{Binding Route_Description}"
+                                        Text="{Binding Standard_Description}"
                                         Style="{StaticResource RegularText}"/>
                                 </Grid>
                             </DataTemplate>

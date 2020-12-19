@@ -442,7 +442,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
-                                           Text="{Binding Journey_Name}"
+                                           Text="{Binding Name_In_Grid}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>
 
@@ -576,7 +576,7 @@
 
                                     <!-- binding -->
                                     <TextBlock Name="journeyName"
-                                           Text="{Binding Journey_Name}"
+                                           Text="{Binding Name_In_List}"
                                                FontSize="17"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>

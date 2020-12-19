@@ -40,6 +40,8 @@ namespace WeSplit.Pages
 		const int CURRENT = 0;
 		const int DONE = -1;
 
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
+
 		public HomePage()
 		{
 			InitializeComponent();
@@ -232,8 +234,8 @@ namespace WeSplit.Pages
 
 				firstPlanedJourneyAvtImage.Source = firstPlanedAvatar;
 				firstPlanedJourneyAvtHoverImage.Source = firstPlanedAvatar;
-				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km lộ trình";
-				firstPlanedJourneyTitle.Text = firstPlaned.Site_Name;
+				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km";
+				firstPlanedJourneyTitle.Text = _appUtilities.getStandardName(firstPlaned.Site_Name, 22);
 				firstPlanedJourneyViewDetailButton.Tag = firstPlaned.ID_Journey;
 
 				if (sites.Count >= 2)
@@ -248,8 +250,8 @@ namespace WeSplit.Pages
 
 					secondPlanedJourneyAvtImage.Source = secondPlanedAvatar;
 					secondPlanedJourneyAvtHoverImage.Source = secondPlanedAvatar;
-					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km lộ trình";
-					secondPlanedJourneyTitle.Text = secondPlaned.Site_Name;
+					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km";
+					secondPlanedJourneyTitle.Text = _appUtilities.getStandardName(secondPlaned.Site_Name, 22);
 					secondPlanedJourneyViewDetailButton.Tag = secondPlaned.ID_Journey;
 
 					if (sites.Count >= 3)
@@ -264,12 +266,16 @@ namespace WeSplit.Pages
 
 						thirdPlanedJourneyAvtImage.Source = thirdPlanedAvatar;
 						thirdPlanedJourneyAvtHoverImage.Source = thirdPlanedAvatar;
-						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km lộ trình";
-						thirdPlanedJourneyTitle.Text = thirdPlaned.Site_Name;
+						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km";
+						thirdPlanedJourneyTitle.Text = _appUtilities.getStandardName(thirdPlaned.Site_Name, 22);
 						thirdPlanedJourneyViewDetailButton.Tag = thirdPlaned.ID_Journey;
 					}
 				}
-			}
+			} 
+			else
+            {
+
+            }
         }
 
 		public void loadDoneJourneyInHomePageViewType1()
@@ -288,8 +294,8 @@ namespace WeSplit.Pages
 
 				firstDoneJourneyAvtImage.Source = firstDoneAvatar;
 				firstDoneJourneyAvtHoverImage.Source = firstDoneAvatar;
-				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km lộ trình";
-				firstDoneJourneyTitle.Text = firstDone.Site_Name;
+				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km";
+				firstDoneJourneyTitle.Text = _appUtilities.getStandardName(firstDone.Site_Name, 22);
 				firstDoneJourneyViewDetailButton.Tag = firstDone.ID_Journey;
 
 				if (sites.Count >= 2)
@@ -304,8 +310,8 @@ namespace WeSplit.Pages
 
 					secondDoneJourneyAvtImage.Source = secondDoneAvatar;
 					secondDoneJourneyAvtHoverImage.Source = secondDoneAvatar;
-					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km lộ trình";
-					secondDoneJourneyTitle.Text = secondDone.Site_Name;
+					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km";
+					secondDoneJourneyTitle.Text = _appUtilities.getStandardName(secondDone.Site_Name, 22);
 					secondDoneJourneyViewDetailButton.Tag = secondDone.ID_Journey;
 
 					if (sites.Count >= 3)
@@ -320,8 +326,8 @@ namespace WeSplit.Pages
 
 						thirdDoneJourneyAvtImage.Source = thirdDoneAvatar;
 						thirdDoneJourneyAvtHoverImage.Source = thirdDoneAvatar;
-						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km lộ trình";
-						thirdDoneJourneyTitle.Text = thirdDone.Site_Name;
+						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km";
+						thirdDoneJourneyTitle.Text = _appUtilities.getStandardName(thirdDone.Site_Name, 22);
 						thirdDoneJourneyViewDetailButton.Tag = thirdDone.ID_Journey;
 
 						if (sites.Count >= 4)
@@ -336,8 +342,8 @@ namespace WeSplit.Pages
 
 							fourthDoneJourneyAvtImage.Source = fourthDoneAvatar;
 							fourthDoneJourneyAvtHoverImage.Source = fourthDoneAvatar;
-							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km lộ trình";
-							fourthDoneJourneyTitle.Text = fourthDone.Site_Name;
+							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km";
+							fourthDoneJourneyTitle.Text = _appUtilities.getStandardName(fourthDone.Site_Name, 22);
 							fourthDoneJourneyViewDetailButton.Tag = fourthDone.ID_Journey;
 						}
 					}
@@ -358,8 +364,8 @@ namespace WeSplit.Pages
 				currentAvatar.EndInit();
 
 				currentJourneyAvt.Source = currentAvatar;
-				currentJourneyName.Text = current.Site_Name;
-				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km lộ trình";
+				currentJourneyName.Text = _appUtilities.getStandardName(current.Site_Name, 31);
+				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km";
 				startDateTextBlock.Text = current.StartDate.Value.ToShortDateString();
 				endDateTextBlock.Text = current.EndDate.Value.Date.ToShortDateString();
 				currentJourneyProgess.Value = current.Journey_Progress;
