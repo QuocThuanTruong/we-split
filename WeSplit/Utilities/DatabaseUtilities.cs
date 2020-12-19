@@ -1059,6 +1059,7 @@ namespace WeSplit.Utilities
 
         public void UpdateRoute(Nullable<int> idJourney, Nullable<int> ordinalNumber, string place, string province, string routeDescription, Nullable<int> routeStatus, int is_active)
         {
+            place = place.Replace("\'", "\'\'");
             var checkExist = _databaseWeSplit
                 .Database
                 .SqlQuery<Route>($"Select * from Route where Ordinal_Number = {ordinalNumber} and ID_Journey = {idJourney}")
