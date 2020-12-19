@@ -454,12 +454,14 @@ namespace WeSplit.Pages
 			_journey.Journey_Name = journeyNameTextBox.Text;
 			if (_journey.Journey_Name.Length == 0)
 			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "OK", () => { });
 				return;
 			}
 
 			_journey.Start_Place = journeyStartPlaceTextBox.Text;
 			if (_journey.Start_Place.Length == 0)
 			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống địa điểm xuất phát", "OK", () => { });
 				return;
 			}
 
@@ -479,6 +481,13 @@ namespace WeSplit.Pages
 			Route startRoute = new Route();
 			startRoute.Place = _journey.Start_Place;
 			startRoute.Province = _journey.Start_Province;
+
+			if (endSiteComboBox.SelectedIndex == -1)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Hiện tại chưa có địa điểm nào được thêm ở tỉnh {((Province)endProvinceComboBox.SelectedItem).Province_Name}", "OK", () => { });
+				notiMessageSnackbar.MessageQueue.Enqueue($"Vui lòng chọn địa điểm khác hoặc thêm địa điểm mới vào tỉnh {((Province)endProvinceComboBox.SelectedItem).Province_Name} và thử lại", "OK", () => { });
+				return;
+			}
 
 			Route endRoute = new Route();
 			endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
