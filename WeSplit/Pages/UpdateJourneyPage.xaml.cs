@@ -386,7 +386,7 @@ namespace WeSplit.Pages
 			descriptionRouteTextBox.Text = route.Route_Description;
 
 			Province province = _databaseUtilities.GetProvinceByName(route.Province);
-			startProvinceRouteComboBox.SelectedIndex = province.ID_Province;
+			startProvinceRouteComboBox.SelectedIndex = province.ID_Province - 1;
 		}
 
 		private void viewLargeMapButton_Click(object sender, RoutedEventArgs e)
