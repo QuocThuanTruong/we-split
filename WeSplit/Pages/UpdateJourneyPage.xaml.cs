@@ -27,6 +27,7 @@ namespace WeSplit.Pages
 	{
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
+		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
 		private List<Province> _provinces;
 		private int _ID_Journey;
 		Journey _journey;
@@ -37,6 +38,7 @@ namespace WeSplit.Pages
 		public List<JourneyAttendance> JourneyAttendances;
 		public List<JourneyImage> Images_For_Binding;
 
+		private int _ordinal_number = 0;
 		public UpdateJourneyPage(int ID_Journey)
 		{
 			InitializeComponent();
@@ -73,6 +75,8 @@ namespace WeSplit.Pages
 			startProvinceRouteComboBox.ItemsSource = _provinces;
             startProvinceComboBox.ItemsSource = _provinces;
             endProvinceComboBox.ItemsSource = _provinces;
+			borrowerComboBox.ItemsSource = JourneyAttendances;
+			lenderComboBox.ItemsSource = JourneyAttendances;
 
 			Province province = _databaseUtilities.GetProvinceByName(_journey.Start_Province);
 			startProvinceComboBox.SelectedIndex = province.ID_Province - 1;
@@ -131,7 +135,7 @@ namespace WeSplit.Pages
 
 				JourneyAttendances[membersListView.SelectedIndex] = member;
 
-				routesListView.SelectedIndex = -1;
+				membersListView.SelectedIndex = -1;
 			}
 			else
 			{
@@ -144,11 +148,55 @@ namespace WeSplit.Pages
 
 			membersListView.ItemsSource = null;
 			membersListView.ItemsSource = JourneyAttendances;
+
+			borrowerComboBox.ItemsSource = null;
+			borrowerComboBox.ItemsSource = JourneyAttendances;
+
+			lenderComboBox.ItemsSource = null;
+			lenderComboBox.ItemsSource = JourneyAttendances;
 		}
 
 		private void addExpensesButton_Click(object sender, RoutedEventArgs e)
 		{
+			Expens expens = new Expens();
 
+			expens.ID_Journey = _journey.ID_Journey;
+			expens.Is_Active = 1;
+
+			expens.Expenses_Money = decimal.Parse(expensesMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			expens.Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(expens.Expenses_Money ?? 0));
+
+			expens.Expenses_Description = descriptionExpensesTextBox.Text;
+			if (expens.Expenses_Description.Length <= 0)
+			{
+
+				return;
+			}
+
+			expensesMoneyTextBox.Text = "";
+			descriptionExpensesTextBox.Text = "";
+
+			if (expensesListView.SelectedIndex != -1)
+			{
+				expens.ID_Expenses = Expens_For_Binding[expensesListView.SelectedIndex].ID_Expenses;
+				expens.Expense_Index = Expens_For_Binding[expensesListView.SelectedIndex].Expense_Index;
+
+				Expens_For_Binding[expensesListView.SelectedIndex] = expens;
+
+				expensesListView.SelectedIndex = -1;
+			}
+			else
+			{
+				expens.ID_Expenses = _databaseUtilities.GetMaxIDExpenses() + 1;
+				expens.Expense_Index = Expens_For_Binding.Count + 1;
+
+				expens.Is_Active = 1;
+
+				Expens_For_Binding.Add(expens);
+			}
+
+			expensesListView.ItemsSource = null;
+			expensesListView.ItemsSource = Expens_For_Binding;
 		}
 
 		private void addRouteButton_Click(object sender, RoutedEventArgs e)
@@ -204,14 +252,70 @@ namespace WeSplit.Pages
 
 		private void addAdvanceButton_Click(object sender, RoutedEventArgs e)
 		{
+			Advance advance = new Advance();
+			advance.ID_Journey = _journey.ID_Journey;
+			advance.Is_Active = 1;
 
+			if (borrowerComboBox.SelectedIndex == -1)
+            {
+				return;
+            } 
+
+			advance.ID_Borrower = JourneyAttendances[borrowerComboBox.SelectedIndex].ID_Member;
+			advance.Borrower_Name = _databaseUtilities.GetMemberNameByID(advance.ID_Borrower);
+
+			if (lenderComboBox.SelectedIndex == -1)
+			{
+				return;
+			}
+
+			advance.ID_Lender = JourneyAttendances[lenderComboBox.SelectedIndex].ID_Member;
+			advance.Lender_Name = _databaseUtilities.GetMemberNameByID(advance.ID_Lender);
+
+			advance.Advance_Money = decimal.Parse(advanceMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			advance.Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(advance.Advance_Money ?? 0));
+
+			if (advanceListView.SelectedIndex != -1)
+			{
+				advance.Advance_Index = Advances_For_Binding[advanceListView.SelectedIndex].Advance_Index;
+
+				Advances_For_Binding[advanceListView.SelectedIndex] = advance;
+
+				advanceListView.SelectedIndex = -1;
+			}
+			else
+			{
+				advance.Advance_Index = Advances_For_Binding.Count;
+
+				advance.Is_Active = 1;
+
+				Advances_For_Binding.Add(advance);
+			}
 		}
 
 		private void updateAdvanceButton_Click(object sender, RoutedEventArgs e)
 		{
 			Advance advance = (Advance)advanceListView.SelectedItem;
 
+			for (int i = 0; i < JourneyAttendances.Count; ++i)
+            {
+				if (advance.Borrower_Name == JourneyAttendances[i].Member_Name)
+                {
+					borrowerComboBox.SelectedIndex = i;
+					break;
+                }
+            }
 
+			for (int i = 0; i < JourneyAttendances.Count; ++i)
+			{
+				if (advance.Lender_Name == JourneyAttendances[i].Member_Name)
+				{
+					lenderComboBox.SelectedIndex = i;
+					break;
+				}
+			}
+
+			advanceMoneyTextBox.Text = decimal.ToInt32(advance.Advance_Money ?? 0).ToString();
 		}
 
 		private void updateExpensesButton_Click(object sender, RoutedEventArgs e)
@@ -304,7 +408,92 @@ namespace WeSplit.Pages
 
 		private void saveJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
+			//Get Data
+			_journey.Journey_Name = journeyNameTextBox.Text;
+			if (_journey.Journey_Name.Length == 0)
+			{
+				return;
+			}
 
+			_journey.Start_Place = journeyStartPlaceTextBox.Text;
+			if (_journey.Start_Place.Length == 0)
+			{
+				return;
+			}
+
+			_journey.Start_Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
+
+			if (isCurrentJourneyCheckBox.IsChecked.Value)
+			{
+				_journey.Status = 0;
+
+				_databaseUtilities.FinishCurrentJourney();
+			}
+			else
+			{
+				_journey.Status = 1;
+			}
+
+			Route startRoute = new Route();
+			startRoute.Place = _journey.Start_Place;
+			startRoute.Province = _journey.Start_Province;
+
+			Route endRoute = new Route();
+			endRoute.Place = ((Site)endSiteComboBox.SelectedItem).Site_Name;
+			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
+			_journey.ID_Site = ((Site)endSiteComboBox.SelectedItem).ID_Site;
+
+			_journey.StartDate = startDatePicker.SelectedDate;
+			_journey.EndDate = endDatePicker.SelectedDate;
+
+			//Get distance
+			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute, endRoute);
+
+			//Insert 
+			_databaseUtilities.UpdateJourney(
+				_journey.ID_Journey,
+				_journey.Journey_Name,
+				_journey.ID_Site,
+				_journey.Start_Place,
+				_journey.Start_Province,
+				_journey.Status,
+				_journey.StartDate,
+				_journey.EndDate,
+				_journey.Distance);
+
+			//foreach (var expense in _journey.Expenses)
+			//{
+			//	_databaseUtilities.AddExpense(expense.ID_Expenses, expense.ID_Journey, expense.Expenses_Money, expense.Expenses_Description);
+			//}
+
+			//foreach (var route in _journey.Routes)
+			//{
+			//	_databaseUtilities.AddRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status);
+			//}
+
+			//foreach (var member in _journey.JourneyAttendances)
+			//{
+			//	_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
+			//}
+
+			_journey = new Journey();
+			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+
+			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
+
+			//Reset
+			journeyNameTextBox.Text = "";
+			journeyStartPlaceTextBox.Text = "";
+			startProvinceComboBox.SelectedIndex = 0;
+			startDatePicker.Text = "";
+			endSiteComboBox.SelectedIndex = 0;
+			endProvinceComboBox.SelectedIndex = 0;
+			endDatePicker.Text = "";
+			startProvinceRouteComboBox.SelectedIndex = 0;
+			routesListView.ItemsSource = null;
+			membersListView.ItemsSource = null;
+			expensesListView.ItemsSource = null;
+			_ordinal_number = 0;
 		}
 
 		private void addImageButton_Click(object sender, RoutedEventArgs e)
@@ -363,12 +552,18 @@ namespace WeSplit.Pages
 
 			membersListView.ItemsSource = null;
 			membersListView.ItemsSource = JourneyAttendances;
+
+			borrowerComboBox.ItemsSource = null;
+			borrowerComboBox.ItemsSource = JourneyAttendances;
+
+			lenderComboBox.ItemsSource = null;
+			lenderComboBox.ItemsSource = JourneyAttendances;
 		}
 
 		private void deleteExpensesButton_Click(object sender, RoutedEventArgs e)
 		{
-			int Expense_index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
-			Expens_For_Binding[Expense_index].Is_Active = 0;
+			int Expense_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
+			Expens_For_Binding[Expense_Index - 1].Is_Active = 0;
 
 			expensesListView.ItemsSource = null;
 			expensesListView.ItemsSource = Expens_For_Binding;
@@ -376,7 +571,11 @@ namespace WeSplit.Pages
 
 		private void deleteAdvancesButton_Click(object sender, RoutedEventArgs e)
 		{
+			int Advance_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
+			Advances_For_Binding[Advance_Index].Is_Active = 0;
 
+			advanceListView.ItemsSource = null;
+			advanceListView.ItemsSource = Advances_For_Binding;
 		}
 
 		private void visualRouteDetailDialog_CloseFullScreenVideoDialog()

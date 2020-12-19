@@ -118,7 +118,7 @@ namespace WeSplit.Pages
 
 		private void finishJourneyButton_Click(object sender, RoutedEventArgs e)
 		{
-			_databaseUtilities.FinishJourney(_ID_Journey);
+			_databaseUtilities.UpdateJourneyStatus(_ID_Journey, -1);
 			notiMessageSnackbar.MessageQueue.Enqueue($"Đã kết thúc chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
 		}
 

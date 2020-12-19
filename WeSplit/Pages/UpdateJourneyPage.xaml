@@ -1084,7 +1084,7 @@
                                             <!-- Binding data -->
                                             <TextBlock
                                                 Grid.Column="0"
-                                                Text="{Binding ID_Expenses}"
+                                                Text="{Binding Expense_Index}"
                                                 Margin="7, 0, 0, 0"
                                                 Style="{StaticResource RegularText}"/>
 
@@ -1214,7 +1214,9 @@
 
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Member_Name}"/>
+                                                <TextBlock Text="{Binding Member_Name}"
+                                                           Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"/>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
 
@@ -1251,7 +1253,9 @@
 
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Member_Name}"/>
+                                                <TextBlock Text="{Binding Member_Name}"
+                                                           Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"/>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
 
@@ -1305,7 +1309,8 @@
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid 
+                                        <Grid  Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"
                                  Margin="2, 0, 10, 0">
 
                                             <Grid.ColumnDefinitions>
@@ -1341,7 +1346,7 @@
 
                                             <Button Name="deleteAdvancesButton"
                                                Click="deleteAdvancesButton_Click"
-                                                Tag="binding id bro"
+                                                Tag="{Binding Advance_Index}"
                                                 HorizontalAlignment="Right"
                                                 Margin="0, 0, 4, 0"
                                                 Style="{StaticResource DeleteJourneyButton}"

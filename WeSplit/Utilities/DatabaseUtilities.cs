@@ -375,7 +375,7 @@ namespace WeSplit.Utilities
 
                 for (int i = 0; i < result.Expens_For_Binding.Count; ++i)
                 {
-                    result.Expens_For_Binding[i].Expense_Index = i;
+                    result.Expens_For_Binding[i].Expense_Index = i + 1;
                 }
 
                 for (int i = 0; i < result.Expens_For_Binding.Count; ++i)
@@ -389,9 +389,12 @@ namespace WeSplit.Utilities
                     .SqlQuery<Advance>($"Select * from Advance where ID_Journey = {ID_Journey} and Is_Active = 1")
                     .ToList();
 
+
                 result.Advances_For_Binding = result.Advances.ToList();
                 for (int i = 0; i < result.Advances_For_Binding.Count; ++i)
                 {
+                    result.Advances_For_Binding[i].Advance_Index = i;
+
                     result.Advances_For_Binding[i].Borrower_Name = _databaseWeSplit
                         .Database
                         .SqlQuery<string>($"Select Member_Name from JourneyAttendance where ID_Member = {result.Advances_For_Binding[i].ID_Borrower}")
@@ -406,6 +409,16 @@ namespace WeSplit.Utilities
                 }
 
             }
+
+            return result;
+        }
+
+        public string GetMemberNameByID(int ID_Member)
+        {
+            string result = _databaseWeSplit
+                .Database
+                .SqlQuery<string>($"Select Member_Name from JourneyAttendance where ID_Member = {ID_Member}")
+                .Single();
 
             return result;
         }
@@ -516,11 +529,19 @@ namespace WeSplit.Utilities
 
         public decimal GetTotalExpenses(int ID_Journey)
         {
-            decimal result = _databaseWeSplit
-                 .Database
-                 .SqlQuery<decimal>($"select [dbo].[CalcSumExpensesByIDJourney]({ID_Journey})")
-                 .Single();
+            decimal result = 0;
 
+            try
+            {
+                result = _databaseWeSplit
+                .Database
+                .SqlQuery<decimal>($"select [dbo].[CalcSumExpensesByIDJourney]({ID_Journey})")
+                .Single();
+            } catch (Exception e)
+            {
+                //throw e;
+            }
+            
             return result;
         }
 
@@ -951,11 +972,35 @@ namespace WeSplit.Utilities
             return result;
         }
 
-        public void FinishJourney(int ID_Journey)
+        public void UpdateJourneyStatus(int ID_Journey, int status)
         {
             _databaseWeSplit
                 .Database
-                .ExecuteSqlCommand($"Update Journey Set Status = -1 Where ID_Journey = {ID_Journey}");
+                .ExecuteSqlCommand($"Update Journey Set Status = {status} Where ID_Journey = {ID_Journey}");
+        }
+
+        public void UpdateJourney(Nullable<int> idJourney, string journeyName, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance)
+        {
+            _databaseWeSplit
+                .Database
+                .ExecuteSqlCommand($"Update Journey Set Journey_Name = N'{journeyName}', ID_Site = {idSite}, Start_Place = N'{startPlace}', Start_Province = N'{startProvince}', Status = {status}, StartDate = N'{startDate}', EndDate = N'{endDate}', Distance = {distance} Where ID_Journey = {idJourney}");
+        }
+
+        public void Expense(Nullable<int> idExpenses, Nullable<int> idJourney, Nullable<decimal> expense, string des, int Is_Active)
+        {
+            _databaseWeSplit
+                .Database
+                .ExecuteSqlCommand($"Update Expenses Set Expenses_Money = {expense}, Expenses_Description = N'{des}', Is_Active = {Is_Active} Where ID_Expenses = {idExpenses} And ID_Journey = {idJourney}");
+        }
+
+        public void FinishCurrentJourney()
+        {
+            int ID_Current_Journey = _databaseWeSplit
+                .Database
+                .SqlQuery<int>("Select ID_Journey from Journey Where Status = 0")
+                .Single();
+
+            UpdateJourneyStatus(ID_Current_Journey, -1);
         }
     }
 }
