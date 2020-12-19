@@ -55,6 +55,7 @@ namespace WeSplit
 
 				site.Site_Name = _appUtilities.getStandardName(site.Site_Name, 67);
 				site.Site_Name = site.Site_Name.ToUpper();
+				site.Site_Link_Avt = $"Images/Sites/{site.ID_Site}.{site.Site_Link_Avt}";
 
 				DataContext = site;
 			}

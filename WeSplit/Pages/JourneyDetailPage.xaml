@@ -16,6 +16,7 @@
       Loaded="Page_Loaded"
       Title="JourneyDetailPage">
     <Page.Resources>
+        <converter:AbsolutePathConverter x:Key="abosolutePathConverter"></converter:AbsolutePathConverter>
         <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
         <converter:JourneyStatusConverter x:Key="journeyStatusConverter"></converter:JourneyStatusConverter>
         <converter:AbsolutePathConverter x:Key="absolutePathConverter"></converter:AbsolutePathConverter>
@@ -62,7 +63,7 @@
                                Height="112"
                                Stretch="UniformToFill"
                                RenderOptions.BitmapScalingMode="HighQuality"
-                               Source="{Binding Site_Avatar}"/>
+                               Source="{Binding Site_Avatar, Converter={StaticResource abosolutePathConverter}}"/>
                     </materialDesign:Card>
 
                     <TextBlock Name="journeyNameTextBlock"
@@ -502,7 +503,7 @@
                                                Width="110"
                                                Height="110"
                                                Stretch="UniformToFill"
-                                               Source="{Binding Link_Image}"
+                                               Source="{Binding Link_Image, Converter={StaticResource abosolutePathConverter}}"
                                                RenderOptions.BitmapScalingMode="HighQuality">
                                             <!--<Image.Source>
                                                 <BitmapImage CacheOption="OnLoad"
@@ -706,7 +707,7 @@
                                             <!-- Binding data -->
                                             <TextBlock
                                             Grid.Column="0"
-                                            Text="{Binding Member_Index}"
+                                            Text="{Binding ID_Member}"
                                             Margin="7, 0, 0, 0"
                                             Style="{StaticResource RegularText}"/>
 

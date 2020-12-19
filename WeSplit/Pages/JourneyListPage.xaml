@@ -364,7 +364,8 @@
                                 materialDesign:ButtonAssist.CornerRadius="6"
                                 Padding="0"
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                Grid.Column="0">
+                                Grid.Column="0"
+                                >
 
                             <Image Name="listViewIcon"
                                HorizontalAlignment="Center"
@@ -418,7 +419,7 @@
                               Height="248"
                               Tag="{Binding ID_Journey}">
                             <!-- binding -->
-                            <Image Source="{Binding Site_Avatar}"
+                            <Image Source="{Binding Site_Avatar, Converter={StaticResource abosolutePathConverter}}"
                                    VerticalAlignment="Top"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"
@@ -520,7 +521,7 @@
         <ListView Name="journeyListView"
                   Visibility="Collapsed"
                  ItemContainerStyle="{StaticResource NonHoverListBoxItem}"
-                  SelectionChanged="journeyGridView_SelectionChanged"
+                  SelectionChanged="journeyListView_SelectionChanged"
                   SelectionMode="Single"
                   VerticalAlignment="Top"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -564,7 +565,7 @@
                                                      materialDesign:ShadowAssist.ShadowEdges="Right"
                                                     materialDesign:ShadowAssist.ShadowDepth="Depth1">
                                     <!-- binding -->
-                                    <Image Source="{Binding Site_Avatar}"
+                                    <Image Source="{Binding Site_Avatar, Converter={StaticResource abosolutePathConverter}}"
                                    VerticalAlignment="Top"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"

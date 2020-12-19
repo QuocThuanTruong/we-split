@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +40,7 @@ namespace WeSplit.Pages
 		public List<JourneyImage> Images_For_Binding;
 
 		private int _ordinal_number = 0;
+		private int _ordinal_number_image = 0;
 		private int _max_id_member = 0;
 		public UpdateJourneyPage(int ID_Journey)
 		{
@@ -95,6 +97,7 @@ namespace WeSplit.Pages
 			}
 
 			_ordinal_number = _databaseUtilities.GetMaxOrdinalNumber(_ID_Journey);
+			_ordinal_number_image = _databaseUtilities.GetMaxOrdinalNumberImage(_ID_Journey);
 			_max_id_member = _databaseUtilities.GetMaxIDMember();
 
 			DataContext = _journey;
@@ -111,14 +114,20 @@ namespace WeSplit.Pages
 			member.Member_Name = memberNameTextBox.Text;
 			if (member.Member_Name.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên thành viên", "OK", () => { });
 				return;
 			}
 
 			member.Phone_Number = memberPhoneTextBox.Text;
 			if (member.Phone_Number.Length <= 0)
 			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống SĐT của thành viên", "OK", () => { });
+				return;
+			}
 
+			if (memberReceiptMoneyTextBox.Text.Length == 0)
+			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền thu của thành viên", "OK", () => { });
 				return;
 			}
 
@@ -170,13 +179,19 @@ namespace WeSplit.Pages
 			expens.ID_Journey = _journey.ID_Journey;
 			expens.Is_Active = 1;
 
+			if (expensesMoneyTextBox.Text.Length == 0)
+			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền thu", "OK", () => { });
+				return;
+			}
+
 			expens.Expenses_Money = decimal.Parse(expensesMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
 			expens.Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(expens.Expenses_Money ?? 0));
 
 			expens.Expenses_Description = descriptionExpensesTextBox.Text;
 			if (expens.Expenses_Description.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền mô tả khoản chi", "OK", () => { });
 				return;
 			}
 
@@ -217,7 +232,7 @@ namespace WeSplit.Pages
 			route.Place = routeStartPlaceTextBox.Text;
 			if (route.Place.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống địa điểm", "OK", () => { });
 				return;
 			}
 			route.Standard_Place = _appUtilities.getStandardName(route.Place, 20);
@@ -225,7 +240,7 @@ namespace WeSplit.Pages
 			route.Route_Description = descriptionRouteTextBox.Text;
 			if (route.Route_Description.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống phần mô tả", "OK", () => { });
 				return;
 			}
 			route.Standard_Description = _appUtilities.getStandardName(route.Route_Description, 20);
@@ -265,6 +280,7 @@ namespace WeSplit.Pages
 
 			if (borrowerComboBox.SelectedIndex == -1)
             {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống người mượn", "OK", () => { });
 				return;
             } 
 
@@ -273,11 +289,17 @@ namespace WeSplit.Pages
 
 			if (lenderComboBox.SelectedIndex == -1)
 			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống người cho mượn", "OK", () => { });
 				return;
 			}
 
 			advance.ID_Lender = JourneyAttendances[lenderComboBox.SelectedIndex].ID_Member;
 			advance.Lender_Name = _databaseUtilities.GetMemberNameByID(advance.ID_Lender);
+
+			if (advanceMoneyTextBox.Text.Length == 0)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống số tiền mượn", "OK", () => { });
+			}
 
 			advance.Advance_Money = decimal.Parse(advanceMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
 			advance.Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(advance.Advance_Money ?? 0));
@@ -292,12 +314,19 @@ namespace WeSplit.Pages
 			}
 			else
 			{
-				advance.Advance_Index = Advances_For_Binding.Count;
+				advance.Advance_Index = Advances_For_Binding.Count + 1;
 
 				advance.Is_Active = 1;
 
 				Advances_For_Binding.Add(advance);
 			}
+
+			borrowerComboBox.SelectedIndex = -1;
+			lenderComboBox.SelectedIndex = -1;
+			advanceMoneyTextBox.Text = "";
+
+			advanceListView.ItemsSource = null;
+			advanceListView.ItemsSource = Advances_For_Binding;
 		}
 
 		private void updateAdvanceButton_Click(object sender, RoutedEventArgs e)
@@ -382,7 +411,7 @@ namespace WeSplit.Pages
 
 			Debug.WriteLine(clickedButton.Tag);
 
-			Images_For_Binding.RemoveAt(int.Parse(clickedButton.Tag.ToString()));
+			Images_For_Binding[int.Parse(clickedButton.Tag.ToString()) - 1].Is_Active = 0;
 
 			updateRelativeImageIndex();
 		}
@@ -390,13 +419,18 @@ namespace WeSplit.Pages
 		private void updateRelativeImageIndex()
 		{
 			var index = 0;
+			var total_collapsed_image = 0;
 
 			foreach (var image in Images_For_Binding)
 			{
-				image.ImageIndex = index++;
+				if (image.Is_Active == 0)
+                {
+					++total_collapsed_image;
+
+				}
 			}
 
-			if (Images_For_Binding.Count == 0)
+			if (Images_For_Binding.Count == total_collapsed_image)
 			{
 				journeyImageListView.Visibility = Visibility.Collapsed;
 				addImageOption1Button.Visibility = Visibility.Visible;
@@ -488,10 +522,20 @@ namespace WeSplit.Pages
                 _databaseUtilities.UpdateJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role, member.Is_Active ?? 0);
             }
 
-            //         _journey = new Journey();
-            //_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+			_appUtilities.createIDDirectory(_journey.ID_Journey);
+			foreach (var image in Images_For_Binding)
+            {
+				_databaseUtilities.UpdateJourneyImage(_journey.ID_Journey, image.Ordinal_Number, _appUtilities.getTypeOfImage(image.Link_Image), image.Is_Active);
 
-            notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
+				_appUtilities.copyImageToIDirectory(_journey.ID_Journey, image.Link_Image, $"{image.Ordinal_Number}", false);
+            }
+
+			foreach (var advance in Advances_For_Binding)
+			{
+				_databaseUtilities.UpdateAdvance(advance.ID_Journey, advance.ID_Borrower, advance.ID_Lender, advance.Advance_Money, advance.Is_Active);
+			}
+
+			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
 
 			//Reset
 			//journeyNameTextBox.Text = "";
@@ -529,7 +573,9 @@ namespace WeSplit.Pages
 						JourneyImage image = new JourneyImage();
 
 						image.Link_Image = fileName;
-						image.ImageIndex = imageIdx++;
+						image.ImageIndex = Images_For_Binding.Count + 1;
+						image.Is_Active = 1;
+						image.Ordinal_Number = ++_ordinal_number_image;
 
 						Images_For_Binding.Add(image);
 					}
@@ -579,7 +625,7 @@ namespace WeSplit.Pages
 		private void deleteAdvancesButton_Click(object sender, RoutedEventArgs e)
 		{
 			int Advance_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
-			Advances_For_Binding[Advance_Index].Is_Active = 0;
+			Advances_For_Binding[Advance_Index - 1].Is_Active = 0;
 
 			advanceListView.ItemsSource = null;
 			advanceListView.ItemsSource = Advances_For_Binding;
@@ -631,5 +677,44 @@ namespace WeSplit.Pages
 			_journey.Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
 		}
 
-	}
+        private void memberPhoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
+        private void memberReceiptMoneyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
+        private void expensesMoneyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
+        private void advanceMoneyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+    }
 }

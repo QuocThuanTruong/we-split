@@ -329,8 +329,8 @@ namespace WeSplit.Utilities
                     .SingleOrDefault();
 
                 result.Site_Name = site.Site_Name;
-                result.Site_Avatar = site.Site_Link_Avt;
-                
+                result.Site_Avatar = $"Images/Sites/{result.ID_Site}.{site.Site_Link_Avt}";
+
                 //progress slider
                 var journeyProgess = _databaseWeSplit
                         .Database
@@ -378,6 +378,12 @@ namespace WeSplit.Utilities
                     .Database
                     .SqlQuery<JourneyImage>($"Select * from JourneyImage where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
+
+                for (int i = 0; i < images.Count; ++i)
+                {
+                    images[i].ImageIndex = i + 1;
+                    images[i].Link_Image = $"Images/{ID_Journey}/{images[i].Ordinal_Number}.{images[i].Link_Image}";
+                }
 
                 result.Images_For_Binding = images;
 
@@ -434,7 +440,7 @@ namespace WeSplit.Utilities
                 result.Advances_For_Binding = result.Advances.ToList();
                 for (int i = 0; i < result.Advances_For_Binding.Count; ++i)
                 {
-                    result.Advances_For_Binding[i].Advance_Index = i;
+                    result.Advances_For_Binding[i].Advance_Index = i + 1;
 
                     result.Advances_For_Binding[i].Borrower_Name = _databaseWeSplit
                         .Database
@@ -483,7 +489,7 @@ namespace WeSplit.Utilities
                 result[i].Standard_Site_Name = _appUtilities.getStandardName(result[i].Site_Name, 25);
                 result[i].Standard_Site_Address = _appUtilities.getStandardName(result[i].Site_Address, 28);
                 result[i].Standard_Site_Description = _appUtilities.getStandardName(result[i].Site_Description, 50);
-
+                result[i].Site_Link_Avt = $"Images/Sites/{result[i].ID_Site}.{result[i].Site_Link_Avt}";
             }
 
             return result;
@@ -1099,9 +1105,9 @@ namespace WeSplit.Utilities
             if (checkExist != null)
             {
                 int ID_Current_Journey = _databaseWeSplit
-               .Database
-               .SqlQuery<int>("Select ID_Journey from Journey Where Status = 0")
-               .Single();
+                   .Database
+                   .SqlQuery<int>("Select ID_Journey from Journey Where Status = 0")
+                   .Single();
 
                 UpdateJourneyStatus(ID_Current_Journey, -1);
             }
@@ -1109,16 +1115,93 @@ namespace WeSplit.Utilities
 
         public int GetMaxOrdinalNumber(int ID_Journey)
         {
-            int result = _databaseWeSplit
+            int result = 0;
+
+            var checkExist = _databaseWeSplit
                 .Database
-                .SqlQuery<int>($"Select MAX(Ordinal_Number) from Route where ID_Journey = {ID_Journey}")
-                .Single();
+                .SqlQuery<Route>($"Select * from Route Where ID_Journey = {ID_Journey}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                result = _databaseWeSplit
+                    .Database
+                    .SqlQuery<int>($"Select MAX(Ordinal_Number) from Route where ID_Journey = {ID_Journey}")
+                    .Single();
+            }
 
             return result;
         }
 
-       
+        public int GetMaxOrdinalNumberImage(int ID_Journey)
+        {
+            int result = 0;
 
+            var checkExist = _databaseWeSplit
+                .Database
+                .SqlQuery<JourneyImage>($"Select * from JourneyImage Where ID_Journey = {ID_Journey}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                result = _databaseWeSplit
+                    .Database
+                    .SqlQuery<int>($"Select MAX(Ordinal_Number) from JourneyImage where ID_Journey = {ID_Journey}")
+                    .Single();
+            }
+
+            return result;
+        }
+
+        public int AddJourneyImages(Nullable<int> idJourney, Nullable<int> oridnalNum, string linkImage, Nullable<int> is_active)
+        {
+            return _databaseWeSplit.AddJourneyImages(idJourney, oridnalNum, linkImage, is_active);
+        }
+
+        public void UpdateJourneyImage(Nullable<int> idJourney, Nullable<int> oridnalNum, string linkImage, Nullable<int> is_active)
+        {
+            var checkExist = _databaseWeSplit
+                .Database
+                .SqlQuery<JourneyImage>($"Select * from JourneyImage where Ordinal_Number = {oridnalNum} and ID_Journey = {idJourney}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                _databaseWeSplit
+               .Database
+               .ExecuteSqlCommand($"Update JourneyImage Set Link_Image = N'{linkImage}', Is_Active = {is_active} Where Ordinal_Number = {oridnalNum} And ID_Journey = {idJourney}");
+            }
+            else
+            {
+                AddJourneyImages(idJourney, oridnalNum, linkImage, is_active);
+            }
+        }
+
+        public void AddAdvance(Nullable<int> idJourney, Nullable<int> idBorrower, Nullable<int> idLender, Nullable<decimal> advance, Nullable<int> is_active)
+        {
+            _databaseWeSplit
+                .Database
+                .ExecuteSqlCommand($"INSERT [dbo].[Advance] ([ID_Journey], [ID_Borrower], [ID_Lender], [Advance_Money], [Is_Active]) VALUES({idJourney}, {idBorrower}, {idLender}, {advance}, {is_active})");
+        }
+
+        public void UpdateAdvance(Nullable<int> idJourney, Nullable<int> idBorrower, Nullable<int> idLender, Nullable<decimal> advance, Nullable<int> is_active)
+        {
+            var checkExist = _databaseWeSplit
+                .Database
+                .SqlQuery<Advance>($"Select * from Advance where ID_Journey = {idJourney} and ID_Borrower = {idBorrower} and ID_Lender = {idLender}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                _databaseWeSplit
+               .Database
+               .ExecuteSqlCommand($"Update Advance Set Advance_Money = {advance}, Is_Active = {is_active} where ID_Journey = {idJourney} and ID_Borrower = {idBorrower} and ID_Lender = {idLender}");
+            }
+            else
+            {
+                AddAdvance(idJourney, idBorrower, idLender, advance, is_active);
+            }
+        }
     }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,7 +68,7 @@ namespace WeSplit.Pages
 			route.Place = routeStartPlaceTextBox.Text;
 			if (route.Place.Length <= 0)
             {
-				
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống địa điểm", "OK", () => { });
 				return;
             }
 			route.Standard_Place = _appUtilities.getStandardName(route.Place, 30);
@@ -75,7 +76,7 @@ namespace WeSplit.Pages
 			route.Route_Description = descriptionRouteTextBox.Text;
 			if (route.Route_Description.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống phần mô tả", "OK", () => { });
 				return;
 			}
 			route.Standard_Description = _appUtilities.getStandardName(route.Route_Description, 30);
@@ -131,14 +132,20 @@ namespace WeSplit.Pages
 			member.Member_Name = memberNameTextBox.Text;
 			if (member.Member_Name.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên thành viên", "OK", () => { });
 				return;
 			}
 
 			member.Phone_Number = memberPhoneTextBox.Text;
 			if (member.Phone_Number.Length <= 0)
 			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống SĐT của thành viên", "OK", () => { });
+				return;
+			}
 
+			if (memberReceiptMoneyTextBox.Text.Length == 0)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền thu của thành viên", "OK", () => { });
 				return;
 			}
 
@@ -166,13 +173,19 @@ namespace WeSplit.Pages
 			expens.ID_Journey = _journey.ID_Journey;
 			expens.ID_Expenses = _maxIDExpenses++;
 
+			if (expensesMoneyTextBox.Text.Length == 0)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền thu", "OK", () => { });
+				return;
+			}
+
 			expens.Expenses_Money = decimal.Parse(expensesMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
 			expens.Expenses_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(expens.Expenses_Money ?? 0));
 
 			expens.Expenses_Description = descriptionExpensesTextBox.Text;
 			if (expens.Expenses_Description.Length <= 0)
 			{
-
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tiền mô tả khoản chi", "OK", () => { });
 				return;
 			}
 
@@ -195,12 +208,14 @@ namespace WeSplit.Pages
 			_journey.Journey_Name = journeyNameTextBox.Text;
 			if (_journey.Journey_Name.Length == 0)
             {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "OK", () => { });
 				return;
             }
 
 			_journey.Start_Place = journeyStartPlaceTextBox.Text;
 			if (_journey.Start_Place.Length == 0)
             {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống địa điểm bắt đầu", "OK", () => { });
 				return;
             }
 
@@ -226,8 +241,26 @@ namespace WeSplit.Pages
 			endRoute.Province = ((Province)endProvinceComboBox.SelectedItem).Province_Name;
 			_journey.ID_Site = ((Site)endSiteComboBox.SelectedItem).ID_Site;
 
+			if (!startDatePicker.SelectedDate.HasValue)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống ngày bắt đầu", "OK", () => { });
+				return;
+			}
+
+			if (!endDatePicker.SelectedDate.HasValue)
+			{
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống ngày kết thúc", "OK", () => { });
+				return;
+			}
+
 			_journey.StartDate = startDatePicker.SelectedDate;
 			_journey.EndDate = endDatePicker.SelectedDate;
+
+			if (_journey.StartDate > _journey.EndDate)
+            {
+				notiMessageSnackbar.MessageQueue.Enqueue($"Ngày bắt đầu phải nhỏ hơn ngày kết thúc", "OK", () => { });
+				return;
+			}
 
 			//Get distance
 			_journey.Distance = _googleMapUtilities.GetDistanceByRoutes(_journey.Routes.ToList(), startRoute, endRoute);
@@ -259,29 +292,18 @@ namespace WeSplit.Pages
 				_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role, 1);
             }
 
-			_journey = new Journey();
+			
 			_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
 
 			notiMessageSnackbar.MessageQueue.Enqueue($"Đã thêm thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
 
-			//Reset
-			journeyNameTextBox.Text = "";
-			journeyStartPlaceTextBox.Text = "";
-			startProvinceComboBox.SelectedIndex = 0;
-			startDatePicker.Text = "";
-			endSiteComboBox.SelectedIndex = 0;
-			endProvinceComboBox.SelectedIndex = 0;
-			endDatePicker.Text = "";
-			startProvinceRouteComboBox.SelectedIndex = 0;
-			routesListView.ItemsSource = null;
-			membersListView.ItemsSource = null;
-			expensesListView.ItemsSource = null;
-			_ordinal_number = 0;
+			cancelAddRecipeButton_Click(null, null);
 		}
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)
 		{
 			//Reset
+			_journey = new Journey();
 			journeyNameTextBox.Text = "";
 			journeyStartPlaceTextBox.Text = "";
 			startProvinceComboBox.SelectedIndex = 0;
@@ -317,6 +339,36 @@ namespace WeSplit.Pages
 
 			endSiteComboBox.ItemsSource = sites;
 			endSiteComboBox.SelectedIndex = 0;
+		}
+
+        private void memberPhoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
+        private void memberReceiptMoneyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
+		}
+
+        private void expensesMoneyTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+			//Regex meaning: not match any number digit zero or many times
+			var pattern = "[^0-9]+";
+			var regex = new Regex(pattern);
+
+			//if true -> input event has handled (skiped this character)
+			e.Handled = regex.IsMatch(e.Text);
 		}
     }
 }

@@ -8,6 +8,7 @@
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:loc="clr-namespace:WeSplit.Properties"
+       xmlns:converter="clr-namespace:WeSplit.Converter"
       d:DesignHeight="728" d:DesignWidth="1116"
       Loaded="Page_Loaded"
       Background="Transparent"
@@ -15,8 +16,10 @@
 
     <Page.Resources>
         <converter:AbsolutePathConverter x:Key="abosolutePathConverter"></converter:AbsolutePathConverter>
+        <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
+        <converter:JourneyStatusConverter x:Key="journeyStatusConverter"></converter:JourneyStatusConverter>
     </Page.Resources>
-
+    
     <Grid Name="mainContainer">
 
         <Grid.RowDefinitions>
@@ -330,7 +333,7 @@
                                 UniformCornerRadius="17">
                                 <Image Width="34"
                                        Height="34"
-                                       Source="{Binding Site_Link_Avt}"
+                                       Source="{Binding Site_Link_Avt, Converter={StaticResource abosolutePathConverter}}"
                                        Stretch="UniformToFill"
                                        RenderOptions.BitmapScalingMode="HighQuality"/>
                             </materialDesign:Card>
