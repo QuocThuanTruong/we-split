@@ -227,7 +227,7 @@ namespace WeSplit.Pages
 				var firstPlanedAvatar = new BitmapImage();
 				firstPlanedAvatar.BeginInit();
 				firstPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstPlanedAvatar.UriSource = new Uri(firstPlaned.Site_Link_Avt, UriKind.Relative);
+				firstPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[0].ID_Site}.{firstPlaned.Site_Link_Avt}", UriKind.Relative);
 				firstPlanedAvatar.EndInit();
 
 				firstPlanedJourneyAvtImage.Source = firstPlanedAvatar;
@@ -243,7 +243,7 @@ namespace WeSplit.Pages
 					var secondPlanedAvatar = new BitmapImage();
 					secondPlanedAvatar.BeginInit();
 					secondPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondPlanedAvatar.UriSource = new Uri(secondPlaned.Site_Link_Avt, UriKind.Relative);
+					secondPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[1].ID_Site}.{secondPlaned.Site_Link_Avt}", UriKind.Relative);
 					secondPlanedAvatar.EndInit();
 
 					secondPlanedJourneyAvtImage.Source = secondPlanedAvatar;
@@ -259,7 +259,7 @@ namespace WeSplit.Pages
 						var thirdPlanedAvatar = new BitmapImage();
 						thirdPlanedAvatar.BeginInit();
 						thirdPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdPlanedAvatar.UriSource = new Uri(thirdPlaned.Site_Link_Avt, UriKind.Relative);
+						thirdPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[2].ID_Site}.{thirdPlaned.Site_Link_Avt}", UriKind.Relative);
 						thirdPlanedAvatar.EndInit();
 
 						thirdPlanedJourneyAvtImage.Source = thirdPlanedAvatar;
@@ -283,7 +283,7 @@ namespace WeSplit.Pages
 				var firstDoneAvatar = new BitmapImage();
 				firstDoneAvatar.BeginInit();
 				firstDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstDoneAvatar.UriSource = new Uri(firstDone.Site_Link_Avt, UriKind.Relative);
+				firstDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[0].ID_Site}.{firstDone.Site_Link_Avt}", UriKind.Relative);
 				firstDoneAvatar.EndInit();
 
 				firstDoneJourneyAvtImage.Source = firstDoneAvatar;
@@ -299,7 +299,7 @@ namespace WeSplit.Pages
 					var secondDoneAvatar = new BitmapImage();
 					secondDoneAvatar.BeginInit();
 					secondDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondDoneAvatar.UriSource = new Uri(secondDone.Site_Link_Avt, UriKind.Relative);
+					secondDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[1].ID_Site}.{secondDone.Site_Link_Avt}", UriKind.Relative);
 					secondDoneAvatar.EndInit();
 
 					secondDoneJourneyAvtImage.Source = secondDoneAvatar;
@@ -315,7 +315,7 @@ namespace WeSplit.Pages
 						var thirdDoneAvatar = new BitmapImage();
 						thirdDoneAvatar.BeginInit();
 						thirdDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdDoneAvatar.UriSource = new Uri(thirdDone.Site_Link_Avt, UriKind.Relative);
+						thirdDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[2].ID_Site}.{thirdDone.Site_Link_Avt}", UriKind.Relative);
 						thirdDoneAvatar.EndInit();
 
 						thirdDoneJourneyAvtImage.Source = thirdDoneAvatar;
@@ -326,12 +326,12 @@ namespace WeSplit.Pages
 
 						if (sites.Count >= 4)
                         {
-							var fourthDone = sites[2];
+							var fourthDone = sites[3];
 
 							var fourthDoneAvatar = new BitmapImage();
 							fourthDoneAvatar.BeginInit();
 							fourthDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-							fourthDoneAvatar.UriSource = new Uri(fourthDone.Site_Link_Avt, UriKind.Relative);
+							fourthDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[3].ID_Site}.{fourthDone.Site_Link_Avt}", UriKind.Relative);
 							fourthDoneAvatar.EndInit();
 
 							fourthDoneJourneyAvtImage.Source = fourthDoneAvatar;
@@ -354,7 +354,7 @@ namespace WeSplit.Pages
 				var currentAvatar = new BitmapImage();
 				currentAvatar.BeginInit();
 				currentAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				currentAvatar.UriSource = new Uri(current.Site_Avatar, UriKind.Relative);
+				currentAvatar.UriSource = new Uri($"Images\\Sites\\{current.ID_Site}.{_databaseUtilities.GetSiteForBindingInHomePageView(0).Single().Site_Link_Avt}", UriKind.Relative);
 				currentAvatar.EndInit();
 
 				currentJourneyAvt.Source = currentAvatar;
