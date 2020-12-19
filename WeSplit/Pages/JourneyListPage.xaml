@@ -13,6 +13,10 @@
       Loaded="Page_Loaded"
       Title="JourneyListPage">
 
+    <Page.Resources>
+        <converter:AbsolutePathConverter x:Key="abosolutePathConverter"></converter:AbsolutePathConverter>
+    </Page.Resources>
+
     <Grid Name="mainContainer">
 
         <Grid.ColumnDefinitions>
