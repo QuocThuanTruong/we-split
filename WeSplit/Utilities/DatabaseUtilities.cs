@@ -187,7 +187,7 @@ namespace WeSplit.Utilities
                         .FirstOrDefault();
 
                     result[i].Site_Name = site.Site_Name;
-                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
+                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 25);
                     result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
 
                     result[i].Site_Avatar = $"Images/Sites/{result[i].ID_Site}.{site.Site_Link_Avt}";
@@ -238,7 +238,7 @@ namespace WeSplit.Utilities
                         .FirstOrDefault();
 
                     result[i].Site_Name = site.Site_Name;
-                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
+                    result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 25);
                     result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
 
                     result[i].Site_Avatar = $"Images/Sites/{result[i].ID_Site}.{site.Site_Link_Avt}";

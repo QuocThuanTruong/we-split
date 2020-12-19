@@ -61,7 +61,7 @@ namespace WeSplit.Pages
 		const int PLANED = 1;
 		const int CURRENT = 0;
 		const int DONE = 1;
-		const int TOTAL_JOURNEY_PER_PAGE = 9;
+		const int TOTAL_JOURNEY_PER_PAGE = 6;
 
 		private int _journeyStatus = 2;
 
@@ -710,6 +710,12 @@ namespace WeSplit.Pages
 
 				int total = journeys.Count;
 
+				if (_maxPage == 0)
+                {
+					_maxPage = 1;
+					_currentPage = 1;
+                }
+
 				currentPageTextBlock.Text = $"{_currentPage} of {(_maxPage)}";
 
 				journeys = Paging(journeys);
@@ -718,8 +724,12 @@ namespace WeSplit.Pages
 
 				for (int i = 0; i < journeys.Count; ++i)
 				{
-					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 25);
 					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+
+					Site site = _databaseUtilities.GetSiteByID(journeys[i].ID_Site ?? 0);
+
+					journeys[i].Site_Avatar = $"Images/Sites/{site.ID_Site}.{site.Site_Link_Avt}";
 				}
 
 				journeyGridView.ItemsSource = journeys;
@@ -763,8 +773,12 @@ namespace WeSplit.Pages
 
 				for (int i = 0; i < journeys.Count; ++i)
                 {
-					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 25);
 					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+
+					Site site = _databaseUtilities.GetSiteByID(journeys[i].ID_Site ?? 0);
+
+					journeys[i].Site_Avatar = $"Images/Sites/{site.ID_Site}.{site.Site_Link_Avt}";
 				}
 
 				journeyGridView.ItemsSource = journeys;
