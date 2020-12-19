@@ -61,7 +61,7 @@ namespace WeSplit.Pages
 		const int PLANED = 1;
 		const int CURRENT = 0;
 		const int DONE = 1;
-		const int TOTAL_JOURNEY_PER_PAGE = 6;
+		int TOTAL_JOURNEY_PER_PAGE = 6;
 
 		private int _journeyStatus = 2;
 
@@ -262,7 +262,18 @@ namespace WeSplit.Pages
 				{
 					journeyListView.SetValue(Grid.ColumnSpanProperty, 2);
 				}
-			}	
+			}
+
+			TOTAL_JOURNEY_PER_PAGE = 9;
+
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
 		}
 
 		private void gridViewButton_Click(object sender, RoutedEventArgs e)
@@ -288,6 +299,18 @@ namespace WeSplit.Pages
 					journeyGridView.SetValue(Grid.ColumnSpanProperty, 2);
 				}
 			}
+
+			TOTAL_JOURNEY_PER_PAGE = 6;
+
+			if (_isSearching)
+			{
+				loadJourneySearch();
+			}
+			else
+			{
+				loadJourneys();
+			}
+
 		}
 
 		private void journeyGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
