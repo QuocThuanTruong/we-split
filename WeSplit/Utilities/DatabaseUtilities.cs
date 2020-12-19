@@ -37,40 +37,72 @@ namespace WeSplit.Utilities
 
         public int GetMaxIDJourney()
         {
-            int result = _databaseWeSplit
+            int result = 0;
+            try
+            {
+                 result = _databaseWeSplit
                 .Database
                 .SqlQuery<int>("Select Max(ID_Journey) from Journey")
                 .Single();
+             }
+            catch (Exception e)
+            {
+
+            }
 
             return result;
         }
 
         public int GetMaxIDSite()
         {
-            int result = _databaseWeSplit
-                .Database
-                .SqlQuery<int>("Select Max(ID_Site) from Site")
-                .Single();
+            int result = 0;
+            try
+            {
+                result = _databaseWeSplit
+                    .Database
+                    .SqlQuery<int>("Select Max(ID_Site) from Site")
+                    .Single();
+            }
+            catch (Exception e)
+			{
+
+			}            
 
             return result;
         }
 
         public int GetMaxIDMember()
         {
-            int result = _databaseWeSplit
+            int result = 0;
+            try
+            {
+                result = _databaseWeSplit
                 .Database
                 .SqlQuery<int>("Select Max(ID_Member) from JourneyAttendance")
                 .Single();
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return result;
         }
 
         public int GetMaxIDExpenses()
         {
-            int result = _databaseWeSplit
+            int result = 0;
+            try
+            {
+                result = _databaseWeSplit
                 .Database
                 .SqlQuery<int>("Select Max(ID_Expenses) from Expenses")
                 .Single();
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return result;
         }

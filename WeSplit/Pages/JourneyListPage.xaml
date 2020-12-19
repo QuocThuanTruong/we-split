@@ -414,7 +414,7 @@
                               Height="248"
                               Tag="{Binding ID_Journey}">
                             <!-- binding -->
-                            <Image Source="{Binding Site_Avatar}}"
+                            <Image Source="{Binding Site_Avatar}"
                                    VerticalAlignment="Top"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"
