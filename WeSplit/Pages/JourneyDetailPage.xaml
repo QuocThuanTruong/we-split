@@ -342,11 +342,16 @@
 
                             <materialDesign:Card Background="#321aaf75"
                                                  Margin="2, 7, 0 ,0"
-                                                 Width="20"
+                                                 Width="23"
                                                  Height="34"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                              UniformCornerRadius="5">
-                            </materialDesign:Card>
+                                    <TextBlock Text="ID"
+                                           Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+                                </materialDesign:Card>
 
                             <materialDesign:Card Background="#321aaf75"
                                          Grid.Row="1"
@@ -484,6 +489,7 @@
                                   Height="128"
                                   Width="336"
                                   Visibility="Visible"
+                                  SelectionChanged="journeyImageListView_SelectionChanged"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   Margin="0, 0, 14, 0"
                                   ItemContainerStyle="{StaticResource ImageStepListViewItem}"
@@ -497,7 +503,7 @@
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Name="relativeImageListItem">
+         
                                         <!-- Binding data -->
                                         <Image Name="relativeStepImage"
                                                Width="110"
@@ -509,8 +515,17 @@
                                                 <BitmapImage CacheOption="OnLoad"
                                                  UriSource="{Binding ImageSource}"/>
                                             </Image.Source>-->
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
                                         </Image>
-                                    </Grid>
+                                  
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
@@ -635,11 +650,16 @@
 
                             <materialDesign:Card Background="#321aaf75"
                                                  Margin="2, 7, 0 ,0"
-                                                 Width="20"
+                                                 Width="23"
                                                  Height="34"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                              UniformCornerRadius="5">
-                            </materialDesign:Card>
+                                    <TextBlock Text="ID"
+                                           Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
+                                </materialDesign:Card>
 
                             <materialDesign:Card Background="#321aaf75"
                                          Grid.Row="1"
@@ -813,5 +833,10 @@
         <custom:VisualRouteDetailDialog x:Name="visualRouteDetailDialog"
                                         CloseFullScreenVideoDialog="visualRouteDetailDialog_CloseFullScreenVideoDialog"
                                         Visibility="Collapsed"/>
+
+
+        <custom:CarouselDialog x:Name="carouselDialog"
+                               
+                               Visibility="Collapsed"/>
     </Grid>
 </Page>

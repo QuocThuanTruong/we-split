@@ -550,6 +550,7 @@
                     </materialDesign:ColorZone.Effect>
 
                     <Button Name="viewAllPlanedButton"
+                            ToolTip="View all planed journey"
                             HorizontalAlignment="Center"
                             Style="{StaticResource ViewAllButton}"
                             Width="58"
@@ -1095,6 +1096,7 @@
                     </materialDesign:ColorZone.Effect>
 
                     <Button Name="viewAllDoneButton"
+                            ToolTip="View all done journey"
                             HorizontalAlignment="Center"
                             Style="{StaticResource ViewAllButton}"
                             Width="58"
@@ -1271,7 +1273,7 @@
 
                         <Button Name="exploreCurrentJourneyButton"
                             Click="exploreCurrentJourneyButton_Click"
-
+ToolTip="View detail current journey"
                             Margin="0, 8, 0, 0"
                             Height="36"
                             Style="{StaticResource ViewDetailButton}"

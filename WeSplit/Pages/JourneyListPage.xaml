@@ -412,11 +412,11 @@
                         ClickMode="Hover"
                         materialDesign:ButtonAssist.CornerRadius="6"
                         Margin="0, 0, 20, 20"
-                        Width="294"
-                        Height="248">
+                        Width="286"
+                        Height="240">
 
-                        <Grid Width="294"
-                              Height="248"
+                        <Grid Width="286"
+                              Height="240"
                               Tag="{Binding ID_Journey}">
                             <!-- binding -->
                             <Image Source="{Binding Site_Avatar, Converter={StaticResource abosolutePathConverter}}"
@@ -428,8 +428,8 @@
 
                             <Image Name="footerImage"
                                    Source="{StaticResource ListItemFooter}"
-                                   Width="294"
-                                   Height="111"
+                                   Width="286"
+                                   Height="103"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"
                                    VerticalAlignment="Bottom"/>
@@ -668,6 +668,7 @@
                     </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            
         </ListView>
 
         <!--404-->

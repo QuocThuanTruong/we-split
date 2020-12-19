@@ -175,6 +175,7 @@
 
 
                             <Button Name="cancelAddSiteButton"
+                                    ToolTip="Cancel"
                         Click="cancelAddSiteButton_Click"
                         Width="32"
                         Margin="0, 0, 14, 0"

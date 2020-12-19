@@ -502,10 +502,15 @@
 
                                 <materialDesign:Card Background="#321aaf75"
                                                  Margin="2, 7, 0 ,0"
-                                                 Width="20"
+                                                 Width="23"
                                                  Height="34"
                                                  materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                                  UniformCornerRadius="5">
+                                    <TextBlock Text="ID"
+                                           Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
                                 </materialDesign:Card>
 
                                 <TextBox Name="memberNameTextBox"
@@ -586,7 +591,7 @@
 
                                 <Button Name="addMemberButton"
                                     Click="addMemberButton_Click"
-                                    Margin="13,8,0,0"
+                                    Margin="10,8,0,0"
                                     VerticalAlignment="Center"
                                     Width="34"
                                     Style="{StaticResource AddJourneyButton}"
@@ -823,10 +828,15 @@
 
                                 <materialDesign:Card Background="#321aaf75"
                                                  Margin="2, 7, 0 ,0"
-                                                 Width="20"
+                                                 Width="23"
                                                  Height="34"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                              UniformCornerRadius="5">
+                                    <TextBlock Text="ID"
+                                           Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                           Style="{StaticResource SemiBoldRegularText}"/>
                                 </materialDesign:Card>
 
                                 <TextBox Name="descriptionExpensesTextBox"
@@ -858,7 +868,7 @@
 
                                 <Button Name="addExpensesButton"
                                     Click="addExpensesButton_Click"
-                                    Margin="13,8,0,0"
+                                    Margin="10,8,0,0"
                                     VerticalAlignment="Center"
                                     Width="34"
                                     Style="{StaticResource AddJourneyButton}"

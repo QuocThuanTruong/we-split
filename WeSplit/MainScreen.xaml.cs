@@ -178,8 +178,14 @@ namespace WeSplit
 		private void JourneyDetailPage_UpdateJourney(int ID_Journey)
 		{
 			UpdateJourneyPage updateJourneyPage = new UpdateJourneyPage(ID_Journey);
+			updateJourneyPage.BackCurentJourney += UpdateJourneyPage_BackCurentJourney;
 
 			pageNavigation.NavigationService.Navigate(updateJourneyPage);
+		}
+
+		private void UpdateJourneyPage_BackCurentJourney(int id)
+		{
+			JourneyListPage_ShowJourneyDetailPage(id);
 		}
 
 		private void maximizeWindowButton_Click(object sender, RoutedEventArgs e)

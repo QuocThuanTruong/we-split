@@ -215,28 +215,48 @@ namespace WeSplit.Pages
 				if (journeyGridView.Visibility == Visibility.Visible)
 				{
 					journeyGridView.SetValue(Grid.ColumnSpanProperty, 4);
+					TOTAL_JOURNEY_PER_PAGE = 6;
 				}
 
 				if (journeyListView.Visibility == Visibility.Visible)
 				{
 					journeyListView.SetValue(Grid.ColumnSpanProperty, 4);
+					TOTAL_JOURNEY_PER_PAGE = 9;
 				}
 
 				filterContainer.Visibility = Visibility.Collapsed;
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
 			}
 			else
 			{
 				if (journeyGridView.Visibility == Visibility.Visible)
 				{
 					journeyGridView.SetValue(Grid.ColumnSpanProperty, 2);
+					TOTAL_JOURNEY_PER_PAGE = 4;
 				}
 
 				if (journeyListView.Visibility == Visibility.Visible)
 				{
 					journeyListView.SetValue(Grid.ColumnSpanProperty, 2);
+					TOTAL_JOURNEY_PER_PAGE = 6;
 				}
 
 				filterContainer.Visibility = Visibility.Visible;
+				if (_isSearching)
+				{
+					loadJourneySearch();
+				}
+				else
+				{
+					loadJourneys();
+				}
 			}	
 		}
 
@@ -659,12 +679,12 @@ namespace WeSplit.Pages
 
 						if (((MemberGroup)totalMember).Index == 1)
 						{
-							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 10) OR";
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) < 10) OR";
 						}
 
 						if (((MemberGroup)totalMember).Index == 2)
 						{
-							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) > 10) OR";
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 10) OR";
 						}
 					}
 
@@ -684,12 +704,12 @@ namespace WeSplit.Pages
 
 						if (((MemberGroup)totalMember).Index == 1)
 						{
-							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) <= 10) OR";
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 6 And (select dbo.CalcMemberAttendByJourneyID(ID_Journey)) < 10) OR";
 						}
 
 						if (((MemberGroup)totalMember).Index == 2)
 						{
-							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) > 10) OR";
+							result += $"((select dbo.CalcMemberAttendByJourneyID(ID_Journey)) >= 10) OR";
 						}
 					}
 

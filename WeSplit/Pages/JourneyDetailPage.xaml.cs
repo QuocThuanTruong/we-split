@@ -34,12 +34,14 @@ namespace WeSplit.Pages
 		{
 			InitializeComponent();
 			visualRouteDetailDialog.SetParent(mainContainer);
+			carouselDialog.SetParent(mainContainer);
 		}
 
 		public JourneyDetailPage(int ID_Journey)
 		{
 			InitializeComponent();
 			visualRouteDetailDialog.SetParent(mainContainer);
+			carouselDialog.SetParent(mainContainer);
 
 			_ID_Journey = ID_Journey;
 		}
@@ -143,5 +145,9 @@ namespace WeSplit.Pages
 
 		}
 
+		private void journeyImageListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			carouselDialog.ShowDialog(_journey.Images_For_Binding, journeyImageListView.SelectedIndex);
+		}
 	}
 }

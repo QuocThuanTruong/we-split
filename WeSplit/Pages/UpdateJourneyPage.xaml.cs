@@ -26,6 +26,8 @@ namespace WeSplit.Pages
 	/// </summary>
 	public partial class UpdateJourneyPage : Page
 	{
+		public delegate void BackCurentJourneyHanlder(int id);
+		public event BackCurentJourneyHanlder BackCurentJourney;
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 		private GoogleMapUtilities _googleMapUtilities = GoogleMapUtilities.GetGoogleMapInstance();
@@ -445,7 +447,7 @@ namespace WeSplit.Pages
 
 		private void cancelAddRecipeButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			BackCurentJourney?.Invoke(_journey.ID_Journey);
 		}
 
 		private void saveJourneyButton_Click(object sender, RoutedEventArgs e)
@@ -454,7 +456,7 @@ namespace WeSplit.Pages
 			_journey.Journey_Name = journeyNameTextBox.Text;
 			if (_journey.Journey_Name.Length == 0)
 			{
-				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "OK", () => { });
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "BACK", () => { BackCurentJourney?.Invoke(_journey.ID_Journey); });
 				return;
 			}
 

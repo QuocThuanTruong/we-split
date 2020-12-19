@@ -98,6 +98,10 @@
     <Compile Include="Converter\IsActiveViewConverter.cs" />
     <Compile Include="Converter\JourneyStatusConverter.cs" />
     <Compile Include="Converter\RouteStatusConverter.cs" />
+    <Compile Include="CustomView\CarouselControl.cs" />
+    <Compile Include="CustomView\CarouselDialog.xaml.cs">
+      <DependentUpon>CarouselDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomView\VisualRouteDetailDialog.xaml.cs">
       <DependentUpon>VisualRouteDetailDialog.xaml</DependentUpon>
     </Compile>
@@ -253,6 +257,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="CustomView\CarouselDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomView\VisualRouteDetailDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
