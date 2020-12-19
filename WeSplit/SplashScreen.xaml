@@ -7,7 +7,6 @@
         xmlns:loc="clr-namespace:WeSplit.Properties"
         xmlns:converter="clr-namespace:WeSplit.Converter"
         xmlns:local="clr-namespace:WeSplit"
-        xmlns:converter="clr-namespace:WeSplit.Converter"
         mc:Ignorable="d"
         AllowsTransparency="True"
         Background="Transparent"
