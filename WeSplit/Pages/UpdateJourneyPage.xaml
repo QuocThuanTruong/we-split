@@ -17,6 +17,7 @@
     <Page.Resources>
         <converter:RouteStatusConverter x:Key="routeStatusConverter"></converter:RouteStatusConverter>
         <converter:IsActiveViewConverter x:Key="isActiveConverter"></converter:IsActiveViewConverter>
+        <converter:AbsolutePathConverter x:Key="absolutePathConverter"></converter:AbsolutePathConverter>
     </Page.Resources>
 
     <Grid>

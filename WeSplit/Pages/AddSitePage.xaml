@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WeSplit.Pages"
+      xmlns:converter="clr-namespace:WeSplit.Converter"
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:loc="clr-namespace:WeSplit.Properties"
@@ -11,6 +12,10 @@
       Loaded="Page_Loaded"
       Background="Transparent"
       Title="AddSitePage">
+
+    <Page.Resources>
+        <converter:AbsolutePathConverter x:Key="abosolutePathConverter"></converter:AbsolutePathConverter>
+    </Page.Resources>
 
     <Grid Name="mainContainer">
 
