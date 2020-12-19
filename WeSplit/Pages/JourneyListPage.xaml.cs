@@ -753,8 +753,8 @@ namespace WeSplit.Pages
 
 				for (int i = 0; i < journeys.Count; ++i)
 				{
-					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 25);
-					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Journey_Name, 20);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Journey_Name, 31);
 
 					Site site = _databaseUtilities.GetSiteByID(journeys[i].ID_Site ?? 0);
 

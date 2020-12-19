@@ -448,6 +448,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
+                                            TextAlignment="Left"
                                            Text="{Binding Name_In_Grid}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>
@@ -582,6 +583,7 @@
 
                                     <!-- binding -->
                                     <TextBlock Name="journeyName"
+                                               TextAlignment="Left"
                                            Text="{Binding Name_In_List}"
                                                FontSize="17"
                                            Style="{StaticResource BoldMediumText}"

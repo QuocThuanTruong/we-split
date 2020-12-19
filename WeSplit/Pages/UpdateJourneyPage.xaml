@@ -1446,7 +1446,7 @@
                                  MessageQueue="{materialDesign:MessageQueue}"
                                  Margin="2, 8, 0, 4"
                                  MaxWidth="1000"
-                                 IsActive="True"
+                                 IsActive="False"
                                  Grid.Column="1"
                                  Grid.Row="4">
             </materialDesign:Snackbar>
