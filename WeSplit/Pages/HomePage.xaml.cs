@@ -52,7 +52,6 @@ namespace WeSplit.Pages
 			_databaseUtilities.GetListJourney();
 		}
 
-
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			currentJourneyProgess.Value = 4;
@@ -229,7 +228,7 @@ namespace WeSplit.Pages
 				var firstPlanedAvatar = new BitmapImage();
 				firstPlanedAvatar.BeginInit();
 				firstPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstPlanedAvatar.UriSource = new Uri(firstPlaned.Site_Link_Avt, UriKind.Relative);
+				firstPlanedAvatar.UriSource = new Uri($"Images/Sites/{firstPlaned.ID_Site}.{firstPlaned.Site_Link_Avt}", UriKind.Relative);
 				firstPlanedAvatar.EndInit();
 
 				firstPlanedJourneyAvtImage.Source = firstPlanedAvatar;
@@ -245,7 +244,7 @@ namespace WeSplit.Pages
 					var secondPlanedAvatar = new BitmapImage();
 					secondPlanedAvatar.BeginInit();
 					secondPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondPlanedAvatar.UriSource = new Uri(secondPlaned.Site_Link_Avt, UriKind.Relative);
+					secondPlanedAvatar.UriSource = new Uri($"Images/Sites/{secondPlaned.ID_Site}.{secondPlaned.Site_Link_Avt}", UriKind.Relative);
 					secondPlanedAvatar.EndInit();
 
 					secondPlanedJourneyAvtImage.Source = secondPlanedAvatar;
@@ -261,7 +260,7 @@ namespace WeSplit.Pages
 						var thirdPlanedAvatar = new BitmapImage();
 						thirdPlanedAvatar.BeginInit();
 						thirdPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdPlanedAvatar.UriSource = new Uri(thirdPlaned.Site_Link_Avt, UriKind.Relative);
+						thirdPlanedAvatar.UriSource = new Uri($"Images/Sites/{thirdPlaned.ID_Site}.{thirdPlaned.Site_Link_Avt}", UriKind.Relative);
 						thirdPlanedAvatar.EndInit();
 
 						thirdPlanedJourneyAvtImage.Source = thirdPlanedAvatar;
@@ -289,7 +288,7 @@ namespace WeSplit.Pages
 				var firstDoneAvatar = new BitmapImage();
 				firstDoneAvatar.BeginInit();
 				firstDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstDoneAvatar.UriSource = new Uri(firstDone.Site_Link_Avt, UriKind.Relative);
+				firstDoneAvatar.UriSource = new Uri($"Images/Sites/{firstDone.ID_Site}.{firstDone.Site_Link_Avt}", UriKind.Relative);
 				firstDoneAvatar.EndInit();
 
 				firstDoneJourneyAvtImage.Source = firstDoneAvatar;
@@ -305,7 +304,7 @@ namespace WeSplit.Pages
 					var secondDoneAvatar = new BitmapImage();
 					secondDoneAvatar.BeginInit();
 					secondDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondDoneAvatar.UriSource = new Uri(secondDone.Site_Link_Avt, UriKind.Relative);
+					secondDoneAvatar.UriSource = new Uri($"Images/Sites/{secondDone.ID_Site}.{secondDone.Site_Link_Avt}", UriKind.Relative);
 					secondDoneAvatar.EndInit();
 
 					secondDoneJourneyAvtImage.Source = secondDoneAvatar;
@@ -321,7 +320,7 @@ namespace WeSplit.Pages
 						var thirdDoneAvatar = new BitmapImage();
 						thirdDoneAvatar.BeginInit();
 						thirdDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdDoneAvatar.UriSource = new Uri(thirdDone.Site_Link_Avt, UriKind.Relative);
+						thirdDoneAvatar.UriSource = new Uri($"Images/Sites/{thirdDone.ID_Site}.{thirdDone.Site_Link_Avt}", UriKind.Relative);
 						thirdDoneAvatar.EndInit();
 
 						thirdDoneJourneyAvtImage.Source = thirdDoneAvatar;
@@ -337,7 +336,7 @@ namespace WeSplit.Pages
 							var fourthDoneAvatar = new BitmapImage();
 							fourthDoneAvatar.BeginInit();
 							fourthDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-							fourthDoneAvatar.UriSource = new Uri(fourthDone.Site_Link_Avt, UriKind.Relative);
+							fourthDoneAvatar.UriSource = new Uri($"Images/Sites/{fourthDone.ID_Site}.{fourthDone.Site_Link_Avt}", UriKind.Relative);
 							fourthDoneAvatar.EndInit();
 
 							fourthDoneJourneyAvtImage.Source = fourthDoneAvatar;

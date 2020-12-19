@@ -30,7 +30,7 @@ namespace WeSplit.Pages
 
 		private Configuration _configuration;
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
-
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 		public class RouteGroup
 		{
 			public RouteGroup(int index, string content)
@@ -712,6 +712,12 @@ namespace WeSplit.Pages
 
 				journeys = Paging(journeys);
 
+				for (int i = 0; i < journeys.Count; ++i)
+				{
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+				}
+
 				journeyGridView.ItemsSource = journeys;
 				journeyListView.ItemsSource = journeys;
 			}
@@ -748,6 +754,12 @@ namespace WeSplit.Pages
             if (journeys.Count > 0)
             {
 				journeys = Paging(journeys);
+
+				for (int i = 0; i < journeys.Count; ++i)
+                {
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+				}
 
 				journeyGridView.ItemsSource = journeys;
 				journeyListView.ItemsSource = journeys;
