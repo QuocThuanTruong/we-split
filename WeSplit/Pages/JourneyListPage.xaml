@@ -954,6 +954,7 @@
 
                             <ListView Name="routeGroupListBox"
                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  SelectionChanged="routeGroupListBox_SelectionChanged"
                  ItemContainerStyle="{StaticResource BindingSelectedListViewItem}"
                  SelectionMode="Multiple"

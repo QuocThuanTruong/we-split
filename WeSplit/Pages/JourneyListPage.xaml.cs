@@ -133,7 +133,7 @@ namespace WeSplit.Pages
 			{
 				new MemberGroup(0, "1 - 5 người"),
 				new MemberGroup(1, "6 - 9 người"),
-				new MemberGroup(2, "> 10 người")
+				new MemberGroup(2, ">= 10 người")
 			};
 
 			memGroupListBox.ItemsSource = _memberGroups;
@@ -248,6 +248,9 @@ namespace WeSplit.Pages
 			gridViewButton.Background = Brushes.White;
 			gridViewIcon.Source = (ImageSource)FindResource("IconGridOff");
 
+			gridViewButton.IsEnabled = true;
+			listViewButton.IsEnabled = false;
+
 			if (journeyListView.Visibility == Visibility.Visible)
 			{
 				journeyListView.Visibility = Visibility.Collapsed;
@@ -272,6 +275,9 @@ namespace WeSplit.Pages
 
 			listViewButton.Background = Brushes.White;
 			listViewIcon.Source = (ImageSource)FindResource("IconListOff");
+
+			listViewButton.IsEnabled = true;
+			gridViewButton.IsEnabled = false;
 
 			if (journeyGridView.Visibility == Visibility.Visible)
 			{
