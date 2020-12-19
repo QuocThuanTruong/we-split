@@ -39,6 +39,7 @@ namespace WeSplit.Pages
 		public List<JourneyImage> Images_For_Binding;
 
 		private int _ordinal_number = 0;
+		private int _max_id_member = 0;
 		public UpdateJourneyPage(int ID_Journey)
 		{
 			InitializeComponent();
@@ -94,6 +95,7 @@ namespace WeSplit.Pages
 			}
 
 			_ordinal_number = _databaseUtilities.GetMaxOrdinalNumber(_ID_Journey);
+			_max_id_member = _databaseUtilities.GetMaxIDMember();
 
 			DataContext = _journey;
         }
@@ -135,6 +137,7 @@ namespace WeSplit.Pages
 			if (membersListView.SelectedIndex != -1)
 			{
 				member.Member_Index = JourneyAttendances[membersListView.SelectedIndex].Member_Index;
+				member.ID_Member = JourneyAttendances[membersListView.SelectedIndex].ID_Member;
 
 				JourneyAttendances[membersListView.SelectedIndex] = member;
 
@@ -143,6 +146,7 @@ namespace WeSplit.Pages
 			else
 			{
 				member.Member_Index = JourneyAttendances.Count + 1;
+				member.ID_Member = ++_max_id_member;
 
 				member.Is_Active = 1;
 
@@ -342,6 +346,7 @@ namespace WeSplit.Pages
 			} else {
 				memberRoleComboBox.SelectedIndex = 1;
             }
+
 		}
 
 		private void updateRouteButton_Click(object sender, RoutedEventArgs e)
@@ -478,15 +483,15 @@ namespace WeSplit.Pages
                 _databaseUtilities.UpdateRoute(route.ID_Journey, route.Ordinal_Number, route.Place, route.Province, route.Route_Description, route.Route_Status, route.Is_Active ?? 0);
             }
 
-            //foreach (var member in _journey.JourneyAttendances)
-            //{
-            //	_databaseUtilities.AddJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role);
-            //}
+            foreach (var member in JourneyAttendances)
+            {
+                _databaseUtilities.UpdateJourneyAttendance(member.ID_Member, member.ID_Journey, member.Member_Name, member.Phone_Number, member.Receivables_Money, member.Role, member.Is_Active ?? 0);
+            }
 
-   //         _journey = new Journey();
-			//_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
+            //         _journey = new Journey();
+            //_journey.ID_Journey = _databaseUtilities.GetMaxIDJourney() + 1;
 
-			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
+            notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
 
 			//Reset
 			//journeyNameTextBox.Text = "";

@@ -54,7 +54,7 @@ namespace WeSplit.Pages
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			currentJourneyProgess.Value = 4;
+			//currentJourneyProgess.Value = 4;
 		}
 
 		private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -268,12 +268,21 @@ namespace WeSplit.Pages
 						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km";
 						thirdPlanedJourneyTitle.Text = _appUtilities.getStandardName(thirdPlaned.Site_Name, 22);
 						thirdPlanedJourneyViewDetailButton.Tag = thirdPlaned.ID_Journey;
+					} else
+                    {
+						thirdPlanedNotFound.Visibility = Visibility.Visible;
 					}
+				} else
+                {
+					secondPlanedNotFound.Visibility = Visibility.Visible;
+					thirdPlanedNotFound.Visibility = Visibility.Visible;
 				}
 			} 
 			else
             {
-
+				firstPlanedNotFound.Visibility = Visibility.Visible;
+				secondPlanedNotFound.Visibility = Visibility.Visible;
+				thirdPlanedNotFound.Visibility = Visibility.Visible;
             }
         }
 
@@ -344,9 +353,28 @@ namespace WeSplit.Pages
 							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km";
 							fourthDoneJourneyTitle.Text = _appUtilities.getStandardName(fourthDone.Site_Name, 22);
 							fourthDoneJourneyViewDetailButton.Tag = fourthDone.ID_Journey;
+						} else
+                        {
+							secondDonedNotFound.Visibility = Visibility.Visible;
+							thirdDonedNotFound.Visibility = Visibility.Visible;
 						}
+					} else
+                    {
+						thirdDonedNotFound.Visibility = Visibility.Visible;
+						fourthDonedNotFound.Visibility = Visibility.Visible;
 					}
+				} else
+                {
+					secondDonedNotFound.Visibility = Visibility.Visible;
+					thirdDonedNotFound.Visibility = Visibility.Visible;
+					fourthDonedNotFound.Visibility = Visibility.Visible;
 				}
+			} else
+            {
+				firstDonedNotFound.Visibility = Visibility.Visible;
+				secondDonedNotFound.Visibility = Visibility.Visible;
+				thirdDonedNotFound.Visibility = Visibility.Visible;
+				fourthDonedNotFound.Visibility = Visibility.Visible;
 			}
 		}
 
@@ -359,7 +387,7 @@ namespace WeSplit.Pages
 				var currentAvatar = new BitmapImage();
 				currentAvatar.BeginInit();
 				currentAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				currentAvatar.UriSource = new Uri(current.Site_Avatar, UriKind.Relative);
+				currentAvatar.UriSource = new Uri($"Images/Sites/{current.ID_Site}.{current.Site_Avatar}", UriKind.Relative);
 				currentAvatar.EndInit();
 
 				currentJourneyAvt.Source = currentAvatar;
@@ -368,8 +396,17 @@ namespace WeSplit.Pages
 				startDateTextBlock.Text = current.StartDate.Value.ToShortDateString();
 				endDateTextBlock.Text = current.EndDate.Value.Date.ToShortDateString();
 				currentJourneyProgess.Value = current.Journey_Progress;
+
+				if (currentJourneyProgess.Value > 0)
+                {
+					//Set cái con xanh xanh đó chỗ này nha
+				}
+
 				exploreCurrentJourneyButton.Tag = current.ID_Journey;
-			}
+			} else
+            {
+				curJourneyNotFound.Visibility = Visibility.Visible;
+            }
 		}
 
         private void exploreCurrentJourneyButton_Click(object sender, RoutedEventArgs e)

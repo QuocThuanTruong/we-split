@@ -6,6 +6,7 @@
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:loc="clr-namespace:WeSplit.Properties"
       xmlns:local="clr-namespace:WeSplit.Pages"
+      xmlns:converter="clr-namespace:WeSplit.Converter"
       mc:Ignorable="d" 
       Background="Transparent"
        d:DesignHeight="728" d:DesignWidth="1116"
@@ -413,7 +414,7 @@
                               Height="248"
                               Tag="{Binding ID_Journey}">
                             <!-- binding -->
-                            <Image Source="{Binding Site_Avatar}"
+                            <Image Source="{Binding Site_Avatar}}"
                                    VerticalAlignment="Top"
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    Stretch="UniformToFill"

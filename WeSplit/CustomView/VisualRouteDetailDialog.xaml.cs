@@ -54,9 +54,11 @@ namespace WeSplit.CustomView
 		//Params will define depend on your need
 		public void ShowDialog(List<Route> routes, Route startRoute, Route endRoute)
 		{
+			startRoute.Route_Description = "Xuất phát";
 			startRoute.Route_Detail = startRoute.Place + ", " + startRoute.Province;
 			Location startRouteLocation = _googleMapUtilities.GetLocationByKeyName(startRoute.Route_Detail);
 
+			endRoute.Route_Description = "Điểm đến";
 			endRoute.Route_Detail = endRoute.Place + ", " + endRoute.Province;
 			Location endRouteLocation = _googleMapUtilities.GetLocationByKeyName(endRoute.Route_Detail);
 
