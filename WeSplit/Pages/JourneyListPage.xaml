@@ -448,7 +448,7 @@
 
                                 <!-- binding -->
                                 <TextBlock Name="journeyName"
-                                            TextAlignment="Left"
+                                           TextAlignment="Left"
                                            Text="{Binding Name_In_Grid}"
                                            Style="{StaticResource BoldMediumText}"
                                            Foreground="{DynamicResource MyBlack}"/>

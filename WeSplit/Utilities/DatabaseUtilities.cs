@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Diagnostics;
 
-namespace WeSplit.Utilities 
+namespace WeSplit.Utilities
 {
     class DatabaseUtilities : Page
     {
@@ -40,11 +40,11 @@ namespace WeSplit.Utilities
             int result = 0;
             try
             {
-                 result = _databaseWeSplit
-                .Database
-                .SqlQuery<int>("Select Max(ID_Journey) from Journey")
-                .Single();
-             }
+                result = _databaseWeSplit
+               .Database
+               .SqlQuery<int>("Select Max(ID_Journey) from Journey")
+               .Single();
+            }
             catch (Exception e)
             {
 
@@ -64,9 +64,9 @@ namespace WeSplit.Utilities
                     .Single();
             }
             catch (Exception e)
-			{
+            {
 
-			}            
+            }
 
             return result;
         }
@@ -140,7 +140,7 @@ namespace WeSplit.Utilities
             }
 
             return result;
-        } 
+        }
 
         public Journey GetcurrentJourney()
         {
@@ -361,7 +361,7 @@ namespace WeSplit.Utilities
 
                 //Member
                 List<JourneyAttendance> members = _databaseWeSplit
-                    .Database 
+                    .Database
                     .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Journey = {result.ID_Journey} and Is_Active = 1")
                     .ToList();
 
@@ -410,7 +410,7 @@ namespace WeSplit.Utilities
                 result.Total_Expenses_For_Binding = "Tổng chi: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Total_Expenses));
 
                 result.Remain = result.Total_Receivables - result.Total_Expenses;
-                result.Remain_For_Binding = "Số dư: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Remain)); 
+                result.Remain_For_Binding = "Số dư: " + _appUtilities.GetMoneyForBinding(decimal.ToInt32(result.Remain));
 
                 //Expenses
                 result.Expenses = _databaseWeSplit
@@ -550,7 +550,8 @@ namespace WeSplit.Utilities
             return _databaseWeSplit.AddSite(idSite, idProvince, siteName, siteDescription, siteLinkAvt, siteAddress);
         }
 
-        public int AddNewJourney(Nullable<int> idJourney, string journeyName, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance) {
+        public int AddNewJourney(Nullable<int> idJourney, string journeyName, Nullable<int> idSite, string startPlace, string startProvince, Nullable<int> status, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<double> distance)
+        {
             return _databaseWeSplit.AddJourney(idJourney, journeyName, idSite, startPlace, startProvince, status, startDate, endDate, distance);
         }
 
@@ -589,11 +590,12 @@ namespace WeSplit.Utilities
                 .Database
                 .SqlQuery<decimal>($"select [dbo].[CalcSumExpensesByIDJourney]({ID_Journey})")
                 .Single();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 //throw e;
             }
-            
+
             return result;
         }
 
@@ -1050,7 +1052,7 @@ namespace WeSplit.Utilities
                 _databaseWeSplit
                .Database
                .ExecuteSqlCommand($"Update Expenses Set Expenses_Money = {expense}, Expenses_Description = N'{des}', Is_Active = {Is_Active} Where ID_Expenses = {idExpenses} And ID_Journey = {idJourney}");
-            } 
+            }
             else
             {
                 AddExpense(idExpenses, idJourney, expense, des, Is_Active);
