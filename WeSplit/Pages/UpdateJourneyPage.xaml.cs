@@ -681,9 +681,7 @@ namespace WeSplit.Pages
 
 			bool isDoneRoute = ((ToggleButton)sender).IsChecked.Value;
 
-			Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
-
-			_journey.Route_For_Binding[Route_Index].Route_Status = isDoneRoute ? 1 : 0;
+			Route_For_Binding[Route_Index - 1].Route_Status = isDoneRoute ? 1 : 0;
 		}
 
         private void memberPhoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
