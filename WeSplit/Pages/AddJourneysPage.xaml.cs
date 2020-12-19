@@ -203,7 +203,17 @@ namespace WeSplit.Pages
             }
 
 			_journey.Start_Province = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
-			_journey.Status = 1;
+
+			if (isCurrentJourneyCheckBox.IsChecked.Value)
+            {
+				_journey.Status = 0;
+
+				_databaseUtilities.FinishCurrentJourney();
+			} 
+			else
+            {
+				_journey.Status = 1;
+			}
 
 			Route startRoute = new Route();
 			startRoute.Place = _journey.Start_Place;

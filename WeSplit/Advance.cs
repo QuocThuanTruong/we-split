@@ -28,5 +28,6 @@ namespace WeSplit
         public string Borrower_Name { get; set; }
         public string Lender_Name { get; set; }
         public string Money_For_Binding { get; set; }
+        public int Advance_Index { get; set; }
     }
 }

@@ -1052,7 +1052,6 @@
 
                             </StackPanel>
 
-
                             <ListView Name="advanceListView"
                                 Grid.Column="1"
                                 Grid.Row="2"
