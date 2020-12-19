@@ -72,6 +72,16 @@ namespace WeSplit.Pages
 
 			receivablesChart.Series = receivablesSeriesCollection;
 
+			if (_journey.Journey_Progress == 0)
+            {
+				startIcon.Visibility = Visibility.Collapsed;
+			}
+
+			if (_journey.Journey_Progress == currentJourneyProgess.Maximum)
+			{
+				endIcon.Visibility = Visibility.Collapsed;
+			}
+
 			this.DataContext = _journey;
 		}
 

@@ -61,7 +61,7 @@ namespace WeSplit.Pages
 		const int PLANED = 1;
 		const int CURRENT = 0;
 		const int DONE = 1;
-		const int TOTAL_JOURNEY_PER_PAGE = 4;
+		const int TOTAL_JOURNEY_PER_PAGE = 9;
 
 		private int _journeyStatus = 2;
 
@@ -708,9 +708,13 @@ namespace WeSplit.Pages
 
 				_maxPage = getMaxPage(journeys.Count);
 
+				int total = journeys.Count;
+
 				currentPageTextBlock.Text = $"{_currentPage} of {(_maxPage)}";
 
 				journeys = Paging(journeys);
+
+				currentResultTextBlock.Text = $"Hiển thị {journeys.Count} Trong tổng số {total} chuyến đi";
 
 				for (int i = 0; i < journeys.Count; ++i)
 				{
@@ -720,6 +724,8 @@ namespace WeSplit.Pages
 
 				journeyGridView.ItemsSource = journeys;
 				journeyListView.ItemsSource = journeys;
+
+				
 			}
 			else
             {
@@ -765,14 +771,14 @@ namespace WeSplit.Pages
 				journeyListView.ItemsSource = journeys;
 
 
-                currentResultTextBlock.Text = $"Hiển thị {journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} kết quả phù hợp";
+                currentResultTextBlock.Text = $"Hiển thị {journeys.Count} trong tổng số {JourneysSearchResults.totalJourneyResult} chuyến đi";
 
             }
             else
             {
 				journeyGridView.ItemsSource = null;
 				journeyListView.ItemsSource = null;
-                currentResultTextBlock.Text = "Không tìm thấy món ăn thỏa yêu cầu";
+                currentResultTextBlock.Text = "Không tìm thấy chuyến đi thỏa yêu cầu";
             }
         }
 
@@ -895,6 +901,21 @@ namespace WeSplit.Pages
 					loadJourneys();
 				}
 			}
+		}
+
+        private void journeyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			var selectedItemIndex = journeyListView.SelectedIndex;
+			int selectedID = -1;
+
+			if (selectedItemIndex != -1)
+			{
+				selectedID = ((Journey)journeyListView.SelectedItem).ID_Journey;
+				Debug.WriteLine(selectedID);
+			}
+
+			//Get Id Journey base on item clikced
+			ShowJourneyDetailPage?.Invoke(selectedID);
 		}
     }
 }

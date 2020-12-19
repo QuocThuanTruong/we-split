@@ -74,6 +74,7 @@ namespace WeSplit.Pages
 
 			site.ID_Site = _databaseUtilities.GetMaxIDSite() + 1;
 			site.ID_Province = ((Province)startProvinceComboBox.SelectedItem).ID_Province;
+			site.Province_Name = ((Province)startProvinceComboBox.SelectedItem).Province_Name;
 
 			site.Site_Name = siteNameTextBox.Text;
 			if (site.Site_Name.Length == 0)
@@ -109,6 +110,7 @@ namespace WeSplit.Pages
 			_appUtilities.createSitesDirectory();
 			_appUtilities.copyImageToIDirectory(site.ID_Site, _srcAvatarSite, "", true);
 
+			site.Site_Link_Avt = $"Images/Sites/{site.ID_Site}.{site.Site_Link_Avt}";
 			_sites.Add(site);
 
 			notiMessageSnackbar.MessageQueue.Enqueue($"Đã thêm thành công địa danh \"{site.Site_Name}\"", "OK", () => { });

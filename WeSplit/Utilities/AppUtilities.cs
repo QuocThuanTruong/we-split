@@ -44,7 +44,7 @@ namespace WeSplit.Utilities
 
         public void createIDDirectory(int ID)
         {
-            string path = (string)(_absolutePathConverter.Convert($"Images/Journeys/{ID}", null, null, null));
+            string path = (string)(_absolutePathConverter.Convert($"Images/{ID}", null, null, null));
 
             if (Directory.Exists(path))
             {
@@ -79,10 +79,16 @@ namespace WeSplit.Utilities
                 destPath = (string)_absolutePathConverter.Convert($"Images/Sites/{ID}.{getTypeOfImage(srcPath)}", null, null, null);
             } else
             {
-                destPath = (string)_absolutePathConverter.Convert($"Images/Journeys/{ID}/{nameFile}.{getTypeOfImage(srcPath)}", null, null, null);
+                destPath = (string)_absolutePathConverter.Convert($"Images/{ID}/{nameFile}.{getTypeOfImage(srcPath)}", null, null, null);
             }
 
-            File.Copy(srcPath, destPath, true);
+            try
+            {
+                File.Copy(srcPath, destPath, true);
+            } catch (Exception e)
+            {
+
+            }
         }
 
         public string getTypeOfImage(string uriImage)

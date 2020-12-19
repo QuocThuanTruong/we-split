@@ -522,7 +522,8 @@
                                      Style="{StaticResource AddRecipePageTextBox}"
                                      materialDesign:HintAssist.Hint="SĐT"
                                      Grid.Column="1"
-                                     Grid.Row="1"/>
+                                     Grid.Row="1"
+                                         PreviewTextInput="memberPhoneTextBox_PreviewTextInput"/>
 
                                 <Grid>
                                     <TextBox Name="memberReceiptMoneyTextBox"
@@ -532,7 +533,8 @@
                                      Style="{StaticResource AddRecipePageTextBox}"
                                      materialDesign:HintAssist.Hint="Tiền thu"
                                      Grid.Column="1"
-                                     Grid.Row="1"/> 
+                                     Grid.Row="1"
+                                             PreviewTextInput="memberReceiptMoneyTextBox_PreviewTextInput"/> 
 
                                     <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
@@ -843,7 +845,8 @@
                                              Style="{StaticResource AddRecipePageTextBox}"
                                              materialDesign:HintAssist.Hint="Tiền thu"
                                              Grid.Column="1"
-                                             Grid.Row="1"/>
+                                             Grid.Row="1"
+                                             PreviewTextInput="expensesMoneyTextBox_PreviewTextInput"/>
 
                                     <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
