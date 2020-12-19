@@ -456,7 +456,7 @@ namespace WeSplit.Pages
 			_journey.Journey_Name = journeyNameTextBox.Text;
 			if (_journey.Journey_Name.Length == 0)
 			{
-				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "BACK", () => { BackCurentJourney?.Invoke(_journey.ID_Journey); });
+				notiMessageSnackbar.MessageQueue.Enqueue($"Không được bỏ trống tên chuyến đi", "OK", () => {  });
 				return;
 			}
 
@@ -546,7 +546,7 @@ namespace WeSplit.Pages
 				_databaseUtilities.UpdateAdvance(advance.ID_Journey, advance.ID_Borrower, advance.ID_Lender, advance.Advance_Money, advance.Is_Active);
 			}
 
-			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "OK", () => { });
+			notiMessageSnackbar.MessageQueue.Enqueue($"Đã update thành công chuyến đi \"{_journey.Journey_Name}\"", "BACK", () => { BackCurentJourney?.Invoke(_journey.ID_Journey); });
 
 			//Reset
 			//journeyNameTextBox.Text = "";
