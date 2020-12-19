@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace WeSplit.Pages
 	public partial class UpdateJourneyPage : Page
 	{
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 		private List<Province> _provinces;
 		private int _ID_Journey;
 		Journey _journey;
@@ -91,7 +93,57 @@ namespace WeSplit.Pages
 
 		private void addMemberButton_Click(object sender, RoutedEventArgs e)
 		{
+			JourneyAttendance member = new JourneyAttendance();
 
+			member.ID_Journey = _journey.ID_Journey;
+			member.Is_Active = 1;
+			//member.Member_Index = _journey.JourneyAttendances.Count + 1;
+
+			member.Member_Name = memberNameTextBox.Text;
+			if (member.Member_Name.Length <= 0)
+			{
+
+				return;
+			}
+
+			member.Phone_Number = memberPhoneTextBox.Text;
+			if (member.Phone_Number.Length <= 0)
+			{
+
+				return;
+			}
+
+			member.Receivables_Money = decimal.Parse(memberReceiptMoneyTextBox.Text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.AllowCurrencySymbol | NumberStyles.Currency, new CultureInfo("en-US"));
+			member.Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(member.Receivables_Money ?? 0));
+
+			string[] roles = { "Trưởng nhóm", "Thành viên" };
+			member.Role = roles[memberRoleComboBox.SelectedIndex];
+
+			//Reset
+			memberNameTextBox.Text = "";
+			memberPhoneTextBox.Text = "";
+			memberReceiptMoneyTextBox.Text = "";
+			memberRoleComboBox.SelectedIndex = 0;
+
+			if (membersListView.SelectedIndex != -1)
+			{
+				member.Member_Index = JourneyAttendances[membersListView.SelectedIndex].Member_Index;
+
+				JourneyAttendances[membersListView.SelectedIndex] = member;
+
+				routesListView.SelectedIndex = -1;
+			}
+			else
+			{
+				member.Member_Index = JourneyAttendances.Count + 1;
+
+				member.Is_Active = 1;
+
+				JourneyAttendances.Add(member);
+			}
+
+			membersListView.ItemsSource = null;
+			membersListView.ItemsSource = JourneyAttendances;
 		}
 
 		private void addExpensesButton_Click(object sender, RoutedEventArgs e)
@@ -105,6 +157,7 @@ namespace WeSplit.Pages
 
 			route.ID_Journey = _journey.ID_Journey;
 			route.Route_Status = 0;
+			route.Is_Active = 1;
 
 			route.Place = routeStartPlaceTextBox.Text;
 			if (route.Place.Length <= 0)
@@ -305,12 +358,20 @@ namespace WeSplit.Pages
 
 		private void deleteMemberButton_Click(object sender, RoutedEventArgs e)
 		{
+			int Member_Index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
+			JourneyAttendances[Member_Index - 1].Is_Active = 0;
 
+			membersListView.ItemsSource = null;
+			membersListView.ItemsSource = JourneyAttendances;
 		}
 
 		private void deleteExpensesButton_Click(object sender, RoutedEventArgs e)
 		{
+			int Expense_index = int.Parse(((System.Windows.Controls.Button)sender).Tag.ToString());
+			Expens_For_Binding[Expense_index].Is_Active = 0;
 
+			expensesListView.ItemsSource = null;
+			expensesListView.ItemsSource = Expens_For_Binding;
 		}
 
 		private void deleteAdvancesButton_Click(object sender, RoutedEventArgs e)

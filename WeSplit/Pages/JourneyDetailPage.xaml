@@ -418,7 +418,7 @@
                                         <!-- Binding data -->
                                         <TextBlock
                                             Grid.Column="0"
-                                            Text="{Binding ID_Member}"
+                                            Text="{Binding Member_Index}"
                                             Margin="7, 0, 0, 0"
                                             Style="{StaticResource RegularText}"/>
 
@@ -705,7 +705,7 @@
                                             <!-- Binding data -->
                                             <TextBlock
                                             Grid.Column="0"
-                                            Text="{Binding ID_Member}"
+                                            Text="{Binding Member_Index}"
                                             Margin="7, 0, 0, 0"
                                             Style="{StaticResource RegularText}"/>
 
