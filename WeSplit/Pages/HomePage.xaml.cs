@@ -30,6 +30,10 @@ namespace WeSplit.Pages
 		public delegate void ShowJourneyDetailPageHandler(int ID_Journey);
 		public event ShowJourneyDetailPageHandler ShowJourneyDetailPage;
 
+		public delegate void ShowJourneySearchPageHandler(string textSearch);
+		public event ShowJourneySearchPageHandler ShowJourneySearchPage;
+
+
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
 
 		const int PLANED = 1;
@@ -379,5 +383,13 @@ namespace WeSplit.Pages
         {
 			ViewAllJourney?.Invoke(DONE);
 		}
-    }
+
+		private void searchTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				ShowJourneySearchPage?.Invoke(searchTextBox.Text);
+			}	
+		}
+	}
 }

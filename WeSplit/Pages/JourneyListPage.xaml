@@ -1146,7 +1146,7 @@
                    Grid.Row="4"
                    Margin="8, 0, 200, 0"
                    VerticalAlignment="Center"
-                   Text="Hiển thị 12 trong tổng số 72 chuyến đi"
+                   Text="Hiển thị 6 trong tổng số 72 chuyến đi"
                    Foreground="{StaticResource MyNeueGreen}"
                    Style="{StaticResource RegularText}"/>
         

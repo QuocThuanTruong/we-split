@@ -86,6 +86,16 @@ namespace WeSplit.Pages
 			loadJourneys();
 		}
 
+		public JourneyListPage(string textSearch)
+		{
+			InitializeComponent();
+			filterContainer.Visibility = Visibility.Collapsed;
+			searchTextBox.Text = textSearch;
+			_search_text = textSearch;
+
+			loadJourneys();
+		}
+
 		public JourneyListPage(int journeyStatus)
 		{
 			InitializeComponent();

@@ -108,6 +108,8 @@ namespace WeSplit.Pages
 
 			_sites.Add(site);
 
+			notiMessageSnackbar.MessageQueue.Enqueue($"Đã thêm thành công địa danh \"{site.Site_Name}\"", "OK", () => { });
+
 			//Reset Input
 			siteNameTextBox.Text = "";
 			siteAddressTextBox.Text = "";
