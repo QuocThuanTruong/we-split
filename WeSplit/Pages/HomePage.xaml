@@ -175,7 +175,8 @@
 
 
                 <!-- First planed-->
-                <Grid Width="210"
+                <Grid Name="FirstPlaned"
+                      Width="210"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       Height="360"
@@ -291,7 +292,8 @@
                 </Grid>
 
                 <!-- Second planed-->
-                <Grid Width="434"
+                <Grid Name="SecondPlaned"
+                    Width="434"
                       VerticalAlignment="Top"
                       Height="174"
                       Grid.Column="1">
@@ -406,7 +408,8 @@
                 </Grid>
 
                 <!-- Third planed-->
-                <Grid Width="434"
+                <Grid Name="ThirdPlaned"
+                    Width="434"
                       VerticalAlignment="Bottom"
                       Margin="0, 0, 0, 5"
                       Height="172"
@@ -588,7 +591,8 @@
 
 
                 <!--First done-->
-                <Grid Width="138"
+                <Grid Name="FirstDone"
+                    Width="138"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       Height="133">
@@ -707,7 +711,8 @@
                 </Grid>
 
                 <!--second done-->
-                <Grid Width="138"
+                <Grid Name="SecondDone"
+                    Width="138"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
                       Height="133"
@@ -828,7 +833,8 @@
                 </Grid>
 
                 <!--third done-->
-                <Grid Width="138"
+                <Grid Name="ThirdDone" 
+                    Width="138"
                       HorizontalAlignment="Right"
                       VerticalAlignment="Top"
                       Height="133"
@@ -949,7 +955,8 @@
                 </Grid>
 
                 <!--fourth done-->
-                <Grid Width="138"
+                <Grid Name="FourthDone"
+                    Width="138"
                       HorizontalAlignment="Right"
                       Margin="0, 0, -4, 0"
                       VerticalAlignment="Top"
@@ -1251,9 +1258,7 @@
                                        Foreground="{StaticResource MyLightGray5}"/>
                             </StackPanel>
 
-
                             <Slider Name="currentJourneyProgess"
-
                                 Margin="0, 8, 0, 0"
                                 Minimum="0"
                                 Maximum="100"

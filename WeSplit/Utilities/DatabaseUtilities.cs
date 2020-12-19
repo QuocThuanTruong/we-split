@@ -190,7 +190,7 @@ namespace WeSplit.Utilities
                     result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
                     result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
 
-                    result[i].Site_Avatar = site.Site_Link_Avt;
+                    result[i].Site_Avatar = $"Images/Sites/{result[i].ID_Site}.{site.Site_Link_Avt}";
 
                     result[i].Total_Day = (int)(result[i].EndDate - result[i].StartDate).Value.TotalDays;
 
@@ -241,7 +241,7 @@ namespace WeSplit.Utilities
                     result[i].Name_In_Grid = _appUtilities.getStandardName(site.Site_Name, 27);
                     result[i].Name_In_List = _appUtilities.getStandardName(site.Site_Name, 31);
 
-                    result[i].Site_Avatar = site.Site_Link_Avt;
+                    result[i].Site_Avatar = $"Images/Sites/{result[i].ID_Site}.{site.Site_Link_Avt}";
 
                     result[i].Total_Day = (int)(result[i].EndDate - result[i].StartDate).Value.TotalDays;
 
@@ -1070,14 +1070,41 @@ namespace WeSplit.Utilities
             }
         }
 
+        public void UpdateJourneyAttendance(Nullable<int> idMember, Nullable<int> idJourney, string memberName, string phoneNumber, Nullable<decimal> receivable, string role, int is_active)
+        {
+            var checkExist = _databaseWeSplit
+                .Database
+                .SqlQuery<JourneyAttendance>($"Select * from JourneyAttendance where ID_Member = {idMember} and ID_Journey = {idJourney}")
+                .FirstOrDefault();
+
+            if (checkExist != null)
+            {
+                _databaseWeSplit
+               .Database
+               .ExecuteSqlCommand($"Update JourneyAttendance Set Member_Name = N'{memberName}', Phone_Number = N'{phoneNumber}', Receivables_Money = {receivable}, Role = N'{role}', Is_Active = {is_active}  Where ID_Member = {idMember} And ID_Journey = {idJourney}");
+            }
+            else
+            {
+                AddJourneyAttendance(idMember, idJourney, memberName, phoneNumber, receivable, role, is_active);
+            }
+        }
+
         public void FinishCurrentJourney()
         {
-            int ID_Current_Journey = _databaseWeSplit
+            var checkExist = _databaseWeSplit
                 .Database
-                .SqlQuery<int>("Select ID_Journey from Journey Where Status = 0")
-                .Single();
+                .SqlQuery<Journey>($"Select * from Journey Where Status = 0")
+                .FirstOrDefault();
 
-            UpdateJourneyStatus(ID_Current_Journey, -1);
+            if (checkExist != null)
+            {
+                int ID_Current_Journey = _databaseWeSplit
+               .Database
+               .SqlQuery<int>("Select ID_Journey from Journey Where Status = 0")
+               .Single();
+
+                UpdateJourneyStatus(ID_Current_Journey, -1);
+            }
         }
 
         public int GetMaxOrdinalNumber(int ID_Journey)
@@ -1089,7 +1116,9 @@ namespace WeSplit.Utilities
 
             return result;
         }
-        
+
+       
+
     }
 
 
