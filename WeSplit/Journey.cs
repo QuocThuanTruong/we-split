@@ -70,5 +70,7 @@ namespace WeSplit
         public List<Expens> Expens_For_Binding { get; set; }
         public List<Advance> Advances_For_Binding { get; set; }
         public string Icon_Status_Source { get; set; }
+        public string Name_In_List { get; set; }
+        public string Name_In_Grid { get; set; }
     }
 }

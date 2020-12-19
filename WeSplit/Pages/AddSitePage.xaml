@@ -334,7 +334,7 @@
                                 Margin="7, 0, 0, 0"
                                 Grid.Column="2"
                                 HorizontalAlignment="Left"
-                                Text="{Binding Site_Name}"
+                                Text="{Binding Standard_Site_Name}"
                                 VerticalAlignment="Center"
                                 Style="{StaticResource RegularText}"/>
 
@@ -350,7 +350,7 @@
                             <TextBlock 
                                 Grid.Column="4"
                                 HorizontalAlignment="Left"
-                                Text="{Binding Site_Address}"
+                                Text="{Binding Standard_Site_Address}"
                                 VerticalAlignment="Center"
                                 Style="{StaticResource RegularText}"/>
 
@@ -359,7 +359,7 @@
                                 Grid.Column="5"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Text="{Binding Site_Description}"
+                                Text="{Binding Standard_Site_Description}"
                                 Style="{StaticResource RegularText}"/>
                         </Grid>
                     </DataTemplate>

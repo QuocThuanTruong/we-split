@@ -30,7 +30,7 @@ namespace WeSplit.Pages
 
 		private Configuration _configuration;
 		private DatabaseUtilities _databaseUtilities = DatabaseUtilities.GetDBInstance();
-
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
 		public class RouteGroup
 		{
 			public RouteGroup(int index, string content)
@@ -122,9 +122,9 @@ namespace WeSplit.Pages
 			loadJourneys();
 			_routeGroups = new List<RouteGroup>()
 			{
-				new RouteGroup(0, "0 - 20 km"),
-				new RouteGroup(1, "20 - 50 km"),
-				new RouteGroup(2, "> 50 km")
+				new RouteGroup(0, "0 - 399 km"),
+				new RouteGroup(1, "400 - 699 km"),
+				new RouteGroup(2, ">= 700 km")
 			}; 
 
 			routeGroupListBox.ItemsSource = _routeGroups;
@@ -550,17 +550,17 @@ namespace WeSplit.Pages
 					{
 						if (((RouteGroup)routeOption).Index == 0)
 						{
-							result += $"(Distance <= 20) OR";
+							result += $"(Distance <= 399) OR";
 						}
 
 						if (((RouteGroup)routeOption).Index == 1)
 						{
-							result += $"(Distance > 20 And Distance <= 50) OR";
+							result += $"(Distance >= 400 And Distance <= 6999) OR";
 						}
 
 						if (((RouteGroup)routeOption).Index == 2)
 						{
-							result += $"(Distance > 50) OR";
+							result += $"(Distance >= 700) OR";
 						}
 					}
 
@@ -712,6 +712,12 @@ namespace WeSplit.Pages
 
 				journeys = Paging(journeys);
 
+				for (int i = 0; i < journeys.Count; ++i)
+				{
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+				}
+
 				journeyGridView.ItemsSource = journeys;
 				journeyListView.ItemsSource = journeys;
 			}
@@ -748,6 +754,12 @@ namespace WeSplit.Pages
             if (journeys.Count > 0)
             {
 				journeys = Paging(journeys);
+
+				for (int i = 0; i < journeys.Count; ++i)
+                {
+					journeys[i].Name_In_Grid = _appUtilities.getStandardName(journeys[i].Site_Name, 27);
+					journeys[i].Name_In_List = _appUtilities.getStandardName(journeys[i].Site_Name, 31);
+				}
 
 				journeyGridView.ItemsSource = journeys;
 				journeyListView.ItemsSource = journeys;

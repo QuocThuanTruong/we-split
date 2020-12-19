@@ -40,6 +40,8 @@ namespace WeSplit.Pages
 		const int CURRENT = 0;
 		const int DONE = -1;
 
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
+
 		public HomePage()
 		{
 			InitializeComponent();
@@ -49,7 +51,6 @@ namespace WeSplit.Pages
 			loadcurrentrentJourneyInHomePageViewType1();
 			_databaseUtilities.GetListJourney();
 		}
-
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
@@ -227,13 +228,13 @@ namespace WeSplit.Pages
 				var firstPlanedAvatar = new BitmapImage();
 				firstPlanedAvatar.BeginInit();
 				firstPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[0].ID_Site}.{firstPlaned.Site_Link_Avt}", UriKind.Relative);
+				firstPlanedAvatar.UriSource = new Uri($"Images/Sites/{firstPlaned.ID_Site}.{firstPlaned.Site_Link_Avt}", UriKind.Relative);
 				firstPlanedAvatar.EndInit();
 
 				firstPlanedJourneyAvtImage.Source = firstPlanedAvatar;
 				firstPlanedJourneyAvtHoverImage.Source = firstPlanedAvatar;
-				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km lộ trình";
-				firstPlanedJourneyTitle.Text = firstPlaned.Site_Name;
+				firstPlanedJourneyRoute.Text = firstPlaned.Distance.ToString() + " km";
+				firstPlanedJourneyTitle.Text = _appUtilities.getStandardName(firstPlaned.Site_Name, 22);
 				firstPlanedJourneyViewDetailButton.Tag = firstPlaned.ID_Journey;
 
 				if (sites.Count >= 2)
@@ -243,13 +244,15 @@ namespace WeSplit.Pages
 					var secondPlanedAvatar = new BitmapImage();
 					secondPlanedAvatar.BeginInit();
 					secondPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[1].ID_Site}.{secondPlaned.Site_Link_Avt}", UriKind.Relative);
+
+					secondPlanedAvatar.UriSource = new Uri($"Images/Sites/{secondPlaned.ID_Site}.{secondPlaned.Site_Link_Avt}", UriKind.Relative);
+
 					secondPlanedAvatar.EndInit();
 
 					secondPlanedJourneyAvtImage.Source = secondPlanedAvatar;
 					secondPlanedJourneyAvtHoverImage.Source = secondPlanedAvatar;
-					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km lộ trình";
-					secondPlanedJourneyTitle.Text = secondPlaned.Site_Name;
+					secondPlanedJourneyRoute.Text = secondPlaned.Distance.ToString() + " km";
+					secondPlanedJourneyTitle.Text = _appUtilities.getStandardName(secondPlaned.Site_Name, 22);
 					secondPlanedJourneyViewDetailButton.Tag = secondPlaned.ID_Journey;
 
 					if (sites.Count >= 3)
@@ -259,17 +262,23 @@ namespace WeSplit.Pages
 						var thirdPlanedAvatar = new BitmapImage();
 						thirdPlanedAvatar.BeginInit();
 						thirdPlanedAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdPlanedAvatar.UriSource = new Uri($"Images\\Sites\\{sites[2].ID_Site}.{thirdPlaned.Site_Link_Avt}", UriKind.Relative);
+
+						thirdPlanedAvatar.UriSource = new Uri($"Images/Sites/{thirdPlaned.ID_Site}.{thirdPlaned.Site_Link_Avt}", UriKind.Relative);
+
 						thirdPlanedAvatar.EndInit();
 
 						thirdPlanedJourneyAvtImage.Source = thirdPlanedAvatar;
 						thirdPlanedJourneyAvtHoverImage.Source = thirdPlanedAvatar;
-						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km lộ trình";
-						thirdPlanedJourneyTitle.Text = thirdPlaned.Site_Name;
+						thirdPlanedJourneyRoute.Text = thirdPlaned.Distance.ToString() + " km";
+						thirdPlanedJourneyTitle.Text = _appUtilities.getStandardName(thirdPlaned.Site_Name, 22);
 						thirdPlanedJourneyViewDetailButton.Tag = thirdPlaned.ID_Journey;
 					}
 				}
-			}
+			} 
+			else
+            {
+
+            }
         }
 
 		public void loadDoneJourneyInHomePageViewType1()
@@ -283,13 +292,15 @@ namespace WeSplit.Pages
 				var firstDoneAvatar = new BitmapImage();
 				firstDoneAvatar.BeginInit();
 				firstDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-				firstDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[0].ID_Site}.{firstDone.Site_Link_Avt}", UriKind.Relative);
+
+				firstDoneAvatar.UriSource = new Uri($"Images/Sites/{firstDone.ID_Site}.{firstDone.Site_Link_Avt}", UriKind.Relative);
+
 				firstDoneAvatar.EndInit();
 
 				firstDoneJourneyAvtImage.Source = firstDoneAvatar;
 				firstDoneJourneyAvtHoverImage.Source = firstDoneAvatar;
-				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km lộ trình";
-				firstDoneJourneyTitle.Text = firstDone.Site_Name;
+				firstDoneJourneyRoute.Text = firstDone.Distance.ToString() + " km";
+				firstDoneJourneyTitle.Text = _appUtilities.getStandardName(firstDone.Site_Name, 22);
 				firstDoneJourneyViewDetailButton.Tag = firstDone.ID_Journey;
 
 				if (sites.Count >= 2)
@@ -299,13 +310,15 @@ namespace WeSplit.Pages
 					var secondDoneAvatar = new BitmapImage();
 					secondDoneAvatar.BeginInit();
 					secondDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-					secondDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[1].ID_Site}.{secondDone.Site_Link_Avt}", UriKind.Relative);
+
+					secondDoneAvatar.UriSource = new Uri($"Images/Sites/{secondDone.ID_Site}.{secondDone.Site_Link_Avt}", UriKind.Relative);
+
 					secondDoneAvatar.EndInit();
 
 					secondDoneJourneyAvtImage.Source = secondDoneAvatar;
 					secondDoneJourneyAvtHoverImage.Source = secondDoneAvatar;
-					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km lộ trình";
-					secondDoneJourneyTitle.Text = secondDone.Site_Name;
+					secondDoneJourneyRoute.Text = secondDone.Distance.ToString() + " km";
+					secondDoneJourneyTitle.Text = _appUtilities.getStandardName(secondDone.Site_Name, 22);
 					secondDoneJourneyViewDetailButton.Tag = secondDone.ID_Journey;
 
 					if (sites.Count >= 3)
@@ -315,13 +328,15 @@ namespace WeSplit.Pages
 						var thirdDoneAvatar = new BitmapImage();
 						thirdDoneAvatar.BeginInit();
 						thirdDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-						thirdDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[2].ID_Site}.{thirdDone.Site_Link_Avt}", UriKind.Relative);
+
+						thirdDoneAvatar.UriSource = new Uri($"Images/Sites/{thirdDone.ID_Site}.{thirdDone.Site_Link_Avt}", UriKind.Relative);
+
 						thirdDoneAvatar.EndInit();
 
 						thirdDoneJourneyAvtImage.Source = thirdDoneAvatar;
 						thirdDoneJourneyAvtHoverImage.Source = thirdDoneAvatar;
-						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km lộ trình";
-						thirdDoneJourneyTitle.Text = thirdDone.Site_Name;
+						thirdDoneJourneyRoute.Text = thirdDone.Distance.ToString() + " km";
+						thirdDoneJourneyTitle.Text = _appUtilities.getStandardName(thirdDone.Site_Name, 22);
 						thirdDoneJourneyViewDetailButton.Tag = thirdDone.ID_Journey;
 
 						if (sites.Count >= 4)
@@ -331,13 +346,15 @@ namespace WeSplit.Pages
 							var fourthDoneAvatar = new BitmapImage();
 							fourthDoneAvatar.BeginInit();
 							fourthDoneAvatar.CacheOption = BitmapCacheOption.OnLoad;
-							fourthDoneAvatar.UriSource = new Uri($"Images\\Sites\\{sites[3].ID_Site}.{fourthDone.Site_Link_Avt}", UriKind.Relative);
+
+							fourthDoneAvatar.UriSource = new Uri($"Images/Sites/{fourthDone.ID_Site}.{fourthDone.Site_Link_Avt}", UriKind.Relative);
+
 							fourthDoneAvatar.EndInit();
 
 							fourthDoneJourneyAvtImage.Source = fourthDoneAvatar;
 							fourthDoneJourneyAvtHoverImage.Source = fourthDoneAvatar;
-							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km lộ trình";
-							fourthDoneJourneyTitle.Text = fourthDone.Site_Name;
+							fourthDoneJourneyRoute.Text = fourthDone.Distance.ToString() + " km";
+							fourthDoneJourneyTitle.Text = _appUtilities.getStandardName(fourthDone.Site_Name, 22);
 							fourthDoneJourneyViewDetailButton.Tag = fourthDone.ID_Journey;
 						}
 					}
@@ -358,8 +375,8 @@ namespace WeSplit.Pages
 				currentAvatar.EndInit();
 
 				currentJourneyAvt.Source = currentAvatar;
-				currentJourneyName.Text = current.Site_Name;
-				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km lộ trình";
+				currentJourneyName.Text = _appUtilities.getStandardName(current.Site_Name, 31);
+				currentTotalJourneyDistance.Text = current.Distance.ToString() + "km";
 				startDateTextBlock.Text = current.StartDate.Value.ToShortDateString();
 				endDateTextBlock.Text = current.EndDate.Value.Date.ToShortDateString();
 				currentJourneyProgess.Value = current.Journey_Progress;

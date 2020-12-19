@@ -37,6 +37,8 @@ namespace WeSplit
 
 		private bool _showSplashScreenFlag = true;
 
+		private AppUtilities _appUtilities = AppUtilities.GetAppInstance();
+
 		public SplashScreen()
 		{
 			InitializeComponent();
@@ -50,6 +52,9 @@ namespace WeSplit
 				int randomIndex = _rng.Next(maxID) + 1;
 
 				Site site = _databaseUtilities.GetSiteByID(randomIndex);
+
+				site.Site_Name = _appUtilities.getStandardName(site.Site_Name, 67);
+				site.Site_Name = site.Site_Name.ToUpper();
 
 				DataContext = site;
 			}

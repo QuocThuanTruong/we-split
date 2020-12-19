@@ -14,11 +14,12 @@
     <Grid Name="mainContainer">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="670*"/>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="316*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="158*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -97,8 +98,8 @@
                 </materialDesign:Card>
             </materialDesign:ColorZone>
 
-           
-           <!-- View all -->
+
+            <!-- View all -->
             <materialDesign:ColorZone Mode="Custom"
                                       Margin="0, 0, 4, 0"
                                       Height="{Binding ActualHeight, ElementName=searchContainer}"
@@ -180,7 +181,7 @@
                       Height="360"
                       Grid.RowSpan="2">
 
-                        <materialDesign:Card Name="firstPlanedJourneyBg"
+                    <materialDesign:Card Name="firstPlanedJourneyBg"
                         materialDesign:ShadowAssist.ShadowDepth="Depth0"
                         UniformCornerRadius="10"
                         Width="210"
@@ -195,7 +196,7 @@
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Source="{StaticResource TEST_1}"/>
                     </materialDesign:Card>
-   
+
 
                     <Button Name="firstPlanedJourneyButton"
                             MouseEnter="firstPlanedJourneyButton_MouseEnter"
@@ -211,7 +212,7 @@
                         <Button.Effect>
                             <BlurEffect Radius="{Binding Path=FontSize, ElementName=firstPlanedJourneyButton}"/>
                         </Button.Effect>
-                        
+
                         <!-- Binding -->
                         <Image Name="firstPlanedJourneyAvtHoverImage"
                                Width="206"
@@ -220,7 +221,7 @@
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Source="{StaticResource TEST_1}">
                         </Image>
-  
+
                     </Button>
 
                     <Button Name="firstPlanedJourneyViewDetailButton"
@@ -234,7 +235,7 @@
                                    FontSize="16"
                                    Style="{StaticResource ButtonMediumText}"/>
                     </Button>
-                                        
+
 
                     <!-- Binding -->
                     <StackPanel Margin="10"
@@ -554,7 +555,7 @@
 
                         <TextBlock Text="{x:Static loc:Resources.text_all}"
                                    Style="{StaticResource ButtonMediumText}"/>
-                        
+
                     </Button>
 
                 </materialDesign:ColorZone>
@@ -582,11 +583,11 @@
                     <ColumnDefinition Width="144*"/>
                     <ColumnDefinition Width="144*"/>
                     <ColumnDefinition Width="80*"/>
-                    
+
                 </Grid.ColumnDefinitions>
 
 
-                 <!--First done-->
+                <!--First done-->
                 <Grid Width="138"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
@@ -598,7 +599,7 @@
                         Width="138"
                         Height="133">
 
-                         <!--Binding--> 
+                        <!--Binding-->
                         <Image Name="firstDoneJourneyAvtImage"
                                Width="138"
                                Height="133"
@@ -622,7 +623,7 @@
                             <BlurEffect Radius="{Binding Path=FontSize, ElementName=firstDoneJourneyButton}"/>
                         </Button.Effect>
 
-                         <!--Binding--> 
+                        <!--Binding-->
                         <Image Name="firstDoneJourneyAvtHoverImage"
                                Width="134"
                                Height="129"
@@ -649,7 +650,7 @@
                     </Button>
 
 
-                     <!--Binding--> 
+                    <!--Binding-->
                     <StackPanel Margin="10"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Bottom">
@@ -1135,8 +1136,8 @@
                         <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                          UniformCornerRadius="10">
 
-                        
-                        <Image Name="currentJourneyAvt"
+
+                            <Image Name="currentJourneyAvt"
                                RenderOptions.BitmapScalingMode="HighQuality"
                                Stretch="UniformToFill"
                                Source="{StaticResource TEST_1}"/>
@@ -1147,8 +1148,8 @@
                                 VerticalAlignment="Bottom">
 
 
-                        <!-- BInding -->
-                        <TextBlock Name="currentJourneyName"
+                            <!-- BInding -->
+                            <TextBlock Name="currentJourneyName"
                                    Style="{StaticResource BoldMediumText}"
                                    Text="Động Phong Nha Kẻ Bàng"/>
 
@@ -1175,7 +1176,7 @@
                             </StackPanel>
 
 
-                        <TextBlock Name="currentTotalJourneyDistance"
+                            <TextBlock Name="currentTotalJourneyDistance"
                                    Text="17 km"
                                    Margin="22, 0, 0, 0"
                                    Style="{StaticResource RegularText}"/>
@@ -1251,7 +1252,7 @@
                             </StackPanel>
 
 
-                        <Slider Name="currentJourneyProgess"
+                            <Slider Name="currentJourneyProgess"
 
                                 Margin="0, 8, 0, 0"
                                 Minimum="0"
@@ -1263,7 +1264,7 @@
                         </StackPanel>
 
 
-                    <Button Name="exploreCurrentJourneyButton"
+                        <Button Name="exploreCurrentJourneyButton"
                             Click="exploreCurrentJourneyButton_Click"
 
                             Margin="0, 8, 0, 0"
@@ -1313,6 +1314,6 @@
 
         </StackPanel>
 
-        
+
     </Grid>
 </Page>

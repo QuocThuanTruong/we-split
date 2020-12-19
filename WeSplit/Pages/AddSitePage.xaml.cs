@@ -80,12 +80,14 @@ namespace WeSplit.Pages
             {
 				return;
             }
+			site.Standard_Site_Name = _appUtilities.getStandardName(site.Site_Name, 25);
 
 			site.Site_Address = siteAddressTextBox.Text;
 			if (site.Site_Address.Length == 0)
             {
 				return;
             }
+			site.Standard_Site_Address = _appUtilities.getStandardName(site.Site_Address, 28);
 
 			if (_srcAvatarSite == "")
 			{
@@ -97,6 +99,7 @@ namespace WeSplit.Pages
             {
 				return;
             }
+			site.Standard_Site_Description = _appUtilities.getStandardName(site.Site_Description, 50);
 
 			site.Site_Link_Avt = _appUtilities.getTypeOfImage(_srcAvatarSite);
 
