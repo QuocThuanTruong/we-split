@@ -20,61 +20,61 @@
     </Page.Resources>
 
     <Grid>
-    <Grid Name="mainContainer">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="139*"/>
-            <RowDefinition Height="186*"/>
-            <RowDefinition Height="190*"/>
-            <RowDefinition Height="158*"/>
-            <RowDefinition Height="56*"/>
-        </Grid.RowDefinitions>
+        <Grid Name="mainContainer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="139*"/>
+                <RowDefinition Height="186*"/>
+                <RowDefinition Height="190*"/>
+                <RowDefinition Height="158*"/>
+                <RowDefinition Height="56*"/>
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="1036*"/>
-            <ColumnDefinition Width="40*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="1036*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
 
-        <materialDesign:Card
+            <materialDesign:Card
             Grid.Column="1"
             Background="#60ffffff"
             UniformCornerRadius="10"
             Padding="14"
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1.2*"/>
-                    <ColumnDefinition Width="1.2*"/>
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel>
-                    <TextBlock Text="Tên chuyến đi"
+                    <StackPanel>
+                        <TextBlock Text="Tên chuyến đi"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                    <TextBox Name="journeyNameTextBox"
+                        <TextBox Name="journeyNameTextBox"
                              Margin="2, 8, 0 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Nhập tên chuyến đi của bạn"
                              Text="{Binding Journey_Name}"
                              Grid.Column="1"
                              Grid.Row="1"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <Grid Margin="22, 0, 0, 0"
+                    <Grid Margin="22, 0, 0, 0"
                     Grid.Column="1">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.2*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel>
-                        <TextBlock Text="Xuất phát"
+                        <StackPanel>
+                            <TextBlock Text="Xuất phát"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                        <TextBox Name="journeyStartPlaceTextBox"
+                            <TextBox Name="journeyStartPlaceTextBox"
                              Margin="2, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Địa điểm"
@@ -82,13 +82,13 @@
                              Grid.Row="1"
                              Text="{Binding Start_Place}"/>
 
-                        <Grid  Margin="2, 8, 2, 0  ">
-                            <Border Height="34"
+                            <Grid  Margin="2, 8, 2, 0  ">
+                                <Border Height="34"
                             BorderBrush="Black"
                             BorderThickness="1"
                             CornerRadius="4"/>
 
-                            <DatePicker Name="startDatePicker"
+                                <DatePicker Name="startDatePicker"
                                 BorderThickness="0"
                                 materialDesign:TextFieldAssist.DecorationVisibility ="Collapsed"
                                 HorizontalAlignment="Left"
@@ -102,17 +102,17 @@
                                 Style="{StaticResource MaterialDesignDatePicker}"
                                 SelectedDate="{Binding StartDate}"/>
 
-                        </Grid>
-                    </StackPanel>
+                            </Grid>
+                        </StackPanel>
 
 
-                    <Grid Name="startProvincePickerContainer"
+                        <Grid Name="startProvincePickerContainer"
                           VerticalAlignment="Top"
                           Margin="12, 34, 0, 0"
                       Grid.Column="1"
                       Grid.Row="1">
 
-                        <Border Height="34"
+                            <Border Height="34"
                             BorderBrush="Black"
                             BorderThickness="1"
                             CornerRadius="4"/>
@@ -137,9 +137,9 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                    </Grid>
+                        </Grid>
 
-                </Grid>
+                    </Grid>
 
 
                     <Grid Margin="22, 0, 0, 0"
@@ -254,39 +254,39 @@
                 </Grid>
 
 
-        </materialDesign:Card>
+            </materialDesign:Card>
 
-        <Grid   Grid.Column="1"
+            <Grid   Grid.Column="1"
             Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3.6*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.6*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-            <materialDesign:Card
+                <materialDesign:Card
             Margin="0, 10, 0, 0"
             Background="#60ffffff"
             UniformCornerRadius="10"
             Padding="14"
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2.3*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2.3*"/>
+                        </Grid.ColumnDefinitions>
 
 
-                    <StackPanel>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Các mốc lộ trình"
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Các mốc lộ trình"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                            <Button Name="addRouteButton"
+                                <Button Name="addRouteButton"
                                     HorizontalAlignment="Right"
                                     Grid.Column="1"
                                     Click="addRouteButton_Click"
@@ -296,40 +296,40 @@
                                     materialDesign:ButtonAssist.CornerRadius="12"
                                     Height="24"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-                                <StackPanel Orientation="Horizontal"
+                                    <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
 
-                                    <Image 
+                                        <Image 
                                             Width="11"
                                             Height="11"
                                             RenderOptions.BitmapScalingMode="HighQuality"
                                             Source="{StaticResource IconWhiteAdd}"/>
 
-                                    <TextBlock Text="ADD"
+                                        <TextBlock Text="ADD"
                                                Margin="6, 0, 0, 0"
                                                Foreground="White"
                                                Style="{StaticResource SmallText}"/>
-                                </StackPanel>
-                            </Button>
-                        </Grid>
-                        
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
 
-                        <TextBox Name="routeStartPlaceTextBox"
+
+                            <TextBox Name="routeStartPlaceTextBox"
                              Margin="2, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Địa điểm"
                              Grid.Column="1"
                              Grid.Row="1"/>
 
-                        <TextBox Name="descriptionRouteTextBox"
+                            <TextBox Name="descriptionRouteTextBox"
                              Margin="2, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
                              materialDesign:HintAssist.Hint="Mô tả"
                              Grid.Column="1"
                              Grid.Row="1"/>
 
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Name="startProvinceRoutePickerContainer"
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Name="startProvinceRoutePickerContainer"
                                   HorizontalAlignment="Left"
                                   Width="160"
                           VerticalAlignment="Top"
@@ -337,12 +337,12 @@
                       Grid.Column="1"
                       Grid.Row="1">
 
-                                <Border Height="34"
+                                    <Border Height="34"
                             BorderBrush="Black"
                             BorderThickness="1"
                             CornerRadius="4"/>
 
-                                <ComboBox Name="startProvinceRouteComboBox"
+                                    <ComboBox Name="startProvinceRouteComboBox"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource AddRecipeComboBox}"
                                     ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
@@ -363,9 +363,9 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
 
-                            </Grid>
+                                </Grid>
 
-                            <Button Name="updateRouteButton"
+                                <Button Name="updateRouteButton"
                                 Click="updateRouteButton_Click"
                                 Margin="38,8,0,0"
                                 VerticalAlignment="Center"
@@ -375,15 +375,15 @@
                                 Height="34"                        
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
-                                <Image Name="iconAdd"
+                                    <Image Name="iconAdd"
                                     Width="16"
                                     Height="16"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteUpdate}"/>
-                            </Button>
+                                </Button>
 
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
 
 
                         <Grid Grid.Column="1"
@@ -437,19 +437,19 @@
                                 ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
 
                                 <ListView.ItemTemplate>
-                                <DataTemplate>
+                                    <DataTemplate>
                                         <Grid Visibility="{Binding Path=Is_Active, 
                                             Converter={StaticResource isActiveConverter}}"
                                  Margin="16, 0, 10, 0">
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.27*"/>
-                                            <ColumnDefinition Width="1.2*"/>
-                                            <ColumnDefinition Width="0.8*"/>
-                                            <ColumnDefinition Width="0.2*"/>
-                                        </Grid.ColumnDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.27*"/>
+                                                <ColumnDefinition Width="1.2*"/>
+                                                <ColumnDefinition Width="0.8*"/>
+                                                <ColumnDefinition Width="0.2*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                        <!--binding tag-->
+                                            <!--binding tag-->
                                             <ToggleButton Name="haveDoneButton"
                                           Grid.Column="0"
                                           VerticalAlignment="Center"
@@ -523,15 +523,15 @@
                             </ListView>
                         </Grid>
                     </Grid>
-            </materialDesign:Card>
+                </materialDesign:Card>
 
 
-            <!-- Bỏ map vô đây -->
-            <Grid Name="mapContainer"
+                <!-- Bỏ map vô đây -->
+                <Grid Name="mapContainer"
                   Grid.Column="1"
                   Margin="12, 10, 0, 0">
 
-                <!-- map view chỗ này (dưới cái viewLargeMapButton-->
+                    <!-- map view chỗ này (dưới cái viewLargeMapButton-->
                     <m:Map Name="routeMap" CredentialsProvider="o0d0DaQVn9doxBSv0Iav~18DKWHqGEhx_VMMFR7xMDQ~AgvRSUp6K2hNXPOVUBOEd3KcZV_-IHxAB8e2sDWtC-dD_HCTkSca9QeWUNih5KFP" 
                        Mode="AerialWithLabels" 
                        Center="10.840919302156086, 106.73613666721643" 
@@ -547,41 +547,41 @@
                         Opacity="0"
                         Style="{StaticResource MapViewButton}">
 
-                    <Image Source="{StaticResource IconSearch}"
+                        <Image Source="{StaticResource IconSearch}"
                            RenderOptions.BitmapScalingMode="HighQuality"
                            Width="40"
                            Height="40"/>
 
-                </Button>
+                    </Button>
+                </Grid>
             </Grid>
-        </Grid>
 
 
-        <Grid Grid.Column="1"
+            <Grid Grid.Column="1"
               Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1.67*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1.67*"/>
+                </Grid.ColumnDefinitions>
 
-            <materialDesign:Card
+                <materialDesign:Card
             Margin="0, 10, 0, 0"
             Background="#60ffffff"
             UniformCornerRadius="10"
             Padding="14"
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Text="Thông tin thành viên"
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Thông tin thành viên"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                        <Button Name="addMemberButton"
+                            <Button Name="addMemberButton"
                             HorizontalAlignment="Right"
                             Grid.Column="1"
                             Click="addMemberButton_Click"
@@ -591,40 +591,44 @@
                             materialDesign:ButtonAssist.CornerRadius="12"
                             Height="24"                        
                             materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
 
-                                <Image 
+                                    <Image 
                                     Width="11"
                                     Height="11"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteAdd}"/>
 
-                                <TextBlock Text="ADD"
+                                    <TextBlock Text="ADD"
                                     Margin="6, 0, 0, 0"
                                     Foreground="White"
                                     Style="{StaticResource SmallText}"/>
-                            </StackPanel>
-                        </Button>
-                    </Grid>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
 
-                    <Grid Height="136">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="42*"/>
-                            <RowDefinition Height="92*"/>
-                        </Grid.RowDefinitions>
+                        <Grid Height="136">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="607*"/>
+                                <ColumnDefinition Width="31*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="42*"/>
+                                <RowDefinition Height="92*"/>
+                            </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
 
-                            <materialDesign:Card Background="#321aaf75"
+                                <materialDesign:Card Background="#321aaf75"
                                 Margin="2, 7, 0 ,0"
                                 Width="20"
                                 Height="34"
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                 UniformCornerRadius="5">
-                            </materialDesign:Card>
+                                </materialDesign:Card>
 
-                            <TextBox Name="memberNameTextBox"
+                                <TextBox Name="memberNameTextBox"
                                 Width="172"
                                 Margin="12, 8, 2 ,0"
                                 Style="{StaticResource AddRecipePageTextBox}"
@@ -632,7 +636,7 @@
                                 Grid.Column="1"
                                 Grid.Row="1"/>
 
-                            <TextBox Name="memberPhoneTextBox"
+                                <TextBox Name="memberPhoneTextBox"
                                 Width="100"
                                 Margin="12, 8, 2 ,0"
                                 Style="{StaticResource AddRecipePageTextBox}"
@@ -640,8 +644,8 @@
                                 Grid.Column="1"
                                 Grid.Row="1"/>
 
-                            <Grid>
-                                <TextBox Name="memberReceiptMoneyTextBox"
+                                <Grid>
+                                    <TextBox Name="memberReceiptMoneyTextBox"
                                     Padding="-5, -5, 26, -5"
                                     Width="118"
                                     Margin="12, 8, 2 ,0"
@@ -650,27 +654,27 @@
                                     Grid.Column="1"
                                     Grid.Row="1"/>
 
-                                <TextBlock Text="VNĐ"
+                                    <TextBlock Text="VNĐ"
                                     Margin="0, 9, 12, 0"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Right"
                                     Style="{StaticResource RegularText}"/>
-                            </Grid>
+                                </Grid>
 
 
-                            <Grid 
+                                <Grid 
                                 Width="124"
                                 VerticalAlignment="Top"
                                 Margin="12, 9, 0, 0"
                                 Grid.Column="1"
                                 Grid.Row="1">
 
-                                <Border Height="34"
+                                    <Border Height="34"
                                     BorderBrush="Black"
                                     BorderThickness="1"
                                     CornerRadius="4"/>
 
-                                <ComboBox Name="memberRoleComboBox"
+                                    <ComboBox Name="memberRoleComboBox"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource AddRecipeComboBox}"
                                     ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
@@ -684,21 +688,21 @@
                                     OverridesDefaultStyle="True"
                                     Width="100">
 
-                                    <ComboBoxItem>
-                                        <TextBlock
+                                        <ComboBoxItem>
+                                            <TextBlock
                                             Text="Trưởng nhóm"/>
-                                    </ComboBoxItem>
+                                        </ComboBoxItem>
 
-                                    <ComboBoxItem>
-                                        <TextBlock
+                                        <ComboBoxItem>
+                                            <TextBlock
                                             Text="Thành viên"/>
-                                    </ComboBoxItem>
+                                        </ComboBoxItem>
 
-                                </ComboBox>
+                                    </ComboBox>
 
-                            </Grid>
+                                </Grid>
 
-                            <Button Name="updateMemberButton"
+                                <Button Name="updateMemberButton"
                                 Click="updateMemberButton_Click"
                                 Margin="13,8,0,0"
                                 VerticalAlignment="Center"
@@ -708,25 +712,25 @@
                                 Height="34"                        
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
-                                <Image 
+                                    <Image 
                                     Width="16"
                                     Height="16"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteUpdate}"/>
-                            </Button>
+                                </Button>
 
-                        </StackPanel>
+                            </StackPanel>
 
 
                             <ListView Name="membersListView"
-                                Grid.Column="1"
-                                Grid.Row="2"
+                                Grid.Row="1"
                                 Margin="0, 8, 0, 0"
-                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
+                                ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}" Grid.ColumnSpan="2">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid 
-                                 Margin="2, 0, 10, 0">
+                                        <Grid Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"
+                                            Margin="2, 0, 10, 0">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.3*"/>
@@ -739,7 +743,7 @@
 
                                             <TextBlock
                                             Grid.Column="0"
-                                            Text="{Binding ID_Member}"
+                                            Text="{Binding Member_Index}"
                                             Margin="7, 0, 0, 0"
                                             Style="{StaticResource RegularText}"/>
 
@@ -775,7 +779,7 @@
                                             <Button Name="deleteMemberButton"
                                                Click="deleteMemberButton_Click"
                                                 Margin="0, 0, 8, 0"
-                                                Tag="binding id bro"
+                                                Tag="{Binding Member_Index}"
                                                 HorizontalAlignment="Right"
                                                 Style="{StaticResource DeleteJourneyButton}"
                                                 Grid.Column="5"
@@ -795,13 +799,13 @@
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                    </Grid>
+                        </Grid>
 
-                </StackPanel>
-            </materialDesign:Card>
+                    </StackPanel>
+                </materialDesign:Card>
 
 
-            <materialDesign:Card
+                <materialDesign:Card
                 Margin="12, 10, 0, 0"
                 Background="#60ffffff"
                 UniformCornerRadius="10"
@@ -809,17 +813,17 @@
                 Grid.Column="1"
                 materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Hình ảnh chuyến đi"
+                            <TextBlock Text="Hình ảnh chuyến đi"
                                Style="{StaticResource RegularHeaderText}"/>
 
-                        <Button Name="addImageOption2Button"
+                            <Button Name="addImageOption2Button"
                                 HorizontalAlignment="Right"
                                 Visibility="Hidden"
                                 Grid.Column="1"
@@ -830,25 +834,25 @@
                                 materialDesign:ButtonAssist.CornerRadius="12"
                                 Height="24"                        
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
 
-                                <Image 
+                                    <Image 
                                     Width="11"
                                     Height="11"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteAdd}"/>
 
-                                <TextBlock Text="ADD IMAGES"
+                                    <TextBlock Text="ADD IMAGES"
                                     Margin="6, 0, 0, 0"
                                     Foreground="White"
                                     Style="{StaticResource SmallText}"/>
-                            </StackPanel>
-                        </Button>
-                    </Grid>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
 
 
-                    <Button Name="addImageOption1Button"
+                        <Button Name="addImageOption1Button"
                         Style="{StaticResource ImagePickerButton}"
                         Background="#a6e2c7"
                         VerticalAlignment="Top"
@@ -858,17 +862,17 @@
                         Height="110" 
                         Click="addImageButton_Click">
 
-                        <Image Width="39"
+                            <Image Width="39"
                                Height="34"
                                Source="{StaticResource IconAddImg}"/>
-                    </Button>
+                        </Button>
 
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 Height="128"
                                 Width="336">
-                        <!-- Collaped when no image, visible when image added-->
-                        <!-- Binding data -->
-                        <ListView Name="journeyImageListView"
+                            <!-- Collaped when no image, visible when image added-->
+                            <!-- Binding data -->
+                            <ListView Name="journeyImageListView"
                             Height="128"
                             Width="336"
                             Visibility="Collapsed"
@@ -876,11 +880,11 @@
                             Margin="0, 0, 14, 0"
                             ItemContainerStyle="{StaticResource ImageStepListViewItem}">
 
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -920,39 +924,39 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
+                        </StackPanel>
+
                     </StackPanel>
 
-                </StackPanel>
+                </materialDesign:Card>
 
-            </materialDesign:Card>
+            </Grid>
 
-        </Grid>
-
-        <Grid Grid.Column="1"
+            <Grid Grid.Column="1"
               Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2.01*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.01*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
 
-            <materialDesign:Card
+                <materialDesign:Card
             Margin="0, 10, 0, 0"
             Background="#60ffffff"
             UniformCornerRadius="10"
             Padding="14"
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Text="Các khoản chi"
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Các khoản chi"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                        <Button Name="addExpensesButton"
+                            <Button Name="addExpensesButton"
                                     HorizontalAlignment="Right"
                                     Grid.Column="1"
                                     Click="addExpensesButton_Click" 
@@ -962,40 +966,40 @@
                                     materialDesign:ButtonAssist.CornerRadius="12"
                                     Height="24"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
 
-                                <Image 
+                                    <Image 
                                             Width="11"
                                             Height="11"
                                             RenderOptions.BitmapScalingMode="HighQuality"
                                             Source="{StaticResource IconWhiteAdd}"/>
 
-                                <TextBlock Text="ADD"
+                                    <TextBlock Text="ADD"
                                                Margin="6, 0, 0, 0"
                                                Foreground="White"
                                                Style="{StaticResource SmallText}"/>
-                            </StackPanel>
-                        </Button>
-                    </Grid>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
 
-                    <Grid Height="104">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="42*"/>
-                            <RowDefinition Height="62*"/>
-                        </Grid.RowDefinitions>
+                        <Grid Height="104">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="42*"/>
+                                <RowDefinition Height="62*"/>
+                            </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
 
-                            <materialDesign:Card Background="#321aaf75"
+                                <materialDesign:Card Background="#321aaf75"
                                                  Margin="2, 7, 0 ,0"
                                                  Width="20"
                                                  Height="34"
                                              materialDesign:ShadowAssist.ShadowDepth="Depth0"
                                              UniformCornerRadius="5">
-                            </materialDesign:Card>
+                                </materialDesign:Card>
 
-                            <TextBox Name="descriptionExpensesTextBox"
+                                <TextBox Name="descriptionExpensesTextBox"
                                  Width="172"
                              Margin="12, 8, 2 ,0"
                              Style="{StaticResource AddRecipePageTextBox}"
@@ -1003,8 +1007,8 @@
                              Grid.Column="1"
                              Grid.Row="1"/>
 
-                            <Grid>
-                                <TextBox Name="expensesMoneyTextBox"
+                                <Grid>
+                                    <TextBox Name="expensesMoneyTextBox"
                                     Padding="-5, -5, 26, -5"
                                     Width="118"
                                     Margin="12, 8, 2 ,0"
@@ -1013,15 +1017,15 @@
                                     Grid.Column="1"
                                     Grid.Row="1"/>
 
-                                <TextBlock Text="VNĐ"
+                                    <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Right"
                                            Style="{StaticResource RegularText}"/>
-                            </Grid>
+                                </Grid>
 
 
-                            <Button Name="updateExpensesButton"
+                                <Button Name="updateExpensesButton"
                                     Click="updateExpensesButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
@@ -1031,26 +1035,27 @@
                                     Height="34"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
-                                <Image 
+                                    <Image 
                                     Width="16"
                                     Height="16"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteUpdate}"/>
-                            </Button>
+                                </Button>
 
-                        </StackPanel>
+                            </StackPanel>
 
 
-                        <ListView Name="expensesListView"
+                            <ListView Name="expensesListView"
 
                   Grid.Column="1"
                   Grid.Row="2"
                   Margin="0, 8, 0, 9"
                   ItemContainerStyle="{StaticResource LinearColorHoverWithSelectedListBox}">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Visibility="{Binding Path=Is_Active, 
+                                            Converter={StaticResource isActiveConverter}}"
                                  Margin="2, 0, 10, 0">
 
                                             <Grid.ColumnDefinitions>
@@ -1084,7 +1089,7 @@
 
                                             <Button Name="deleteExpensesButton"
                                                 Click="deleteExpensesButton_Click"
-                                                Tag="binding id bro"
+                                                Tag="{Binding Expense_Index}"
                                                 HorizontalAlignment="Right"
                                                 Margin="0, 0, 4, 0"
                                                 Style="{StaticResource DeleteJourneyButton}"
@@ -1105,13 +1110,13 @@
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                    </Grid>
+                        </Grid>
 
-                </StackPanel>
-            </materialDesign:Card>
+                    </StackPanel>
+                </materialDesign:Card>
 
 
-            <materialDesign:Card
+                <materialDesign:Card
                 Grid.Column="1"
             Margin="12, 10, 0, 0"
             Background="#60ffffff"
@@ -1119,17 +1124,17 @@
             Padding="14"
             materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Text="Ứng tiền"
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Ứng tiền"
                                    Style="{StaticResource RegularHeaderText}"/>
 
-                        <Button Name="addAdvanceButton"
+                            <Button Name="addAdvanceButton"
                                     HorizontalAlignment="Right"
                                     Grid.Column="1"
                                     Click="addAdvanceButton_Click"
@@ -1139,44 +1144,44 @@
                                     materialDesign:ButtonAssist.CornerRadius="12"
                                     Height="24"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
 
-                                <Image 
+                                    <Image 
                                             Width="11"
                                             Height="11"
                                             RenderOptions.BitmapScalingMode="HighQuality"
                                             Source="{StaticResource IconWhiteAdd}"/>
 
-                                <TextBlock Text="ADD"
+                                    <TextBlock Text="ADD"
                                                Margin="6, 0, 0, 0"
                                                Foreground="White"
                                                Style="{StaticResource SmallText}"/>
-                            </StackPanel>
-                        </Button>
-                    </Grid>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
 
-                    <Grid Height="104">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="43*"/>
-                            <RowDefinition Height="62*"/>
-                        </Grid.RowDefinitions>
+                        <Grid Height="104">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="43*"/>
+                                <RowDefinition Height="62*"/>
+                            </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
 
-                            <Grid 
+                                <Grid 
                                   Width="193"
                           VerticalAlignment="Top"
                           Margin="2, 9, 0, 0"
                       Grid.Column="1"
                       Grid.Row="1">
 
-                                <Border Height="34"
+                                    <Border Height="34"
                             BorderBrush="Black"
                             BorderThickness="1"
                             CornerRadius="4"/>
 
-                                <ComboBox Name="borrowerComboBox"
+                                    <ComboBox Name="borrowerComboBox"
                                     HorizontalAlignment="Left"
                                     Style="{StaticResource AddRecipeComboBox}"
                                     ItemContainerStyle="{StaticResource SearchBoxComboBoxItem}"
@@ -1197,11 +1202,11 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
 
-                                </ComboBox>
+                                    </ComboBox>
 
-                            </Grid>
+                                </Grid>
 
-                            <Grid 
+                                <Grid 
                                 Width="193"
                                 VerticalAlignment="Top"
                                 Margin="12, 9, 0, 0"
@@ -1236,10 +1241,10 @@
 
                                     </ComboBox>
 
-                            </Grid>
+                                </Grid>
 
-                            <Grid>
-                                <TextBox Name="advanceMoneyTextBox"
+                                <Grid>
+                                    <TextBox Name="advanceMoneyTextBox"
                                  Padding="-5, -5, 26, -5"
                                  Width="118"
                              Margin="12, 8, 2 ,0"
@@ -1248,15 +1253,15 @@
                              Grid.Column="1"
                              Grid.Row="1"/>
 
-                                <TextBlock Text="VNĐ"
+                                    <TextBlock Text="VNĐ"
                                            Margin="0, 9, 12, 0"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Right"
                                            Style="{StaticResource RegularText}"/>
-                            </Grid>
+                                </Grid>
 
 
-                            <Button Name="updateAdvanceButton"
+                                <Button Name="updateAdvanceButton"
                                     Click="updateAdvanceButton_Click"
                                     Margin="13,8,0,0"
                                     VerticalAlignment="Center"
@@ -1266,16 +1271,16 @@
                                     Height="34"                        
                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
 
-                                <Image 
+                                    <Image 
                                     Width="16"
                                     Height="16"
                                     RenderOptions.BitmapScalingMode="HighQuality"
                                     Source="{StaticResource IconWhiteUpdate}"/>
-                            </Button>
+                                </Button>
 
-                        </StackPanel>
+                            </StackPanel>
 
-                                <ListView Name="advanceListView"
+                            <ListView Name="advanceListView"
                   Grid.Column="1"
                   Grid.Row="2"
                   Margin="0, 8, 0, 9"
@@ -1341,15 +1346,15 @@
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                    </Grid>
+                        </Grid>
 
-                </StackPanel>
-            </materialDesign:Card>
+                    </StackPanel>
+                </materialDesign:Card>
 
-        </Grid>
+            </Grid>
 
 
-        <materialDesign:ColorZone Mode="Custom"
+            <materialDesign:ColorZone Mode="Custom"
                                   VerticalAlignment="Center"
                                   Padding="0, 0, 4, 0"
                                   HorizontalAlignment="Right"
@@ -1357,20 +1362,20 @@
                                   Grid.Column="1"
                                   Grid.Row="4">
 
-            <materialDesign:ColorZone.Effect>
-                <DropShadowEffect BlurRadius="10" 
+                <materialDesign:ColorZone.Effect>
+                    <DropShadowEffect BlurRadius="10" 
                                           ShadowDepth="1" 
                                           Color="Orange" 
                                           Opacity="0.4" 
                                           RenderingBias="Performance" />
-            </materialDesign:ColorZone.Effect>
+                </materialDesign:ColorZone.Effect>
 
-            <StackPanel Name="saveRecipeContainer"
+                <StackPanel Name="saveRecipeContainer"
                         Height="42"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
 
-                <Button Name="cancelAddRecipeButton"
+                    <Button Name="cancelAddRecipeButton"
                         Click="cancelAddRecipeButton_Click"
                         Width="32"
                         Margin="0, 0, 14, 0"
@@ -1379,14 +1384,14 @@
                         Height="32"                        
                         materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                    <Image Name="iconCancel"
+                        <Image Name="iconCancel"
                            VerticalAlignment="Center"
                            Width="11"
                            Height="11"
                            Source="{StaticResource IconGrayClose}"/>
-                </Button>
+                    </Button>
 
-                <Button Name="saveJourneyButton"
+                    <Button Name="saveJourneyButton"
                         Click="saveJourneyButton_Click"
                         Width="128"
                         Style="{StaticResource AddJourneyButton}"
@@ -1394,17 +1399,17 @@
                         Height="32"                        
                         materialDesign:ShadowAssist.ShadowDepth="Depth0">
 
-                    <TextBlock Name="saveRecipeTextBlock"
+                        <TextBlock Name="saveRecipeTextBlock"
                            Style="{StaticResource RegularText}"
                            Foreground="White"
                            Text="SAVE JOURNEY"/>
-                </Button>
-            </StackPanel>
-        </materialDesign:ColorZone>
+                    </Button>
+                </StackPanel>
+            </materialDesign:ColorZone>
 
 
-        <!-- Post mesage to notification to user here -->
-        <materialDesign:Snackbar Name="notiMessageSnackbar"
+            <!-- Post mesage to notification to user here -->
+            <materialDesign:Snackbar Name="notiMessageSnackbar"
                                  HorizontalAlignment="Left"
                                  MessageQueue="{materialDesign:MessageQueue}"
                                  Margin="2, 8, 0, 4"
@@ -1412,9 +1417,9 @@
                                  IsActive="True"
                                  Grid.Column="1"
                                  Grid.Row="4">
-        </materialDesign:Snackbar>
+            </materialDesign:Snackbar>
 
-    </Grid>
+        </Grid>
 
         <custom:VisualRouteDetailDialog x:Name="visualRouteDetailDialog"
                                         CloseFullScreenVideoDialog="visualRouteDetailDialog_CloseFullScreenVideoDialog"

@@ -24,5 +24,6 @@ namespace WeSplit
 
         //For Binding 
         public string Expenses_For_Binding { get; set; }
+        public int Expense_Index { get; set; }
     }
 }

@@ -327,6 +327,7 @@ namespace WeSplit.Utilities
                 for (int i = 0; i < members.Count; ++i)
                 {
                     members[i].Money_For_Binding = _appUtilities.GetMoneyForBinding(decimal.ToInt32(members[i].Receivables_Money ?? 0));
+                    members[i].Member_Index = i + 1;
                 }
 
                 result.JourneyAttendances = members;
@@ -371,6 +372,11 @@ namespace WeSplit.Utilities
                     .ToList();
 
                 result.Expens_For_Binding = result.Expenses.ToList();
+
+                for (int i = 0; i < result.Expens_For_Binding.Count; ++i)
+                {
+                    result.Expens_For_Binding[i].Expense_Index = i;
+                }
 
                 for (int i = 0; i < result.Expens_For_Binding.Count; ++i)
                 {

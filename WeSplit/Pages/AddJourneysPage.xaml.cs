@@ -124,6 +124,7 @@ namespace WeSplit.Pages
 			JourneyAttendance member = new JourneyAttendance();
 			member.ID_Member = _maxIDMember++;
 			member.ID_Journey = _journey.ID_Journey;
+			member.Member_Index = _journey.JourneyAttendances.Count + 1;
 
 			member.Member_Name = memberNameTextBox.Text;
 			if (member.Member_Name.Length <= 0)

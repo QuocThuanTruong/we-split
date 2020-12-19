@@ -37,5 +37,6 @@ namespace WeSplit
 
         //For Binding 
         public string Money_For_Binding { get; set; }
+        public int Member_Index { get; set; }
     }
 }
