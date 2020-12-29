@@ -497,7 +497,7 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VỀ ỨNG DỤNG FOOD RECIPES.
+        ///   Looks up a localized string similar to VỀ ỨNG DỤNG WE SPLIT.
         /// </summary>
         public static string title_about_app {
             get {
