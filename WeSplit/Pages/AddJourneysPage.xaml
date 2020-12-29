@@ -339,6 +339,7 @@
                                         HorizontalContentAlignment="Left"
                                         BorderBrush="{DynamicResource MyBlack}"
                                         BorderThickness="0"
+                                              Width="156"
                                         materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                                         Margin="12, 2, 0, 2"
                                         OverridesDefaultStyle="True">

@@ -1,3 +1,5 @@
 .vs
 /WeSplit/obj/Debug
 /WeSplit/bin/Debug
+/WeSplit/bin/Release
+/WeSplit/obj/Release

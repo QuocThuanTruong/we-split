@@ -353,7 +353,7 @@ namespace WeSplit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://youtu.be/Rzg9LGXxTtI.
+        ///   Looks up a localized string similar to https://www.youtube.com/watch?v=bOr5t7jbtw8.
         /// </summary>
         public static string text_link_video_help {
             get {
