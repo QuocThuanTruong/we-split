@@ -101,13 +101,16 @@ chi. Chú ý nếu có người ứng trước cần báo cáo ai phải trả c
 - **Điểm cộng đề nghị: 1đ.**
 
 ### Link youtube demo
-- https://www.youtube.com/watch?v=bOr5t7jbtw8
+> ***https://www.youtube.com/watch?v=bOr5t7jbtw8
 
 ### Link drive bài nộp
-- https://drive.google.com/file/d/1Y2vdHD89AyZDN5_kXV9R5Za8rvOQ48SE/view?usp=sharing
+> ***https://drive.google.com/file/d/1Y2vdHD89AyZDN5_kXV9R5Za8rvOQ48SE/view?usp=sharing
 
 ### Link github
-- https://github.com/QuocThuanTruong/WeSplit
+> ***https://github.com/QuocThuanTruong/WeSplit
 
 ### Link backup file bài nộp
-- https://drive.google.com/drive/folders/1cwaVwCftn_lZpmgCPqLc5zchLsnRxqjs?usp=sharing
+> ***https://drive.google.com/drive/folders/1cwaVwCftn_lZpmgCPqLc5zchLsnRxqjs?usp=sharing
+
+### License
+We Split is available under the [MIT license](https://opensource.org/licenses/MIT) . See [LICENSE](https://github.com/QuocThuanTruong/WeSplit/blob/master/LICENSE) for the full license text.
